@@ -239,7 +239,7 @@ export const AppRouter = () => {
 
         {/* Catch all - redirect to home */}
         <Route path="*" element={<Home />} />
-          </Routes>
+      </Routes>
         </ServicesProvider>
       </AuthProvider>
     </Router>
