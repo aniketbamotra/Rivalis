@@ -449,10 +449,10 @@ export const Immigration: React.FC = () => {
               <i className="fas fa-phone-volume"></i>
               EMERGENCY: (202) 555-0199
             </a>
-            <a href="/forms/immigration" className="service-btn service-btn-secondary">
+            <Link to="/forms/immigration" className="service-btn service-btn-secondary">
               <i className="fas fa-clipboard-list"></i>
-              Fill Out Intake Form
-            </a>
+              Start Immigration Intake
+            </Link>
           </div>
         </div>
       </section>

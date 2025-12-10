@@ -22,6 +22,14 @@ const ClientIntakePage = React.lazy(() => import('./pages/Forms/ClientIntakePage
 const QualificationForm = React.lazy(() => import('./pages/Forms/QualificationForm').then(m => ({ default: m.QualificationForm })));
 const ImmigrationIntake = React.lazy(() => import('./pages/Forms/ImmigrationIntake').then(m => ({ default: m.ImmigrationIntake })));
 const AIGovernanceIntake = React.lazy(() => import('./pages/Forms/AIGovernanceIntake').then(m => ({ default: m.AIGovernanceIntake })));
+const FraudInvestigationIntake = React.lazy(() => import('./pages/Forms/FraudInvestigationIntake').then(m => ({ default: m.FraudInvestigationIntake })));
+const MAIntake = React.lazy(() => import('./pages/Forms/MAIntake').then(m => ({ default: m.MAIntake })));
+const ContractReviewIntake = React.lazy(() => import('./pages/Forms/ContractReviewIntake'));
+const DataPrivacyIntake = React.lazy(() => import('./pages/Forms/DataPrivacyIntake'));
+const IPStrategyIntake = React.lazy(() => import('./pages/Forms/IPStrategyIntake'));
+const EmploymentLawIntake = React.lazy(() => import('./pages/Forms/EmploymentLawIntake'));
+const EntityFormationIntake = React.lazy(() => import('./pages/Forms/EntityFormationIntake'));
+const FundraisingIntake = React.lazy(() => import('./pages/Forms/FundraisingIntake'));
 
 // Legal pages
 const Terms = React.lazy(() => import('./pages/Legal/Terms').then(m => ({ default: m.Terms })));
@@ -167,6 +175,70 @@ export const AppRouter = () => {
           element={
             <React.Suspense fallback={<PageLoader />}>
               <AIGovernanceIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/fraud-investigation"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <FraudInvestigationIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/ma"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <MAIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/contracts"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <ContractReviewIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/data-privacy"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <DataPrivacyIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/ip-strategy"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <IPStrategyIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/employment-law"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <EmploymentLawIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/entity-formation"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <EntityFormationIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/fundraising"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <FundraisingIntake />
             </React.Suspense>
           }
         />

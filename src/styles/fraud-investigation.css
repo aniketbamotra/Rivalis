@@ -1,9 +1,129 @@
-/* Fraud Investigation Page Specific Styles */
+/* =====================================================
+   FRAUD INVESTIGATION STYLES
+   Includes both service page and intake form styles
+   ===================================================== */
 
 :root {
     --danger: #c0392b;
     --danger-light: #e74c3c;
 }
+
+/* INTAKE FORM SPECIFIC STYLES */
+.confidential-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #2d3748 100%);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+}
+
+.confidential-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.confidential-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.confidential-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(212, 175, 55, 0.2);
+    border: 1px solid var(--accent);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    position: relative;
+    z-index: 1;
+}
+
+.urgency-notice {
+    background: rgba(231, 76, 60, 0.1);
+    border-left: 4px solid var(--danger-light);
+    padding: 2rem;
+    margin: 0;
+    border-radius: 0;
+    text-align: center;
+}
+
+.urgency-notice h4 {
+    color: var(--danger-light);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.emergency-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--danger-light);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.emergency-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-title i {
+    color: var(--accent);
+}
+
+.emergency-contact {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(231, 76, 60, 0.05);
+    border-top: 1px solid var(--gray-200);
+}
+
+.emergency-contact h4 {
+    color: var(--danger-light);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+/* SERVICE PAGE SPECIFIC STYLES */
 
 /* Emergency Bar */
 .fraud-emergency-bar {

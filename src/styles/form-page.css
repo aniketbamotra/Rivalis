@@ -200,6 +200,22 @@ input[type="radio"] {
     }
 }
 
+/* Confidential Notice */
+.confidential-notice {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    color: #856404;
+    border-radius: 0 8px 8px 0;
+}
+
+.confidential-notice strong {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
 /* Form Groups */
 .form-group {
     margin-bottom: 1.5rem;

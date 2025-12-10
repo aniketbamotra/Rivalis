@@ -30,10 +30,10 @@ export const DataPrivacy: React.FC = () => {
           <p className="service-hero-price-note">Comprehensive privacy compliance programs</p>
 
           <div className="service-cta-group">
-            <a href="#get-started" className="service-btn service-btn-primary">
+            <Link to="/forms/data-privacy" className="service-btn service-btn-primary">
               <i className="fas fa-shield-alt"></i>
-              Get Privacy Audit
-            </a>
+              Get Started - Privacy Intake
+            </Link>
             <a href="mailto:privacy@rivalislaw.com" className="service-btn service-btn-secondary">
               <i className="fas fa-envelope"></i>
               Email Privacy Team
@@ -188,10 +188,10 @@ export const DataPrivacy: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <a href="/intake" className="service-btn service-btn-primary">
+            <Link to="/forms/data-privacy" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
-              Fill Out Intake Form
-            </a>
+              Start Privacy Compliance Intake
+            </Link>
             <a href="tel:+1-202-555-0199" className="service-btn service-btn-secondary">
               <i className="fas fa-phone"></i>
               Emergency: (202) 555-0199

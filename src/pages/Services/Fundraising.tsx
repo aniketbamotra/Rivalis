@@ -27,10 +27,10 @@ export const Fundraising: React.FC = () => {
           <p className="service-hero-price-note">SAFE agreements, convertible notes, Series A preparation</p>
 
           <div className="service-cta-group">
-            <a href="#get-started" className="service-btn service-btn-primary">
+            <Link to="/forms/fundraising" className="service-btn service-btn-primary">
               <i className="fas fa-chart-line"></i>
-              Prepare for Funding
-            </a>
+              Get Started - Fundraising Intake
+            </Link>
             <a href="mailto:fundraising@rivalislaw.com" className="service-btn service-btn-secondary">
               <i className="fas fa-envelope"></i>
               Email Fundraising Team
@@ -219,10 +219,10 @@ export const Fundraising: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <a href="/intake" className="service-btn service-btn-primary">
+            <Link to="/forms/fundraising" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
-              Fill Out Intake Form
-            </a>
+              Start Fundraising Intake
+            </Link>
             <a href="tel:+1-202-555-0199" className="service-btn service-btn-secondary">
               <i className="fas fa-phone"></i>
               Call: (202) 555-0199

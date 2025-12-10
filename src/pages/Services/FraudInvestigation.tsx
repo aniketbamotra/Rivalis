@@ -507,10 +507,10 @@ export const FraudInvestigation: React.FC = () => {
               
               <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
                 <p style={{ marginBottom: '1rem', color: 'var(--gray-600)' }}>Prefer a structured intake form?</p>
-                <a href="/intake" className="fraud-form-submit-btn" style={{ display: 'inline-block', textDecoration: 'none' }}>
+                <Link to="/forms/fraud-investigation" className="fraud-form-submit-btn" style={{ display: 'inline-block', textDecoration: 'none' }}>
                   <i className="fas fa-clipboard-list"></i>
-                  Fill Out Full Intake Form
-                </a>
+                  Fill Out Fraud Investigation Intake
+                </Link>
               </div>
               
               <div style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--gray-600)', fontSize: '0.9rem' }}>

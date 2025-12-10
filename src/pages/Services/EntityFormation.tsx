@@ -27,10 +27,10 @@ export const EntityFormation: React.FC = () => {
           <p className="service-hero-price-note">Complete entity formation with proper structure</p>
 
           <div className="service-cta-group">
-            <a href="#get-started" className="service-btn service-btn-primary">
+            <Link to="/forms/entity-formation" className="service-btn service-btn-primary">
               <i className="fas fa-building"></i>
-              Form Your Entity
-            </a>
+              Get Started - Entity Formation
+            </Link>
             <a href="mailto:formation@rivalislaw.com" className="service-btn service-btn-secondary">
               <i className="fas fa-envelope"></i>
               Email Formation Team
@@ -133,10 +133,10 @@ export const EntityFormation: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <a href="/intake" className="service-btn service-btn-primary">
+            <Link to="/forms/entity-formation" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
-              Fill Out Intake Form
-            </a>
+              Start Entity Formation Intake
+            </Link>
             <a href="tel:+1-202-555-0199" className="service-btn service-btn-secondary">
               <i className="fas fa-phone"></i>
               Call: (202) 555-0199

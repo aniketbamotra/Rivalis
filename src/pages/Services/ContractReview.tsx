@@ -27,10 +27,10 @@ export const ContractReview: React.FC = () => {
           <p className="service-hero-price-note">Expert contract review and drafting services</p>
 
           <div className="service-cta-group">
-            <a href="#get-started" className="service-btn service-btn-primary">
+            <Link to="/forms/contracts" className="service-btn service-btn-primary">
               <i className="fas fa-file-contract"></i>
-              Request Review
-            </a>
+              Get Started - Intake Form
+            </Link>
             <a href="mailto:contracts@rivalislaw.com" className="service-btn service-btn-secondary">
               <i className="fas fa-envelope"></i>
               Email Contract Team
@@ -194,10 +194,10 @@ export const ContractReview: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <a href="/intake" className="service-btn service-btn-primary">
+            <Link to="/forms/contracts" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
-              Fill Out Intake Form
-            </a>
+              Start Contract Review Intake
+            </Link>
             <a href="tel:+1-202-555-0199" className="service-btn service-btn-secondary">
               <i className="fas fa-phone"></i>
               Call: (202) 555-0199

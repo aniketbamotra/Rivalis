@@ -44,10 +44,10 @@ export const MAndA: React.FC = () => {
           </div>
 
           <div className="service-cta-group">
-            <a href="#get-started" className="service-btn service-btn-primary">
+            <Link to="/forms/ma" className="service-btn service-btn-primary">
               <i className="fas fa-handshake"></i>
-              Get Deal Assessment
-            </a>
+              Get Started - M&A Intake
+            </Link>
             <a href="mailto:deals@rivalislaw.com" className="service-btn service-btn-secondary">
               <i className="fas fa-envelope"></i>
               Email Deal Team
@@ -436,10 +436,10 @@ export const MAndA: React.FC = () => {
           </div>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <a href="/intake" className="service-btn service-btn-primary" style={{ background: 'var(--primary)', color: 'var(--accent)' }}>
+            <Link to="/forms/ma" className="service-btn service-btn-primary" style={{ background: 'var(--primary)', color: 'var(--accent)' }}>
               <i className="fas fa-clipboard-list"></i>
-              Fill Out Intake Form
-            </a>
+              Start M&A Transaction Intake
+            </Link>
             <a href="tel:+1-202-555-0199" className="service-btn service-btn-secondary" style={{ borderColor: 'var(--primary)', color: 'var(--primary)' }}>
               <i className="fas fa-phone"></i>
               Call: (202) 555-0199

@@ -27,10 +27,10 @@ export const EmploymentLaw: React.FC = () => {
           <p className="service-hero-price-note">Employment policies, handbooks, and HR compliance</p>
 
           <div className="service-cta-group">
-            <a href="#get-started" className="service-btn service-btn-primary">
+            <Link to="/forms/employment-law" className="service-btn service-btn-primary">
               <i className="fas fa-users"></i>
-              Get HR Support
-            </a>
+              Get Started - Employment Intake
+            </Link>
             <a href="mailto:employment@rivalislaw.com" className="service-btn service-btn-secondary">
               <i className="fas fa-envelope"></i>
               Email Employment Team
@@ -148,10 +148,10 @@ export const EmploymentLaw: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <a href="/intake" className="service-btn service-btn-primary">
+            <Link to="/forms/employment-law" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
-              Fill Out Intake Form
-            </a>
+              Start Employment Law Intake
+            </Link>
             <a href="tel:+1-202-555-0199" className="service-btn service-btn-secondary">
               <i className="fas fa-phone"></i>
               Call: (202) 555-0199

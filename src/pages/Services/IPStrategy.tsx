@@ -27,10 +27,10 @@ export const IPStrategy: React.FC = () => {
           <p className="service-hero-price-note">Trademark filings, trade secret protection, IP portfolio development</p>
 
           <div className="service-cta-group">
-            <a href="#get-started" className="service-btn service-btn-primary">
+            <Link to="/forms/ip-strategy" className="service-btn service-btn-primary">
               <i className="fas fa-copyright"></i>
-              Protect Your IP
-            </a>
+              Get Started - IP Strategy Intake
+            </Link>
             <a href="mailto:ip@rivalislaw.com" className="service-btn service-btn-secondary">
               <i className="fas fa-envelope"></i>
               Email IP Team
@@ -150,10 +150,10 @@ export const IPStrategy: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <a href="/intake" className="service-btn service-btn-primary">
+            <Link to="/forms/ip-strategy" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
-              Fill Out Intake Form
-            </a>
+              Start IP Strategy Intake
+            </Link>
             <a href="tel:+1-202-555-0199" className="service-btn service-btn-secondary">
               <i className="fas fa-phone"></i>
               Call: (202) 555-0199
