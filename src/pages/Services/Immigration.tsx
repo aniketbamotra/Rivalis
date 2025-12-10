@@ -22,7 +22,7 @@ export const Immigration: React.FC = () => {
 
           <div className="service-hero-badge danger">
             <i className="fas fa-exclamation-triangle"></i>
-            RFE EMERGENCY HOTLINE: (202) 555-0199
+            RFE EMERGENCY HOTLINE: (313) 771-2283
           </div>
 
           <h1>Your Key Engineer's Visa <span className="highlight">Expires in 30 Days</span>.<br />What's Your Plan?</h1>
@@ -47,9 +47,9 @@ export const Immigration: React.FC = () => {
           </div>
 
           <div className="service-cta-group">
-            <a href="tel:+1-202-555-0199" className="service-btn service-btn-primary danger">
-              <i className="fas fa-phone-volume"></i>
-              RFE CRISIS: (202) 555-0199
+            <a href="tel:+1-313-771-2283" className="service-btn service-btn-primary danger">
+              <i className="fas fa-phone-alt"></i>
+              RFE CRISIS: (313) 771-2283
             </a>
             <a href="#get-started" className="service-btn service-btn-secondary">
               <i className="fas fa-calendar-check"></i>
@@ -210,9 +210,9 @@ export const Immigration: React.FC = () => {
           </div>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <a href="tel:+1-202-555-0199" className="service-btn service-btn-primary" style={{ background: 'white', color: 'var(--danger)' }}>
+            <a href="tel:+1-313-771-2283" className="service-btn service-btn-primary" style={{ background: 'white', color: 'var(--danger)' }}>
               <i className="fas fa-phone-volume"></i>
-              EMERGENCY: (202) 555-0199
+              EMERGENCY: (313) 771-2283
             </a>
           </div>
         </div>
@@ -374,7 +374,7 @@ export const Immigration: React.FC = () => {
                 <i className="fas fa-chevron-down"></i>
               </div>
               <div className="service-faq-answer">
-                RFE or visa crisis? Call the emergency line (202) 555-0199 and we start same day. Initial assessment within 24 hours. For standard petitions, initial consultation within 48 hours. No waiting weeks for an attorney to be "available."
+                RFE or visa crisis? Call the emergency line (313) 771-2283 and we start same day. Initial assessment within 24 hours. For standard petitions, initial consultation within 48 hours. No waiting weeks for an attorney to be "available."
               </div>
             </div>
 
@@ -445,9 +445,9 @@ export const Immigration: React.FC = () => {
           </div>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <a href="tel:+1-202-555-0199" className="service-btn service-btn-primary" style={{ background: '#e74c3c', color: 'white' }}>
-              <i className="fas fa-phone-volume"></i>
-              EMERGENCY: (202) 555-0199
+            <a href="tel:+1-313-771-2283" className="service-btn service-btn-primary" style={{ background: '#e74c3c', color: 'white' }}>
+              <i className="fas fa-phone-alt"></i>
+              EMERGENCY: (313) 771-2283
             </a>
             <Link to="/forms/immigration" className="service-btn service-btn-secondary">
               <i className="fas fa-clipboard-list"></i>
@@ -465,7 +465,7 @@ export const Immigration: React.FC = () => {
 
       {/* Floating CTA */}
       <div className="service-floating-cta">
-        <a href="tel:+1-202-555-0199" className="service-fab urgent">
+        <a href="tel:+1-313-771-2283" className="service-fab urgent">
           <i className="fas fa-phone-volume"></i>
         </a>
         <a href="mailto:immigration@rivalislaw.com" className="service-fab schedule">

@@ -112,7 +112,7 @@ export const FraudInvestigationIntake: React.FC = () => {
       
     } catch (error) {
       console.error('Error submitting fraud investigation intake:', error);
-      alert('There was an error submitting your confidential intake form. Please try again or call our emergency line: (202) 555-0199');
+      alert('There was an error submitting your confidential intake form. Please try again or call our emergency line: (313) 771-2283');
     } finally {
       setLoading(false);
     }
@@ -142,9 +142,9 @@ export const FraudInvestigationIntake: React.FC = () => {
           <div className="urgency-notice">
             <h4><i className="fas fa-exclamation-triangle"></i> URGENT MATTER?</h4>
             <p>If you require immediate assistance with an active fraud investigation, regulatory inquiry, or whistleblower situation, call our emergency line directly.</p>
-            <a href="tel:+1-202-555-0199" className="emergency-btn">
-              <i className="fas fa-phone-volume"></i>
-              EMERGENCY LINE: (202) 555-0199
+            <a href="tel:+1-313-771-2283" className="emergency-btn">
+              <i className="fas fa-phone-alt"></i>
+              EMERGENCY LINE: (313) 771-2283
             </a>
           </div>
 
@@ -505,9 +505,9 @@ export const FraudInvestigationIntake: React.FC = () => {
           <div className="emergency-contact">
             <h4>Need Immediate Assistance?</h4>
             <p>For urgent fraud investigation matters requiring immediate attention</p>
-            <a href="tel:+1-202-555-0199" className="emergency-btn">
+            <a href="tel:+1-313-771-2283" className="emergency-btn">
               <i className="fas fa-phone"></i>
-              Call Emergency Line: (202) 555-0199
+              Call Emergency Line: (313) 771-2283
             </a>
           </div>
         </div>

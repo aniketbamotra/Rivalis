@@ -198,9 +198,9 @@ export const ContractReview: React.FC = () => {
               <i className="fas fa-clipboard-list"></i>
               Start Contract Review Intake
             </Link>
-            <a href="tel:+1-202-555-0199" className="service-btn service-btn-secondary">
-              <i className="fas fa-phone"></i>
-              Call: (202) 555-0199
+            <a href="tel:+1-313-771-2283" className="service-btn service-btn-secondary">
+              <i className="fas fa-phone-alt"></i>
+              Call: (313) 771-2283
             </a>
           </div>
         </div>

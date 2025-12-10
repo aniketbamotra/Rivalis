@@ -192,9 +192,9 @@ export const DataPrivacy: React.FC = () => {
               <i className="fas fa-clipboard-list"></i>
               Start Privacy Compliance Intake
             </Link>
-            <a href="tel:+1-202-555-0199" className="service-btn service-btn-secondary">
-              <i className="fas fa-phone"></i>
-              Emergency: (202) 555-0199
+            <a href="tel:+1-313-771-2283" className="service-btn service-btn-secondary">
+              <i className="fas fa-phone-alt"></i>
+              Emergency: (313) 771-2283
             </a>
           </div>
         </div>

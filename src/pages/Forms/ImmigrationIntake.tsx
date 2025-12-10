@@ -161,7 +161,7 @@ export const ImmigrationIntake: React.FC = () => {
       
     } catch (error) {
       console.error('Error submitting immigration intake:', error);
-      alert('There was an error submitting your form. Please try again or call (202) 555-0199.');
+      alert('There was an error submitting your form. Please try again or call (313) 771-2283.');
     } finally {
       setLoading(false);
     }
@@ -1401,9 +1401,9 @@ export const ImmigrationIntake: React.FC = () => {
               <div className="form-contact-box">
                 <h4>🚨 Need Immediate Assistance?</h4>
                 <p>For urgent immigration matters, RFE deadlines, or immediate consultation needs:</p>
-                <a href="tel:+1-202-555-0199" className="form-contact-item">
+                <a href="tel:+1-313-771-2283" className="form-contact-item">
                   <i className="fas fa-phone-volume"></i>
-                  <span>Emergency: (202) 555-0199</span>
+                  <span>Emergency: (313) 771-2283</span>
                 </a>
                 <a href="mailto:immigration@rivalislaw.com" className="form-contact-item">
                   <i className="fas fa-envelope"></i>
@@ -1424,9 +1424,9 @@ export const ImmigrationIntake: React.FC = () => {
             <i className="fas fa-passport"></i>
             Immigration Services
           </Link>
-          <a href="tel:+1-202-555-0199" className="form-cta-btn secondary">
+          <a href="tel:+1-313-771-2283" className="form-cta-btn secondary">
             <i className="fas fa-phone"></i>
-            Call: (202) 555-0199
+            Call: (313) 771-2283
           </a>
         </div>
       </section>

@@ -39,7 +39,7 @@ export const ClientIntakePage: React.FC = () => {
       });
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('There was an error submitting your form. Please try again or call (202) 555-0199.');
+      alert('There was an error submitting your form. Please try again or call (313) 771-2283.');
     } finally {
       setLoading(false);
     }
@@ -250,9 +250,9 @@ export const ClientIntakePage: React.FC = () => {
               <div className="form-contact-box">
                 <h4>Need Immediate Assistance?</h4>
                 <p>For urgent matters, contact us directly:</p>
-                <a href="tel:+1-202-555-0199" className="form-contact-item">
+                <a href="tel:+1-313-771-2283" className="form-contact-item">
                   <i className="fas fa-phone"></i>
-                  <span>(202) 555-0199</span>
+                  <span>(313) 771-2283</span>
                 </a>
                 <a href="mailto:contact@rivalislaw.com" className="form-contact-item">
                   <i className="fas fa-envelope"></i>
@@ -273,9 +273,9 @@ export const ClientIntakePage: React.FC = () => {
             <i className="fas fa-briefcase"></i>
             View All Services
           </Link>
-          <a href="tel:+1-202-555-0199" className="form-cta-btn secondary">
+          <a href="tel:+1-313-771-2283" className="form-cta-btn secondary">
             <i className="fas fa-phone"></i>
-            Call: (202) 555-0199
+            Call: (313) 771-2283
           </a>
         </div>
       </section>

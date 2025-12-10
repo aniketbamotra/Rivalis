@@ -37,7 +37,7 @@ export const Home: React.FC = () => {
     setSubmitting(true);
     try {
       await submitForm('consultation-request', consultationForm.email, consultationForm);
-      alert('Thank you for your consultation request! We will contact you within 24 hours.\n\nFor urgent matters, please call (202) 555-0199.');
+      alert('Thank you for your consultation request! We will contact you within 24 hours.\n\nFor urgent matters, please call (313) 771-2283.');
       setConsultationForm({
         name: '',
         email: '',
@@ -49,7 +49,7 @@ export const Home: React.FC = () => {
       });
     } catch (error) {
       console.error('Error submitting consultation request:', error);
-      alert('There was an error submitting your request. Please try again or call (202) 555-0199.');
+      alert('There was an error submitting your request. Please try again or call (313) 771-2283.');
     } finally {
       setSubmitting(false);
     }
@@ -89,9 +89,9 @@ export const Home: React.FC = () => {
             <span>Legal Emergency? Visa Crisis? Deal Closing Tomorrow?</span>
           </div>
           <div className="emergency-actions">
-            <a href="tel:+1-202-555-0199" className="emergency-btn">
+            <a href="tel:+1-313-771-2283" className="emergency-btn">
               <i className="fas fa-phone"></i>
-              DC: (202) 555-0199
+              +1 (313) 771-2283
             </a>
             <a href="#qualify" className="emergency-btn">
               <i className="fas fa-calendar-alt"></i>
@@ -834,9 +834,9 @@ export const Home: React.FC = () => {
               <i className="fas fa-calendar-check"></i>
               Schedule Your Consultation
             </a>
-            <a href="tel:+1-202-555-0199" className="btn btn-secondary" style={{ borderColor: 'white', color: 'white' }}>
+            <a href="tel:+1-313-771-2283" className="btn btn-secondary" style={{ borderColor: 'white', color: 'white' }}>
               <i className="fas fa-phone"></i>
-              Call (202) 555-0199
+              Call (313) 771-2283
             </a>
           </div>
         </div>
@@ -860,7 +860,7 @@ export const Home: React.FC = () => {
 
       {/* Floating Action Buttons */}
       <div className="fab-container">
-        <a href="tel:+1-202-555-0199" className="fab urgent">
+        <a href="tel:+1-313-771-2283" className="fab urgent">
           <i className="fas fa-phone-volume"></i>
           <span className="fab-tooltip">Emergency Hotline</span>
         </a>

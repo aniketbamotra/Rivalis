@@ -17,7 +17,7 @@ export const FraudInvestigation: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you for your confidential inquiry. An attorney will contact you within 4 hours.\n\nFor immediate assistance, please call our emergency hotline: (202) 555-0199');
+    alert('Thank you for your confidential inquiry. An attorney will contact you within 4 hours.\n\nFor immediate assistance, please call our emergency hotline: (313) 771-2283');
     setFormData({ name: '', title: '', company: '', email: '', phone: '', urgency: '', situation: '' });
   };
 
@@ -35,9 +35,9 @@ export const FraudInvestigation: React.FC = () => {
             <span>CONFIDENTIAL INVESTIGATION HOTLINE - ATTORNEY-CLIENT PRIVILEGE PROTECTED</span>
           </div>
           <div className="fraud-emergency-actions">
-            <a href="tel:+1-202-555-0199" className="fraud-emergency-btn">
-              <i className="fas fa-phone"></i>
-              Emergency: (202) 555-0199
+            <a href="tel:+1-313-771-2283" className="fraud-emergency-btn">
+              <i className="fas fa-phone-alt"></i>
+              Emergency: (313) 771-2283
             </a>
           </div>
         </div>
@@ -88,7 +88,7 @@ export const FraudInvestigation: React.FC = () => {
           </div>
 
           <div className="fraud-cta-group">
-            <a href="tel:+1-202-555-0199" className="fraud-btn fraud-btn-primary">
+            <a href="tel:+1-313-771-2283" className="fraud-btn fraud-btn-primary">
               <i className="fas fa-phone"></i>
               Call Emergency Line Now
             </a>
@@ -470,13 +470,13 @@ export const FraudInvestigation: React.FC = () => {
               </p>
 
               <div className="fraud-contact-methods">
-                <a href="tel:+1-202-555-0199" className="fraud-contact-method">
+                <a href="tel:+1-313-771-2283" className="fraud-contact-method">
                   <div className="fraud-method-icon">
                     <i className="fas fa-phone"></i>
                   </div>
                   <div className="fraud-method-text">
                     <h4>Emergency Investigation Hotline</h4>
-                    <p>DC: (202) 555-0199 | Available 24/7 for urgent matters</p>
+                    <p>(313) 771-2283 | Available 24/7 for urgent matters</p>
                   </div>
                 </a>
 
@@ -591,7 +591,7 @@ export const FraudInvestigation: React.FC = () => {
       </footer>
 
       {/* Floating Emergency Button */}
-      <a href="tel:+1-202-555-0199" className="fraud-fab-emergency" title="Emergency Investigation Hotline">
+      <a href="tel:+1-313-771-2283" className="fraud-fab-emergency" title="Emergency Investigation Hotline">
         <i className="fas fa-phone-volume"></i>
       </a>
     </>
