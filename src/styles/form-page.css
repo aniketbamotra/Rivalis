@@ -3,6 +3,25 @@
    Matches service page design system
    ===================================================== */
 
+/* Form Input Positioning Fixes */
+input[type="checkbox"], 
+input[type="radio"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+    flex-shrink: 0 !important;
+}
+
+.form-group label[style*="flex"] {
+    align-items: flex-start !important;
+}
+
+.form-group label[style*="flex"] input[type="checkbox"],
+.form-group label[style*="flex"] input[type="radio"] {
+    margin-top: 2px !important;
+}
+
 /* Form Hero Section */
 .form-hero {
     background: linear-gradient(165deg, #1a1a2e 0%, #2d3748 100%);
