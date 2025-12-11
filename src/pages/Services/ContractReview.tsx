@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navigation } from '../../components/Layout/Navigation';
+import { EnhancedFooter } from '../../components/Layout';
 import '../../styles/service-page.css';
 import '../../styles/home.css';
 
@@ -206,11 +207,7 @@ export const ContractReview: React.FC = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="service-footer">
-        <p>&copy; 2024 Rivalis Law. Licensed in New York & Michigan.</p>
-        <p><Link to="/">Return to Main Site</Link> | <Link to="/#select-services">All Select Services</Link></p>
-      </footer>
+      <EnhancedFooter />
     </>
   );
 };

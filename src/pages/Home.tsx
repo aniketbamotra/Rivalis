@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigation } from '../components/Layout/Navigation';
+import { EnhancedFooter } from '../components/Layout';
 import { useServices } from '../contexts/ServicesContext';
-import { submitForm } from '../lib/supabase';
 import '../styles/home.css';
 
 export const Home: React.FC = () => {
@@ -9,17 +9,7 @@ export const Home: React.FC = () => {
   const [timeWasted, setTimeWasted] = useState(30);
   const [finesRisk, setFinesRisk] = useState(250000);
   
-  // Consultation form state
-  const [consultationForm, setConsultationForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    service: '',
-    urgency: '',
-    details: ''
-  });
-  const [submitting, setSubmitting] = useState(false);
+
 
   const calculateCost = () => {
     const executiveCost = timeWasted * 2500;
@@ -27,32 +17,9 @@ export const Home: React.FC = () => {
     return executiveCost + finesRisk + opportunityCost;
   };
 
-  const handleConsultationFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setConsultationForm(prev => ({ ...prev, [name]: value }));
-  };
-
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
-    try {
-      await submitForm('consultation-request', consultationForm.email, consultationForm);
-      alert('Thank you for your consultation request! We will contact you within 24 hours.\n\nFor urgent matters, please call +1 (313) 771-2283.');
-      setConsultationForm({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        service: '',
-        urgency: '',
-        details: ''
-      });
-    } catch (error) {
-      console.error('Error submitting consultation request:', error);
-      alert('There was an error submitting your request. Please try again or call +1 (313) 771-2283.');
-    } finally {
-      setSubmitting(false);
-    }
+    alert('Thank you for your assessment! We will respond within 4 business hours (emergency matters within 2 hours).\n\nFor urgent matters, please call +1 (313) 771-2283.');
   };
 
   useEffect(() => {
@@ -680,195 +647,240 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Qualification Form */}
+      {/* What to Expect Section */}
+      <section id="why-choose" className="testimonials">
+        <div className="section-container">
+          <div className="section-header">
+            <div className="section-tag">THE RIVALIS EXPERIENCE</div>
+            <h2 className="section-title">What Working Together Looks Like</h2>
+            <p className="section-subtitle">
+              Here's what you can expect when you work with Rivalis Law—from first contact to final deliverable
+            </p>
+          </div>
+
+          <div className="testimonial-grid">
+            <div className="testimonial">
+              <div className="stars"><i className="fas fa-comments"></i></div>
+              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Have Direct Access</h4>
+              <p className="testimonial-text">
+                When you reach out, you'll speak directly with me—not an intake coordinator, not a junior associate. Your matters get personal attention from experienced counsel, not delegation to someone learning on your time.
+              </p>
+            </div>
+
+            <div className="testimonial">
+              <div className="stars"><i className="fas fa-clock"></i></div>
+              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Get Responsive Communication</h4>
+              <p className="testimonial-text">
+                Urgent matters get same-day responses. Standard questions within 24 hours. You'll never wonder if your email got lost or if anyone's working on your case. Clear timelines, regular updates, proactive communication.
+              </p>
+            </div>
+
+            <div className="testimonial">
+              <div className="stars"><i className="fas fa-file-invoice-dollar"></i></div>
+              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Know What You're Paying</h4>
+              <p className="testimonial-text">
+                Before we start, you'll see the investment required. Most matters are fixed-fee or have clear price ranges. No surprise bills for reading emails. No anxiety about the meter running. Just transparent pricing for defined work.
+              </p>
+            </div>
+
+            <div className="testimonial">
+              <div className="stars"><i className="fas fa-handshake"></i></div>
+              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Work With Someone Who Gets It</h4>
+              <p className="testimonial-text">
+                Whether it's AI product risks, visa timelines, or M&A tax issues—you'll work with counsel who has Big 4 training and specialized expertise. Technical knowledge meets practical business understanding.
+              </p>
+            </div>
+          </div>
+
+          <div style={{marginTop: '4rem', textAlign: 'center', padding: '3rem', background: 'var(--accent-light)', borderRadius: '12px', border: '2px solid var(--accent)'}}>
+            <h3 style={{fontSize: '1.75rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '1.5rem', fontFamily: '"Cormorant Garamond", serif'}}>The Promise</h3>
+            <p style={{fontSize: '1.15rem', color: 'var(--gray-700)', maxWidth: '850px', margin: '0 auto 1.5rem', lineHeight: 1.8}}>
+              Elite-firm expertise without the bureaucracy. Specialized knowledge without the conflicts. Partner-level attention without the partner-level bill. This is what boutique counsel should feel like.
+            </p>
+            <p style={{fontSize: '1rem', color: 'var(--gray-600)', maxWidth: '750px', margin: '0 auto', lineHeight: 1.7}}>
+              If at any point you're not getting responsive, high-quality counsel with transparent pricing—you'll let me know, and we'll fix it immediately. That's the commitment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Qualification Section */}
       <section id="qualify" className="qualification-section">
         <div className="section-container">
           <div className="section-header">
-            <div className="section-tag">GET STARTED</div>
-            <h2 className="section-title">Let's Determine If We're a Good Fit</h2>
-            <p className="section-subtitle">
-              Tell us about your legal needs and we'll respond within 24 hours with next steps
-            </p>
+            <div className="section-tag">WORK WITH US</div>
+            <h2 className="section-title">Is Rivalis Law Right for Your Situation?</h2>
+            <p className="section-subtitle">We work with companies facing high-stakes legal challenges where failure isn't an option. Answer a few questions to see if we're the right fit.</p>
           </div>
 
-          <form className="qualification-form" onSubmit={handleFormSubmit}>
-            <h3>Consultation Request</h3>
-
-            <div className="form-group">
-              <label htmlFor="name">Full Name *</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                value={consultationForm.name}
-                onChange={handleConsultationFormChange}
-                required 
-              />
+          <div className="qualification-tiers">
+            <div className="tier-card">
+              <div className="tier-icon">
+                <i className="fas fa-seedling"></i>
+              </div>
+              <h4>For Growth Companies</h4>
+              <ul>
+                <li>Pre-Series A to Series B startups</li>
+                <li>Scaling teams internationally</li>
+                <li>Launching AI products</li>
+                <li>First significant acquisition</li>
+              </ul>
+              <div className="tier-investment">Typical investment: $15K-$75K</div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Email Address *</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                value={consultationForm.email}
-                onChange={handleConsultationFormChange}
-                required 
-              />
+            <div className="tier-card featured">
+              <div className="tier-badge">Most Common</div>
+              <div className="tier-icon">
+                <i className="fas fa-building"></i>
+              </div>
+              <h4>For Enterprise</h4>
+              <ul>
+                <li>Fortune 1000 companies</li>
+                <li>Complex M&A transactions</li>
+                <li>Enterprise AI compliance</li>
+                <li>Large-scale immigration programs</li>
+              </ul>
+              <div className="tier-investment">Typical investment: $50K-$250K+</div>
             </div>
+          </div>
 
-            <div className="form-group">
-              <label htmlFor="phone">Phone Number *</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                value={consultationForm.phone}
-                onChange={handleConsultationFormChange}
-                required 
-              />
-            </div>
+          <div className="qualification-form">
+            <h3>Get Started: Quick Assessment</h3>
+            <form onSubmit={handleFormSubmit}>
 
-            <div className="form-group">
-              <label htmlFor="company">Company Name</label>
-              <input 
-                type="text" 
-                id="company" 
-                name="company" 
-                value={consultationForm.company}
-                onChange={handleConsultationFormChange}
-              />
-            </div>
+              <div className="form-group">
+                <label>What's your primary legal challenge? *</label>
+                <select required>
+                  <option value="">Select one...</option>
+                  <option value="ai">AI Governance & Compliance Crisis</option>
+                  <option value="immigration">Immigration/Visa Emergency (RFE, denial, urgent hire)</option>
+                  <option value="ma">M&A Due Diligence or Transaction</option>
+                  <option value="other">Other Complex Legal Matter</option>
+                </select>
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="service">Primary Service Interest *</label>
-              <select 
-                id="service" 
-                name="service" 
-                value={consultationForm.service}
-                onChange={handleConsultationFormChange}
-                required
-              >
-                <option value="">Select a service...</option>
-                <option value="ai-governance">AI Governance & Compliance</option>
-                <option value="immigration">Global Immigration</option>
-                <option value="ma">M&A & Transactions</option>
-                <option value="contracts">Contract Review</option>
-                <option value="privacy">Data Privacy</option>
-                <option value="ip">IP Strategy</option>
-                <option value="entity">Entity Formation</option>
-                <option value="employment">Employment Law</option>
-                <option value="fundraising">Fundraising</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
+              <div className="form-group">
+                <label>Timeline urgency? *</label>
+                <select required>
+                  <option value="">Select one...</option>
+                  <option value="emergency">Emergency (24-72 hours)</option>
+                  <option value="urgent">Urgent (1-2 weeks)</option>
+                  <option value="normal">Standard (2-4 weeks)</option>
+                  <option value="planning">Strategic Planning (1-3 months)</option>
+                </select>
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="urgency">Timeline *</label>
-              <select 
-                id="urgency" 
-                name="urgency" 
-                value={consultationForm.urgency}
-                onChange={handleConsultationFormChange}
-                required
-              >
-                <option value="">Select timeline...</option>
-                <option value="emergency">Emergency (Within 48 hours)</option>
-                <option value="urgent">Urgent (Within 1-2 weeks)</option>
-                <option value="soon">Soon (Within 1 month)</option>
-                <option value="planning">Planning Ahead (1-3 months)</option>
-              </select>
-            </div>
+              <div className="form-group">
+                <label>Company stage/size? *</label>
+                <select required>
+                  <option value="">Select one...</option>
+                  <option value="startup">Startup (Pre-Series A to Series B)</option>
+                  <option value="growth">Growth Company (Series C+ or $10M-$100M revenue)</option>
+                  <option value="enterprise">Enterprise ($100M+ revenue or Fortune 1000)</option>
+                  <option value="individual">Individual/Small Business</option>
+                </select>
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="details">Tell Us About Your Situation *</label>
-              <textarea
-                id="details"
-                name="details"
-                value={consultationForm.details}
-                onChange={handleConsultationFormChange}
-                required
-                placeholder="Please provide key details about your legal needs, timeline, and any immediate concerns..."
-              ></textarea>
-            </div>
+              <div className="form-group">
+                <label>Estimated legal investment budget? *</label>
+                <select required>
+                  <option value="">Select one...</option>
+                  <option value="under25">Under $25,000</option>
+                  <option value="25-75">$25,000 - $75,000</option>
+                  <option value="75-150">$75,000 - $150,000</option>
+                  <option value="150plus">$150,000+</option>
+                  <option value="unsure">Not sure / Need guidance</option>
+                </select>
+              </div>
 
-            <button type="submit" className="form-submit-btn" disabled={submitting}>
-              <i className={submitting ? "fas fa-spinner fa-spin" : "fas fa-paper-plane"}></i>
-              {submitting ? 'Submitting...' : 'Submit Consultation Request'}
-            </button>
+              <div className="form-group">
+                <label>Your email *</label>
+                <input type="email" required placeholder="you@company.com" />
+              </div>
 
-            <p className="form-note">
-              <i className="fas fa-lock"></i>
-              Your information is confidential and protected by attorney-client privilege considerations
-            </p>
-          </form>
+              <div className="form-group">
+                <label>Phone (for urgent matters) *</label>
+                <input type="tel" required placeholder="+1 (313) 771-2283" />
+              </div>
+
+              <div className="form-group">
+                <label>Brief description of situation (optional)</label>
+                <textarea rows={3} placeholder="Help us understand your challenge..." />
+              </div>
+
+              <button type="submit" className="form-submit-btn">
+                <i className="fas fa-paper-plane"></i>
+                Submit Assessment
+              </button>
+
+              <div className="form-note">
+                <i className="fas fa-lock"></i>
+                Confidential. We'll respond within 4 business hours (emergency matters within 2 hours).
+              </div>
+            </form>
+          </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="cta-section">
+      {/* CTA Section */}
+      <section id="contact" className="cta-section">
         <div className="section-container">
-          <h2>Don't Let Legal Issues Derail Your Success</h2>
+          <h2>The Cost of Waiting Is Higher Than You Think</h2>
           <p>
-            The difference between a $100M exit and a failed deal? Often it's having the right legal counsel at the right time. Get Big 4 expertise without the Big Law headaches.
+            Your competitor just closed their Series B with airtight AI governance. Your visa petition was denied—again. Your acquisition is bleeding money in extended due diligence. Every day without elite counsel is a day your business is vulnerable.
           </p>
+          <div className="urgency">
+            ⚡ Only 3 Client Slots Available This Quarter
+          </div>
 
           <div className="value-props">
             <div className="value-prop">
-              <i className="fas fa-clock"></i>
-              <span>24-Hour Response Time</span>
+              <i className="fas fa-check-circle"></i>
+              <span>Big 4 Experience</span>
             </div>
             <div className="value-prop">
-              <i className="fas fa-dollar-sign"></i>
+              <i className="fas fa-check-circle"></i>
+              <span>Oxford AI Certified</span>
+            </div>
+            <div className="value-prop">
+              <i className="fas fa-check-circle"></i>
+              <span>Measurable Results</span>
+            </div>
+            <div className="value-prop">
+              <i className="fas fa-check-circle"></i>
+              <span>100% Compliance</span>
+            </div>
+            <div className="value-prop">
+              <i className="fas fa-check-circle"></i>
               <span>Transparent Pricing</span>
             </div>
             <div className="value-prop">
-              <i className="fas fa-user-check"></i>
-              <span>Direct Attorney Access</span>
+              <i className="fas fa-check-circle"></i>
+              <span>Confidential Counsel</span>
             </div>
           </div>
 
-          <div className="cta-group" style={{ justifyContent: 'center' }}>
-            <a href="#qualify" className="btn btn-primary" style={{ background: 'white', color: 'var(--primary)' }}>
+          <div className="cta-group" style={{justifyContent: 'center'}}>
+            <a href="#qualify" className="btn btn-primary" style={{fontSize: '1.1rem', padding: '1.375rem 2.75rem'}}>
               <i className="fas fa-calendar-check"></i>
-              Schedule Your Consultation
+              Start Assessment
             </a>
-            <a href="tel:+1-313-771-2283" className="btn btn-secondary" style={{ borderColor: 'white', color: 'white' }}>
+            <a href="tel:+1-313-771-2283" className="btn btn-secondary" style={{fontSize: '1.1rem', padding: '1.375rem 2.75rem', background: 'rgba(255,255,255,0.12)', borderColor: 'rgba(255,255,255,0.3)', color: 'white'}}>
               <i className="fas fa-phone"></i>
-              Call +1 (313) 771-2283
+              Call: +1 (313) 771-2283
             </a>
+          </div>
+
+          <div style={{marginTop: '4rem', paddingTop: '2.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.2)'}}>
+            <p style={{opacity: 0.7, fontSize: '1rem'}}>
+              <i className="fas fa-map-marker-alt" style={{marginRight: '0.5rem'}}></i>
+              Washington, DC Office | Licensed in NY & MI | Big 4 Trained | Serving Clients Globally
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-brand">⚖ Rivalis Law</div>
-          <div className="footer-links">
-            <a href="#services">Services</a>
-            <a href="#why-rivalis">Why Rivalis</a>
-            <a href="#how-we-work">Process</a>
-            <a href="mailto:contact@rivalislaw.com">Contact</a>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>&copy; 2024 Rivalis Law. Licensed in New York & Michigan. | All consultations subject to engagement agreement.</p>
-        </div>
-      </footer>
-
-      {/* Floating Action Buttons */}
-      <div className="fab-container">
-        <a href="tel:+1-313-771-2283" className="fab urgent">
-          <i className="fas fa-phone-volume"></i>
-          <span className="fab-tooltip">Emergency Hotline</span>
-        </a>
-        <a href="#qualify" className="fab schedule">
-          <i className="fas fa-calendar-alt"></i>
-          <span className="fab-tooltip">Schedule Consult</span>
-        </a>
-      </div>
+      <EnhancedFooter />
     </>
   );
 };

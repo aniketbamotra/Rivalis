@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigation } from './Navigation';
-import { Footer } from './Footer';
+import EnhancedFooter from './EnhancedFooter';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
         {children}
       </main>
       
-      {showFooter && <Footer />}
+      {showFooter && <EnhancedFooter />}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navigation } from '../../components/Layout/Navigation';
+import { EnhancedFooter } from '../../components/Layout';
 import '../../styles/fraud-investigation.css';
 import '../../styles/home.css';
 
@@ -573,27 +574,7 @@ export const FraudInvestigation: React.FC = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="fraud-footer">
-        <div className="fraud-footer-container">
-          <div className="fraud-footer-brand">⚖ Rivalis Law</div>
-          <div className="fraud-footer-links">
-            <Link to="/">Home</Link>
-            <Link to="/#services">All Services</Link>
-            <a href="#expertise">Investigation Expertise</a>
-            <a href="#contact">Confidential Contact</a>
-          </div>
-          <p style={{ marginTop: '2rem', fontSize: '0.9rem' }}>
-            © 2024 Rivalis Law | Licensed in New York & Michigan<br />
-            All consultations subject to engagement agreement | Attorney advertising
-          </p>
-        </div>
-      </footer>
-
-      {/* Floating Emergency Button */}
-      <a href="tel:+1-313-771-2283" className="fraud-fab-emergency" title="Emergency Investigation Hotline">
-        <i className="fas fa-phone-volume"></i>
-      </a>
+      <EnhancedFooter />
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navigation } from '../../components/Layout/Navigation';
+import { EnhancedFooter } from '../../components/Layout';
 import '../../styles/service-page.css';
 import '../../styles/home.css';
 
@@ -448,21 +449,7 @@ export const MAndA: React.FC = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="service-footer">
-        <p>&copy; 2024 Rivalis Law. Licensed in New York & Michigan.</p>
-        <p><Link to="/">Return to Main Site</Link></p>
-      </footer>
-
-      {/* Floating CTA */}
-      <div className="service-floating-cta">
-        <a href="tel:+1-313-771-2283" className="service-fab urgent">
-          <i className="fas fa-phone-volume"></i>
-        </a>
-        <a href="mailto:deals@rivalislaw.com" className="service-fab schedule">
-          <i className="fas fa-envelope"></i>
-        </a>
-      </div>
+      <EnhancedFooter />
     </>
   );
 };
