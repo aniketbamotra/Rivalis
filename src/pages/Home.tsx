@@ -109,7 +109,7 @@ export const Home: React.FC = () => {
 
             {/* Capacity Counter */}
             <div className="capacity-alert">
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>⚠️ Limited Availability This Quarter</h3>
+              <h3 className="capacity-title">⚠️ Limited Availability This Quarter</h3>
               <div className="capacity-meter">
                 <div className="capacity-fill"></div>
               </div>
