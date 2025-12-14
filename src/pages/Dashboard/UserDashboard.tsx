@@ -118,6 +118,62 @@ export function UserDashboard() {
         <div className="dashboard-content">
           {activeTab === 'overview' && (
             <div className="overview-grid">
+              {/* Calendly Booking Section */}
+              <div style={{
+                gridColumn: '1 / -1',
+                backgroundColor: 'white',
+                borderRadius: '12px',
+                padding: '2rem',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                marginBottom: '2rem',
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  marginBottom: '1.5rem',
+                  paddingBottom: '1rem',
+                  borderBottom: '2px solid #f0f0f0',
+                }}>
+                  <div style={{
+                    fontSize: '2.5rem',
+                  }}>
+                    📅
+                  </div>
+                  <div>
+                    <h2 style={{
+                      margin: 0,
+                      fontSize: '1.5rem',
+                      fontWeight: '700',
+                      color: '#1a1a1a',
+                    }}>
+                      Schedule Your Consultation
+                    </h2>
+                    <p style={{
+                      margin: '0.25rem 0 0 0',
+                      color: '#666',
+                      fontSize: '0.95rem',
+                    }}>
+                      Book or reschedule your 60-minute legal consultation
+                    </p>
+                  </div>
+                </div>
+                
+                <div style={{
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  border: '1px solid #e5e7eb',
+                }}>
+                  <iframe
+                    src={`https://calendly.com/aniketbamotra/legal?embed_domain=${window.location.hostname}&embed_type=Inline&hide_gdpr_banner=1&primary_color=0088cc${user?.email ? `&email=${encodeURIComponent(user.email)}` : ''}`}
+                    width="100%"
+                    height="700"
+                    frameBorder="0"
+                    title="Schedule Consultation"
+                  />
+                </div>
+              </div>
+
               {/* Stats Cards */}
               <div className="stat-card">
                 <div className="stat-icon services-icon">

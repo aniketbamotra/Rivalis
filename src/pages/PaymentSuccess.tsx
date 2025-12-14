@@ -143,6 +143,53 @@ export const PaymentSuccess: React.FC = () => {
             Thank you for your payment. Your consultation has been confirmed.
           </p>
 
+          {/* Step 2: Schedule Consultation */}
+          <div style={{
+            backgroundColor: '#10b981',
+            padding: '1.5rem',
+            borderRadius: '12px',
+            marginBottom: '2rem',
+            color: 'white',
+          }}>
+            <h3 style={{
+              fontSize: '1.3rem',
+              fontWeight: '700',
+              marginBottom: '0.75rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+            }}>
+              <span>📅</span>
+              Step 2: Schedule Your Consultation
+            </h3>
+            <p style={{
+              lineHeight: '1.6',
+              marginBottom: '0',
+              opacity: 0.95,
+            }}>
+              Book your 60-minute legal consultation with our team below
+            </p>
+          </div>
+
+          {/* Calendly Embed */}
+          <div style={{
+            width: '100%',
+            marginBottom: '2rem',
+            borderRadius: '12px',
+            overflow: 'hidden',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+          }}>
+            <iframe
+              src={`https://calendly.com/aniketbamotra/legal?embed_domain=${window.location.hostname}&embed_type=Inline&hide_gdpr_banner=1&primary_color=0088cc`}
+              width="100%"
+              height="700"
+              frameBorder="0"
+              title="Schedule Consultation"
+            />
+          </div>
+
+          {/* Account Creation Prompt */}
           <div style={{
             backgroundColor: '#f0f9ff',
             padding: '1.5rem',
@@ -156,7 +203,7 @@ export const PaymentSuccess: React.FC = () => {
               marginBottom: '0.75rem',
               color: '#1a1a1a',
             }}>
-              Next Step: Create Your Account
+              Step 3: Create Your Account
             </h3>
             <p style={{
               color: '#666',
