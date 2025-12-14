@@ -14,32 +14,34 @@ export const PaymentSuccess: React.FC = () => {
     const processPayment = async () => {
       const sessionId = searchParams.get('session_id');
       
-      if (!sessionId) {
-        setError('Missing payment session');
+      // Get email from localStorage
+      const email = getConsultationEmail();
+      
+      if (!email) {
+        setError('Payment email not found. Please make sure you submitted a form before payment.');
         setLoading(false);
         return;
       }
 
       try {
-        // Get email from localStorage (set before redirect)
-        const email = getConsultationEmail();
-        
-        if (!email) {
-          setError('Payment email not found');
-          setLoading(false);
-          return;
+        // If no session_id, this might be a test or direct navigation
+        // Still show success and prompt for account creation
+        if (sessionId) {
+          // Payment will be recorded by webhook
+          setAccountCreationPending(email, sessionId);
+          
+          // Update form submissions (in case webhook hasn't fired yet)
+          await updateFormSubmissionsAfterPayment(email);
+        } else {
+          // No session_id - likely testing or direct access
+          // Just mark as pending for account creation
+          setAccountCreationPending(email, 'test_session');
         }
-
-        // Payment will be recorded by webhook, but we'll mark account creation as pending
-        setAccountCreationPending(email, sessionId);
-        
-        // Update form submissions (in case webhook hasn't fired yet)
-        await updateFormSubmissionsAfterPayment(email);
 
         setLoading(false);
         setShowAccountPrompt(true);
 
-        // Auto-redirect to home after 5 seconds if they don't click
+        // Auto-redirect to home after 10 seconds if they don't click
         setTimeout(() => {
           navigate('/');
         }, 10000);

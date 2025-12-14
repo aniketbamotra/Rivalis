@@ -35,7 +35,6 @@ export const handler = async (event) => {
             product_data: {
               name: 'Legal Consultation',
               description: 'Initial consultation and case review with access to all intake forms',
-              images: ['https://your-site.com/logo.png'], // Optional: Add your logo
             },
             unit_amount: amount * 100, // Stripe uses cents
           },
@@ -43,8 +42,8 @@ export const handler = async (event) => {
         },
       ],
       mode: 'payment',
-      success_url: successUrl || `${process.env.URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: cancelUrl || `${process.env.URL}`,
+      success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: cancelUrl,
       customer_email: email,
       metadata: {
         email,
