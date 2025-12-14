@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { redirectToCheckout } from '../../lib/stripe';
 
 interface PaymentModalProps {
   isOpen: boolean;
@@ -11,7 +12,6 @@ interface PaymentModalProps {
 export const PaymentModal: React.FC<PaymentModalProps> = ({
   isOpen,
   onClose,
-  onSuccess,
   email,
   amount,
 }) => {
@@ -25,17 +25,12 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
     setError(null);
 
     try {
-      // TODO: Integrate with Stripe
-      // For now, simulate payment
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Mock payment ID
-      const paymentId = 'pay_' + Math.random().toString(36).substr(2, 9);
-      
-      onSuccess(paymentId);
+      // Redirect to Stripe Checkout
+      await redirectToCheckout(email, amount);
+      // Note: User will be redirected to Stripe, so we won't reach this point
+      // Payment success will be handled on the success page
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Payment failed');
-    } finally {
+      setError(err instanceof Error ? err.message : 'Payment failed. Please try again.');
       setLoading(false);
     }
   };

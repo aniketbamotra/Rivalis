@@ -40,6 +40,9 @@ const Disclaimers = React.lazy(() => import('./pages/Legal/Disclaimers').then(m 
 const LoginPage = React.lazy(() => import('./pages/Auth/LoginPage').then(m => ({ default: m.LoginPage })));
 const SignupPage = React.lazy(() => import('./pages/Auth/SignupPage').then(m => ({ default: m.SignupPage })));
 
+// Payment pages
+const PaymentSuccess = React.lazy(() => import('./pages/PaymentSuccess').then(m => ({ default: m.PaymentSuccess })));
+
 // Dashboard pages
 const UserDashboard = React.lazy(() => import('./pages/Dashboard/UserDashboard').then(m => ({ default: m.UserDashboard })));
 const AdminDashboard = React.lazy(() => import('./pages/Dashboard/AdminDashboard').then(m => ({ default: m.AdminDashboard })));
@@ -283,6 +286,16 @@ export const AppRouter = () => {
           element={
             <React.Suspense fallback={<PageLoader />}>
               <SignupPage />
+            </React.Suspense>
+          }
+        />
+
+        {/* Payment Pages */}
+        <Route
+          path="/payment-success"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <PaymentSuccess />
             </React.Suspense>
           }
         />
