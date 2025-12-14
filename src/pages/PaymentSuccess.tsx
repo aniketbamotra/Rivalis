@@ -41,11 +41,6 @@ export const PaymentSuccess: React.FC = () => {
         setLoading(false);
         setShowAccountPrompt(true);
 
-        // Auto-redirect to home after 10 seconds if they don't click
-        setTimeout(() => {
-          navigate('/');
-        }, 10000);
-
       } catch (err) {
         console.error('Error processing payment:', err);
         setError('Payment successful, but there was an error updating your account. Please contact support.');
