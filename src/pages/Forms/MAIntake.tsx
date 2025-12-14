@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { BaseIntakeForm, type BaseFormData } from '../../components/Forms/BaseIntakeForm';
+import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
+import { PaymentModal } from '../../components/Common/PaymentModal';
+import { AccountCreationNudge } from '../../components/Common/AccountCreationNudge';
+import { useFormSubmissionWithPayment } from '../../hooks/useFormSubmissionWithPayment';
 import { submitForm } from '../../lib/supabase';
 
 // M&A-specific form data interface
@@ -367,6 +371,17 @@ export const MAIntake: React.FC = () => {
     closingTimeline: '',
   });
 
+  const {
+    showPaymentModal,
+    showNudgeModal,
+    currentEmail,
+    paymentId,
+    handleFormSubmit,
+    handlePaymentSuccess,
+    handleSkipAccount,
+    closePaymentModal,
+  } = useFormSubmissionWithPayment();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setMAFormData(prev => ({ ...prev, [name]: value }));
@@ -386,8 +401,8 @@ export const MAIntake: React.FC = () => {
     
     try {
       const email = (combinedFormData.email as string) || '';
-      await submitForm('ma-intake', email, combinedFormData);
-      alert('Thank you! Your M&A transaction intake has been submitted. Our corporate team will review and contact you within 24 hours.');
+      const result = await submitForm('ma-intake', email, combinedFormData);
+      handleFormSubmit(email, result.needsPayment || false);
       
       // Reset M&A-specific form data
       setMAFormData({
@@ -406,28 +421,44 @@ export const MAIntake: React.FC = () => {
       
     } catch (error) {
       console.error('Error submitting M&A intake:', error);
-      alert('There was an error submitting your form. Please try again or call +1 (313) 771-2283.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <BaseIntakeForm
-      serviceName="M&A Transactions"
-      serviceIcon="🤝"
-      serviceDescription="Our team specializes in complex mergers, acquisitions, and corporate transactions."
-      serviceColor="#667eea"
-      servicePath="/ma"
-      formType="ma-intake"
-      loading={loading}
-      onSubmit={(formData) => handleSubmit({ ...formData, ...maFormData })}
-    >
-      <MASpecificFields 
-        formData={{ ...maFormData } as MAFormData}
-        onChange={handleChange}
-        onCheckboxChange={handleCheckboxChange}
+    <FormAccessGuard>
+      <BaseIntakeForm
+        serviceName="M&A Transactions"
+        serviceIcon="🤝"
+        serviceDescription="Our team specializes in complex mergers, acquisitions, and corporate transactions."
+        serviceColor="#667eea"
+        servicePath="/ma"
+        formType="ma-intake"
+        loading={loading}
+        onSubmit={(formData) => handleSubmit({ ...formData, ...maFormData })}
+      >
+        <MASpecificFields 
+          formData={{ ...maFormData } as MAFormData}
+          onChange={handleChange}
+          onCheckboxChange={handleCheckboxChange}
+        />
+      </BaseIntakeForm>
+
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={closePaymentModal}
+        onSuccess={handlePaymentSuccess}
+        email={currentEmail}
+        amount={299}
       />
-    </BaseIntakeForm>
+
+      <AccountCreationNudge
+        isOpen={showNudgeModal}
+        email={currentEmail}
+        paymentId={paymentId}
+        onSkip={handleSkipAccount}
+      />
+    </FormAccessGuard>
   );
 };

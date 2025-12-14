@@ -1,5 +1,9 @@
 import React from 'react';
 import { BaseIntakeForm } from '../../components/Forms/BaseIntakeForm';
+import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
+import { PaymentModal } from '../../components/Common/PaymentModal';
+import { AccountCreationNudge } from '../../components/Common/AccountCreationNudge';
+import { useFormSubmissionWithPayment } from '../../hooks/useFormSubmissionWithPayment';
 import { submitForm } from '../../lib/supabase';
 
 interface FundraisingFormData {
@@ -222,6 +226,17 @@ const FundraisingIntake: React.FC = () => {
 
   const [loading, setLoading] = React.useState(false);
 
+  const {
+    showPaymentModal,
+    showNudgeModal,
+    currentEmail,
+    paymentId,
+    handleFormSubmit,
+    handlePaymentSuccess,
+    handleSkipAccount,
+    closePaymentModal,
+  } = useFormSubmissionWithPayment();
+
   const handleFundraisingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFundraisingData(prev => ({ ...prev, [name]: value }));
@@ -240,8 +255,8 @@ const FundraisingIntake: React.FC = () => {
     setLoading(true);
     try {
       const email = (combinedData.email as string) || '';
-      await submitForm('fundraising', email, combinedData);
-      console.log('Fundraising form submitted successfully');
+      const result = await submitForm('fundraising', email, combinedData);
+      handleFormSubmit(email, result.needsPayment || false);
     } catch (error) {
       console.error('Error submitting fundraising form:', error);
     } finally {
@@ -250,22 +265,39 @@ const FundraisingIntake: React.FC = () => {
   };
 
   return (
-    <BaseIntakeForm
-      serviceName="Fundraising & Securities"
-      serviceIcon="💰"
-      serviceDescription="Comprehensive fundraising support, securities compliance, and investor documentation services."
-      serviceColor="gold"
-      servicePath="fundraising"
-      formType="fundraising"
-      onSubmit={handleSubmit}
-      loading={loading}
-    >
-      <FundraisingSpecificFields
-        formData={fundraisingData}
-        handleChange={handleFundraisingChange}
-        handleCheckboxChange={handleCheckboxChange}
+    <FormAccessGuard>
+      <BaseIntakeForm
+        serviceName="Fundraising & Securities"
+        serviceIcon="💰"
+        serviceDescription="Comprehensive fundraising support, securities compliance, and investor documentation services."
+        serviceColor="gold"
+        servicePath="fundraising"
+        formType="fundraising"
+        onSubmit={handleSubmit}
+        loading={loading}
+      >
+        <FundraisingSpecificFields
+          formData={fundraisingData}
+          handleChange={handleFundraisingChange}
+          handleCheckboxChange={handleCheckboxChange}
+        />
+      </BaseIntakeForm>
+
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={closePaymentModal}
+        onSuccess={handlePaymentSuccess}
+        email={currentEmail}
+        amount={299}
       />
-    </BaseIntakeForm>
+
+      <AccountCreationNudge
+        isOpen={showNudgeModal}
+        email={currentEmail}
+        paymentId={paymentId}
+        onSkip={handleSkipAccount}
+      />
+    </FormAccessGuard>
   );
 };
 

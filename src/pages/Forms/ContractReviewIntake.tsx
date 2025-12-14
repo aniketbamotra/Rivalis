@@ -1,5 +1,9 @@
 import React from 'react';
 import { BaseIntakeForm } from '../../components/Forms/BaseIntakeForm';
+import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
+import { PaymentModal } from '../../components/Common/PaymentModal';
+import { AccountCreationNudge } from '../../components/Common/AccountCreationNudge';
+import { useFormSubmissionWithPayment } from '../../hooks/useFormSubmissionWithPayment';
 import { submitForm } from '../../lib/supabase';
 
 interface ContractReviewFormData {
@@ -280,6 +284,17 @@ const ContractReviewIntake: React.FC = () => {
 
   const [loading, setLoading] = React.useState(false);
 
+  const {
+    showPaymentModal,
+    showNudgeModal,
+    currentEmail,
+    paymentId,
+    handleFormSubmit,
+    handlePaymentSuccess,
+    handleSkipAccount,
+    closePaymentModal,
+  } = useFormSubmissionWithPayment();
+
   const handleContractChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setContractData(prev => ({ ...prev, [name]: value }));
@@ -289,33 +304,48 @@ const ContractReviewIntake: React.FC = () => {
     setLoading(true);
     try {
       const email = (combinedData.email as string) || '';
-      await submitForm('contract-review', email, combinedData);
-      // Handle success (maybe redirect or show success message)
-      console.log('Contract review form submitted successfully');
+      const result = await submitForm('contract-review', email, combinedData);
+      handleFormSubmit(email, result.needsPayment || false);
     } catch (error) {
       console.error('Error submitting contract review form:', error);
-      // Handle error (show error message to user)
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <BaseIntakeForm
-      serviceName="Contract Review & Drafting"
-      serviceIcon="📄"
-      serviceDescription="Professional contract review, drafting, and negotiation support for all business agreements."
-      serviceColor="blue"
-      servicePath="contracts"
-      formType="contract-review"
-      onSubmit={handleSubmit}
-      loading={loading}
-    >
-      <ContractReviewSpecificFields
-        formData={contractData}
-        handleChange={handleContractChange}
+    <FormAccessGuard>
+      <BaseIntakeForm
+        serviceName="Contract Review & Drafting"
+        serviceIcon="📄"
+        serviceDescription="Professional contract review, drafting, and negotiation support for all business agreements."
+        serviceColor="blue"
+        servicePath="contracts"
+        formType="contract-review"
+        onSubmit={handleSubmit}
+        loading={loading}
+      >
+        <ContractReviewSpecificFields
+          formData={contractData}
+          handleChange={handleContractChange}
+        />
+      </BaseIntakeForm>
+
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={closePaymentModal}
+        onSuccess={handlePaymentSuccess}
+        email={currentEmail}
+        amount={299}
       />
-    </BaseIntakeForm>
+
+      <AccountCreationNudge
+        isOpen={showNudgeModal}
+        email={currentEmail}
+        paymentId={paymentId}
+        onSkip={handleSkipAccount}
+      />
+    </FormAccessGuard>
   );
 };
 

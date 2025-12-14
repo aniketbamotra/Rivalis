@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { canAccessForms, getConsultationEmail } from '../../utils/consultationFlow';
+import { canAccessForms, getConsultationEmail, STORAGE_KEYS } from '../../utils/consultationFlow';
 import { supabase } from '../../lib/supabase';
+import { EmailVerificationModal } from './EmailVerificationModal';
 
 interface FormAccessGuardProps {
   children: React.ReactNode;
@@ -10,6 +11,7 @@ interface FormAccessGuardProps {
 /**
  * Guard component that checks if user can access forms
  * Blocks access and shows message if they've paid but haven't created account
+ * Shows email verification modal for cross-device access
  */
 export const FormAccessGuard: React.FC<FormAccessGuardProps> = ({ children }) => {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ export const FormAccessGuard: React.FC<FormAccessGuardProps> = ({ children }) =>
   const [loading, setLoading] = React.useState(true);
   const [accessBlocked, setAccessBlocked] = React.useState(false);
   const [email, setEmail] = React.useState<string | null>(null);
+  const [showEmailModal, setShowEmailModal] = React.useState(false);
 
   useEffect(() => {
     // Get current user
@@ -29,11 +32,11 @@ export const FormAccessGuard: React.FC<FormAccessGuardProps> = ({ children }) =>
   useEffect(() => {
     if (loading) return;
 
-    const checkAccess = () => {
-      const accessCheck = canAccessForms(user);
+    const checkAccess = async () => {
+      const consultationEmail = getConsultationEmail();
+      const accessCheck = await canAccessForms(user, consultationEmail);
       
       if (!accessCheck.canAccess) {
-        const consultationEmail = getConsultationEmail();
         setAccessBlocked(true);
         setEmail(consultationEmail);
       }
@@ -41,6 +44,32 @@ export const FormAccessGuard: React.FC<FormAccessGuardProps> = ({ children }) =>
 
     checkAccess();
   }, [user, loading]);
+
+  const handleEmailVerification = async (verifiedEmail: string) => {
+    try {
+      // Check if this email has paid for consultation
+      const { checkConsultationPaid } = await import('../../lib/supabase');
+      const hasPaid = await checkConsultationPaid(verifiedEmail);
+      
+      if (hasPaid) {
+        // Store email in localStorage for future checks
+        localStorage.setItem(STORAGE_KEYS.CONSULTATION_EMAIL, verifiedEmail);
+        localStorage.setItem(STORAGE_KEYS.PENDING_ACCOUNT, 'true');
+        
+        // Block access and show account creation prompt
+        setEmail(verifiedEmail);
+        setAccessBlocked(true);
+        setShowEmailModal(false);
+      } else {
+        // No payment found - they can proceed with first form
+        setShowEmailModal(false);
+      }
+    } catch (error) {
+      console.error('Error verifying email:', error);
+      // On error, allow access
+      setShowEmailModal(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -140,5 +169,14 @@ export const FormAccessGuard: React.FC<FormAccessGuardProps> = ({ children }) =>
     );
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <EmailVerificationModal
+        isOpen={showEmailModal}
+        onSubmit={handleEmailVerification}
+        onClose={() => setShowEmailModal(false)}
+      />
+      {children}
+    </>
+  );
 };

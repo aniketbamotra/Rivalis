@@ -1,5 +1,9 @@
 import React from 'react';
 import { BaseIntakeForm } from '../../components/Forms/BaseIntakeForm';
+import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
+import { PaymentModal } from '../../components/Common/PaymentModal';
+import { AccountCreationNudge } from '../../components/Common/AccountCreationNudge';
+import { useFormSubmissionWithPayment } from '../../hooks/useFormSubmissionWithPayment';
 import { submitForm } from '../../lib/supabase';
 
 interface IPStrategyFormData {
@@ -205,6 +209,17 @@ const IPStrategyIntake: React.FC = () => {
 
   const [loading, setLoading] = React.useState(false);
 
+  const {
+    showPaymentModal,
+    showNudgeModal,
+    currentEmail,
+    paymentId,
+    handleFormSubmit,
+    handlePaymentSuccess,
+    handleSkipAccount,
+    closePaymentModal,
+  } = useFormSubmissionWithPayment();
+
   const handleIPChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setIPData(prev => ({ ...prev, [name]: value }));
@@ -223,8 +238,8 @@ const IPStrategyIntake: React.FC = () => {
     setLoading(true);
     try {
       const email = (combinedData.email as string) || '';
-      await submitForm('ip-strategy', email, combinedData);
-      console.log('IP strategy form submitted successfully');
+      const result = await submitForm('ip-strategy', email, combinedData);
+      handleFormSubmit(email, result.needsPayment || false);
     } catch (error) {
       console.error('Error submitting IP strategy form:', error);
     } finally {
@@ -233,22 +248,39 @@ const IPStrategyIntake: React.FC = () => {
   };
 
   return (
-    <BaseIntakeForm
-      serviceName="IP Strategy & Protection"
-      serviceIcon="⚖️"
-      serviceDescription="Comprehensive intellectual property strategy, trademark protection, and IP portfolio development."
-      serviceColor="indigo"
-      servicePath="ip-strategy"
-      formType="ip-strategy"
-      onSubmit={handleSubmit}
-      loading={loading}
-    >
-      <IPStrategySpecificFields
-        formData={ipData}
-        handleChange={handleIPChange}
-        handleCheckboxChange={handleCheckboxChange}
+    <FormAccessGuard>
+      <BaseIntakeForm
+        serviceName="IP Strategy & Protection"
+        serviceIcon="⚖️"
+        serviceDescription="Comprehensive intellectual property strategy, trademark protection, and IP portfolio development."
+        serviceColor="indigo"
+        servicePath="ip-strategy"
+        formType="ip-strategy"
+        onSubmit={handleSubmit}
+        loading={loading}
+      >
+        <IPStrategySpecificFields
+          formData={ipData}
+          handleChange={handleIPChange}
+          handleCheckboxChange={handleCheckboxChange}
+        />
+      </BaseIntakeForm>
+
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={closePaymentModal}
+        onSuccess={handlePaymentSuccess}
+        email={currentEmail}
+        amount={299}
       />
-    </BaseIntakeForm>
+
+      <AccountCreationNudge
+        isOpen={showNudgeModal}
+        email={currentEmail}
+        paymentId={paymentId}
+        onSkip={handleSkipAccount}
+      />
+    </FormAccessGuard>
   );
 };
 

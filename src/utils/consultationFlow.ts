@@ -5,7 +5,7 @@
 
 import { supabase } from '../lib/supabase';
 
-const STORAGE_KEYS = {
+export const STORAGE_KEYS = {
   CONSULTATION_EMAIL: 'consultation_paid_email',
   PENDING_ACCOUNT: 'pending_account_creation',
   PAYMENT_ID: 'payment_id',
@@ -161,29 +161,54 @@ export async function linkConsultationToAccount(
 /**
  * Check if user can access forms
  * Returns: { canAccess: boolean, reason?: string }
+ * Now checks database for payment status across devices
  */
-export function canAccessForms(user: unknown): { 
+export async function canAccessForms(
+  user: unknown,
+  email?: string | null
+): Promise<{ 
   canAccess: boolean; 
   reason?: string;
   redirectTo?: string;
-} {
+}> {
   // If logged in, always allow access
   if (user) {
     return { canAccess: true };
   }
 
-  // Check if they've paid but haven't created account
-  const pendingAccount = localStorage.getItem(STORAGE_KEYS.PENDING_ACCOUNT);
-  const paidEmail = localStorage.getItem(STORAGE_KEYS.CONSULTATION_EMAIL);
+  // Get email from parameter, localStorage, or return true (first form access)
+  const userEmail = email || 
+                    localStorage.getItem(STORAGE_KEYS.CONSULTATION_EMAIL) ||
+                    null;
 
-  if (pendingAccount === 'true' && paidEmail) {
-    return {
-      canAccess: false,
-      reason: 'Please create your account to access additional forms',
-      redirectTo: '/signup',
-    };
+  if (!userEmail) {
+    // No email means this is their first form - allow access
+    return { canAccess: true };
   }
 
-  // Anonymous users can access first form
-  return { canAccess: true };
+  // Check database for payment status
+  try {
+    const { checkConsultationPaid } = await import('../lib/supabase');
+    const hasPaid = await checkConsultationPaid(userEmail);
+
+    if (hasPaid) {
+      // They've paid but haven't created account - block additional forms
+      // Store in localStorage for future checks
+      localStorage.setItem(STORAGE_KEYS.PENDING_ACCOUNT, 'true');
+      localStorage.setItem(STORAGE_KEYS.CONSULTATION_EMAIL, userEmail);
+      
+      return {
+        canAccess: false,
+        reason: 'Please create your account to access additional forms',
+        redirectTo: '/signup',
+      };
+    }
+
+    // No payment found - allow first form access
+    return { canAccess: true };
+  } catch (error) {
+    console.error('Error checking form access:', error);
+    // On error, allow access (fail open to avoid blocking legitimate users)
+    return { canAccess: true };
+  }
 }

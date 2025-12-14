@@ -1,5 +1,9 @@
 import React from 'react';
 import { BaseIntakeForm } from '../../components/Forms/BaseIntakeForm';
+import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
+import { PaymentModal } from '../../components/Common/PaymentModal';
+import { AccountCreationNudge } from '../../components/Common/AccountCreationNudge';
+import { useFormSubmissionWithPayment } from '../../hooks/useFormSubmissionWithPayment';
 import { submitForm } from '../../lib/supabase';
 
 interface DataPrivacyFormData {
@@ -209,6 +213,17 @@ const DataPrivacyIntake: React.FC = () => {
 
   const [loading, setLoading] = React.useState(false);
 
+  const {
+    showPaymentModal,
+    showNudgeModal,
+    currentEmail,
+    paymentId,
+    handleFormSubmit,
+    handlePaymentSuccess,
+    handleSkipAccount,
+    closePaymentModal,
+  } = useFormSubmissionWithPayment();
+
   const handlePrivacyChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setPrivacyData(prev => ({ ...prev, [name]: value }));
@@ -227,8 +242,8 @@ const DataPrivacyIntake: React.FC = () => {
     setLoading(true);
     try {
       const email = (combinedData.email as string) || '';
-      await submitForm('data-privacy', email, combinedData);
-      console.log('Data privacy form submitted successfully');
+      const result = await submitForm('data-privacy', email, combinedData);
+      handleFormSubmit(email, result.needsPayment || false);
     } catch (error) {
       console.error('Error submitting data privacy form:', error);
     } finally {
@@ -237,22 +252,39 @@ const DataPrivacyIntake: React.FC = () => {
   };
 
   return (
-    <BaseIntakeForm
-      serviceName="Data Privacy Compliance"
-      serviceIcon="🔒"
-      serviceDescription="Comprehensive data privacy compliance, GDPR/CCPA guidance, and privacy policy development."
-      serviceColor="purple"
-      servicePath="data-privacy"
-      formType="data-privacy"
-      onSubmit={handleSubmit}
-      loading={loading}
-    >
-      <DataPrivacySpecificFields
-        formData={privacyData}
-        handleChange={handlePrivacyChange}
-        handleCheckboxChange={handleCheckboxChange}
+    <FormAccessGuard>
+      <BaseIntakeForm
+        serviceName="Data Privacy Compliance"
+        serviceIcon="🔒"
+        serviceDescription="Comprehensive data privacy compliance, GDPR/CCPA guidance, and privacy policy development."
+        serviceColor="purple"
+        servicePath="data-privacy"
+        formType="data-privacy"
+        onSubmit={handleSubmit}
+        loading={loading}
+      >
+        <DataPrivacySpecificFields
+          formData={privacyData}
+          handleChange={handlePrivacyChange}
+          handleCheckboxChange={handleCheckboxChange}
+        />
+      </BaseIntakeForm>
+
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={closePaymentModal}
+        onSuccess={handlePaymentSuccess}
+        email={currentEmail}
+        amount={299}
       />
-    </BaseIntakeForm>
+
+      <AccountCreationNudge
+        isOpen={showNudgeModal}
+        email={currentEmail}
+        paymentId={paymentId}
+        onSkip={handleSkipAccount}
+      />
+    </FormAccessGuard>
   );
 };
 

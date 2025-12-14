@@ -1,5 +1,9 @@
 import React from 'react';
 import { BaseIntakeForm } from '../../components/Forms/BaseIntakeForm';
+import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
+import { PaymentModal } from '../../components/Common/PaymentModal';
+import { AccountCreationNudge } from '../../components/Common/AccountCreationNudge';
+import { useFormSubmissionWithPayment } from '../../hooks/useFormSubmissionWithPayment';
 import { submitForm } from '../../lib/supabase';
 
 interface EmploymentLawFormData {
@@ -195,6 +199,17 @@ const EmploymentLawIntake: React.FC = () => {
 
   const [loading, setLoading] = React.useState(false);
 
+  const {
+    showPaymentModal,
+    showNudgeModal,
+    currentEmail,
+    paymentId,
+    handleFormSubmit,
+    handlePaymentSuccess,
+    handleSkipAccount,
+    closePaymentModal,
+  } = useFormSubmissionWithPayment();
+
   const handleEmploymentChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setEmploymentData(prev => ({ ...prev, [name]: value }));
@@ -213,8 +228,8 @@ const EmploymentLawIntake: React.FC = () => {
     setLoading(true);
     try {
       const email = (combinedData.email as string) || '';
-      await submitForm('employment-law', email, combinedData);
-      console.log('Employment law form submitted successfully');
+      const result = await submitForm('employment-law', email, combinedData);
+      handleFormSubmit(email, result.needsPayment || false);
     } catch (error) {
       console.error('Error submitting employment law form:', error);
     } finally {
@@ -223,22 +238,39 @@ const EmploymentLawIntake: React.FC = () => {
   };
 
   return (
-    <BaseIntakeForm
-      serviceName="Employment Law"
-      serviceIcon="👥"
-      serviceDescription="Comprehensive employment law guidance, policy development, and workplace compliance solutions."
-      serviceColor="green"
-      servicePath="employment-law"
-      formType="employment-law"
-      onSubmit={handleSubmit}
-      loading={loading}
-    >
-      <EmploymentLawSpecificFields
-        formData={employmentData}
-        handleChange={handleEmploymentChange}
-        handleCheckboxChange={handleCheckboxChange}
+    <FormAccessGuard>
+      <BaseIntakeForm
+        serviceName="Employment Law"
+        serviceIcon="👥"
+        serviceDescription="Comprehensive employment law guidance, policy development, and workplace compliance solutions."
+        serviceColor="green"
+        servicePath="employment-law"
+        formType="employment-law"
+        onSubmit={handleSubmit}
+        loading={loading}
+      >
+        <EmploymentLawSpecificFields
+          formData={employmentData}
+          handleChange={handleEmploymentChange}
+          handleCheckboxChange={handleCheckboxChange}
+        />
+      </BaseIntakeForm>
+
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={closePaymentModal}
+        onSuccess={handlePaymentSuccess}
+        email={currentEmail}
+        amount={299}
       />
-    </BaseIntakeForm>
+
+      <AccountCreationNudge
+        isOpen={showNudgeModal}
+        email={currentEmail}
+        paymentId={paymentId}
+        onSkip={handleSkipAccount}
+      />
+    </FormAccessGuard>
   );
 };
 

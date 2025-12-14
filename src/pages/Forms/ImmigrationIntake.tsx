@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navigation } from '../../components/Layout/Navigation';
+import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
+import { PaymentModal } from '../../components/Common/PaymentModal';
+import { AccountCreationNudge } from '../../components/Common/AccountCreationNudge';
+import { useFormSubmissionWithPayment } from '../../hooks/useFormSubmissionWithPayment';
 import { submitForm } from '../../lib/supabase';
 import '../../styles/form-page.css';
 import '../../styles/home.css';
@@ -83,6 +87,17 @@ export const ImmigrationIntake: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
 
+  const {
+    showPaymentModal,
+    showNudgeModal,
+    currentEmail,
+    paymentId,
+    handleFormSubmit,
+    handlePaymentSuccess,
+    handleSkipAccount,
+    closePaymentModal,
+  } = useFormSubmissionWithPayment();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -99,8 +114,8 @@ export const ImmigrationIntake: React.FC = () => {
         signatureDate: formData.signatureDate || new Date().toISOString().split('T')[0]
       };
       
-      await submitForm('immigration-intake', formData.email, submissionData);
-      alert('Thank you! Your comprehensive immigration intake form has been submitted. Our immigration team will review and contact you within 24 hours.');
+      const result = await submitForm('immigration-intake', formData.email, submissionData);
+      handleFormSubmit(formData.email, result.needsPayment || false);
       
       // Reset form - using the exact same structure as initial state
       setFormData({
@@ -168,7 +183,7 @@ export const ImmigrationIntake: React.FC = () => {
   };
 
   return (
-    <>
+    <FormAccessGuard>
       <Navigation />
 
       {/* Hero */}
@@ -1436,6 +1451,23 @@ export const ImmigrationIntake: React.FC = () => {
         <p>&copy; 2024 Rivalis Law. Licensed in New York & Michigan.</p>
         <p><Link to="/">Return to Main Site</Link></p>
       </footer>
-    </>
+
+      {/* Payment Modal */}
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={closePaymentModal}
+        onSuccess={handlePaymentSuccess}
+        email={currentEmail}
+        amount={299}
+      />
+
+      {/* Account Creation Nudge Modal */}
+      <AccountCreationNudge
+        isOpen={showNudgeModal}
+        email={currentEmail}
+        paymentId={paymentId}
+        onSkip={handleSkipAccount}
+      />
+    </FormAccessGuard>
   );
 };

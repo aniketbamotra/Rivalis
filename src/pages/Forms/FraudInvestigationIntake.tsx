@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Navigation } from '../../components/Layout/Navigation';
+import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
+import { PaymentModal } from '../../components/Common/PaymentModal';
+import { AccountCreationNudge } from '../../components/Common/AccountCreationNudge';
+import { useFormSubmissionWithPayment } from '../../hooks/useFormSubmissionWithPayment';
 import { submitForm } from '../../lib/supabase';
 import '../../styles/form-page.css';
 import '../../styles/fraud-investigation.css';
@@ -46,6 +50,17 @@ export const FraudInvestigationIntake: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
 
+  const {
+    showPaymentModal,
+    showNudgeModal,
+    currentEmail,
+    paymentId,
+    handleFormSubmit,
+    handlePaymentSuccess,
+    handleSkipAccount,
+    closePaymentModal,
+  } = useFormSubmissionWithPayment();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     
@@ -78,8 +93,8 @@ export const FraudInvestigationIntake: React.FC = () => {
         signatureDate: formData.electronicSignature ? new Date().toISOString().split('T')[0] : formData.signatureDate
       };
       
-      await submitForm('fraud_investigation', formData.email, submissionData);
-      alert('Thank you! Your confidential fraud investigation intake has been submitted securely. A senior attorney will contact you within 2 hours for urgent matters, or within 24 hours for standard inquiries.');
+      const result = await submitForm('fraud_investigation', formData.email, submissionData);
+      handleFormSubmit(formData.email, result.needsPayment || false);
       
       // Reset form
       setFormData({
@@ -119,7 +134,7 @@ export const FraudInvestigationIntake: React.FC = () => {
   };
 
   return (
-    <>
+    <FormAccessGuard>
       <Navigation />
 
       {/* Confidential Header */}
@@ -512,6 +527,23 @@ export const FraudInvestigationIntake: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+
+      {/* Payment Modal */}
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={closePaymentModal}
+        onSuccess={handlePaymentSuccess}
+        email={currentEmail}
+        amount={299}
+      />
+
+      {/* Account Creation Nudge Modal */}
+      <AccountCreationNudge
+        isOpen={showNudgeModal}
+        email={currentEmail}
+        paymentId={paymentId}
+        onSkip={handleSkipAccount}
+      />
+    </FormAccessGuard>
   );
 };
