@@ -52,7 +52,7 @@ exports.handler = async (event) => {
 
     // Send confirmation email to user
     const userEmailResponse = await resend.emails.send({
-      from: 'Rivalis Law <noreply@rivalislaw.com>',
+      from: 'Rivalis Law <onboarding@resend.dev>',
       to: userEmail,
       subject: 'Emergency Consultation Request Received - Rivalis Law',
       html: `
@@ -119,7 +119,7 @@ exports.handler = async (event) => {
 
     // Send priority alert to admin
     const adminEmailResponse = await resend.emails.send({
-      from: 'Emergency Alerts <alerts@rivalislaw.com>',
+      from: 'Emergency Alerts <onboarding@resend.dev>',
       to: 'aaishaeron@gmail.com',
       subject: `🚨 PRIORITY: New Emergency Consultation - ${urgency} Urgency`,
       html: `
