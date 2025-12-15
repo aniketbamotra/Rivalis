@@ -58,8 +58,6 @@ export function EmergencyConsultationForm() {
           serviceId: 'emergency-consultation',
           serviceName: 'Emergency Legal Consultation',
           amount: 49900, // $499 in cents
-          userId: user.id,
-          userEmail: user.email,
           email: user.email,
         }),
       });
