@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EB-1 Extraordinary Ability Intake Form - Rivalis Law</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #d4af37;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        .service-badge {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .premium-notice {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .premium-notice strong {
+            color: #1a1a2e;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .confidential-notice {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #856404;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            font-weight: normal;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: #f7fafc;
+            border-radius: 4px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+        }
+        
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        .criteria-box {
+            background: #f7fafc;
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .criteria-box h4 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        
+        .signature-line {
+            border-bottom: 2px solid #333;
+            margin: 20px 0 10px 0;
+            min-height: 50px;
+        }
+        
+        .print-button {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+        
+        .print-button:hover {
+            background: linear-gradient(135deg, #b8941f 0%, #9a7a1a 100%);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            .print-button {
+                display: none;
+            }
+        }
+        
+        .required {
+            color: #e53e3e;
+        }
+        
+        .help-text {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .investment-info {
+            background: #f0e6d2;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">⚖ RIVALIS LAW</div>
+            <div class="tagline">Elite Immigration & Investor Visa Services</div>
+            <div class="service-badge">🏆 EB-1A: Extraordinary Ability</div>
+        </div>
+        
+        <div class="premium-notice">
+            <strong>EB-1 Extraordinary Ability Assessment</strong>
+            This intake form helps us evaluate your eligibility for EB-1A classification—the most prestigious employment-based immigration category. EB-1A is for individuals who have risen to the very top of their field through sustained national or international acclaim. 
+            <br><br>
+            <strong>Investment Range:</strong> $18,000 - $35,000 in legal fees | Timeline: 6-18 months
+        </div>
+        
+        <div class="confidential-notice">
+            <strong>⚠️ CONFIDENTIAL ATTORNEY-CLIENT COMMUNICATION</strong><br>
+            All information provided in this form is protected by attorney-client privilege and will be kept strictly confidential. Completing this form does not create an attorney-client relationship until a formal engagement agreement is signed.
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Contact Information</div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Legal Name <span class="required">*</span></label>
+                    <input type="text" required>
+                    <div class="help-text">As it appears on passport</div>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Name/How you are known in your field:</label>
+                    <input type="text">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Current Country of Residence <span class="required">*</span></label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Country of Citizenship <span class="required">*</span></label>
+                    <input type="text" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Location (City, State/Province) <span class="required">*</span></label>
+                <input type="text" required>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Field of Extraordinary Ability</div>
+            
+            <div class="form-group">
+                <label>Primary Field/Area of Expertise <span class="required">*</span></label>
+                <select required>
+                    <option value="">-- Select Primary Field --</option>
+                    <option value="science">Sciences (Biology, Chemistry, Physics, etc.)</option>
+                    <option value="technology">Technology/Computer Science/Engineering</option>
+                    <option value="medicine">Medicine/Healthcare</option>
+                    <option value="business">Business/Entrepreneurship</option>
+                    <option value="education">Education/Academia</option>
+                    <option value="arts">Arts (Visual, Performing, Literary)</option>
+                    <option value="athletics">Athletics/Sports</option>
+                    <option value="other">Other (please specify)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Specific Specialization/Sub-field:</label>
+                <input type="text" placeholder="e.g., Machine Learning, Cardiac Surgery, Fintech Innovation">
+                <div class="help-text">Be as specific as possible - this helps establish your exact field of acclaim</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Brief description of your work and contributions (2-3 sentences) <span class="required">*</span></label>
+                <textarea required placeholder="What is your area of expertise? What have you accomplished? Why are you recognized in your field?"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">EB-1A Criteria Assessment</div>
+            
+            <div class="criteria-box">
+                <h4>USCIS requires evidence meeting at least 3 of the following 10 criteria. Please check ALL that apply to you:</h4>
+                
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="criteria1">
+                        <span><strong>Major Internationally Recognized Awards</strong> - Nobel Prize, Pulitzer Prize, Oscar, Olympic Medal, or comparable major international recognition in your field</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="criteria2">
+                        <span><strong>Membership in Associations</strong> - Membership in associations that require outstanding achievements, as judged by recognized experts</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="criteria3">
+                        <span><strong>Published Material About You</strong> - Published material in professional or major media about you and your work</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="criteria4">
+                        <span><strong>Judging/Peer Review</strong> - Participation as a judge of the work of others in your field (peer review, editorial boards, competition judging)</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="criteria5">
+                        <span><strong>Original Contributions</strong> - Original scientific, scholarly, artistic, athletic, or business-related contributions of major significance</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="criteria6">
+                        <span><strong>Scholarly Articles</strong> - Authorship of scholarly articles in professional journals or other major media</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="criteria7">
+                        <span><strong>Artistic Exhibitions</strong> - Display of work at artistic exhibitions or showcases</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="criteria8">
+                        <span><strong>Leading/Critical Role</strong> - Performance of a leading or critical role for organizations with a distinguished reputation</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="criteria9">
+                        <span><strong>High Salary/Remuneration</strong> - Commanding a high salary or significantly high remuneration in relation to others in the field</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="criteria10">
+                        <span><strong>Commercial Success in Arts</strong> - Evidence of commercial successes in the performing arts (box office receipts, recordings sales)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Detailed Evidence Assessment</div>
+            
+            <div class="form-group">
+                <label>Publications & Citations (if applicable):</label>
+                <textarea placeholder="Number of peer-reviewed publications, total citations, h-index, most cited papers"></textarea>
+                <div class="help-text">Include Google Scholar profile link if available</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Patents, Inventions, or Intellectual Property:</label>
+                <textarea placeholder="Number of patents, patent numbers, commercial applications"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Awards & Honors Received:</label>
+                <textarea placeholder="List all significant awards, fellowships, honors - include granting organization and year"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Media Coverage:</label>
+                <textarea placeholder="List major media outlets that have featured you or your work (publications, interviews, profiles)"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Professional Memberships:</label>
+                <textarea placeholder="List associations, academies, societies - note if membership is selective/by invitation only"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Peer Review & Editorial Experience:</label>
+                <textarea placeholder="Journal editorial boards, grant review panels, competition judging - include names and dates"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Leadership Positions:</label>
+                <textarea placeholder="Executive roles, board positions, leadership in distinguished organizations"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Current Annual Compensation:</label>
+                <input type="text" placeholder="USD $">
+                <div class="help-text">Helps establish high remuneration criterion - kept strictly confidential</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Speaking Engagements:</label>
+                <textarea placeholder="Keynote speeches, invited talks at major conferences or institutions"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Original Contributions of Major Significance:</label>
+                <textarea placeholder="Describe your most significant contributions to your field - innovations, discoveries, methodologies, or work that has had major impact"></textarea>
+                <div class="help-text">This is critical - be specific about impact and recognition by others in your field</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Education & Professional Background</div>
+            
+            <div class="form-group">
+                <label>Highest Degree Earned <span class="required">*</span></label>
+                <select required>
+                    <option value="">-- Select --</option>
+                    <option value="bachelors">Bachelor's Degree</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="doctorate">Doctorate/PhD</option>
+                    <option value="md">Medical Degree (MD/MBBS)</option>
+                    <option value="jd">Law Degree (JD/LLM)</option>
+                    <option value="mba">MBA</option>
+                    <option value="other">Other Advanced Degree</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Institution, Field of Study, Year:</label>
+                <textarea placeholder="Include all degrees - institution name, major/specialization, graduation year"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Current Position/Title <span class="required">*</span></label>
+                <input type="text" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Current Employer/Organization:</label>
+                <input type="text">
+            </div>
+            
+            <div class="form-group">
+                <label>Years of Experience in Your Field:</label>
+                <input type="number" min="0">
+            </div>
+            
+            <div class="form-group">
+                <label>Professional Career Summary:</label>
+                <textarea placeholder="Key positions held, major projects, career progression"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Reference Letters & Expert Endorsements</div>
+            
+            <div class="form-group">
+                <label>Can you obtain letters from recognized experts in your field? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="letters" value="yes" required> Yes</label>
+                    <label><input type="radio" name="letters" value="maybe"> Possibly</label>
+                    <label><input type="radio" name="letters" value="no"> No</label>
+                </div>
+                <div class="help-text">EB-1A cases typically require 5-8 detailed letters from experts who can speak to your extraordinary ability</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Potential Letter Writers:</label>
+                <textarea placeholder="Names, titles, institutions of experts who could write letters - include their standing in the field and how they know your work"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Immigration History & Status</div>
+            
+            <div class="form-group">
+                <label>Have you ever been to the United States?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="usvisit" value="yes"> Yes</label>
+                    <label><input type="radio" name="usvisit" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, current or most recent US visa/status:</label>
+                <select>
+                    <option value="">-- Select --</option>
+                    <option value="h1b">H-1B</option>
+                    <option value="l1">L-1</option>
+                    <option value="o1">O-1</option>
+                    <option value="f1">F-1 Student</option>
+                    <option value="j1">J-1</option>
+                    <option value="b1b2">B-1/B-2 Tourist</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Have you ever been denied a US visa or had a petition denied?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="denial" value="yes"> Yes</label>
+                    <label><input type="radio" name="denial" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, please provide details:</label>
+                <textarea placeholder="Type of visa/petition, date, reason for denial if known"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Family Information</div>
+            
+            <div class="form-group">
+                <label>Marital Status:</label>
+                <select>
+                    <option value="">-- Select --</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>If married, spouse's name and citizenship:</label>
+                <input type="text">
+            </div>
+            
+            <div class="form-group">
+                <label>Children under 21 who would be included in petition:</label>
+                <textarea placeholder="Name, date of birth, citizenship for each child"></textarea>
+                <div class="help-text">Derivative beneficiaries can be included in EB-1A petition</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Timeline & Goals</div>
+            
+            <div class="form-group">
+                <label>When do you need to obtain permanent residence? <span class="required">*</span></label>
+                <input type="date" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Are you currently in the US or planning to file from abroad?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="location" value="us"> Currently in US</label>
+                    <label><input type="radio" name="location" value="abroad"> Outside US</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Primary reason for seeking EB-1A classification:</label>
+                <textarea placeholder="Career goals, family considerations, business opportunities, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Do you need expedited/premium processing?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="expedited" value="yes"> Yes</label>
+                    <label><input type="radio" name="expedited" value="no"> No</label>
+                    <label><input type="radio" name="expedited" value="unsure"> Unsure</label>
+                </div>
+                <div class="investment-info">
+                    Premium Processing (if available): Additional $2,805 USCIS fee for 15-day processing
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Additional Information</div>
+            
+            <div class="form-group">
+                <label>Have you worked with an immigration attorney before?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="previousAttorney" value="yes"> Yes</label>
+                    <label><input type="radio" name="previousAttorney" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, please provide name and firm:</label>
+                <input type="text">
+            </div>
+            
+            <div class="form-group">
+                <label>How did you hear about Rivalis Law?</label>
+                <select>
+                    <option value="">-- Select --</option>
+                    <option value="referral">Professional Referral</option>
+                    <option value="website">Website/Online Search</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="conference">Conference/Event</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Any other information relevant to your case:</label>
+                <textarea placeholder="Concerns, questions, special circumstances"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Case Assessment Expectations</div>
+            
+            <div class="premium-notice">
+                <strong>What Happens Next:</strong>
+                After reviewing your intake form, we will:
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Conduct an initial case strength assessment</li>
+                    <li>Determine if you meet the threshold for EB-1A classification</li>
+                    <li>Identify any evidence gaps that need to be addressed</li>
+                    <li>Provide a detailed case strategy and timeline</li>
+                    <li>Present transparent fee structure and payment terms</li>
+                </ul>
+                <br>
+                <strong>Note:</strong> EB-1A has a high bar. We provide honest assessments - if your case has weaknesses, we'll tell you what needs strengthening or whether an alternative pathway (EB-2 NIW, O-1) might be more appropriate.
+            </div>
+        </div>
+        
+        <div class="signature-section">
+            <div class="section-title">Authorization & Acknowledgment</div>
+            
+            <p style="margin-bottom: 15px;">
+                By signing below, I acknowledge that:
+            </p>
+            
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li>The information provided is true, complete, and accurate to the best of my knowledge</li>
+                <li>I understand that EB-1A requires meeting a high standard of proof and outcomes cannot be guaranteed</li>
+                <li>I authorize Rivalis Law to conduct a preliminary case assessment</li>
+                <li>I understand this intake does not create an attorney-client relationship until formal engagement</li>
+                <li>I will provide all requested documentation and evidence in a timely manner</li>
+                <li>I understand the estimated investment range ($18,000-$35,000) may vary based on case complexity</li>
+            </ul>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Client Name (Print) <span class="required">*</span></label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Date <span class="required">*</span></label>
+                    <input type="date" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Signature <span class="required">*</span></label>
+                <div class="signature-line"></div>
+                <div class="help-text">Please sign above or type your full name as electronic signature</div>
+            </div>
+        </div>
+        
+        <button class="print-button" onclick="window.print()">Print or Save as PDF</button>
+        
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; color: #718096; font-size: 12px;">
+            <p><strong>RIVALIS LAW</strong></p>
+            <p>Elite Immigration & Investor Visa Services</p>
+            <p style="margin-top: 10px;">📞 (202) 555-0199 | 📧 elite@rivalislaw.com</p>
+        </div>
+    </div>
+</body>
+</html>

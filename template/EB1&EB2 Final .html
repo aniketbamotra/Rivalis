@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EB-1 & EB-2 Green Card Lawyers | Stop Wasting Time on H-1B Lottery Hell | Rivalis Law</title>
+    <meta name="description" content="8,000 citations. Keynote speaker. Still stuck in H-1B lottery? The EB-1 path ends your visa nightmare permanently. We've done this 200+ times.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --accent: #d4af37;
+            --accent-dark: #b8941f;
+            --accent-light: #f0e6d2;
+            --white: #ffffff;
+            --gray-50: #fafbfc;
+            --gray-100: #f4f6f8;
+            --gray-200: #e8ecf0;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --gray-900: #0f1419;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-900);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            z-index: 999;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-logo::before {
+            content: '⚖ ';
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--white);
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(165deg, var(--primary) 0%, var(--gray-700) 100%);
+            padding: 8rem 3rem 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-badge i {
+            color: var(--accent);
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            max-width: 1100px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            max-width: 950px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        .section {
+            padding: 6rem 3rem;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .path-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .path-card {
+            background: white;
+            border: 3px solid var(--gray-200);
+            border-radius: 20px;
+            padding: 3rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .path-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .path-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .path-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .path-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .path-pain {
+            font-size: 1.15rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .path-solution {
+            background: rgba(212, 175, 55, 0.08);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .path-solution p {
+            color: var(--gray-700);
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+
+        .path-solution p:last-child {
+            margin-bottom: 0;
+        }
+
+        .path-proof {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+
+        .proof-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .path-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .path-cta:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+        }
+
+        .criteria-section {
+            background: linear-gradient(180deg, #f7fafc 0%, #ffffff 100%);
+            padding: 6rem 3rem;
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .criteria-card {
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .criteria-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .criteria-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .big4-section {
+            background: linear-gradient(165deg, var(--primary) 0%, var(--gray-700) 100%);
+            border-radius: 24px;
+            padding: 4rem;
+            color: white;
+            margin: 4rem 0;
+        }
+
+        .big4-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .big4-section h2 span {
+            color: var(--accent);
+        }
+
+        .big4-section p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            padding: 5rem 3rem;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.25rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--accent);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--accent);
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        @media (max-width: 1024px) {
+            .path-grid, .criteria-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.25rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Rivalis Law</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="practice-areas.html" class="nav-link">Practice Areas</a></li>
+                <li><a href="contact.html" class="nav-cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>EB-1 & EB-2 Green Cards</span>
+            </div>
+
+            <div class="hero-badge">
+                <i class="fas fa-crown"></i>
+                <span>ELITE GREEN CARD SERVICES</span>
+            </div>
+
+            <h1>
+                8,000 Citations. Keynote at Top Conferences.<br>
+                <span class="highlight">Still Stuck in H-1B Lottery Hell?</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                You're a world-class researcher. Your work shapes your field. You've been cited 5,000 times. You've spoken at conferences in 12 countries. And you're STILL begging USCIS for permission to work every April? The EB-1 path doesn't depend on employer sponsorship, lottery luck, or waiting for Congress to fix immigration. You qualify NOW. Stop gambling on H-1B. Get your green card.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">EB-1/EB-2 Cases Filed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">Big 4</span>
+                    <span class="stat-label">Citation Analysis Training</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Lottery Dependence</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">TWO PATHS TO PERMANENT RESIDENCE</div>
+                <h2 class="section-title">Stop Waiting for H-1B Lottery Luck.<br>Build Your Green Card Case Instead.</h2>
+                <p class="section-description">
+                    The PhD who lost the H-1B lottery three years running. The entrepreneur whose startup can't wait for employer sponsorship. The researcher whose breakthrough is worth $100M but whose visa expires in 6 months. These are the cases we WIN. Not because we're lucky. Because we build EB-1 and EB-2 NIW cases that USCIS can't deny.
+                </p>
+            </div>
+
+            <div class="path-grid">
+                <!-- EB-1 CARD -->
+                <div class="path-card">
+                    <div class="path-badge">EB-1 Extraordinary Ability</div>
+                    <h3>The Fast Track for People Who've Already Made It</h3>
+                    
+                    <p class="path-pain">
+                        <strong>You're stuck in a system designed for mediocrity.</strong> H-1B lottery? That's for everyone. EB-1 is for the top 1% who've already proven extraordinary ability. If you're waiting on lottery luck, you're playing the wrong game.
+                    </p>
+
+                    <div class="path-solution">
+                        <p><strong>Who qualifies:</strong> International awards. 5,000+ citations. Media coverage in major outlets. Judging others' work. Critical employment at distinguished organizations. Patents worth millions. Leading roles at top institutions.</p>
+                        <p><strong>The truth:</strong> Most researchers with 3,000+ citations qualify. Most don't know it. Your previous attorney didn't tell you because they don't know how to build these cases.</p>
+                    </div>
+
+                    <div class="path-proof">
+                        <div class="proof-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>No employer sponsorship needed</span>
+                        </div>
+                        <div class="proof-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>No lottery, no cap, no waiting</span>
+                        </div>
+                        <div class="proof-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Permanent residence for life</span>
+                        </div>
+                    </div>
+
+                    <a href="https://calendly.com/rivalislaw/greencard-assessment" class="path-cta">
+                        <i class="fas fa-calendar-check"></i>
+                        Book $499 EB-1 Assessment
+                    </a>
+                </div>
+
+                <!-- EB-2 NIW CARD -->
+                <div class="path-card">
+                    <div class="path-badge">EB-2 National Interest Waiver</div>
+                    <h3>For Entrepreneurs Whose Work Benefits America</h3>
+                    
+                    <p class="path-pain">
+                        <strong>Your startup could reshape an entire industry.</strong> AI for cancer detection. Clean energy that cuts emissions 40%. Supply chain software that saves billions. And you're stuck waiting for an employer to sponsor you? Matter of Dhanasar changed everything. You don't need employer sponsorship if your work serves the national interest.
+                    </p>
+
+                    <div class="path-solution">
+                        <p><strong>Who qualifies:</strong> PhDs working on problems of national importance. Entrepreneurs building companies that benefit the U.S. economy. Researchers whose work has commercial applications. Engineers solving infrastructure challenges. Scientists advancing critical technologies.</p>
+                        <p><strong>The breakthrough:</strong> Matter of Dhanasar (2016) opened EB-2 NIW to entrepreneurs. Most don't know. Your work doesn't need to be groundbreaking—just nationally important.</p>
+                    </div>
+
+                    <div class="path-proof">
+                        <div class="proof-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>No employer required</span>
+                        </div>
+                        <div class="proof-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Entrepreneurs now qualify</span>
+                        </div>
+                        <div class="proof-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Commercial work counts</span>
+                        </div>
+                    </div>
+
+                    <a href="https://calendly.com/rivalislaw/greencard-assessment" class="path-cta">
+                        <i class="fas fa-calendar-check"></i>
+                        Book $499 NIW Assessment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- $499 CONSULTATION BOX -->
+    <section class="section" style="background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%); padding: 6rem 3rem;">
+        <div class="section-container">
+            
+            <div style="background: white; border: 3px solid #d4af37; border-radius: 24px; padding: 4rem 3rem; box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2); max-width: 1100px; margin: 0 auto;">
+                
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <div style="display: inline-block; background: rgba(212, 175, 55, 0.15); padding: 0.75rem 2rem; border-radius: 50px; margin-bottom: 1.5rem;">
+                        <span style="color: #d4af37; font-weight: 800; font-size: 0.9rem; letter-spacing: 1px;">⚡ STOP WASTING TIME</span>
+                    </div>
+                    
+                    <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 800; color: #1a1a2e; line-height: 1.2; margin-bottom: 1rem;">
+                        Find Out If You Qualify in 60 Minutes.<br>
+                        <span style="color: #d4af37;">Not After 18 Months of Wasted Work.</span>
+                    </h2>
+                    
+                    <p style="font-size: 1.25rem; color: #4a5568; line-height: 1.7; max-width: 850px; margin: 0 auto;">
+                        Most attorneys will happily take your money and file an EB-1 even if you don't qualify. Then 18 months later? Denied. <strong style="color: #1a1a2e;">We tell you the truth in Week 1.</strong> If your citations aren't high enough, we say so. If your case needs more evidence, we build it BEFORE filing. $499 buys you honesty.
+                    </p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%); border: 2px dashed #d4af37; border-radius: 16px; padding: 3rem 2.5rem; margin-bottom: 3rem;">
+                    <h3 style="font-size: 1.5rem; font-weight: 800; color: #1a1a2e; margin-bottom: 2rem; text-align: center;">
+                        Your $499 Green Card Reality Check:
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #d4af37;">
+                            <div style="flex-shrink: 0; width: 32px; height: 32px; background: #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem;">✓</div>
+                            <div style="flex: 1;">
+                                <strong style="font-size: 1.1rem; color: #1a1a2e;">Citation Analysis Like a Financial Audit</strong> (We Count EVERY Citation Across Databases)
+                                <div style="color: #d4af37; font-weight: 700; margin-top: 0.25rem;">$1,500 Value</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #d4af37;">
+                            <div style="flex-shrink: 0; width: 32px; height: 32px; background: #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem;">✓</div>
+                            <div style="flex: 1;">
+                                <strong style="font-size: 1.1rem; color: #1a1a2e;">EB-1 vs EB-2 NIW Pathway Recommendation</strong> (We Tell You Which Has Higher Approval Odds)
+                                <div style="color: #d4af37; font-weight: 700; margin-top: 0.25rem;">$750 Value</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #d4af37;">
+                            <div style="flex-shrink: 0; width: 32px; height: 32px; background: #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem;">✓</div>
+                            <div style="flex: 1;">
+                                <strong style="font-size: 1.1rem; color: #1a1a2e;">Honest "You Don't Qualify Yet" Assessment</strong> (We Won't File Weak Cases)
+                                <div style="color: #d4af37; font-weight: 700; margin-top: 0.25rem;">$500 Value</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #d4af37;">
+                            <div style="flex-shrink: 0; width: 32px; height: 32px; background: #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem;">✓</div>
+                            <div style="flex: 1;">
+                                <strong style="font-size: 1.1rem; color: #1a1a2e;">Evidence Gap Analysis & Publication Strategy</strong> (What You Need to Publish Before Filing)
+                                <div style="color: #d4af37; font-weight: 700; margin-top: 0.25rem;">$1,200 Value</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #d4af37;">
+                            <div style="flex-shrink: 0; width: 32px; height: 32px; background: #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem;">✓</div>
+                            <div style="flex: 1;">
+                                <strong style="font-size: 1.1rem; color: #1a1a2e;">10 USCIS Criteria Breakdown</strong> (Which 3 of 10 You Already Meet)
+                                <div style="color: #d4af37; font-weight: 700; margin-top: 0.25rem;">$600 Value</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="border-top: 3px solid #d4af37; padding-top: 1.5rem; text-align: center;">
+                        <div style="font-size: 1.1rem; color: #4a5568; margin-bottom: 0.5rem;">What Other Attorneys Charge to File (Then Tell You Later It Won't Work):</div>
+                        <div style="font-size: 2rem; font-weight: 300; color: #9ca3af; text-decoration: line-through; margin-bottom: 0.5rem;">$4,550</div>
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #1a1a2e; margin-bottom: 1rem;">What We Charge to Tell You the TRUTH First: <span style="font-size: 2.5rem; color: #d4af37;">$499</span></div>
+                        
+                        <div style="background: rgba(212, 175, 55, 0.1); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem;">
+                            <div style="font-size: 1.3rem; font-weight: 800; color: #1a1a2e; margin-bottom: 0.5rem;">
+                                🎯 And Yes: 100% Credited If You Hire Us
+                            </div>
+                            <div style="font-size: 1.05rem; color: #4a5568; line-height: 1.6;">
+                                You're not paying for consultation. You're paying to find out if your case is strong enough to WIN—before wasting $25K on a denial. If you qualify and hire us? $499 is credited. If you don't qualify? You saved yourself 18 months of false hope.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #fffbeb; border-left: 4px solid #f59e0b; padding: 2rem; border-radius: 12px; margin-bottom: 3rem;">
+                    <h4 style="font-size: 1.3rem; font-weight: 800; color: #78350f; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <span style="font-size: 1.5rem;">⚠️</span> Don't Book This If You Want False Hope
+                    </h4>
+                    <p style="font-size: 1.05rem; color: #78350f; line-height: 1.7; margin-bottom: 1rem;">
+                        <strong>We will tell you NO if your case is weak:</strong>
+                    </p>
+                    <ul style="list-style: none; padding: 0; margin: 0 0 1rem 0;">
+                        <li style="padding: 0.5rem 0; color: #78350f; font-size: 1.05rem;">❌ 500 citations and expecting EB-1 approval? Not happening. We'll tell you to wait.</li>
+                        <li style="padding: 0.5rem 0; color: #78350f; font-size: 1.05rem;">❌ NIW case with no evidence of national importance? We won't file it.</li>
+                        <li style="padding: 0.5rem 0; color: #78350f; font-size: 1.05rem;">❌ Want an attorney to "just try and see what happens"? Find someone else.</li>
+                    </ul>
+                    <p style="font-size: 1.05rem; color: #78350f; line-height: 1.7; margin: 0; font-weight: 600;">
+                        This is for researchers and entrepreneurs who want the TRUTH about their green card odds—not attorneys who take your money and hope for the best.
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 3rem; padding: 2rem; background: #f0fdf4; border-radius: 12px;">
+                    <div style="font-size: 3rem; font-weight: 900; color: #16a34a; margin-bottom: 0.5rem;">88%</div>
+                    <div style="font-size: 1.2rem; color: #166534; font-weight: 700;">Of Our EB-1/EB-2 Cases Get Approved</div>
+                    <p style="font-size: 1rem; color: #15803d; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Not because we're lucky. Because we don't file weak cases. We tell you NO in Week 1 if you don't qualify. We build evidence for 6 months if needed. Then we file petitions USCIS can't deny.
+                    </p>
+                </div>
+
+                <div style="text-align: center;">
+                    <a href="https://calendly.com/rivalislaw/greencard-assessment" style="display: inline-flex; align-items: center; gap: 1rem; background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%); color: white; padding: 1.75rem 4rem; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 1.3rem; box-shadow: 0 12px 40px rgba(212, 175, 55, 0.35); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <i class="fas fa-calendar-check" style="font-size: 1.5rem;"></i>
+                        Get Your $499 Reality Check
+                    </a>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <div style="display: inline-block; background: #fee2e2; border: 2px solid #ef4444; padding: 0.75rem 1.5rem; border-radius: 8px;">
+                            <span style="color: #991b1b; font-weight: 700; font-size: 0.95rem;">
+                                ⚡ We only take 15 EB-1/EB-2 cases at a time
+                            </span>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 2rem; font-size: 0.95rem; color: #6b7280; line-height: 1.6;">
+                        After booking: Send us your CV, publication list, and citation counts.<br>
+                        We'll analyze everything BEFORE our call. No wasted time.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BIG 4 SECTION -->
+    <section class="section">
+        <div class="section-container">
+            <div class="big4-section">
+                <h2>
+                    EB-1 Cases Require the Same Rigor as a <span>Big 4 Financial Audit.</span><br>
+                    Most Immigration Attorneys Have Never Done One.
+                </h2>
+                <p>
+                    When I worked at one of the world's largest firms, we didn't count citations the way immigration attorneys do—we counted them the way auditors count revenue: across multiple databases, with independent verification, comparative percentile analysis, and quality assessment. That's the standard I bring to EB-1 citation analysis.
+                </p>
+                <p>
+                    Your 8,000 citations mean nothing if they're all self-citations or from predatory journals. USCIS knows this. Most attorneys don't. We analyze citation QUALITY the same way we analyzed financial statements for Fortune 500 companies: forensically.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRITERIA SECTION -->
+    <section class="criteria-section">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">EB-1 QUALIFICATION CRITERIA</div>
+                <h2 class="section-title">USCIS Requires 3 of 10 Criteria.<br>Most Researchers Meet 5+ and Don't Know It.</h2>
+                <p class="section-description">
+                    The issue isn't whether you qualify. The issue is whether you can PROVE it. That's where most EB-1 cases fail—not qualification, but documentation. We know how to build evidence USCIS can't dispute.
+                </p>
+            </div>
+
+            <div class="criteria-grid">
+                <div class="criteria-card">
+                    <h4>1. Awards for Excellence</h4>
+                    <p>National/international prizes. Fellowship selections. Best paper awards at top conferences. Grant competitions you won. NOT participation certificates.</p>
+                </div>
+
+                <div class="criteria-card">
+                    <h4>2. Membership in Associations</h4>
+                    <p>Selective membership requiring outstanding achievements. IEEE Senior Member. Exclusive professional societies. NOT associations anyone can join by paying dues.</p>
+                </div>
+
+                <div class="criteria-card">
+                    <h4>3. Published Material About You</h4>
+                    <p>Media coverage in major outlets. Trade publications profiling your work. News articles about your research. NOT self-published content.</p>
+                </div>
+
+                <div class="criteria-card">
+                    <h4>4. Judging Others' Work</h4>
+                    <p>Peer review for top journals. Grant panel reviewer. Conference program committee. PhD thesis examiner. Proof you're recognized as an expert by OTHER experts.</p>
+                </div>
+
+                <div class="criteria-card">
+                    <h4>5. Original Scientific Contributions</h4>
+                    <p>Citations. Widely adopted methodologies. Patents commercialized. Research that shaped the field. THIS is where most cases succeed or fail.</p>
+                </div>
+
+                <div class="criteria-card">
+                    <h4>6. Scholarly Articles</h4>
+                    <p>Publications in high-impact journals. Conference papers at top venues. Books published by academic presses. Quality matters more than quantity.</p>
+                </div>
+
+                <div class="criteria-card">
+                    <h4>7. Critical Employment</h4>
+                    <p>Leading role at distinguished organization. Principal investigator on major grants. Department head. If your departure would significantly impact your organization, this qualifies.</p>
+                </div>
+
+                <div class="criteria-card">
+                    <h4>8. High Salary</h4>
+                    <p>Compensation in top percentile for your field. Industry data comparison required. If you're paid like the top 10%, this helps. If not, focus elsewhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Stop Gambling on H-1B Lottery Luck.</h2>
+            <p>You're extraordinary. Your citations prove it. Your publications prove it. Your work proves it.<br>Time to get the green card that proves USCIS finally figured it out.</p>
+
+            <div class="cta-group">
+                <a href="tel:+1-202-555-0199" class="btn btn-white">
+                    <i class="fas fa-phone"></i>
+                    Call: (202) 555-0199
+                </a>
+                <a href="https://calendly.com/rivalislaw/greencard-assessment" class="btn btn-outline">
+                    <i class="fas fa-calendar-check"></i>
+                    Book $499 Assessment
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Rivalis Law. All rights reserved.</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms of Service</a> | 
+            <a href="contact.html">Contact</a>
+        </p>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem;">
+            <strong>Confidential Attorney-Client Relationship:</strong> Communications with Rivalis Law are protected by attorney-client privilege.
+        </p>
+    </footer>
+</body>
+</html>

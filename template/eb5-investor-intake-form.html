@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EB-5 Investor Visa Intake Form - Rivalis Law</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c5282;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        .service-badge {
+            background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .premium-notice {
+            background: linear-gradient(135deg, rgba(44, 82, 130, 0.1) 0%, rgba(26, 54, 93, 0.05) 100%);
+            border-left: 4px solid #2c5282;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .premium-notice strong {
+            color: #1a1a2e;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #856404;
+        }
+
+        .warning-box strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .confidential-notice {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #856404;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            font-weight: normal;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: #f7fafc;
+            border-radius: 4px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+        }
+        
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        .investment-box {
+            background: #f7fafc;
+            border: 2px solid #2c5282;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .investment-box h4 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        
+        .signature-line {
+            border-bottom: 2px solid #333;
+            margin: 20px 0 10px 0;
+            min-height: 50px;
+        }
+        
+        .print-button {
+            background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+        
+        .print-button:hover {
+            background: linear-gradient(135deg, #1a365d 0%, #0f2744 100%);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            .print-button {
+                display: none;
+            }
+        }
+        
+        .required {
+            color: #e53e3e;
+        }
+        
+        .help-text {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .investment-info {
+            background: #e6f2ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .pathway-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .pathway-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .pathway-card h5 {
+            color: #2c5282;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .pathway-card ul {
+            margin-left: 18px;
+            font-size: 13px;
+            color: #4a5568;
+        }
+
+        .pathway-card li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">⚖ RIVALIS LAW</div>
+            <div class="tagline">Elite Immigration & Investor Visa Services</div>
+            <div class="service-badge">📈 EB-5: Immigrant Investor Program</div>
+        </div>
+        
+        <div class="premium-notice">
+            <strong>EB-5 Investor Visa Program Assessment</strong>
+            The EB-5 program provides permanent residence to investors who invest $800,000-$1,050,000 in a U.S. commercial enterprise that creates or preserves at least 10 full-time jobs for U.S. workers. This is the most direct investment-based pathway to U.S. citizenship for high-net-worth families.
+            <br><br>
+            <strong>Total Investment:</strong> $800K-$1.05M capital + $50K-$75K+ in legal/administrative fees | Timeline: 24-48 months
+        </div>
+        
+        <div class="confidential-notice">
+            <strong>⚠️ CONFIDENTIAL ATTORNEY-CLIENT COMMUNICATION</strong><br>
+            All information provided in this form is protected by attorney-client privilege and will be kept strictly confidential. Financial information is essential for source of funds documentation and will never be shared without your authorization.
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Primary Applicant Information</div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Legal Name <span class="required">*</span></label>
+                    <input type="text" required>
+                    <div class="help-text">As it appears on passport</div>
+                </div>
+                <div class="form-group">
+                    <label>Date of Birth <span class="required">*</span></label>
+                    <input type="date" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Current Country of Residence <span class="required">*</span></label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Country(ies) of Citizenship <span class="required">*</span></label>
+                    <input type="text" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Residential Address <span class="required">*</span></label>
+                <textarea required placeholder="Full address including city, postal code, country"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Current Occupation/Business:</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Family Members (Derivative Beneficiaries)</div>
+            
+            <div class="form-group">
+                <label>Marital Status <span class="required">*</span></label>
+                <select required>
+                    <option value="">-- Select --</option>
+                    <option value="married">Married</option>
+                    <option value="single">Single</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>If married, spouse's full name, date of birth, and citizenship:</label>
+                <textarea placeholder="Spouse will be included as derivative beneficiary"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Children under 21 (unmarried) to be included:</label>
+                <textarea placeholder="For each child: Full name, date of birth, citizenship, current age. Note: Children who turn 21 during process may age out."></textarea>
+                <div class="help-text">CRITICAL: Children who turn 21 during the EB-5 process may "age out" and lose derivative status. Timing is essential.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Do you have children who are currently 18-20 years old?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="agingout" value="yes"> Yes</label>
+                    <label><input type="radio" name="agingout" value="no"> No</label>
+                </div>
+                <div class="help-text">If yes, expedited processing is critical to avoid age-out issues</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Investment Pathway Selection</div>
+            
+            <div class="investment-box">
+                <h4>EB-5 Investment Requirements & Pathways</h4>
+                
+                <div class="pathway-comparison">
+                    <div class="pathway-card">
+                        <h5>Targeted Employment Area (TEA)</h5>
+                        <p><strong>Investment: $800,000</strong></p>
+                        <ul>
+                            <li>Rural areas OR</li>
+                            <li>High unemployment areas</li>
+                            <li>Lower investment amount</li>
+                            <li>Typically Regional Center</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pathway-card">
+                        <h5>Standard Investment</h5>
+                        <p><strong>Investment: $1,050,000</strong></p>
+                        <ul>
+                            <li>Non-TEA locations</li>
+                            <li>Higher investment required</li>
+                            <li>Can be Regional Center or Direct</li>
+                            <li>More location flexibility</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Which investment pathway are you considering? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="pathway" value="regional" required> Regional Center ($800K-$1.05M) - Most common, passive investment</label>
+                    <label><input type="radio" name="pathway" value="direct"> Direct Investment ($800K-$1.05M) - Active business management</label>
+                    <label><input type="radio" name="pathway" value="unsure"> Not sure - need guidance</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Investment amount you are prepared to commit <span class="required">*</span></label>
+                <select required>
+                    <option value="">-- Select Range --</option>
+                    <option value="800k">$800,000 (TEA minimum)</option>
+                    <option value="1050k">$1,050,000 (Standard minimum)</option>
+                    <option value="more">More than $1,050,000</option>
+                    <option value="flexible">Flexible depending on opportunity</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Brief explanation of your investment goals and preferences:</label>
+                <textarea placeholder="What type of investment interests you? Real estate development, infrastructure, manufacturing, technology? Do you want to be actively involved or prefer passive investment?"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Source of Funds (CRITICAL FOR EB-5)</div>
+            
+            <div class="warning-box">
+                <strong>⚠️ SOURCE OF FUNDS IS THE #1 REASON FOR EB-5 DENIALS</strong>
+                USCIS requires comprehensive documentation proving your investment capital was obtained through lawful means. This is similar to anti-money laundering due diligence and requires extensive financial documentation.
+            </div>
+            
+            <div class="form-group">
+                <label>Primary source(s) of your investment funds <span class="required">*</span></label>
+                <div class="checkbox-group">
+                    <p style="margin-bottom: 10px; font-weight: 600;">Check all that apply:</p>
+                    
+                    <label>
+                        <input type="checkbox" name="source1">
+                        <span>Business ownership/equity sale</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="source2">
+                        <span>Real estate sale</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="source3">
+                        <span>Employment salary/bonuses (accumulated over time)</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="source4">
+                        <span>Investment income (stocks, bonds, dividends)</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="source5">
+                        <span>Inheritance/gift from family</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="source6">
+                        <span>Sale of business assets/intellectual property</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="source7">
+                        <span>Loan (secured by assets)</span>
+                    </label>
+                    
+                    <label>
+                        <input type="checkbox" name="source8">
+                        <span>Other (please explain below)</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Detailed explanation of how you acquired your investment funds <span class="required">*</span></label>
+                <textarea required placeholder="Provide specific details: How did you earn/acquire this money? Over what time period? What businesses, investments, or sources generated this wealth? Be as detailed as possible."></textarea>
+                <div class="help-text">USCIS will require a complete paper trail - the more detail you provide now, the better we can assess feasibility</div>
+            </div>
+
+            <div class="form-group">
+                <label>Can you provide documentation for the source of funds? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="documentation" value="yes" required> Yes - I have tax returns, bank statements, business records</label>
+                    <label><input type="radio" name="documentation" value="partial"> Partial - Some documentation available</label>
+                    <label><input type="radio" name="documentation" value="uncertain"> Uncertain - Need guidance on what's required</label>
+                    <label><input type="radio" name="documentation" value="no"> No - Limited documentation available</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Types of documentation you can provide:</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="doc1">
+                        <span>Personal tax returns (5+ years)</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="doc2">
+                        <span>Business tax returns and financial statements</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="doc3">
+                        <span>Bank statements showing fund accumulation</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="doc4">
+                        <span>Business ownership/share certificates</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="doc5">
+                        <span>Real estate deeds and sale contracts</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="doc6">
+                        <span>Employment contracts and salary statements</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="doc7">
+                        <span>Inheritance documentation (wills, estate documents)</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="doc8">
+                        <span>Gift documentation (if applicable)</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="doc9">
+                        <span>Investment account statements</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Current liquid assets available for EB-5 investment:</label>
+                <select>
+                    <option value="">-- Select Range --</option>
+                    <option value="800k-1m">$800K - $1M</option>
+                    <option value="1m-2m">$1M - $2M</option>
+                    <option value="2m-5m">$2M - $5M</option>
+                    <option value="5m+">$5M+</option>
+                </select>
+                <div class="help-text">Remember: You need investment amount PLUS legal fees ($50K-$75K+) and funds must remain "at risk"</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Business Experience & Investment Preferences</div>
+            
+            <div class="form-group">
+                <label>Current/Previous Business Experience:</label>
+                <textarea placeholder="Describe any businesses you own, manage, or have invested in. Industry, role, years of experience."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Do you want to be actively involved in managing the EB-5 business?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="involvement" value="active"> Yes - Active management (Direct Investment)</label>
+                    <label><input type="radio" name="involvement" value="passive"> No - Passive investment (Regional Center)</label>
+                    <label><input type="radio" name="involvement" value="unsure"> Unsure</label>
+                </div>
+                <div class="help-text">Regional Center = passive investment, you don't manage day-to-day. Direct = you must be involved in management or policy.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Preferred industry/sector for investment:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="industry1"> Real Estate Development</label>
+                    <label><input type="checkbox" name="industry2"> Hospitality (Hotels, Resorts)</label>
+                    <label><input type="checkbox" name="industry3"> Infrastructure</label>
+                    <label><input type="checkbox" name="industry4"> Manufacturing</label>
+                    <label><input type="checkbox" name="industry5"> Technology</label>
+                    <label><input type="checkbox" name="industry6"> Healthcare</label>
+                    <label><input type="checkbox" name="industry7"> Renewable Energy</label>
+                    <label><input type="checkbox" name="industry8"> Other/Flexible</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Preferred geographic location in the U.S.:</label>
+                <textarea placeholder="Any preference for where you'd like to invest? Where you'd like to eventually live?"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Immigration History & Current Status</div>
+            
+            <div class="form-group">
+                <label>Have you ever been to the United States?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="usvisit" value="yes"> Yes</label>
+                    <label><input type="radio" name="usvisit" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, what types of U.S. visas have you held?</label>
+                <textarea placeholder="B-1/B-2 tourist, F-1 student, H-1B, L-1, etc. - Include dates if possible"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Are you currently in the United States?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="currentlyInUS" value="yes"> Yes</label>
+                    <label><input type="radio" name="currentlyInUS" value="no"> No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>If yes, current status/visa:</label>
+                <input type="text" placeholder="e.g., B-1/B-2, H-1B, L-1, F-1">
+            </div>
+
+            <div class="form-group">
+                <label>Have you ever been denied a U.S. visa or had any immigration petition denied?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="denial" value="yes"> Yes</label>
+                    <label><input type="radio" name="denial" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, please provide details:</label>
+                <textarea placeholder="Type of visa/petition, approximate date, reason if known"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Have you ever overstayed a U.S. visa or violated immigration status?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="violation" value="yes"> Yes</label>
+                    <label><input type="radio" name="violation" value="no"> No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>If yes, please explain:</label>
+                <textarea placeholder="Full disclosure is essential"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Background & Admissibility</div>
+            
+            <div class="form-group">
+                <label>Have you ever been arrested or convicted of any crime (in any country)?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="criminal" value="yes"> Yes</label>
+                    <label><input type="radio" name="criminal" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, please provide complete details:</label>
+                <textarea placeholder="Date, location, charges, outcome - this is critical for admissibility assessment"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Do you have any health conditions that would require a waiver for U.S. immigration?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="health" value="yes"> Yes</label>
+                    <label><input type="radio" name="health" value="no"> No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Have you ever worked for a foreign government in any capacity?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="government" value="yes"> Yes</label>
+                    <label><input type="radio" name="government" value="no"> No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>If yes, please provide details:</label>
+                <textarea placeholder="Position, dates, governmental body"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Timeline & Goals</div>
+            
+            <div class="form-group">
+                <label>When would you ideally like to obtain your EB-5 green card? <span class="required">*</span></label>
+                <input type="date" required>
+                <div class="help-text">Realistic timeline: 24-48 months from investment to conditional green card</div>
+            </div>
+
+            <div class="form-group">
+                <label>How soon are you ready to make the EB-5 investment?</label>
+                <select>
+                    <option value="">-- Select --</option>
+                    <option value="1-3mo">1-3 months</option>
+                    <option value="3-6mo">3-6 months</option>
+                    <option value="6-12mo">6-12 months</option>
+                    <option value="12mo+">12+ months</option>
+                    <option value="exploring">Still exploring</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Primary motivation for pursuing EB-5:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="goal1"> U.S. citizenship for family</label>
+                    <label><input type="checkbox" name="goal2"> Education opportunities for children</label>
+                    <label><input type="checkbox" name="goal3"> Business expansion to U.S.</label>
+                    <label><input type="checkbox" name="goal4"> Investment opportunity/returns</label>
+                    <label><input type="checkbox" name="goal5"> Lifestyle/Quality of life</label>
+                    <label><input type="checkbox" name="goal6"> Tax planning</label>
+                    <label><input type="checkbox" name="goal7"> Political/Economic stability</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Where do you plan to live in the U.S. once you have your green card?</label>
+                <input type="text" placeholder="City/State preference">
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Additional Information</div>
+            
+            <div class="form-group">
+                <label>Have you consulted with other EB-5 attorneys or advisors?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="previousConsult" value="yes"> Yes</label>
+                    <label><input type="radio" name="previousConsult" value="no"> No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>If yes, please provide details:</label>
+                <textarea placeholder="Attorney/advisor names, what stage you reached, any concerns"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Have you already identified a specific Regional Center or direct investment project?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="project" value="yes"> Yes</label>
+                    <label><input type="radio" name="project" value="no"> No - Need guidance</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>If yes, project details:</label>
+                <textarea placeholder="Project name, location, Regional Center name, investment details"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>How did you hear about Rivalis Law?</label>
+                <select>
+                    <option value="">-- Select --</option>
+                    <option value="referral">Client/Professional Referral</option>
+                    <option value="regional">Regional Center Referral</option>
+                    <option value="website">Website/Online Search</option>
+                    <option value="conference">Investment Conference</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Any other information relevant to your case:</label>
+                <textarea placeholder="Concerns, questions, special circumstances, urgency factors"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">What to Expect Next</div>
+            
+            <div class="premium-notice">
+                <strong>Our EB-5 Assessment Process:</strong>
+                <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li><strong>Source of Funds Analysis:</strong> We evaluate whether your source of funds can be adequately documented to USCIS standards</li>
+                    <li><strong>Investment Pathway Recommendation:</strong> Regional Center vs. Direct Investment based on your goals and risk tolerance</li>
+                    <li><strong>Project Due Diligence:</strong> If no project selected, we can recommend vetted Regional Centers or direct investment opportunities</li>
+                    <li><strong>Timeline & Fee Structure:</strong> Transparent breakdown of legal fees, government fees, and Regional Center fees (if applicable)</li>
+                    <li><strong>Risk Assessment:</strong> Honest evaluation of any admissibility issues, documentation gaps, or case complexities</li>
+                </ol>
+                <br>
+                <strong>Fee Structure Transparency:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Legal Fees: $50,000 - $75,000+ (depends on complexity, source of funds documentation needed)</li>
+                    <li>USCIS Filing Fees: ~$11,160 (I-526, I-485, biometrics)</li>
+                    <li>Regional Center Admin Fees: $40,000 - $60,000 (if Regional Center pathway)</li>
+                    <li>Investment Capital: $800,000 - $1,050,000 (at-risk capital)</li>
+                </ul>
+                <br>
+                <strong>Note:</strong> EB-5 is complex and requires extensive documentation. We provide brutally honest assessments—if your source of funds documentation is insufficient or if there are admissibility issues, we'll tell you upfront rather than take your money and file a weak case.
+            </div>
+        </div>
+        
+        <div class="signature-section">
+            <div class="section-title">Authorization & Acknowledgment</div>
+            
+            <p style="margin-bottom: 15px;">
+                By signing below, I acknowledge that:
+            </p>
+            
+            <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 1.8;">
+                <li>The information provided is true, complete, and accurate to the best of my knowledge</li>
+                <li>I understand EB-5 requires extensive source of funds documentation and USCIS scrutiny</li>
+                <li>I understand my investment capital will be "at risk" and returns are not guaranteed</li>
+                <li>I authorize Rivalis Law to conduct a preliminary case assessment</li>
+                <li>I understand this intake does not create an attorney-client relationship until formal engagement</li>
+                <li>I will provide all requested financial and source of funds documentation</li>
+                <li>I understand the total investment (capital + fees) will likely exceed $900,000-$1,200,000</li>
+                <li>I understand EB-5 processing typically takes 24-48 months to conditional green card</li>
+            </ul>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Client Name (Print) <span class="required">*</span></label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Date <span class="required">*</span></label>
+                    <input type="date" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Signature <span class="required">*</span></label>
+                <div class="signature-line"></div>
+                <div class="help-text">Please sign above or type your full name as electronic signature</div>
+            </div>
+        </div>
+        
+        <button class="print-button" onclick="window.print()">Print or Save as PDF</button>
+        
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; color: #718096; font-size: 12px;">
+            <p><strong>RIVALIS LAW</strong></p>
+            <p>Elite Immigration & Investor Visa Services</p>
+            <p style="margin-top: 10px;">📞 (202) 555-0199 | 📧 elite@rivalislaw.com</p>
+        </div>
+    </div>
+</body>
+</html>

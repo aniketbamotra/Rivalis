@@ -17,6 +17,12 @@ const Fundraising = React.lazy(() => import('./pages/Services/Fundraising').then
 const GovernanceCompliance = React.lazy(() => import('./pages/Services/GovernanceCompliance').then(m => ({ default: m.GovernanceCompliance })));
 const MAndA = React.lazy(() => import('./pages/Services/MAndA').then(m => ({ default: m.MAndA })));
 
+// Immigration sub-pages
+const WorkVisas = React.lazy(() => import('./pages/Services/Immigration/WorkVisas').then(m => ({ default: m.default })));
+const EB1ExtraordinaryAbility = React.lazy(() => import('./pages/Services/Immigration/EB1ExtraordinaryAbility').then(m => ({ default: m.default })));
+const EB2NIW = React.lazy(() => import('./pages/Services/Immigration/EB2NIW').then(m => ({ default: m.default })));
+const EB5Investor = React.lazy(() => import('./pages/Services/Immigration/EB5Investor').then(m => ({ default: m.default })));
+
 // Form pages
 const ImmigrationIntake = React.lazy(() => import('./pages/Forms/ImmigrationIntake').then(m => ({ default: m.ImmigrationIntake })));
 const AIGovernanceIntake = React.lazy(() => import('./pages/Forms/AIGovernanceIntake').then(m => ({ default: m.AIGovernanceIntake })));
@@ -28,6 +34,10 @@ const IPStrategyIntake = React.lazy(() => import('./pages/Forms/IPStrategyIntake
 const EmploymentLawIntake = React.lazy(() => import('./pages/Forms/EmploymentLawIntake'));
 const EntityFormationIntake = React.lazy(() => import('./pages/Forms/EntityFormationIntake'));
 const FundraisingIntake = React.lazy(() => import('./pages/Forms/FundraisingIntake'));
+const WorkVisaIntake = React.lazy(() => import('./pages/Forms/WorkVisaIntake').then(m => ({ default: m.default })));
+const EB1Intake = React.lazy(() => import('./pages/Forms/EB1Intake').then(m => ({ default: m.default })));
+const EB2NIWIntake = React.lazy(() => import('./pages/Forms/EB2NIWIntake').then(m => ({ default: m.default })));
+const EB5Intake = React.lazy(() => import('./pages/Forms/EB5Intake').then(m => ({ default: m.default })));
 
 // Legal pages
 const Terms = React.lazy(() => import('./pages/Legal/Terms').then(m => ({ default: m.Terms })));
@@ -87,6 +97,38 @@ export const AppRouter = () => {
           element={
             <React.Suspense fallback={<PageLoader />}>
               <Immigration />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/services/immigration/work-visas"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <WorkVisas />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/services/immigration/eb1"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <EB1ExtraordinaryAbility />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/services/immigration/eb2-niw"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <EB2NIW />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/services/immigration/eb5"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <EB5Investor />
             </React.Suspense>
           }
         />
@@ -153,6 +195,38 @@ export const AppRouter = () => {
           element={
             <React.Suspense fallback={<PageLoader />}>
               <ImmigrationIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/work-visa-intake"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <WorkVisaIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/eb1-intake"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <EB1Intake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/eb2-niw-intake"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <EB2NIWIntake />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/forms/eb5-intake"
+          element={
+            <React.Suspense fallback={<PageLoader />}>
+              <EB5Intake />
             </React.Suspense>
           }
         />

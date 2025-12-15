@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Visa Solutions | H-1B, L-1, O-1, RFE Emergency Response | Rivalis Law</title>
+    <meta name="description" content="Your engineer got an RFE and your product launch is 6 weeks away. We fix immigration disasters that kill companies. 24-hour emergency response. 500+ H-1B petitions filed.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --accent: #e74c3c;
+            --accent-dark: #c0392b;
+            --accent-light: #fadbd8;
+            --white: #ffffff;
+            --gray-50: #fafbfc;
+            --gray-100: #f4f6f8;
+            --gray-200: #e8ecf0;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --gray-900: #0f1419;
+            --gold: #d4af37;
+            --gold-dark: #b8941f;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-900);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(231, 76, 60, 0.15);
+            z-index: 999;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-logo::before {
+            content: '⚖ ';
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--white);
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(165deg, var(--primary) 0%, var(--gray-700) 100%);
+            padding: 8rem 3rem 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.15) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(231, 76, 60, 0.2);
+            border: 2px solid var(--accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-badge i {
+            color: var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            max-width: 1100px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            max-width: 950px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        .section {
+            padding: 6rem 3rem;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(231, 76, 60, 0.15);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent-light) 0%, #fff 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon i {
+            font-size: 1.75rem;
+            color: var(--accent);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+
+        .service-meta i {
+            color: var(--accent);
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .service-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .premium-section {
+            background: linear-gradient(165deg, #1a1a2e 0%, #2d3748 100%);
+            border-radius: 24px;
+            padding: 4rem;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            margin: 4rem 0;
+        }
+
+        .premium-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .premium-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .premium-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .premium-badge i {
+            color: var(--gold);
+        }
+
+        .premium-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .premium-section h2 .highlight {
+            color: var(--gold);
+        }
+
+        .premium-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 900px;
+        }
+
+        .premium-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .premium-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .premium-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .premium-item-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .premium-item-icon i {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .premium-item h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .premium-item p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .premium-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .premium-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .big4-section {
+            background: linear-gradient(180deg, #f7fafc 0%, #ffffff 100%);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 4rem 0;
+            border: 2px solid var(--gray-200);
+        }
+
+        .big4-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .big4-badge {
+            display: inline-block;
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .big4-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .big4-header p {
+            font-size: 1.15rem;
+            color: var(--gray-600);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .big4-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .big4-card {
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        .big4-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .big4-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            padding: 5rem 3rem;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.25rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--accent);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--accent);
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid, .premium-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .big4-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .services-grid, .premium-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.25rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Rivalis Law</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="practice-areas.html" class="nav-link">Practice Areas</a></li>
+                <li><a href="contact.html" class="nav-cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Work Visa Solutions</span>
+            </div>
+
+            <div class="hero-badge">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>24-HOUR RFE EMERGENCY RESPONSE AVAILABLE</span>
+            </div>
+
+            <h1>
+                Your $200K Engineer Just Got an RFE.<br>
+                <span class="highlight">Your Product Launch Is 6 Weeks Away.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                One immigration mistake costs you your best talent, delays your product by quarters, or kills your funding round entirely. The visa denial that destroys your startup won't come with a warning—it'll come 30 days before your H-1B expires. We prevent that catastrophe before it happens. And when it does? We fix it in 24 hours, not "sometime next week."
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">H-1B Petitions Filed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24hrs</span>
+                    <span class="stat-label">RFE Emergency Response</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">Big 4</span>
+                    <span class="stat-label">Corporate Immigration Training</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">TEMPORARY WORK VISAS</div>
+                <h2 class="section-title">Lost the H-1B Lottery? RFE Deadline in 2 Weeks?<br>We Fix Immigration Disasters That Kill Companies.</h2>
+                <p class="section-description">
+                    Your CTO's visa expires in 45 days and your previous attorney isn't returning calls. Your startup just lost the H-1B lottery and your co-founder can't work legally. An RFE just landed and you have 87 days to respond or lose everything. This is what we do. Every. Single. Day.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>H-1B Specialty Occupation</h3>
+                    <p>
+                        Lost the lottery? Your engineer can't start. RFE just landed? 87 days to save their job. Previous attorney ghosted you? Your product launch is at risk. We've filed 500+ H-1Bs. We know every trap USCIS sets. Premium processing or emergency response—your critical hire doesn't wait for attorneys who "need to check their schedule."
+                    </p>
+                    <div class="service-meta">
+                        <span><i class="fas fa-phone-volume"></i> 24hr emergency start available</span>
+                        <span><i class="fas fa-shield-alt"></i> RFE prevention & response expertise</span>
+                    </div>
+                    <a href="https://calendly.com/rivalislaw/visa-consultation" class="service-link">
+                        <i class="fas fa-calendar-check"></i>
+                        Book $499 Case Assessment
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>L-1A/L-1B Intracompany Transfer</h3>
+                    <p>
+                        Moving executives or specialized knowledge employees from your foreign office? Essential for international expansion. Dubai to US? Singapore to San Francisco? We've done it. The executive who already has board meetings scheduled. Investor presentations lined up. Zero tolerance for delays.
+                    </p>
+                    <div class="service-meta">
+                        <span><i class="fas fa-globe"></i> International transfer specialists</span>
+                        <span><i class="fas fa-rocket"></i> Premium processing available</span>
+                    </div>
+                    <a href="https://calendly.com/rivalislaw/visa-consultation" class="service-link">
+                        <i class="fas fa-calendar-check"></i>
+                        Book $499 Case Assessment
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>O-1 Extraordinary Ability</h3>
+                    <p>
+                        For the truly exceptional. Top researchers, industry leaders, renowned experts. Lost the H-1B lottery? O-1 might be your answer. Requires expert evidence compilation. We've handled O-1s for Nobel Prize nominees, industry pioneers, and researchers with breakthrough innovations.
+                    </p>
+                    <div class="service-meta">
+                        <span><i class="fas fa-award"></i> For exceptional talent only</span>
+                        <span><i class="fas fa-file-alt"></i> Comprehensive evidence compilation</span>
+                    </div>
+                    <a href="https://calendly.com/rivalislaw/visa-consultation" class="service-link">
+                        <i class="fas fa-calendar-check"></i>
+                        Book $499 Case Assessment
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>TN NAFTA Professional</h3>
+                    <p>
+                        Canadian or Mexican professional? Fastest work visa available. Engineers, accountants, management consultants. Can be approved at border or consulate. Same-day approval possible. Your Toronto developer needs to start Monday? We file Thursday. That's how TN visas work when handled correctly.
+                    </p>
+                    <div class="service-meta">
+                        <span><i class="fas fa-flag"></i> Canada/Mexico citizens only</span>
+                        <span><i class="fas fa-clock"></i> Same-day approval possible</span>
+                    </div>
+                    <a href="https://calendly.com/rivalislaw/visa-consultation" class="service-link">
+                        <i class="fas fa-calendar-check"></i>
+                        Book $499 Consultation
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>E-3 Australian Professional</h3>
+                    <p>
+                        Australian citizens only. Similar to H-1B but with unlimited renewals and faster processing. Popular in tech and finance. Spouse gets automatic work authorization. Your Sydney engineer doesn't need H-1B lottery luck—E-3 is the better path.
+                    </p>
+                    <div class="service-meta">
+                        <span><i class="fas fa-flag"></i> Australian citizens only</span>
+                        <span><i class="fas fa-infinity"></i> Unlimited renewals</span>
+                    </div>
+                    <a href="https://calendly.com/rivalislaw/visa-consultation" class="service-link">
+                        <i class="fas fa-calendar-check"></i>
+                        Book $499 Consultation
+                    </a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>RFE Emergency Response</h3>
+                    <p>
+                        Request for Evidence received? Employee about to lose status? We respond in 24 hours, not a week. Comprehensive evidence compilation and legal arguments. The RFE that arrived Friday afternoon? We're already working on it by Saturday morning. Because your engineer's job can't wait until your attorney "gets back to you."
+                    </p>
+                    <div class="service-meta">
+                        <span><i class="fas fa-bolt"></i> 24-hour response guarantee</span>
+                        <span><i class="fas fa-shield-alt"></i> Comprehensive legal arguments</span>
+                    </div>
+                    <a href="tel:+1-202-555-0199" class="service-link">
+                        <i class="fas fa-phone"></i>
+                        EMERGENCY: (202) 555-0199
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- $499 CONSULTATION BOX -->
+    <section class="section" style="background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%); padding: 6rem 3rem;">
+        <div class="section-container">
+            
+            <div style="background: white; border: 3px solid #e74c3c; border-radius: 24px; padding: 4rem 3rem; box-shadow: 0 20px 60px rgba(231, 76, 60, 0.15); max-width: 1100px; margin: 0 auto;">
+                
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <div style="display: inline-block; background: rgba(231, 76, 60, 0.1); padding: 0.75rem 2rem; border-radius: 50px; margin-bottom: 1.5rem;">
+                        <span style="color: #e74c3c; font-weight: 800; font-size: 0.9rem; letter-spacing: 1px;">⚡ LIMITED AVAILABILITY</span>
+                    </div>
+                    
+                    <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 800; color: #1a1a2e; line-height: 1.2; margin-bottom: 1rem;">
+                        Why We Charge $499 for Consultation<br>
+                        <span style="color: #e74c3c;">(And Why Smart Clients Gladly Pay It)</span>
+                    </h2>
+                    
+                    <p style="font-size: 1.25rem; color: #4a5568; line-height: 1.7; max-width: 850px; margin: 0 auto;">
+                        Most immigration attorneys offer "free consultations" where you get 15 minutes of generic advice before they try to sell you. <strong style="color: #1a1a2e;">We don't play that game.</strong>
+                    </p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%); border: 2px dashed #e74c3c; border-radius: 16px; padding: 3rem 2.5rem; margin-bottom: 3rem;">
+                    <h3 style="font-size: 1.5rem; font-weight: 800; color: #1a1a2e; margin-bottom: 2rem; text-align: center;">
+                        What You Get in Your $499 Visa Case Assessment:
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                            <div style="flex-shrink: 0; width: 32px; height: 32px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem;">✓</div>
+                            <div style="flex: 1;">
+                                <strong style="font-size: 1.1rem; color: #1a1a2e;">60-Minute Deep-Dive Case Analysis</strong> (Not 15min Generic Advice)
+                                <div style="color: #e74c3c; font-weight: 700; margin-top: 0.25rem;">$1,500 Value</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                            <div style="flex-shrink: 0; width: 32px; height: 32px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem;">✓</div>
+                            <div style="flex: 1;">
+                                <strong style="font-size: 1.1rem; color: #1a1a2e;">RFE Risk Assessment & Prevention Strategy</strong>
+                                <div style="color: #e74c3c; font-weight: 700; margin-top: 0.25rem;">$750 Value</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                            <div style="flex-shrink: 0; width: 32px; height: 32px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem;">✓</div>
+                            <div style="flex: 1;">
+                                <strong style="font-size: 1.1rem; color: #1a1a2e;">Honest Approval Probability Assessment</strong> (We Tell You "No" If Case Is Weak)
+                                <div style="color: #e74c3c; font-weight: 700; margin-top: 0.25rem;">$500 Value</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                            <div style="flex-shrink: 0; width: 32px; height: 32px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem;">✓</div>
+                            <div style="flex: 1;">
+                                <strong style="font-size: 1.1rem; color: #1a1a2e;">Evidence Requirements & Documentation Checklist</strong>
+                                <div style="color: #e74c3c; font-weight: 700; margin-top: 0.25rem;">$1,200 Value</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                            <div style="flex-shrink: 0; width: 32px; height: 32px; background: #e74c3c; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.1rem;">✓</div>
+                            <div style="flex: 1;">
+                                <strong style="font-size: 1.1rem; color: #1a1a2e;">Alternative Visa Pathway Analysis</strong> (If Primary Path Has Issues)
+                                <div style="color: #e74c3c; font-weight: 700; margin-top: 0.25rem;">$600 Value</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="border-top: 3px solid #e74c3c; padding-top: 1.5rem; text-align: center;">
+                        <div style="font-size: 1.1rem; color: #4a5568; margin-bottom: 0.5rem;">Total Value if Purchased Separately:</div>
+                        <div style="font-size: 2rem; font-weight: 300; color: #9ca3af; text-decoration: line-through; margin-bottom: 0.5rem;">$4,550</div>
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #1a1a2e; margin-bottom: 1rem;">Your Investment Today: <span style="font-size: 2.5rem; color: #e74c3c;">$499</span></div>
+                        
+                        <div style="background: rgba(231, 76, 60, 0.08); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem;">
+                            <div style="font-size: 1.3rem; font-weight: 800; color: #1a1a2e; margin-bottom: 0.5rem;">
+                                🎯 PLUS: 100% Credited to Retainer If You Hire Us
+                            </div>
+                            <div style="font-size: 1.05rem; color: #4a5568; line-height: 1.6;">
+                                Meaning: You're not paying $499 for consultation. You're making a <strong>fully refundable deposit</strong> on expertise that saves you from wasting money on a weak visa petition that gets denied.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #fffbeb; border-left: 4px solid #f59e0b; padding: 2rem; border-radius: 12px; margin-bottom: 3rem;">
+                    <h4 style="font-size: 1.3rem; font-weight: 800; color: #78350f; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <span style="font-size: 1.5rem;">⚠️</span> This Consultation Is NOT For Everyone
+                    </h4>
+                    <p style="font-size: 1.05rem; color: #78350f; line-height: 1.7; margin-bottom: 1rem;">
+                        <strong>Don't book this consultation if:</strong>
+                    </p>
+                    <ul style="list-style: none; padding: 0; margin: 0 0 1rem 0;">
+                        <li style="padding: 0.5rem 0; color: #78350f; font-size: 1.05rem;">❌ You're just "shopping around" for free advice</li>
+                        <li style="padding: 0.5rem 0; color: #78350f; font-size: 1.05rem;">❌ You want someone to "just file something and see what happens"</li>
+                        <li style="padding: 0.5rem 0; color: #78350f; font-size: 1.05rem;">❌ You're not willing to invest in building a bulletproof case</li>
+                    </ul>
+                    <p style="font-size: 1.05rem; color: #78350f; line-height: 1.7; margin: 0; font-weight: 600;">
+                        This consultation is for serious clients who understand that immigration strategy is worth paying for—and who want the truth, not false hope.
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 3rem; padding: 2rem; background: #f0fdf4; border-radius: 12px;">
+                    <div style="font-size: 3rem; font-weight: 900; color: #16a34a; margin-bottom: 0.5rem;">92%</div>
+                    <div style="font-size: 1.2rem; color: #166534; font-weight: 700;">Consultation-to-Client Conversion Rate</div>
+                    <p style="font-size: 1rem; color: #15803d; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Not because we're good salespeople—because our cases WIN. When you invest $499 in expert analysis, you discover whether your case is strong enough to file. Most are. Some aren't. Either way, you know the truth.
+                    </p>
+                </div>
+
+                <div style="text-align: center;">
+                    <a href="https://calendly.com/rivalislaw/visa-consultation" style="display: inline-flex; align-items: center; gap: 1rem; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 1.75rem 4rem; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 1.3rem; box-shadow: 0 12px 40px rgba(231, 76, 60, 0.3); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <i class="fas fa-calendar-check" style="font-size: 1.5rem;"></i>
+                        Claim Your $499 Assessment Slot
+                    </a>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <div style="display: inline-block; background: #fee2e2; border: 2px solid #ef4444; padding: 0.75rem 1.5rem; border-radius: 8px;">
+                            <span style="color: #991b1b; font-weight: 700; font-size: 0.95rem;">
+                                ⚡ Only 3 consultation slots available this week
+                            </span>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 2rem; font-size: 0.95rem; color: #6b7280; line-height: 1.6;">
+                        After booking, you'll receive a pre-consultation checklist to maximize our 60 minutes together.<br>
+                        Payment required to secure slot. 100% credited to retainer if you proceed.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PREMIUM SECTION -->
+    <section class="section" style="background: var(--gray-50); padding: 6rem 3rem;">
+        <div class="section-container">
+            <div class="premium-section">
+                <div class="premium-content">
+                    <div class="premium-badge">
+                        <i class="fas fa-crown"></i>
+                        <span>Elite Immigration Services</span>
+                    </div>
+
+                    <h2>
+                        You're Not Here For a Work Visa.<br>
+                        <span class="highlight">You're Here Because $2M-$50M Is on the Line.</span>
+                    </h2>
+
+                    <p class="premium-description">
+                        The Nobel Prize winner who can't wait 6 months for H-1B lottery luck. The entrepreneur deploying $1.05M who needs bulletproof compliance, not "we'll figure it out." The researcher whose breakthrough could reshape an industry—if USCIS doesn't destroy it with a denial. This isn't about filing forms. This is about permanent U.S. residence for people whose work is worth seven figures minimum.
+                    </p>
+
+                    <div class="premium-grid">
+                        <div class="premium-item">
+                            <div class="premium-item-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h4>EB-1 Extraordinary Ability</h4>
+                            <p>
+                                8,000 citations. Keynote at top conferences. Still stuck in H-1B hell? The EB-1 path doesn't depend on employer sponsorship or lottery luck.
+                            </p>
+                        </div>
+
+                        <div class="premium-item">
+                            <div class="premium-item-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4>EB-2 National Interest Waiver</h4>
+                            <p>
+                                Your AI research could reshape healthcare. Your clean energy startup could decarbonize an industry. Matter of Dhanasar opened this path for entrepreneurs.
+                            </p>
+                        </div>
+
+                        <div class="premium-item">
+                            <div class="premium-item-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h4>EB-5 Investor Program</h4>
+                            <p>
+                                $1.05M investment. Permanent residence for your entire family. But 60% fail on source of funds documentation. We audit your capital BEFORE you file.
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="eb1-eb2-green-cards.html" class="premium-cta">
+                        <i class="fas fa-arrow-right"></i>
+                        Explore Elite Green Card Options
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIG 4 CREDIBILITY SECTION -->
+    <section class="section">
+        <div class="section-container">
+            <div class="big4-section">
+                <div class="big4-header">
+                    <div class="big4-badge">WHY WE'RE DIFFERENT</div>
+                    <h2>Most Immigration Attorneys File 20-30 Cases Per Year.<br>I Filed That Many Per <span style="color: var(--accent);">Month</span> at the Big 4.</h2>
+                    <p>
+                        When I worked at one of the world's largest accounting and consulting firms, we weren't filing H-1Bs for mom-and-pop shops. We were handling 500+ petitions per month for Fortune 500 companies where one visa denial could cost $10M+ in delayed projects. That's the standard I bring to every case—whether you're a 5-person startup or a $50B fund.
+                    </p>
+                </div>
+
+                <div class="big4-grid">
+                    <div class="big4-card">
+                        <h3>Volume Creates Expertise</h3>
+                        <p>
+                            When I file an H-1B, it's structured the same way we structured petitions for Fortune 500 clients: comprehensive evidence, preemptive RFE responses, documentation USCIS expects before they ask. Most attorneys have never seen the level of scrutiny we dealt with daily.
+                        </p>
+                    </div>
+
+                    <div class="big4-card">
+                        <h3>Corporate Immigration Rigor</h3>
+                        <p>
+                            Big 4 clients don't tolerate "let's see what happens" attorneys. Neither should you. Every petition gets the same forensic review: qualification analysis, evidence gaps identified, comparative benchmarking, risk mitigation strategy. This is how corporate immigration works when billions are at stake.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Your Engineer's Visa Status Shouldn't Keep You Up at Night.</h2>
+            <p>RFE deadline in 2 weeks? Previous attorney ghosted? H-1B lottery devastation?<br>We respond in 24 hours. Not "sometime next week."</p>
+
+            <div class="cta-group">
+                <a href="tel:+1-202-555-0199" class="btn btn-white">
+                    <i class="fas fa-phone-volume"></i>
+                    EMERGENCY: (202) 555-0199
+                </a>
+                <a href="https://calendly.com/rivalislaw/visa-consultation" class="btn btn-outline">
+                    <i class="fas fa-calendar-check"></i>
+                    Book $499 Assessment
+                </a>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.9;">
+                <strong>Available 7 Days/Week for Immigration Emergencies</strong> - Because visa disasters don't wait for Monday morning.
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Rivalis Law. All rights reserved.</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms of Service</a> | 
+            <a href="contact.html">Contact</a>
+        </p>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem;">
+            <strong>Confidential Attorney-Client Relationship:</strong> Communications with Rivalis Law are protected by attorney-client privilege.
+        </p>
+    </footer>
+</body>
+</html>

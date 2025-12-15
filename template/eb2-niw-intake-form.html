@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EB-2 National Interest Waiver Intake Form - Rivalis Law</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #d4af37;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        .service-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .premium-notice {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #4a5568;
+        }
+        
+        .premium-notice strong {
+            color: #1a1a2e;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .confidential-notice {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #856404;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        input[type="url"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            font-weight: normal;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: #f7fafc;
+            border-radius: 4px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+        }
+        
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        .criteria-box {
+            background: #f7fafc;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .criteria-box h4 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        
+        .signature-line {
+            border-bottom: 2px solid #333;
+            margin: 20px 0 10px 0;
+            min-height: 50px;
+        }
+        
+        .print-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+        
+        .print-button:hover {
+            background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            .print-button {
+                display: none;
+            }
+        }
+        
+        .required {
+            color: #e53e3e;
+        }
+        
+        .help-text {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .investment-info {
+            background: #e6f2ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .dhanasar-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .dhanasar-box h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .dhanasar-box ol {
+            margin-left: 20px;
+        }
+
+        .dhanasar-box li {
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">⚖ RIVALIS LAW</div>
+            <div class="tagline">Elite Immigration & Investor Visa Services</div>
+            <div class="service-badge">🧠 EB-2 NIW: National Interest Waiver</div>
+        </div>
+        
+        <div class="premium-notice">
+            <strong>EB-2 National Interest Waiver Assessment</strong>
+            This intake form evaluates your eligibility for EB-2 classification with a National Interest Waiver—allowing you to self-petition for permanent residence without employer sponsorship or labor certification if your work benefits the United States.
+            <br><br>
+            <strong>Investment Range:</strong> $15,000 - $28,000 in legal fees | Timeline: 8-24 months
+        </div>
+        
+        <div class="confidential-notice">
+            <strong>⚠️ CONFIDENTIAL ATTORNEY-CLIENT COMMUNICATION</strong><br>
+            All information provided in this form is protected by attorney-client privilege and will be kept strictly confidential. Completing this form does not create an attorney-client relationship until a formal engagement agreement is signed.
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Contact Information</div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Legal Name <span class="required">*</span></label>
+                    <input type="text" required>
+                    <div class="help-text">As it appears on passport</div>
+                </div>
+                <div class="form-group">
+                    <label>Date of Birth <span class="required">*</span></label>
+                    <input type="date" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Current Country of Residence <span class="required">*</span></label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Country of Citizenship <span class="required">*</span></label>
+                    <input type="text" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Location (City, State/Province) <span class="required">*</span></label>
+                <input type="text" required>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">EB-2 Qualification: Advanced Degree or Exceptional Ability</div>
+            
+            <div class="form-group">
+                <label>Do you hold an advanced degree (Master's or higher)? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="advancedDegree" value="yes" required> Yes</label>
+                    <label><input type="radio" name="advancedDegree" value="no"> No</label>
+                </div>
+                <div class="help-text">EB-2 requires either an advanced degree OR exceptional ability in sciences, arts, or business</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Highest Degree Earned <span class="required">*</span></label>
+                <select required>
+                    <option value="">-- Select --</option>
+                    <option value="doctorate">Doctorate/PhD</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="md">Medical Degree (MD/MBBS)</option>
+                    <option value="jd">Law Degree (JD/LLM)</option>
+                    <option value="mba">MBA</option>
+                    <option value="bachelors-plus">Bachelor's + 5 Years Progressive Experience</option>
+                    <option value="bachelors">Bachelor's Degree Only</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="help-text">Bachelor's + 5 years progressive experience can qualify as equivalent to Master's</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Degree Details (Institution, Field of Study, Year) <span class="required">*</span></label>
+                <textarea required placeholder="List all degrees - institution name, location, degree/major, graduation year"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>If claiming "Exceptional Ability" instead of advanced degree, briefly explain:</label>
+                <textarea placeholder="Exceptional ability requires degree of expertise significantly above that ordinarily encountered - provide overview of credentials"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Proposed Endeavor & National Interest</div>
+            
+            <div class="dhanasar-box">
+                <h4>Matter of Dhanasar Three-Prong Test for National Interest Waiver</h4>
+                <p style="margin-bottom: 15px;">Your petition must demonstrate:</p>
+                <ol>
+                    <li><strong>Substantial Merit & National Importance:</strong> The proposed endeavor has both substantial merit and national importance</li>
+                    <li><strong>Well Positioned to Advance:</strong> You are well positioned to advance the proposed endeavor</li>
+                    <li><strong>Beneficial to Waive Requirements:</strong> On balance, it would be beneficial to the United States to waive the job offer and labor certification requirements</li>
+                </ol>
+            </div>
+            
+            <div class="form-group">
+                <label>Primary Field/Area of Work <span class="required">*</span></label>
+                <select required>
+                    <option value="">-- Select Primary Field --</option>
+                    <option value="stem">STEM (Science, Technology, Engineering, Math)</option>
+                    <option value="healthcare">Healthcare/Medicine</option>
+                    <option value="research">Academic Research</option>
+                    <option value="entrepreneurship">Entrepreneurship/Business Innovation</option>
+                    <option value="education">Education</option>
+                    <option value="arts">Arts/Culture</option>
+                    <option value="environmental">Environmental/Clean Energy</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Specific Specialization:</label>
+                <input type="text" placeholder="e.g., Artificial Intelligence, Renewable Energy Storage, Cancer Immunotherapy">
+            </div>
+            
+            <div class="form-group">
+                <label>Describe your proposed endeavor in the United States <span class="required">*</span></label>
+                <textarea required placeholder="What work will you pursue? What are your goals? Be specific about the nature and scope of your planned work."></textarea>
+                <div class="help-text">This is the foundation of your NIW case - be clear and specific</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Why is your proposed work of national importance to the United States? <span class="required">*</span></label>
+                <textarea required placeholder="How does your work benefit the U.S. economy, healthcare, education, environment, security, or other national interests? What problem are you solving?"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>How is your work of "substantial merit"? <span class="required">*</span></label>
+                <textarea required placeholder="What makes your work valuable and impactful? What are the potential outcomes and benefits?"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Evidence You Are Well Positioned to Advance Your Endeavor</div>
+            
+            <div class="form-group">
+                <label>Current Position/Title <span class="required">*</span></label>
+                <input type="text" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Current Employer/Organization:</label>
+                <input type="text">
+            </div>
+            
+            <div class="form-group">
+                <label>Years of Professional Experience in Your Field:</label>
+                <input type="number" min="0">
+            </div>
+            
+            <div class="form-group">
+                <label>Track Record & Accomplishments:</label>
+                <textarea placeholder="Past achievements, projects completed, innovations developed, research conducted - demonstrate your capability"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Publications, Patents, or Intellectual Property:</label>
+                <textarea placeholder="Academic publications, patents filed/granted, proprietary technologies, copyrights"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Citations or Impact Metrics (if applicable):</label>
+                <input type="text" placeholder="Number of citations, h-index, download counts, usage statistics">
+            </div>
+            
+            <div class="form-group">
+                <label>Awards, Grants, or Funding Received:</label>
+                <textarea placeholder="Research grants, awards, fellowships, funding (sources and amounts if comfortable sharing)"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Professional Memberships & Leadership:</label>
+                <textarea placeholder="Professional associations, committee memberships, leadership roles"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Letters of Recommendation/Support - Can you obtain letters? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="letters" value="yes" required> Yes</label>
+                    <label><input type="radio" name="letters" value="maybe"> Possibly</label>
+                    <label><input type="radio" name="letters" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Potential Letter Writers:</label>
+                <textarea placeholder="Names, titles, organizations of people who can attest to your qualifications and the importance of your work"></textarea>
+                <div class="help-text">Need 5-7 strong letters from experts, employers, collaborators</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Media Coverage or Public Recognition:</label>
+                <textarea placeholder="Articles, interviews, profiles in industry publications or mainstream media"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Why Waiving Labor Certification Benefits the U.S.</div>
+            
+            <div class="form-group">
+                <label>Why should the U.S. waive the requirement for an employer sponsor? <span class="required">*</span></label>
+                <textarea required placeholder="Why is it in the national interest for you to self-petition rather than go through traditional labor certification? Consider: urgency of your work, unique expertise, ability to work independently or across multiple organizations, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Do you plan to work for a specific employer, or independently/consulting/entrepreneurship?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="employmentType" value="employer"> Specific employer</label>
+                    <label><input type="radio" name="employmentType" value="independent"> Independent/Consulting</label>
+                    <label><input type="radio" name="employmentType" value="startup"> Starting a business</label>
+                    <label><input type="radio" name="employmentType" value="flexible"> Flexible/Multiple projects</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If entrepreneurship, describe your business plan/venture:</label>
+                <textarea placeholder="What business are you starting? How does it serve the national interest?"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Supporting Credentials & Evidence</div>
+            
+            <div class="checkbox-group">
+                <p style="margin-bottom: 10px; font-weight: 600;">Which of the following do you have available as evidence? (Check all that apply)</p>
+                
+                <label>
+                    <input type="checkbox" name="evidence1">
+                    <span>Advanced degree diploma and transcripts</span>
+                </label>
+                
+                <label>
+                    <input type="checkbox" name="evidence2">
+                    <span>Letters from current/former employers documenting experience</span>
+                </label>
+                
+                <label>
+                    <input type="checkbox" name="evidence3">
+                    <span>Published articles, research papers, or books</span>
+                </label>
+                
+                <label>
+                    <input type="checkbox" name="evidence4">
+                    <span>Patents or proprietary technology documentation</span>
+                </label>
+                
+                <label>
+                    <input type="checkbox" name="evidence5">
+                    <span>Evidence of grants, awards, or honors</span>
+                </label>
+                
+                <label>
+                    <input type="checkbox" name="evidence6">
+                    <span>Professional licenses or certifications</span>
+                </label>
+                
+                <label>
+                    <input type="checkbox" name="evidence7">
+                    <span>Media articles or press coverage</span>
+                </label>
+                
+                <label>
+                    <input type="checkbox" name="evidence8">
+                    <span>Evidence of high salary or exceptional compensation</span>
+                </label>
+                
+                <label>
+                    <input type="checkbox" name="evidence9">
+                    <span>Contracts, MOUs, or business agreements</span>
+                </label>
+                
+                <label>
+                    <input type="checkbox" name="evidence10">
+                    <span>Business plan (for entrepreneurs)</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Immigration History & Current Status</div>
+            
+            <div class="form-group">
+                <label>Are you currently in the United States?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="inUS" value="yes"> Yes</label>
+                    <label><input type="radio" name="inUS" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, current US visa/status:</label>
+                <select>
+                    <option value="">-- Select --</option>
+                    <option value="h1b">H-1B</option>
+                    <option value="l1">L-1</option>
+                    <option value="o1">O-1</option>
+                    <option value="f1">F-1 Student</option>
+                    <option value="j1">J-1</option>
+                    <option value="b1b2">B-1/B-2</option>
+                    <option value="tn">TN</option>
+                    <option value="e3">E-3</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Status expiration date (if applicable):</label>
+                <input type="date">
+            </div>
+            
+            <div class="form-group">
+                <label>Have you ever been denied a US visa or had any immigration petition denied?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="denial" value="yes"> Yes</label>
+                    <label><input type="radio" name="denial" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, please provide details:</label>
+                <textarea placeholder="Type of visa/petition, date, reason if known"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Do you have any pending immigration applications?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="pending" value="yes"> Yes</label>
+                    <label><input type="radio" name="pending" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, details:</label>
+                <textarea placeholder="Type of application, filing date, receipt number"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Family Information</div>
+            
+            <div class="form-group">
+                <label>Marital Status:</label>
+                <select>
+                    <option value="">-- Select --</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>If married, spouse's name and citizenship:</label>
+                <input type="text">
+            </div>
+            
+            <div class="form-group">
+                <label>Children under 21 (derivative beneficiaries):</label>
+                <textarea placeholder="Name, date of birth, citizenship for each child"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Timeline & Goals</div>
+            
+            <div class="form-group">
+                <label>Target date for obtaining permanent residence: <span class="required">*</span></label>
+                <input type="date" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Primary motivation for pursuing EB-2 NIW:</label>
+                <textarea placeholder="Career goals, research objectives, business plans, family considerations"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Do you need premium processing (if available)?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="premium" value="yes"> Yes</label>
+                    <label><input type="radio" name="premium" value="no"> No</label>
+                    <label><input type="radio" name="premium" value="unsure"> Unsure</label>
+                </div>
+                <div class="investment-info">
+                    Note: Premium Processing availability for I-140 varies. When available, adds $2,805 USCIS fee for 15-45 day processing.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Additional Information</div>
+            
+            <div class="form-group">
+                <label>Have you worked with an immigration attorney before?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="previousAttorney" value="yes"> Yes</label>
+                    <label><input type="radio" name="previousAttorney" value="no"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, attorney/firm name:</label>
+                <input type="text">
+            </div>
+            
+            <div class="form-group">
+                <label>How did you hear about Rivalis Law?</label>
+                <select>
+                    <option value="">-- Select --</option>
+                    <option value="referral">Professional Referral</option>
+                    <option value="website">Website/Online Search</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="conference">Conference/Event</option>
+                    <option value="publication">Publication/Article</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Any other relevant information:</label>
+                <textarea placeholder="Special circumstances, concerns, questions about your case"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Case Assessment Expectations</div>
+            
+            <div class="premium-notice">
+                <strong>What Happens Next:</strong>
+                After reviewing your intake form, we will:
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Assess whether your work qualifies for national interest waiver</li>
+                    <li>Evaluate your qualifications under the Dhanasar framework</li>
+                    <li>Identify evidence gaps and recommend additional documentation</li>
+                    <li>Develop a case strategy emphasizing national importance</li>
+                    <li>Provide timeline estimates and fee structure</li>
+                </ul>
+                <br>
+                <strong>Note:</strong> NIW requires demonstrating your work benefits the United States at a national level. We provide honest assessments - if your case needs strengthening or if an alternative pathway might be more suitable, we'll advise accordingly.
+            </div>
+        </div>
+        
+        <div class="signature-section">
+            <div class="section-title">Authorization & Acknowledgment</div>
+            
+            <p style="margin-bottom: 15px;">
+                By signing below, I acknowledge that:
+            </p>
+            
+            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                <li>The information provided is true, complete, and accurate to the best of my knowledge</li>
+                <li>I understand that EB-2 NIW requires demonstrating work of national importance and outcomes cannot be guaranteed</li>
+                <li>I authorize Rivalis Law to conduct a preliminary case assessment</li>
+                <li>I understand this intake does not create an attorney-client relationship until formal engagement</li>
+                <li>I will provide all requested documentation in a timely manner</li>
+                <li>I understand the estimated investment range ($15,000-$28,000) may vary based on case complexity</li>
+            </ul>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Client Name (Print) <span class="required">*</span></label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Date <span class="required">*</span></label>
+                    <input type="date" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Signature <span class="required">*</span></label>
+                <div class="signature-line"></div>
+                <div class="help-text">Please sign above or type your full name as electronic signature</div>
+            </div>
+        </div>
+        
+        <button class="print-button" onclick="window.print()">Print or Save as PDF</button>
+        
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; color: #718096; font-size: 12px;">
+            <p><strong>RIVALIS LAW</strong></p>
+            <p>Elite Immigration & Investor Visa Services</p>
+            <p style="margin-top: 10px;">📞 (202) 555-0199 | 📧 elite@rivalislaw.com</p>
+        </div>
+    </div>
+</body>
+</html>

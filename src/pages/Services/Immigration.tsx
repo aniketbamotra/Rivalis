@@ -70,6 +70,117 @@ export const Immigration: React.FC = () => {
         </div>
       </section>
 
+      {/* Immigration Sub-Services Navigation */}
+      <section className="service-section" style={{ background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)', paddingTop: '4rem', paddingBottom: '4rem' }}>
+        <div className="service-section-container">
+          <div className="service-section-header">
+            <div className="service-section-tag">IMMIGRATION PATHWAYS</div>
+            <h2 className="service-section-title">Specialized Immigration Services</h2>
+            <p style={{ color: 'var(--gray-700)', fontSize: '1.1rem', maxWidth: '700px', margin: '1rem auto 0' }}>
+              Choose the pathway that matches your situation. Each service includes strategic counsel and precise execution.
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+            {/* Work Visas Card */}
+            <Link to="/services/immigration/work-visas" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="service-card" style={{ background: 'linear-gradient(135deg, #fff5f5 0%, #ffffff 100%)', border: '2px solid #ffe5e5', transition: 'all 0.3s ease', cursor: 'pointer' }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>💼</div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#e74c3c', marginBottom: '0.5rem' }}>Work Visas</h3>
+                <p style={{ fontSize: '0.95rem', color: '#c0392b', fontWeight: 600, marginBottom: '1rem' }}>H-1B • L-1 • O-1 • TN • E-2</p>
+                <p style={{ color: 'var(--gray-700)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Employment-based temporary visas with emergency RFE response. Get expert guidance on visa selection, application strategy, and compliance.
+                </p>
+                <div style={{ background: '#e74c3c', color: 'white', padding: '0.75rem', borderRadius: '8px', marginBottom: '1rem' }}>
+                  <div style={{ fontSize: '1.8rem', fontWeight: 700 }}>$299-$499</div>
+                  <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>Based on urgency</div>
+                </div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.9rem', color: 'var(--gray-700)' }}>
+                  <li style={{ marginBottom: '0.5rem' }}>✓ All employment visa types</li>
+                  <li style={{ marginBottom: '0.5rem' }}>✓ 48-hour RFE turnaround</li>
+                  <li>✓ Compliance monitoring</li>
+                </ul>
+                <div style={{ marginTop: '1.5rem', color: '#e74c3c', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  Learn More <span>→</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* EB-1 Card */}
+            <Link to="/services/immigration/eb1" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="service-card" style={{ background: 'linear-gradient(135deg, #fffbf0 0%, #ffffff 100%)', border: '2px solid #ffeaa7', transition: 'all 0.3s ease', cursor: 'pointer' }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🏆</div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#d4af37', marginBottom: '0.5rem' }}>EB-1 Extraordinary Ability</h3>
+                <p style={{ fontSize: '0.95rem', color: '#b8860b', fontWeight: 600, marginBottom: '1rem' }}>Green Card • No Sponsor Required</p>
+                <p style={{ color: 'var(--gray-700)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Self-petition green card for individuals with extraordinary ability in sciences, arts, education, business, or athletics.
+                </p>
+                <div style={{ background: '#d4af37', color: 'white', padding: '0.75rem', borderRadius: '8px', marginBottom: '1rem' }}>
+                  <div style={{ fontSize: '1.8rem', fontWeight: 700 }}>$799</div>
+                  <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>Eligibility assessment</div>
+                </div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.9rem', color: 'var(--gray-700)' }}>
+                  <li style={{ marginBottom: '0.5rem' }}>✓ 10 criteria evaluation</li>
+                  <li style={{ marginBottom: '0.5rem' }}>✓ Evidence portfolio review</li>
+                  <li>✓ Strategic positioning plan</li>
+                </ul>
+                <div style={{ marginTop: '1.5rem', color: '#d4af37', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  Learn More <span>→</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* EB-2 NIW Card */}
+            <Link to="/services/immigration/eb2-niw" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="service-card" style={{ background: 'linear-gradient(135deg, #f5f3ff 0%, #ffffff 100%)', border: '2px solid #e5deff', transition: 'all 0.3s ease', cursor: 'pointer' }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🎓</div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#667eea', marginBottom: '0.5rem' }}>EB-2 NIW</h3>
+                <p style={{ fontSize: '0.95rem', color: '#5a67d8', fontWeight: 600, marginBottom: '1rem' }}>National Interest Waiver</p>
+                <p style={{ color: 'var(--gray-700)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Green card for advanced degree holders whose work benefits the United States. No labor certification or employer sponsor required.
+                </p>
+                <div style={{ background: '#667eea', color: 'white', padding: '0.75rem', borderRadius: '8px', marginBottom: '1rem' }}>
+                  <div style={{ fontSize: '1.8rem', fontWeight: 700 }}>$699</div>
+                  <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>NIW qualification review</div>
+                </div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.9rem', color: 'var(--gray-700)' }}>
+                  <li style={{ marginBottom: '0.5rem' }}>✓ Dhanasar framework analysis</li>
+                  <li style={{ marginBottom: '0.5rem' }}>✓ National benefit argument</li>
+                  <li>✓ Evidence strength assessment</li>
+                </ul>
+                <div style={{ marginTop: '1.5rem', color: '#667eea', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  Learn More <span>→</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* EB-5 Card */}
+            <Link to="/services/immigration/eb5" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="service-card" style={{ background: 'linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%)', border: '2px solid #bee3f8', transition: 'all 0.3s ease', cursor: 'pointer' }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>💰</div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#2c5282', marginBottom: '0.5rem' }}>EB-5 Investor Visa</h3>
+                <p style={{ fontSize: '0.95rem', color: '#2a4365', fontWeight: 600, marginBottom: '1rem' }}>$800K-$1.05M Investment</p>
+                <p style={{ color: 'var(--gray-700)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Green card through investment. 60% of denials are source-of-funds issues. Get your audit done right before USCIS scrutinizes your wealth.
+                </p>
+                <div style={{ background: '#2c5282', color: 'white', padding: '0.75rem', borderRadius: '8px', marginBottom: '1rem' }}>
+                  <div style={{ fontSize: '1.8rem', fontWeight: 700 }}>$2,500</div>
+                  <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>Source of funds audit</div>
+                </div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.9rem', color: 'var(--gray-700)' }}>
+                  <li style={{ marginBottom: '0.5rem' }}>✓ Complete SOF documentation</li>
+                  <li style={{ marginBottom: '0.5rem' }}>✓ Tax trail verification</li>
+                  <li>✓ I-526E petition strategy</li>
+                </ul>
+                <div style={{ marginTop: '1.5rem', color: '#2c5282', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  Learn More <span>→</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Problems Section */}
       <section className="service-section service-problems">
         <div className="service-section-container">
