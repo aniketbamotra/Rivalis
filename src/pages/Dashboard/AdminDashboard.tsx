@@ -9,7 +9,33 @@ import {
   supabase 
 } from '../../lib/supabase';
 import type { Service, Profile, FormSubmission } from '../../types/database';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '../../components/ui/dialog';
 import './dashboard.css';
+
+interface EmergencyRequest {
+  id: string;
+  user_id: string;
+  urgency: 'critical' | 'urgent' | 'high';
+  issue: string;
+  contact_mode: 'call' | 'email' | 'video';
+  phone: string;
+  status: 'pending' | 'contacted' | 'in_progress' | 'resolved' | 'cancelled';
+  payment_id: string;
+  admin_notes: string | null;
+  created_at: string;
+  contacted_at: string | null;
+  resolved_at: string | null;
+  profiles?: {
+    full_name: string;
+    email: string;
+  };
+}
 
 export function AdminDashboard() {
   const { isAdmin, loading: authLoading } = useAuth();
@@ -18,14 +44,22 @@ export function AdminDashboard() {
   const [services, setServices] = useState<Service[]>([]);
   const [users, setUsers] = useState<Profile[]>([]);
   const [submissions, setSubmissions] = useState<FormSubmission[]>([]);
+  const [emergencyRequests, setEmergencyRequests] = useState<EmergencyRequest[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'overview' | 'services' | 'users' | 'submissions'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'services' | 'users' | 'submissions' | 'emergency'>('overview');
   
   // Edit modal state
   const [editingService, setEditingService] = useState<Service | null>(null);
   const [newPrice, setNewPrice] = useState('');
   const [newCalendlyUrl, setNewCalendlyUrl] = useState('');
   const [saving, setSaving] = useState(false);
+  
+  // Submission details modal state
+  const [viewingSubmission, setViewingSubmission] = useState<FormSubmission | null>(null);
+  
+  // Emergency notes modal state
+  const [editingNotes, setEditingNotes] = useState<EmergencyRequest | null>(null);
+  const [notesText, setNotesText] = useState('');
 
   useEffect(() => {
     if (!authLoading && !isAdmin) {
@@ -38,15 +72,38 @@ export function AdminDashboard() {
       if (!isAdmin) return;
       
       try {
-        const [servicesData, usersData, submissionsData] = await Promise.all([
+        const [servicesData, usersData, submissionsData, emergencyData] = await Promise.all([
           supabase.from('services').select('*').order('display_order'),
           getAllUsers(),
-          getFormSubmissions()
+          getFormSubmissions(),
+          supabase
+            .from('emergency_requests')
+            .select('*')
+            .order('created_at', { ascending: false })
         ]);
+        
+        // Fetch profiles for emergency requests
+        const emergencyWithProfiles = (emergencyData.data || []) as EmergencyRequest[];
+        if (emergencyWithProfiles.length > 0) {
+          const userIds = [...new Set(emergencyWithProfiles.map(req => req.user_id))];
+          const { data: profilesData } = await supabase
+            .from('profiles')
+            .select('id, full_name, email')
+            .in('id', userIds);
+          
+          // Merge profiles into emergency requests
+          emergencyWithProfiles.forEach(request => {
+            const profile = (profilesData as any)?.find((p: any) => p.id === request.user_id);
+            if (profile) {
+              (request as any).profiles = profile;
+            }
+          });
+        }
         
         setServices(servicesData.data || []);
         setUsers(usersData);
         setSubmissions(submissionsData);
+        setEmergencyRequests(emergencyWithProfiles);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -95,6 +152,26 @@ export function AdminDashboard() {
       ));
     } catch (error) {
       console.error('Error updating status:', error);
+    }
+  };
+
+  const handleSaveNotes = async () => {
+    if (!editingNotes) return;
+    
+    try {
+      // @ts-ignore - Supabase type inference issue
+      const { error } = await supabase.from('emergency_requests').update({ admin_notes: notesText, updated_at: new Date().toISOString() }).eq('id', editingNotes.id);
+      
+      if (error) throw error;
+      
+      setEmergencyRequests(emergencyRequests.map(r => 
+        r.id === editingNotes.id ? { ...r, admin_notes: notesText } : r
+      ));
+      
+      setEditingNotes(null);
+      setNotesText('');
+    } catch (error) {
+      console.error('Error saving notes:', error);
     }
   };
 
@@ -176,6 +253,20 @@ export function AdminDashboard() {
             onClick={() => setActiveTab('submissions')}
           >
             Submissions ({submissions.length})
+          </button>
+          <button 
+            className={`tab ${activeTab === 'emergency' ? 'active' : ''}`}
+            onClick={() => setActiveTab('emergency')}
+            style={{
+              background: emergencyRequests.filter(r => r.status === 'pending').length > 0 
+                ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)' 
+                : undefined,
+              color: emergencyRequests.filter(r => r.status === 'pending').length > 0 
+                ? 'white' 
+                : undefined
+            }}
+          >
+            🚨 Emergency ({emergencyRequests.filter(r => r.status === 'pending').length})
           </button>
         </div>
 
@@ -444,11 +535,7 @@ export function AdminDashboard() {
                         <td>
                           <button 
                             className="view-button"
-                            onClick={() => {
-                              // Show form data in a modal or expand
-                              console.log('Form data:', submission.form_data);
-                              alert(JSON.stringify(submission.form_data, null, 2));
-                            }}
+                            onClick={() => setViewingSubmission(submission)}
                           >
                             View Details
                           </button>
@@ -458,6 +545,386 @@ export function AdminDashboard() {
                   </tbody>
                 </table>
               </div>
+            </div>
+          )}
+
+          {activeTab === 'emergency' && (
+            <div className="emergency-section">
+              <div className="section-header">
+                <h2>🚨 Emergency Consultation Requests</h2>
+                <p>Priority requests requiring immediate attention</p>
+              </div>
+
+              {emergencyRequests.length === 0 ? (
+                <div style={{
+                  backgroundColor: 'white',
+                  borderRadius: '12px',
+                  padding: '3rem',
+                  textAlign: 'center',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                }}>
+                  <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>✅</div>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#1a1a1a', marginBottom: '0.5rem' }}>
+                    No Emergency Requests
+                  </h3>
+                  <p style={{ color: '#666' }}>
+                    All emergency consultation requests have been handled.
+                  </p>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  {emergencyRequests.map((request) => {
+                    const getUrgencyColor = (urgency: string) => {
+                      switch (urgency) {
+                        case 'critical': return '#dc2626';
+                        case 'urgent': return '#ea580c';
+                        case 'high': return '#ca8a04';
+                        default: return '#6b7280';
+                      }
+                    };
+
+                    return (
+                      <div
+                        key={request.id}
+                        style={{
+                          backgroundColor: 'white',
+                          borderRadius: '8px',
+                          padding: '1.5rem',
+                          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+                          border: request.status === 'pending' 
+                            ? '1px solid #dc2626' 
+                            : '1px solid #e5e7eb',
+                          borderLeft: request.status === 'pending' 
+                            ? '4px solid #dc2626' 
+                            : '4px solid #e5e7eb',
+                        }}
+                      >
+                        {/* Header */}
+                        <div style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'flex-start',
+                          marginBottom: '1.25rem',
+                          paddingBottom: '1rem',
+                          borderBottom: '1px solid #e5e7eb',
+                        }}>
+                          <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                              <span style={{
+                                fontSize: '0.75rem',
+                                fontWeight: '700',
+                                color: getUrgencyColor(request.urgency),
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.05em',
+                                padding: '0.25rem 0.5rem',
+                                backgroundColor: `${getUrgencyColor(request.urgency)}10`,
+                                borderRadius: '4px',
+                              }}>
+                                {request.urgency}
+                              </span>
+                              <span style={{
+                                display: 'inline-block',
+                                padding: '0.25rem 0.5rem',
+                                backgroundColor: '#f3f4f6',
+                                color: '#6b7280',
+                                borderRadius: '4px',
+                                fontSize: '0.75rem',
+                                fontWeight: '500',
+                                textTransform: 'capitalize',
+                              }}>
+                                {request.status.replace('_', ' ')}
+                              </span>
+                            </div>
+                            <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
+                              {new Date(request.created_at).toLocaleString()}
+                            </span>
+                          </div>
+                          
+                          <div style={{
+                            fontSize: '0.75rem',
+                            color: '#6b7280',
+                            fontFamily: 'monospace',
+                          }}>
+                            {request.payment_id.substring(0, 24)}...
+                          </div>
+                        </div>
+
+                        {/* Client Info */}
+                        <div style={{
+                          display: 'grid',
+                          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                          gap: '1rem',
+                          marginBottom: '1.5rem',
+                        }}>
+                          <div style={{
+                            backgroundColor: '#f9fafb',
+                            padding: '1rem',
+                            borderRadius: '8px',
+                          }}>
+                            <div style={{ fontSize: '0.8rem', color: '#666', marginBottom: '0.5rem', fontWeight: '600' }}>
+                              CLIENT NAME
+                            </div>
+                            <div style={{ fontSize: '1rem', fontWeight: '600', color: '#1a1a1a' }}>
+                              {request.profiles?.full_name || 'N/A'}
+                            </div>
+                          </div>
+                          
+                          <div style={{
+                            backgroundColor: '#f9fafb',
+                            padding: '1rem',
+                            borderRadius: '8px',
+                          }}>
+                            <div style={{ fontSize: '0.8rem', color: '#666', marginBottom: '0.5rem', fontWeight: '600' }}>
+                              EMAIL
+                            </div>
+                            <a href={`mailto:${request.profiles?.email}`} style={{
+                              fontSize: '1rem',
+                              fontWeight: '600',
+                              color: '#0088cc',
+                              textDecoration: 'none',
+                            }}>
+                              {request.profiles?.email || 'N/A'}
+                            </a>
+                          </div>
+                          
+                          <div style={{
+                            backgroundColor: '#f9fafb',
+                            padding: '1rem',
+                            borderRadius: '8px',
+                          }}>
+                            <div style={{ fontSize: '0.8rem', color: '#666', marginBottom: '0.5rem', fontWeight: '600' }}>
+                              PHONE
+                            </div>
+                            <a href={`tel:${request.phone}`} style={{
+                              fontSize: '1rem',
+                              fontWeight: '600',
+                              color: '#0088cc',
+                              textDecoration: 'none',
+                            }}>
+                              {request.phone}
+                            </a>
+                          </div>
+                          
+                          <div style={{
+                            backgroundColor: '#f9fafb',
+                            padding: '1rem',
+                            borderRadius: '8px',
+                          }}>
+                            <div style={{ fontSize: '0.8rem', color: '#666', marginBottom: '0.5rem', fontWeight: '600' }}>
+                              PREFERRED CONTACT
+                            </div>
+                            <div style={{ fontSize: '1rem', fontWeight: '600', color: '#1a1a1a', textTransform: 'capitalize' }}>
+                              {request.contact_mode}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Issue Description */}
+                        <div style={{
+                          backgroundColor: '#f9fafb',
+                          border: '1px solid #e5e7eb',
+                          padding: '1rem',
+                          borderRadius: '6px',
+                          marginBottom: '1.25rem',
+                        }}>
+                          <div style={{ fontSize: '0.75rem', fontWeight: '600', color: '#6b7280', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                            Issue Description
+                          </div>
+                          <p style={{
+                            margin: 0,
+                            fontSize: '0.875rem',
+                            color: '#1f2937',
+                            lineHeight: '1.6',
+                            whiteSpace: 'pre-wrap',
+                          }}>
+                            {request.issue}
+                          </p>
+                        </div>
+
+                        {/* Admin Notes */}
+                        {request.admin_notes && (
+                          <div style={{
+                            backgroundColor: '#eff6ff',
+                            border: '1px solid #dbeafe',
+                            padding: '1rem',
+                            borderRadius: '6px',
+                            marginBottom: '1.25rem',
+                          }}>
+                            <div style={{
+                              fontSize: '0.75rem',
+                              fontWeight: '600',
+                              color: '#2563eb',
+                              marginBottom: '0.5rem',
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.05em',
+                            }}>
+                              Admin Notes
+                            </div>
+                            <p style={{
+                              margin: 0,
+                              fontSize: '0.875rem',
+                              color: '#1f2937',
+                              lineHeight: '1.6',
+                            }}>
+                              {request.admin_notes}
+                            </p>
+                          </div>
+                        )}
+
+                        {/* Action Buttons */}
+                        <div style={{
+                          display: 'flex',
+                          gap: '0.75rem',
+                          flexWrap: 'wrap',
+                        }}>
+                          <button
+                            onClick={() => {
+                              setEditingNotes(request);
+                              setNotesText(request.admin_notes || '');
+                            }}
+                            style={{
+                              padding: '0.5rem 1rem',
+                              backgroundColor: '#6b7280',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '6px',
+                              fontSize: '0.875rem',
+                              fontWeight: '500',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            Add Notes
+                          </button>
+
+                          {request.status === 'pending' && (
+                            <button
+                              onClick={async () => {
+                                // @ts-ignore
+                                const { error } = await supabase.from('emergency_requests').update({ status: 'contacted', contacted_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq('id', request.id);
+                                
+                                setEmergencyRequests(emergencyRequests.map(r => 
+                                  r.id === request.id ? { ...r, status: 'contacted', contacted_at: new Date().toISOString() } : r
+                                ));
+                              }}
+                              style={{
+                                padding: '0.5rem 1rem',
+                                backgroundColor: '#2563eb',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '6px',
+                                fontSize: '0.875rem',
+                                fontWeight: '500',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              Mark Contacted
+                            </button>
+                          )}
+
+                          {(request.status === 'contacted' || request.status === 'pending') && (
+                            <button
+                              onClick={async () => {
+                                // @ts-ignore
+                                const { error } = await supabase.from('emergency_requests').update({ status: 'in_progress', updated_at: new Date().toISOString() }).eq('id', request.id);
+                                
+                                setEmergencyRequests(emergencyRequests.map(r => 
+                                  r.id === request.id ? { ...r, status: 'in_progress' } : r
+                                ));
+                              }}
+                              style={{
+                                padding: '0.5rem 1rem',
+                                backgroundColor: '#7c3aed',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '6px',
+                                fontSize: '0.875rem',
+                                fontWeight: '500',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              In Progress
+                            </button>
+                          )}
+
+                          {request.status !== 'resolved' && (
+                            <button
+                              onClick={async () => {
+                                // @ts-ignore
+                                const { error } = await supabase.from('emergency_requests').update({ status: 'resolved', resolved_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq('id', request.id);
+                                
+                                setEmergencyRequests(emergencyRequests.map(r => 
+                                  r.id === request.id ? { ...r, status: 'resolved', resolved_at: new Date().toISOString() } : r
+                                ));
+                              }}
+                              style={{
+                                padding: '0.5rem 1rem',
+                                backgroundColor: '#059669',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '6px',
+                                fontSize: '0.875rem',
+                                fontWeight: '500',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              Resolve
+                            </button>
+                          )}
+
+                          <a
+                            href={`tel:${request.phone}`}
+                            style={{
+                              padding: '0.5rem 1rem',
+                              backgroundColor: '#dc2626',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '6px',
+                              fontSize: '0.875rem',
+                              fontWeight: '500',
+                              textDecoration: 'none',
+                              display: 'inline-block',
+                            }}
+                          >
+                            Call Now
+                          </a>
+
+                          <a
+                            href={`mailto:${request.profiles?.email}`}
+                            style={{
+                              padding: '0.5rem 1rem',
+                              backgroundColor: '#0891b2',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '6px',
+                              fontSize: '0.875rem',
+                              fontWeight: '500',
+                              textDecoration: 'none',
+                              display: 'inline-block',
+                            }}
+                          >
+                            ✉️ Email Client
+                          </a>
+                        </div>
+
+                        {/* Timestamps */}
+                        {(request.contacted_at || request.resolved_at) && (
+                          <div style={{
+                            fontSize: '0.8rem',
+                            color: '#666',
+                            marginTop: '1.5rem',
+                            paddingTop: '1rem',
+                            borderTop: '1px solid #e5e7eb',
+                          }}>
+                            {request.contacted_at && `Contacted: ${new Date(request.contacted_at).toLocaleString()}`}
+                            {request.contacted_at && request.resolved_at && ' • '}
+                            {request.resolved_at && `Resolved: ${new Date(request.resolved_at).toLocaleString()}`}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -524,6 +991,118 @@ export function AdminDashboard() {
             </div>
           </div>
         )}
+
+        {/* Submission Details Modal */}
+        <Dialog open={!!viewingSubmission} onOpenChange={(open) => !open && setViewingSubmission(null)}>
+          <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Submission Details</DialogTitle>
+              <DialogDescription>
+                {viewingSubmission && (
+                  <>
+                    <span className="font-semibold">{viewingSubmission.form_type}</span>
+                    {' • '}
+                    <span>Submitted on {new Date(viewingSubmission.created_at).toLocaleString()}</span>
+                  </>
+                )}
+              </DialogDescription>
+            </DialogHeader>
+            
+            {viewingSubmission && (
+              <div className="space-y-4 mt-4">
+                {/* Status and Email */}
+                <div className="grid grid-cols-2 gap-4 pb-4 border-b">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-600 mb-1">Status</p>
+                    <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium capitalize ${
+                      viewingSubmission.status === 'completed' ? 'bg-green-100 text-green-800' :
+                      viewingSubmission.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
+                      viewingSubmission.status === 'reviewed' ? 'bg-purple-100 text-purple-800' :
+                      'bg-gray-100 text-gray-800'
+                    }`}>
+                      {viewingSubmission.status.replace('_', ' ')}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-600 mb-1">User Email</p>
+                    <p className="text-sm">{viewingSubmission.email}</p>
+                  </div>
+                </div>
+
+                {/* Form Data */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-3">Form Data</h3>
+                  <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                    {Object.entries(viewingSubmission.form_data as Record<string, any>).map(([key, value]) => (
+                      <div key={key} className="border-b border-gray-200 pb-3 last:border-0">
+                        <p className="text-sm font-semibold text-gray-700 mb-1 capitalize">
+                          {key.replace(/_/g, ' ')}
+                        </p>
+                        <p className="text-sm text-gray-900 whitespace-pre-wrap">
+                          {typeof value === 'object' ? JSON.stringify(value, null, 2) : String(value)}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+
+        {/* Emergency Notes Modal */}
+        <Dialog open={!!editingNotes} onOpenChange={(open) => {
+          if (!open) {
+            setEditingNotes(null);
+            setNotesText('');
+          }
+        }}>
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle>Admin Notes</DialogTitle>
+              <DialogDescription>
+                {editingNotes && (
+                  <>
+                    Add or update notes for emergency request from {editingNotes.profiles?.full_name || 'User'}
+                  </>
+                )}
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-4 mt-4">
+              <div>
+                <label className="text-sm font-semibold text-gray-700 mb-2 block">
+                  Notes
+                </label>
+                <textarea
+                  value={notesText}
+                  onChange={(e) => setNotesText(e.target.value)}
+                  placeholder="Enter admin notes here..."
+                  rows={6}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                />
+              </div>
+              
+              <div className="flex justify-end gap-3 pt-4 border-t">
+                <button
+                  onClick={() => {
+                    setEditingNotes(null);
+                    setNotesText('');
+                  }}
+                  className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md font-medium transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleSaveNotes}
+                  className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md font-medium transition-colors"
+                >
+                  Save Notes
+                </button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </MainLayout>
   );
