@@ -85,7 +85,7 @@ export function AdminDashboard() {
             .from('emergency_requests')
             .select('*')
             .order('created_at', { ascending: false }),
-          supabase.from('site_settings').select('*').single()
+          supabase.from('site_settings').select('*').single() as unknown as { data: SiteSettings | null; error: any }
         ]);
         
         // Fetch profiles for emergency requests
@@ -110,9 +110,9 @@ export function AdminDashboard() {
         setUsers(usersData);
         setSubmissions(submissionsData);
         setEmergencyRequests(emergencyWithProfiles);
-        setSiteSettings(settingsData.data);
         if (settingsData.data) {
-          setSettingsForm(settingsData.data);
+          setSiteSettings(settingsData.data as SiteSettings);
+          setSettingsForm(settingsData.data as Partial<SiteSettings>);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -192,6 +192,7 @@ export function AdminDashboard() {
       setSaving(true);
       const { error } = await supabase
         .from('site_settings')
+        // @ts-expect-error - Supabase type inference issue with site_settings table
         .update({
           ...settingsForm,
           updated_at: new Date().toISOString(),
@@ -1068,7 +1069,7 @@ export function AdminDashboard() {
                           border: '1px solid #475569', 
                           borderRadius: '8px',
                           fontSize: '1rem',
-                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a', color: '#f1f5f9',
+                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a',
                           color: '#f1f5f9'
                         }}
                       />
@@ -1089,7 +1090,7 @@ export function AdminDashboard() {
                           border: '1px solid #475569', 
                           borderRadius: '8px',
                           fontSize: '1rem',
-                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a', color: '#f1f5f9',
+                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a',
                           color: '#f1f5f9'
                         }}
                       />
@@ -1111,7 +1112,7 @@ export function AdminDashboard() {
                           border: '1px solid #475569', 
                           borderRadius: '8px',
                           fontSize: '1rem',
-                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a', color: '#f1f5f9',
+                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a',
                           color: '#f1f5f9'
                         }}
                       />
@@ -1133,7 +1134,7 @@ export function AdminDashboard() {
                           border: '1px solid #475569', 
                           borderRadius: '8px',
                           fontSize: '1rem',
-                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a', color: '#f1f5f9',
+                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a',
                           color: '#f1f5f9'
                         }}
                       />
@@ -1155,7 +1156,7 @@ export function AdminDashboard() {
                           border: '1px solid #475569', 
                           borderRadius: '8px',
                           fontSize: '1rem',
-                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a', color: '#f1f5f9',
+                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a',
                           color: '#f1f5f9'
                         }}
                       />
@@ -1184,7 +1185,7 @@ export function AdminDashboard() {
                           border: '1px solid #475569', 
                           borderRadius: '8px',
                           fontSize: '1rem',
-                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a', color: '#f1f5f9',
+                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a',
                           color: '#f1f5f9'
                         }}
                       />
@@ -1206,7 +1207,7 @@ export function AdminDashboard() {
                           border: '1px solid #475569', 
                           borderRadius: '8px',
                           fontSize: '1rem',
-                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a', color: '#f1f5f9',
+                          backgroundColor: editingSiteSettings ? '#334155' : '#0f172a',
                           color: '#f1f5f9'
                         }}
                       />
