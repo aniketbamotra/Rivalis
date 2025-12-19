@@ -4,9 +4,16 @@ import { EnhancedFooter } from '../components/Layout';
 import { PaymentModal } from '../components/Common/PaymentModal';
 import { AccountCreationNudge } from '../components/Common/AccountCreationNudge';
 import { useFormSubmissionWithPayment } from '../hooks/useFormSubmissionWithPayment';
-import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { useSiteSettings } from '../hooks/useSiteSettings';
 import { submitForm } from '../lib/supabase';
 import { useServices } from '../contexts/ServicesContext';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select';
 import '../styles/home.css';
 
 export const Home: React.FC = () => {
@@ -14,6 +21,8 @@ export const Home: React.FC = () => {
   const { getServicePrice } = useServices();
   const [timeWasted, setTimeWasted] = useState(30);
   const [finesRisk, setFinesRisk] = useState(250000);
+  const [showCustomInput, setShowCustomInput] = useState(false);
+  const [customAmount, setCustomAmount] = useState('');
   
   // Intake form state
   const [formData, setFormData] = useState({
@@ -270,16 +279,54 @@ export const Home: React.FC = () => {
                   <span>{timeWasted} days</span>
                 </div>
                 <div className="calc-group">
-                  <label>Potential regulatory fines:</label>
-                  <select
-                    value={finesRisk}
-                    onChange={(e) => setFinesRisk(parseInt(e.target.value))}
+                  <Select
+                    value={showCustomInput ? 'custom' : finesRisk.toString()}
+                    onValueChange={(value) => {
+                      if (value === 'custom') {
+                        setShowCustomInput(true);
+                      } else {
+                        setShowCustomInput(false);
+                        setFinesRisk(parseInt(value));
+                        setCustomAmount('');
+                      }
+                    }}
                   >
-                    <option value="50000">$50,000</option>
-                    <option value="250000">$250,000</option>
-                    <option value="1000000">$1,000,000+</option>
-                    <option value="5000000">$5,000,000 + reputational damage</option>
-                  </select>
+                    <SelectTrigger style={{ 
+                      background: '#fff', 
+                      color: '#000',
+                      border: '1px solid #ccc'
+                    }}>
+                      <SelectValue placeholder="Select amount" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="50000">$50,000</SelectItem>
+                      <SelectItem value="250000">$250,000</SelectItem>
+                      <SelectItem value="1000000">$1,000,000+</SelectItem>
+                      <SelectItem value="5000000">$5,000,000 + reputational damage</SelectItem>
+                      <SelectItem value="custom">Custom Amount</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {showCustomInput && (
+                    <input
+                      type="number"
+                      placeholder="Enter custom amount"
+                      value={customAmount}
+                      onChange={(e) => {
+                        setCustomAmount(e.target.value);
+                        setFinesRisk(parseInt(e.target.value) || 0);
+                      }}
+                      style={{
+                        marginTop: '8px',
+                        padding: '10px 12px',
+                        borderRadius: '4px',
+                        border: '1px solid #ccc',
+                        background: '#fff',
+                        color: '#000',
+                        fontSize: '1rem',
+                        width: '100%'
+                      }}
+                    />
+                  )}
                 </div>
               </div>
               <div className="calc-result">

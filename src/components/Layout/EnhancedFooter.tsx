@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { useSiteSettings } from '../../contexts/SiteSettingsContext';
+import { useSiteSettings } from '../../hooks/useSiteSettings';
 
 const EnhancedFooter: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);

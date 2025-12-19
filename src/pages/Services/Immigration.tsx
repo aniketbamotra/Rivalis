@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
-import { useSiteSettings } from '../../contexts/SiteSettingsContext';
+import { useSiteSettings } from '../../hooks/useSiteSettings';
 import '../../styles/service-page.css';
 import '../../styles/home.css';
 

@@ -5,7 +5,7 @@ import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
 import { PaymentModal } from '../../components/Common/PaymentModal';
 import { AccountCreationNudge } from '../../components/Common/AccountCreationNudge';
 import { useFormSubmissionWithPayment } from '../../hooks/useFormSubmissionWithPayment';
-import { useSiteSettings } from '../../contexts/SiteSettingsContext';
+import { useSiteSettings } from '../../hooks/useSiteSettings';
 import { submitForm } from '../../lib/supabase';
 import '../../styles/form-page.css';
 import '../../styles/home.css';

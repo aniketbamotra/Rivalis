@@ -1,23 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import type { SiteSettings } from '../types/database';
-
-interface SiteSettingsContextType {
-  settings: SiteSettings | null;
-  loading: boolean;
-  error: string | null;
-  refreshSettings: () => Promise<void>;
-}
-
-const SiteSettingsContext = createContext<SiteSettingsContextType | undefined>(undefined);
-
-export const useSiteSettings = () => {
-  const context = useContext(SiteSettingsContext);
-  if (context === undefined) {
-    throw new Error('useSiteSettings must be used within a SiteSettingsProvider');
-  }
-  return context;
-};
+import { SiteSettingsContext } from '../hooks/useSiteSettings';
 
 export const SiteSettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [settings, setSettings] = useState<SiteSettings | null>(null);

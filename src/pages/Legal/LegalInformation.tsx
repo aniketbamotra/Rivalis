@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MainLayout } from '../../components';
-import { useSiteSettings } from '../../contexts/SiteSettingsContext';
+import { useSiteSettings } from '../../hooks/useSiteSettings';
 
 export const LegalInformation: React.FC = () => {
   const { settings } = useSiteSettings();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSiteSettings } from '../../contexts/SiteSettingsContext';
+import { useSiteSettings } from '../../hooks/useSiteSettings';
 
 interface FooterProps {
   showLinks?: boolean;

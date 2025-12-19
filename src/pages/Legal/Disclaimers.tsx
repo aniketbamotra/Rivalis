@@ -1,6 +1,6 @@
 import React from 'react';
 import { MainLayout, Hero } from '../../components';
-import { useSiteSettings } from '../../contexts/SiteSettingsContext';
+import { useSiteSettings } from '../../hooks/useSiteSettings';
 
 export const Disclaimers: React.FC = () => {
   const { settings } = useSiteSettings();
