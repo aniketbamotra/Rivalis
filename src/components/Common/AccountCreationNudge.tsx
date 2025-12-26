@@ -84,7 +84,10 @@ export const AccountCreationNudge: React.FC<AccountCreationNudgeProps> = ({
             Payment Successful! 🎉
           </h2>
           <p style={{ fontSize: '1.1rem', color: 'var(--gray-600)' }}>
-          Your consultation ($499) has been confirmed.
+            Your consultation ($499) has been confirmed.
+          </p>
+        </div>
+
         {/* Create Account Section */}
         <div
           style={{
