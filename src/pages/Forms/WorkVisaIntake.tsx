@@ -493,10 +493,12 @@ export const WorkVisaIntake: React.FC = () => {
                     <strong>Emergency (24-hour RFE):</strong> $499
                   </p>
                   <p style={{ color: '#4a5568', marginBottom: '0.5rem' }}>
-                    <strong>Urgent (30-day timeline):</strong> $399
-                  </p>
-                  <p style={{ color: '#4a5568' }}>
+                  <strong>Urgent (30-day timeline):</strong> $499
+                </p>
+                <p style={{ color: '#4a5568' }}>
                   <strong>Standard Processing:</strong> $499
+                </p>
+              </div>
 
                 <button
                   type="submit"

@@ -867,7 +867,9 @@ export const Home: React.FC = () => {
           <div className="qualification-form">
             <h3>Client Intake - Get Started</h3>
             <p style={{ marginBottom: '1.5rem', color: '#666', fontSize: '0.95rem' }}>
-            <i className="fas fa-shield-alt"></i> Attorney-Client Privilege Protected | <i className="fas fa-dollar-sign"></i> $499 Consultation Fee
+              <i className="fas fa-shield-alt"></i> Attorney-Client Privilege Protected | <i className="fas fa-dollar-sign"></i> $499 Consultation Fee
+            </p>
+            <form onSubmit={handleFormSubmit}>
 
               <div className="form-group">
                 <label>Full Name *</label>
@@ -969,7 +971,9 @@ export const Home: React.FC = () => {
 
               <button type="submit" className="form-submit-btn" disabled={loading}>
                 <i className="fas fa-paper-plane"></i>
-              {loading ? 'Submitting...' : 'Submit & Pay $499'}
+                {loading ? 'Submitting...' : 'Submit & Pay $499'}
+              </button>
+
               <div className="form-note">
                 <i className="fas fa-lock"></i>
                 Confidential & Protected. After submission, you'll complete payment and schedule your consultation.
