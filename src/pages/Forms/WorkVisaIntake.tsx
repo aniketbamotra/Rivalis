@@ -91,9 +91,9 @@ export const WorkVisaIntake: React.FC = () => {
   const getUrgencyPrice = () => {
     switch (formData.urgencyLevel) {
       case 'emergency': return '$499';
-      case 'urgent': return '$399';
-      case 'standard': return '$299';
-      default: return '$299-$499';
+      case 'urgent': return '$499';
+      case 'standard': return '$499';
+      default: return '$499';
     }
   };
 
@@ -496,9 +496,7 @@ export const WorkVisaIntake: React.FC = () => {
                     <strong>Urgent (30-day timeline):</strong> $399
                   </p>
                   <p style={{ color: '#4a5568' }}>
-                    <strong>Standard Processing:</strong> $299
-                  </p>
-                </div>
+                  <strong>Standard Processing:</strong> $499
 
                 <button
                   type="submit"

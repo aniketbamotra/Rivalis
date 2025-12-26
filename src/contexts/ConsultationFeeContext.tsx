@@ -8,12 +8,12 @@ interface ConsultationFeeContextType {
 }
 
 export const ConsultationFeeContext = createContext<ConsultationFeeContextType>({
-  consultationFee: 299,
+  consultationFee: 499,
   loading: true,
 });
 
 export function ConsultationFeeProvider({ children }: { children: ReactNode }) {
-  const [consultationFee, setConsultationFee] = useState(299);
+  const [consultationFee, setConsultationFee] = useState(499);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export function ConsultationFeeProvider({ children }: { children: ReactNode }) {
         setConsultationFee(fee);
       } catch (error) {
         console.error('Error fetching consultation fee:', error);
-        // Keep default 299
+        // Keep default 499
       } finally {
         setLoading(false);
       }

@@ -17,19 +17,19 @@ export const handler = async () => {
       console.error('Error fetching consultation fee:', error);
       return {
         statusCode: 200,
-        body: JSON.stringify({ fee: 299 }), // Fallback
+        body: JSON.stringify({ fee: 499 }), // Fallback
       };
     }
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ fee: data?.price || 299 }),
+      body: JSON.stringify({ fee: data?.price || 499 }),
     };
   } catch (error) {
     console.error('Error:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to fetch consultation fee', fee: 299 }),
+      body: JSON.stringify({ error: 'Failed to fetch consultation fee', fee: 499 }),
     };
   }
 };

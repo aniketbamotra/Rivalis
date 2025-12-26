@@ -423,7 +423,7 @@ export function AdminDashboard() {
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>
-                      ${services.find(s => s.type === 'consultation')?.price || 299}
+                      ${services.find(s => s.type === 'consultation')?.price || 499}
                     </div>
                     <button 
                       style={{

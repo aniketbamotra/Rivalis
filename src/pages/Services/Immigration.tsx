@@ -92,8 +92,8 @@ export const Immigration: React.FC = () => {
                   Employment-based temporary visas with emergency RFE response. Get expert guidance on visa selection, application strategy, and compliance.
                 </p>
                 <div style={{ background: '#e74c3c', color: 'white', padding: '0.75rem', borderRadius: '8px', marginBottom: '1rem' }}>
-                  <div style={{ fontSize: '1.8rem', fontWeight: 700 }}>$299-$499</div>
-                  <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>Based on urgency</div>
+                  <div style={{ fontSize: '1.8rem', fontWeight: 700 }}>$499</div>
+                  <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>Standard consultation fee</div>
                 </div>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.9rem', color: 'var(--gray-700)' }}>
                   <li style={{ marginBottom: '0.5rem' }}>✓ All employment visa types</li>

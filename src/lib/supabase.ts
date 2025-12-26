@@ -57,15 +57,15 @@ export const getConsultationFee = async (): Promise<number> => {
     .maybeSingle();
   
   if (error) {
-    console.warn('Error fetching consultation fee, using default 299:', error);
-    return 299; // Fallback
+    console.warn('Error fetching consultation fee, using default 499:', error);
+    return 499; // Fallback
   }
   
   const result = data as { price: number | null } | null;
   
   if (!result || result.price === null) {
-    console.warn('Consultation fee not found, using default 299');
-    return 299; // Fallback
+    console.warn('Consultation fee not found, using default 499');
+    return 499; // Fallback
   }
   
   return result.price;

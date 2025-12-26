@@ -75,7 +75,7 @@ You'll need to provide us with these 3 items:
 To get your Webhook Secret:
 1. In Stripe Dashboard, go to "Developers" → "Webhooks"
 2. Click "+ Add endpoint"
-3. For "Endpoint URL", enter: [WE'LL PROVIDE THIS AFTER DEPLOYMENT]
+3. For "Endpoint URL", enter: https://rivalislaw.com/.netlify/functions/stripe-webhook
 4. Click "Select events" and choose these events:
    - checkout.session.completed
    - payment_intent.succeeded
