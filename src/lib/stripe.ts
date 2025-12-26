@@ -30,7 +30,7 @@ export const createCheckoutSession = async (email: string, amount: number) => {
       },
       body: JSON.stringify({
         email,
-        amount,
+        amount: Math.round(amount * 100), // Convert dollars to cents for Stripe
         successUrl: `${window.location.origin}/payment-success`,
         cancelUrl: window.location.href,
       }),
