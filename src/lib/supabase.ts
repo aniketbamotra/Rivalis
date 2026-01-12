@@ -1,8 +1,16 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from '../types/database';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Support both Vite and Next.js environment variables during migration
+const supabaseUrl = 
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 
+  (typeof window !== 'undefined' && (window as any).ENV?.VITE_SUPABASE_URL) ||
+  '';
+  
+const supabaseAnonKey = 
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 
+  (typeof window !== 'undefined' && (window as any).ENV?.VITE_SUPABASE_ANON_KEY) ||
+  '';
 
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables');
