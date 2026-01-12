@@ -23,7 +23,7 @@ export const getStripe = () => {
  */
 export const createCheckoutSession = async (email: string, amount: number) => {
   try {
-    const response = await fetch('/.netlify/functions/create-checkout-session', {
+    const response = await fetch('/api/checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

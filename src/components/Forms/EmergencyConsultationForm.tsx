@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 
-const STRIPE_CHECKOUT_URL = '/.netlify/functions/create-checkout-session';
+const STRIPE_CHECKOUT_URL = '/api/checkout';
 
 type UrgencyLevel = 'critical' | 'urgent' | 'high';
 type ContactMode = 'call' | 'email' | 'video';

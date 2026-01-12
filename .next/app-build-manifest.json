@@ -71,6 +71,11 @@
       "static/css/app/admin/dashboard/page.css",
       "static/chunks/app/admin/dashboard/page.js"
     ],
+    "/legal-information/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/legal-information/page.js"
+    ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

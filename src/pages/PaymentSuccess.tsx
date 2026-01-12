@@ -25,7 +25,7 @@ export const PaymentSuccess: React.FC = () => {
           
           if (sessionId) {
             // Send emergency email and store in database
-            const emailResponse = await fetch('/.netlify/functions/send-emergency-email', {
+            const emailResponse = await fetch('/api/emergency-email', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
