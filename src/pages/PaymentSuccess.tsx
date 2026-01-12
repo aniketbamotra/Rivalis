@@ -228,7 +228,7 @@ export const PaymentSuccess: React.FC = () => {
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
           }}>
             <iframe
-              src={`${import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/aniketbamotra/legal'}?embed_domain=${window.location.hostname}&embed_type=Inline&hide_gdpr_banner=1&primary_color=0088cc`}
+              src={`${process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/aniketbamotra/legal'}?embed_domain=${window.location.hostname}&embed_type=Inline&hide_gdpr_banner=1&primary_color=0088cc`}
               width="100%"
               height="700"
               frameBorder="0"
