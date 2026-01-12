@@ -13,7 +13,6 @@ export function LoginPage() {
   
   const { signIn, user, loading: authLoading, isAdmin } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
   
   // Get the intended destination - will come from session storage in Next.js
   const from = typeof window !== 'undefined' ? sessionStorage.getItem('redirectAfterLogin') : null;

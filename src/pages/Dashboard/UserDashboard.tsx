@@ -28,8 +28,8 @@ export function UserDashboard() {
 
   // Check for tab query param on mount
   useEffect(() => {
-    const tabParam = searchParams.get('tab');
-    const successParam = searchParams.get('success');
+    const tabParam = searchParams?.get('tab');
+    const successParam = searchParams?.get('success');
     
     if (tabParam === 'emergency') {
       setActiveTab('emergency');

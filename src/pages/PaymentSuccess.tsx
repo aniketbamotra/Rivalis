@@ -13,7 +13,7 @@ export const PaymentSuccess: React.FC = () => {
 
   useEffect(() => {
     const processPayment = async () => {
-      const sessionId = searchParams.get('session_id');
+      const sessionId = searchParams?.get('session_id');
       
       // Check if this is an emergency consultation payment
       const emergencyData = localStorage.getItem('emergencyConsultationData');

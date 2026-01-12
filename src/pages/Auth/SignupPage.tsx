@@ -15,7 +15,7 @@ export function SignupPage() {
   const [success, setSuccess] = useState(false);
   
   const { signUp } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ export function SignupPage() {
       } else {
         setSuccess(true);
         // Auto redirect after 3 seconds
-        setTimeout(() => navigate('/login'), 3000);
+        setTimeout(() => router.push('/login'), 3000);
       }
     } catch {
       setError('An unexpected error occurred');
