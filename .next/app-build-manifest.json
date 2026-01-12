@@ -17,6 +17,59 @@
       "static/chunks/main-app.js",
       "static/css/app/services/governance/page.css",
       "static/chunks/app/services/governance/page.js"
+    ],
+    "/services/immigration/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/immigration/page.css",
+      "static/chunks/app/services/immigration/page.js"
+    ],
+    "/services/immigration/work-visas/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/immigration/work-visas/page.css",
+      "static/chunks/app/services/immigration/work-visas/page.js"
+    ],
+    "/services/immigration/eb5/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/immigration/eb5/page.css",
+      "static/chunks/app/services/immigration/eb5/page.js"
+    ],
+    "/services/ma/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/ma/page.css",
+      "static/chunks/app/services/ma/page.js"
+    ],
+    "/services/ip-strategy/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/ip-strategy/page.css",
+      "static/chunks/app/services/ip-strategy/page.js"
+    ],
+    "/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/login/page.css",
+      "static/chunks/app/login/page.js"
+    ],
+    "/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/page.css",
+      "static/chunks/app/dashboard/page.js"
+    ],
+    "/admin/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/page.js"
+    ],
+    "/admin/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/admin/dashboard/page.css",
+      "static/chunks/app/admin/dashboard/page.js"
     ]
   }
 }

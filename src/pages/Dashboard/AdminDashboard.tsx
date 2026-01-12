@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '../../hooks/useAuth';
 import { MainLayout } from '../../components/Layout';
 import { 
@@ -39,7 +39,7 @@ interface EmergencyRequest {
 
 export function AdminDashboard() {
   const { isAdmin, loading: authLoading } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
   
   const [services, setServices] = useState<Service[]>([]);
   const [users, setUsers] = useState<Profile[]>([]);
@@ -68,9 +68,9 @@ export function AdminDashboard() {
 
   useEffect(() => {
     if (!authLoading && !isAdmin) {
-      navigate('/dashboard');
+      router.push('/dashboard');
     }
-  }, [authLoading, isAdmin, navigate]);
+  }, [authLoading, isAdmin, router]);
 
   useEffect(() => {
     const fetchData = async () => {
