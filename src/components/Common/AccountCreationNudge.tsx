@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 interface AccountCreationNudgeProps {
   isOpen: boolean;
@@ -14,18 +16,18 @@ export const AccountCreationNudge: React.FC<AccountCreationNudgeProps> = ({
   paymentId,
   onSkip,
 }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   if (!isOpen) return null;
 
   const handleCreateAccount = () => {
-    navigate('/signup', {
-      state: {
-        email,
-        paymentId,
-        fromConsultation: true,
-      },
-    });
+    // Store data in session storage for the signup page to read
+    sessionStorage.setItem('signupData', JSON.stringify({
+      email,
+      paymentId,
+      fromConsultation: true,
+    }));
+    router.push('/signup');
   };
 
   return (

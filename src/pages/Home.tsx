@@ -6,7 +6,7 @@ import { AccountCreationNudge } from '../components/Common/AccountCreationNudge'
 import { useFormSubmissionWithPayment } from '../hooks/useFormSubmissionWithPayment';
 import { useSiteSettings } from '../hooks/useSiteSettings';
 import { submitForm } from '../lib/supabase';
-import { useServices } from '../contexts/ServicesContext';
+import { useServices } from '../providers/ServicesProvider';
 import {
   Select,
   SelectContent,
