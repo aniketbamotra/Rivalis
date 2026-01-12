@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '../../hooks/useAuth';
 import { MainLayout } from '../../components/Layout';
-import '../../styles/auth.css';
+import './auth.css';
 
 export function SignupPage() {
   const [fullName, setFullName] = useState('');

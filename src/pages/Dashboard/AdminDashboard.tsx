@@ -16,7 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../../components/ui/dialog';
-import '../../styles/dashboard.css';
+import './dashboard.css';
 
 interface EmergencyRequest {
   id: string;
