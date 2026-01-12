@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
 import { PaymentModal } from '../../components/Common/PaymentModal';
@@ -104,7 +104,7 @@ export const WorkVisaIntake: React.FC = () => {
       <section className="form-hero" style={{ background: 'linear-gradient(165deg, #1a1a2e 0%, #2d3748 100%)' }}>
         <div className="form-hero-container">
           <div className="form-breadcrumb">
-            <Link to="/">Home</Link> / <Link to="/services/immigration/work-visas">Work Visas</Link> / <span>Intake Form</span>
+            <Link href="/">Home</Link> / <Link href="/services/immigration/work-visas">Work Visas</Link> / <span>Intake Form</span>
           </div>
 
           <div className="form-hero-badge" style={{ background: 'rgba(231, 76, 60, 0.2)', borderColor: '#e74c3c', color: 'white' }}>

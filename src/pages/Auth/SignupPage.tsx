@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '../../hooks/useAuth';
 import { MainLayout } from '../../components/Layout';
 import './auth.css';
@@ -59,7 +60,7 @@ export function SignupPage() {
               </svg>
               <h2>Check your email!</h2>
               <p>We've sent you a confirmation link. Please check your email to verify your account.</p>
-              <Link to="/login" className="auth-button">
+              <Link href="/login" className="auth-button">
                 Go to Login
               </Link>
             </div>
@@ -144,7 +145,7 @@ export function SignupPage() {
           <div className="auth-footer">
             <p>
               Already have an account?{' '}
-              <Link to="/login">Sign in</Link>
+              <Link href="/login">Sign in</Link>
             </p>
           </div>
         </div>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { updateFormSubmissionsAfterPayment } from '../lib/supabase';
 import { setAccountCreationPending, getConsultationEmail } from '../utils/consultationFlow';
 
 export const PaymentSuccess: React.FC = () => {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showAccountPrompt, setShowAccountPrompt] = useState(false);
@@ -51,7 +52,7 @@ export const PaymentSuccess: React.FC = () => {
             
             // Redirect to dashboard
             setTimeout(() => {
-              navigate('/dashboard?tab=emergency&success=true');
+              router.push('/dashboard?tab=emergency&success=true');
             }, 2000);
           }
         } catch (err) {
@@ -135,7 +136,7 @@ export const PaymentSuccess: React.FC = () => {
         <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: '#dc2626' }}>Error</h2>
         <p style={{ color: '#666', marginBottom: '2rem', maxWidth: '500px' }}>{error}</p>
         <Link
-          to="/"
+          href="/"
           style={{
             display: 'inline-block',
             padding: '0.75rem 2rem',
@@ -262,12 +263,14 @@ export const PaymentSuccess: React.FC = () => {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <button
-              onClick={() => navigate('/signup', {
-                state: {
-                  email: getConsultationEmail(),
-                  fromConsultation: true,
+              onClick={() => {
+                const email = getConsultationEmail();
+                if (email) {
+                  sessionStorage.setItem('signupEmail', email);
+                  sessionStorage.setItem('fromConsultation', 'true');
                 }
-              })}
+                router.push('/signup');
+              }}
               style={{
                 width: '100%',
                 padding: '1rem 2rem',
@@ -290,7 +293,7 @@ export const PaymentSuccess: React.FC = () => {
               Create Account
             </button>
             <button
-              onClick={() => navigate('/')}
+              onClick={() => router.push('/')}
               style={{
                 width: '100%',
                 padding: '1rem 2rem',

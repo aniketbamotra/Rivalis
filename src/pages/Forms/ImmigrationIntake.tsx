@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
 import { PaymentModal } from '../../components/Common/PaymentModal';
@@ -192,7 +192,7 @@ export const ImmigrationIntake: React.FC = () => {
       <section className="form-hero">
         <div className="form-hero-container">
           <div className="form-breadcrumb">
-            <Link to="/">Home</Link> / <Link to="/services/immigration">Immigration</Link> / <span>Intake Form</span>
+            <Link href="/">Home</Link> / <Link href="/services/immigration">Immigration</Link> / <span>Intake Form</span>
           </div>
 
           <div className="form-hero-badge" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderColor: '#667eea', color: 'white' }}>
@@ -1437,7 +1437,7 @@ export const ImmigrationIntake: React.FC = () => {
         <h2>Strategic Legal Solutions for Forward-Thinking Businesses</h2>
         <p>Explore our comprehensive immigration services and let us handle your case with expertise.</p>
         <div className="form-cta-buttons">
-          <Link to="/services/immigration" className="form-cta-btn primary">
+          <Link href="/services/immigration" className="form-cta-btn primary">
             <i className="fas fa-passport"></i>
             Immigration Services
           </Link>
@@ -1451,7 +1451,7 @@ export const ImmigrationIntake: React.FC = () => {
       {/* Footer */}
       <footer className="form-footer">
         <p>&copy; 2024 Rivalis Law. Licensed in New York & Michigan.</p>
-        <p><Link to="/">Return to Main Site</Link></p>
+        <p><Link href="/">Return to Main Site</Link></p>
       </footer>
 
       {/* Payment Modal */}

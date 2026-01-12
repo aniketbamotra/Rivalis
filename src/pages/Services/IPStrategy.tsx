@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
@@ -17,7 +17,7 @@ export const IPStrategy: React.FC = () => {
       <section className="service-hero centered">
         <div className="service-hero-container">
           <div className="service-breadcrumb">
-            <Link to="/">Home</Link> / <Link to="/#select-services">Select Services</Link> / <span>IP Strategy</span>
+            <Link href="/">Home</Link> / <Link href="/#select-services">Select Services</Link> / <span>IP Strategy</span>
           </div>
 
           <h1>Your Brand Name Is Already<br /><span className="highlight" style={{ color: 'var(--accent)' }}>Trademarked by Someone Else</span></h1>
@@ -30,7 +30,7 @@ export const IPStrategy: React.FC = () => {
           <p className="service-hero-price-note">Trademark filings, trade secret protection, IP portfolio development</p>
 
           <div className="service-cta-group">
-            <Link to="/forms/ip-strategy" className="service-btn service-btn-primary">
+            <Link href="/forms/ip-strategy" className="service-btn service-btn-primary">
               <i className="fas fa-copyright"></i>
               Get Started - IP Strategy Intake
             </Link>
@@ -153,7 +153,7 @@ export const IPStrategy: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <Link to="/forms/ip-strategy" className="service-btn service-btn-primary">
+            <Link href="/forms/ip-strategy" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
               Start IP Strategy Intake
             </Link>

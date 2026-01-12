@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
 import { submitForm } from '../../lib/supabase';
@@ -66,7 +66,7 @@ export const QualificationForm: React.FC = () => {
       <section className="form-hero">
         <div className="form-hero-container">
           <div className="form-breadcrumb">
-            <Link to="/">Home</Link> / <span>Client Qualification</span>
+            <Link href="/">Home</Link> / <span>Client Qualification</span>
           </div>
 
           <div className="form-hero-badge">
@@ -399,7 +399,7 @@ export const QualificationForm: React.FC = () => {
         <h2>Explore Our Services</h2>
         <p>Learn more about the legal services we provide to businesses at every stage.</p>
         <div className="form-cta-buttons">
-          <Link to="/#services" className="form-cta-btn primary">
+          <Link href="/#services" className="form-cta-btn primary">
             <i className="fas fa-briefcase"></i>
             View All Services
           </Link>
@@ -413,7 +413,7 @@ export const QualificationForm: React.FC = () => {
       {/* Footer */}
       <footer className="form-footer">
         <p>&copy; 2024 Rivalis Law. Licensed in New York & Michigan.</p>
-        <p><Link to="/">Return to Main Site</Link></p>
+        <p><Link href="/">Return to Main Site</Link></p>
       </footer>
     </>
   );

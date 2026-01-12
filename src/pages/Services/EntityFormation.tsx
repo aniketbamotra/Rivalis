@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
@@ -17,7 +17,7 @@ export const EntityFormation: React.FC = () => {
       <section className="service-hero centered">
         <div className="service-hero-container">
           <div className="service-breadcrumb">
-            <Link to="/">Home</Link> / <Link to="/#select-services">Select Services</Link> / <span>Entity Formation</span>
+            <Link href="/">Home</Link> / <Link href="/#select-services">Select Services</Link> / <span>Entity Formation</span>
           </div>
 
           <h1>Your Entity Structure Will<br /><span className="highlight" style={{ color: 'var(--accent)' }}>Cost You Millions</span> Later</h1>
@@ -30,7 +30,7 @@ export const EntityFormation: React.FC = () => {
           <p className="service-hero-price-note">Complete entity formation with proper structure</p>
 
           <div className="service-cta-group">
-            <Link to="/forms/entity-formation" className="service-btn service-btn-primary">
+            <Link href="/forms/entity-formation" className="service-btn service-btn-primary">
               <i className="fas fa-building"></i>
               Get Started - Entity Formation
             </Link>
@@ -136,7 +136,7 @@ export const EntityFormation: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <Link to="/forms/entity-formation" className="service-btn service-btn-primary">
+            <Link href="/forms/entity-formation" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
               Start Entity Formation Intake
             </Link>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../../components/Layout';
 import { useSiteSettings } from '../../../hooks/useSiteSettings';
@@ -198,9 +198,9 @@ export const WorkVisas: React.FC = () => {
       <section className="work-visa-hero">
         <div className="service-hero-container" style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div className="work-visa-breadcrumb">
-            <Link to="/">Home</Link>
+            <Link href="/">Home</Link>
             <span>/</span>
-            <Link to="/services/immigration">Immigration</Link>
+            <Link href="/services/immigration">Immigration</Link>
             <span>/</span>
             <span>Work Visas</span>
           </div>
@@ -359,7 +359,7 @@ export const WorkVisas: React.FC = () => {
                 <span><i className="fas fa-check-circle"></i> Success Rate: 92% approval</span>
                 <span><i className="fas fa-phone-alt"></i> Availability: 24/7 intake</span>
               </div>
-              <Link to="/forms/work-visa-intake" className="service-link">
+              <Link href="/forms/work-visa-intake" className="service-link">
                 Emergency RFE Response <i className="fas fa-arrow-right"></i>
               </Link>
             </div>
@@ -476,7 +476,7 @@ export const WorkVisas: React.FC = () => {
             </div>
 
             <div style={{ textAlign: 'center' }}>
-              <Link to="/forms/work-visa-intake" style={{ display: 'inline-flex', alignItems: 'center', gap: '1rem', background: 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)', color: 'white', padding: '1.75rem 4rem', borderRadius: '16px', textDecoration: 'none', fontWeight: 900, fontSize: '1.3rem', boxShadow: '0 12px 40px rgba(231, 76, 60, 0.3)', transition: 'all 0.3s', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <Link href="/forms/work-visa-intake" style={{ display: 'inline-flex', alignItems: 'center', gap: '1rem', background: 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)', color: 'white', padding: '1.75rem 4rem', borderRadius: '16px', textDecoration: 'none', fontWeight: 900, fontSize: '1.3rem', boxShadow: '0 12px 40px rgba(231, 76, 60, 0.3)', transition: 'all 0.3s', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <i className="fas fa-calendar-check" style={{ fontSize: '1.5rem' }}></i>
                 Claim Your $499 Assessment Slot
               </Link>
@@ -553,7 +553,7 @@ export const WorkVisas: React.FC = () => {
               </div>
 
               <Link 
-                to="/services/immigration"
+                href="/services/immigration"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -629,7 +629,7 @@ export const WorkVisas: React.FC = () => {
             </div>
 
             <Link 
-              to="/forms/work-visa-intake"
+              href="/forms/work-visa-intake"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -735,7 +735,7 @@ export const WorkVisas: React.FC = () => {
           </p>
           <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link
-              to="/forms/work-visa-intake"
+              href="/forms/work-visa-intake"
               style={{
                 padding: '1.25rem 2.5rem',
                 borderRadius: '12px',

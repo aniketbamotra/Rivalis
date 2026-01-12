@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../../components/Layout';
 import { useSiteSettings } from '../../../hooks/useSiteSettings';
@@ -16,9 +16,9 @@ export const EB2NIW: React.FC = () => {
       <section className="service-hero" style={{ background: 'linear-gradient(165deg, #1a1a2e 0%, #2d3748 100())' }}>
         <div className="service-hero-container">
           <div className="breadcrumb">
-            <Link to="/">Home</Link>
+            <Link href="/">Home</Link>
             <span>/</span>
-            <Link to="/services/immigration">Immigration</Link>
+            <Link href="/services/immigration">Immigration</Link>
             <span>/</span>
             <span>EB-2 NIW</span>
           </div>
@@ -218,7 +218,7 @@ export const EB2NIW: React.FC = () => {
 
             <div style={{ textAlign: 'center' }}>
               <Link 
-                to="/forms/eb2-niw-intake"
+                href="/forms/eb2-niw-intake"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -250,7 +250,7 @@ export const EB2NIW: React.FC = () => {
           </p>
           <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link
-              to="/forms/eb2-niw-intake"
+              href="/forms/eb2-niw-intake"
               style={{
                 padding: '1.25rem 2.5rem',
                 borderRadius: '12px',

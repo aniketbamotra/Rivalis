@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../../components/Layout';
 import '../../../styles/service-page.css';
@@ -169,9 +169,9 @@ export default function EB5Investor() {
       <section className="eb5-hero">
         <div className="service-hero-container" style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div className="eb5-breadcrumb">
-            <Link to="/">Home</Link>
+            <Link href="/">Home</Link>
             <span>/</span>
-            <Link to="/services/immigration">Immigration</Link>
+            <Link href="/services/immigration">Immigration</Link>
             <span>/</span>
             <span>EB-5 Investor</span>
           </div>
@@ -284,7 +284,7 @@ export default function EB5Investor() {
               </p>
 
               <Link 
-                to="/forms/eb5-intake" 
+                href="/forms/eb5-intake" 
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -343,7 +343,7 @@ export default function EB5Investor() {
               </p>
 
               <Link 
-                to="/forms/eb5-intake" 
+                href="/forms/eb5-intake" 
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -432,7 +432,7 @@ export default function EB5Investor() {
           </p>
           <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link
-              to="/forms/eb5-intake"
+              href="/forms/eb5-intake"
               style={{
                 padding: '1.25rem 2.5rem',
                 borderRadius: '12px',

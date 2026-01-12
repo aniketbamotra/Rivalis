@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
@@ -18,7 +18,7 @@ export const Immigration: React.FC = () => {
       <section className="service-hero">
         <div className="service-hero-container">
           <div className="service-breadcrumb">
-            <Link to="/">Home</Link> / <span>Global Immigration</span>
+            <Link href="/">Home</Link> / <span>Global Immigration</span>
           </div>
 
           <div className="service-hero-badge danger">
@@ -83,7 +83,7 @@ export const Immigration: React.FC = () => {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {/* Work Visas Card */}
-            <Link to="/services/immigration/work-visas" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link href="/services/immigration/work-visas" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-card" style={{ background: 'linear-gradient(135deg, #fff5f5 0%, #ffffff 100%)', border: '2px solid #ffe5e5', transition: 'all 0.3s ease', cursor: 'pointer' }}>
                 <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>💼</div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#e74c3c', marginBottom: '0.5rem' }}>Work Visas</h3>
@@ -107,7 +107,7 @@ export const Immigration: React.FC = () => {
             </Link>
 
             {/* EB-1 & EB-2 Green Cards */}
-            <Link to="/services/immigration/eb1-extraordinary-ability" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link href="/services/immigration/eb1-extraordinary-ability" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-card" style={{ background: 'linear-gradient(135deg, #fffbf0 0%, #ffffff 100%)', border: '2px solid #ffeaa7', transition: 'all 0.3s ease', cursor: 'pointer' }}>
                 <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🏆</div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#d4af37', marginBottom: '0.5rem' }}>EB-1 & EB-2 Green Cards</h3>
@@ -132,7 +132,7 @@ export const Immigration: React.FC = () => {
             </Link>
 
             {/* EB-5 Card */}
-            <Link to="/services/immigration/eb5" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link href="/services/immigration/eb5" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-card" style={{ background: 'linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%)', border: '2px solid #bee3f8', transition: 'all 0.3s ease', cursor: 'pointer' }}>
                 <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>💰</div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#2c5282', marginBottom: '0.5rem' }}>EB-5 Investor Visa</h3>
@@ -456,7 +456,7 @@ export const Immigration: React.FC = () => {
               <i className="fas fa-phone-alt"></i>
               EMERGENCY: {settings?.phone_display || '+1 (313) 771-2283'}
             </a>
-            <Link to="/forms/immigration" className="service-btn service-btn-secondary">
+            <Link href="/forms/immigration" className="service-btn service-btn-secondary">
               <i className="fas fa-clipboard-list"></i>
               Start Immigration Intake
             </Link>

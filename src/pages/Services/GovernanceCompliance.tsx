@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
 import '../../styles/service-page.css';
@@ -15,7 +15,7 @@ export const GovernanceCompliance: React.FC = () => {
       <section className="service-hero centered">
         <div className="service-hero-container">
           <div className="service-breadcrumb">
-            <Link to="/">Home</Link> / <Link to="/#select-services">Select Services</Link> / <span>AI Governance</span>
+            <Link href="/">Home</Link> / <Link href="/#select-services">Select Services</Link> / <span>AI Governance</span>
           </div>
 
           <h1>Your AI System Is Live.<br /><span className="highlight" style={{ color: 'var(--accent)' }}>You Have No Governance Framework</span>.</h1>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '../../hooks/useAuth';
 import { MainLayout } from '../../components/Layout';
 import { getUserPurchases, supabase } from '../../lib/supabase';
@@ -216,7 +217,7 @@ export function UserDashboard() {
                   </svg>
                   <h3>No services yet</h3>
                   <p>Browse our services and get started with your legal needs.</p>
-                  <Link to="/#services" className="cta-button">Browse Services</Link>
+                  <Link href="/#services" className="cta-button">Browse Services</Link>
                 </div>
               ) : (
                 <div className="purchases-list">

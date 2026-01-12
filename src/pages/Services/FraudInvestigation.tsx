@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
@@ -510,7 +510,7 @@ export const FraudInvestigation: React.FC = () => {
               
               <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
                 <p style={{ marginBottom: '1rem', color: 'var(--gray-600)' }}>Prefer a structured intake form?</p>
-                <Link to="/forms/fraud-investigation" className="fraud-form-submit-btn" style={{ display: 'inline-block', textDecoration: 'none' }}>
+                <Link href="/forms/fraud-investigation" className="fraud-form-submit-btn" style={{ display: 'inline-block', textDecoration: 'none' }}>
                   <i className="fas fa-clipboard-list"></i>
                   Fill Out Fraud Investigation Intake
                 </Link>

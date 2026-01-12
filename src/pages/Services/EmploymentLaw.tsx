@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
@@ -17,7 +17,7 @@ export const EmploymentLaw: React.FC = () => {
       <section className="service-hero centered">
         <div className="service-hero-container">
           <div className="service-breadcrumb">
-            <Link to="/">Home</Link> / <Link to="/#select-services">Select Services</Link> / <span>Employment Law</span>
+            <Link href="/">Home</Link> / <Link href="/#select-services">Select Services</Link> / <span>Employment Law</span>
           </div>
 
           <h1>Your Employee Just Filed<br />a <span className="highlight">$500K Lawsuit</span></h1>
@@ -30,7 +30,7 @@ export const EmploymentLaw: React.FC = () => {
           <p className="service-hero-price-note">Employment policies, handbooks, and HR compliance</p>
 
           <div className="service-cta-group">
-            <Link to="/forms/employment-law" className="service-btn service-btn-primary">
+            <Link href="/forms/employment-law" className="service-btn service-btn-primary">
               <i className="fas fa-users"></i>
               Get Started - Employment Intake
             </Link>
@@ -151,7 +151,7 @@ export const EmploymentLaw: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <Link to="/forms/employment-law" className="service-btn service-btn-primary">
+            <Link href="/forms/employment-law" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
               Start Employment Law Intake
             </Link>

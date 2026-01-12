@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../../components/Layout';
 import { useSiteSettings } from '../../../hooks/useSiteSettings';
@@ -288,7 +288,7 @@ export default function EB1ExtraordinaryAbility() {
       <section className="greencard-hero">
         <div className="service-hero-container" style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div className="greencard-breadcrumb">
-            <Link to="/">Home</Link>
+            <Link href="/">Home</Link>
             <span>/</span>
             <span>EB-1 & EB-2 Green Cards</span>
           </div>
@@ -365,7 +365,7 @@ export default function EB1ExtraordinaryAbility() {
                 </div>
               </div>
 
-              <Link to="/forms/eb1-intake" className="path-cta">
+              <Link href="/forms/eb1-intake" className="path-cta">
                 <i className="fas fa-calendar-check"></i>
                 Book $799 EB-1 Assessment
               </Link>
@@ -400,7 +400,7 @@ export default function EB1ExtraordinaryAbility() {
                 </div>
               </div>
 
-              <Link to="/forms/eb2-niw-intake" className="path-cta">
+              <Link href="/forms/eb2-niw-intake" className="path-cta">
                 <i className="fas fa-calendar-check"></i>
                 Book $699 NIW Assessment
               </Link>
@@ -519,7 +519,7 @@ export default function EB1ExtraordinaryAbility() {
 
             <div style={{ textAlign: 'center' }}>
               <Link 
-                to="/forms/eb1-intake"
+                href="/forms/eb1-intake"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -663,7 +663,7 @@ export default function EB1ExtraordinaryAbility() {
               Call: {settings?.phone_display || '+1 (313) 771-2283'}
             </a>
             <Link
-              to="/forms/eb1-intake"
+              href="/forms/eb1-intake"
               style={{
                 padding: '1.25rem 2.5rem',
                 borderRadius: '12px',

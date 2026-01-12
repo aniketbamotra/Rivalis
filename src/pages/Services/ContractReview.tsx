@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
@@ -17,7 +17,7 @@ export const ContractReview: React.FC = () => {
       <section className="service-hero centered">
         <div className="service-hero-container">
           <div className="service-breadcrumb">
-            <Link to="/">Home</Link> / <Link to="/#select-services">Select Services</Link> / <span>Contract Review</span>
+            <Link href="/">Home</Link> / <Link href="/#select-services">Select Services</Link> / <span>Contract Review</span>
           </div>
 
           <h1>Don't Sign That Contract<br />Until an <span className="highlight">Attorney Reviews It</span></h1>
@@ -30,7 +30,7 @@ export const ContractReview: React.FC = () => {
           <p className="service-hero-price-note">Expert contract review and drafting services</p>
 
           <div className="service-cta-group">
-            <Link to="/forms/contracts" className="service-btn service-btn-primary">
+            <Link href="/forms/contracts" className="service-btn service-btn-primary">
               <i className="fas fa-file-contract"></i>
               Get Started - Intake Form
             </Link>
@@ -197,7 +197,7 @@ export const ContractReview: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <Link to="/forms/contracts" className="service-btn service-btn-primary">
+            <Link href="/forms/contracts" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
               Start Contract Review Intake
             </Link>

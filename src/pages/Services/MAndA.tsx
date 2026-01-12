@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
@@ -17,7 +17,7 @@ export const MAndA: React.FC = () => {
       <section className="service-hero">
         <div className="service-hero-container">
           <div className="service-breadcrumb">
-            <Link to="/">Home</Link> / <span>M&A & Transactions</span>
+            <Link href="/">Home</Link> / <span>M&A & Transactions</span>
           </div>
 
           <div className="service-hero-badge">
@@ -47,7 +47,7 @@ export const MAndA: React.FC = () => {
           </div>
 
           <div className="service-cta-group">
-            <Link to="/forms/ma" className="service-btn service-btn-primary">
+            <Link href="/forms/ma" className="service-btn service-btn-primary">
               <i className="fas fa-handshake"></i>
               Get Started - M&A Intake
             </Link>
@@ -439,7 +439,7 @@ export const MAndA: React.FC = () => {
           </div>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <Link to="/forms/ma" className="service-btn service-btn-primary" style={{ background: 'var(--primary)', color: 'var(--accent)' }}>
+            <Link href="/forms/ma" className="service-btn service-btn-primary" style={{ background: 'var(--primary)', color: 'var(--accent)' }}>
               <i className="fas fa-clipboard-list"></i>
               Start M&A Transaction Intake
             </Link>

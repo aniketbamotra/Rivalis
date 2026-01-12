@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '../../hooks/useAuth';
 import { MainLayout } from '../../components/Layout';
 import './auth.css';
@@ -11,11 +12,11 @@ export function LoginPage() {
   const [submitting, setSubmitting] = useState(false);
   
   const { signIn, user, loading: authLoading, isAdmin } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
   
-  // Get the intended destination
-  const from = (location.state as { from?: { pathname: string } })?.from?.pathname;
+  // Get the intended destination - will come from session storage in Next.js
+  const from = typeof window !== 'undefined' ? sessionStorage.getItem('redirectAfterLogin') : null;
 
   // Redirect if logged in and auth is not loading
   useEffect(() => {
@@ -27,9 +28,12 @@ export function LoginPage() {
       } else if (isAdmin) {
         destination = '/admin';
       }
-      navigate(destination, { replace: true });
+      router.push(destination);
+      if (typeof window !== 'undefined') {
+        sessionStorage.removeItem('redirectAfterLogin');
+      }
     }
-  }, [user, authLoading, isAdmin, navigate, from]);
+  }, [user, authLoading, isAdmin, router, from]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,7 +112,7 @@ export function LoginPage() {
             </div>
 
             <div className="form-actions">
-              <Link to="/forgot-password" className="forgot-password">
+              <Link href="/forgot-password" className="forgot-password">
                 Forgot password?
               </Link>
             </div>
@@ -121,7 +125,7 @@ export function LoginPage() {
           <div className="auth-footer">
             <p>
               Don't have an account?{' '}
-              <Link to="/signup">Sign up</Link>
+              <Link href="/signup">Sign up</Link>
             </p>
           </div>
         </div>

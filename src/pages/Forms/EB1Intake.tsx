@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
 import { PaymentModal } from '../../components/Common/PaymentModal';
@@ -133,7 +133,7 @@ export const EB1Intake: React.FC = () => {
       <section className="form-hero" style={{ background: 'linear-gradient(165deg, #1a1a2e 0%, #2d3748 100%)' }}>
         <div className="form-hero-container">
           <div className="form-breadcrumb">
-            <Link to="/">Home</Link> / <Link to="/services/immigration/eb1-extraordinary-ability">EB-1</Link> / <span>Intake Form</span>
+            <Link href="/">Home</Link> / <Link href="/services/immigration/eb1-extraordinary-ability">EB-1</Link> / <span>Intake Form</span>
           </div>
 
           <div className="form-hero-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', borderColor: '#d4af37', color: 'white' }}>

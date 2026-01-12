@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
 import { useServices } from '../../contexts/ServicesContext';
@@ -20,7 +20,7 @@ export const DataPrivacy: React.FC = () => {
       <section className="service-hero centered">
         <div className="service-hero-container">
           <div className="service-breadcrumb">
-            <Link to="/">Home</Link> / <Link to="/#select-services">Select Services</Link> / <span>Data Privacy</span>
+            <Link href="/">Home</Link> / <Link href="/#select-services">Select Services</Link> / <span>Data Privacy</span>
           </div>
 
           <h1>Your Customer Data Was<br /><span className="highlight">Breached Last Night</span></h1>
@@ -33,7 +33,7 @@ export const DataPrivacy: React.FC = () => {
           <p className="service-hero-price-note">Comprehensive privacy compliance programs</p>
 
           <div className="service-cta-group">
-            <Link to="/forms/data-privacy" className="service-btn service-btn-primary">
+            <Link href="/forms/data-privacy" className="service-btn service-btn-primary">
               <i className="fas fa-shield-alt"></i>
               Get Started - Privacy Intake
             </Link>
@@ -191,7 +191,7 @@ export const DataPrivacy: React.FC = () => {
           </p>
 
           <div className="service-cta-group" style={{ justifyContent: 'center' }}>
-            <Link to="/forms/data-privacy" className="service-btn service-btn-primary">
+            <Link href="/forms/data-privacy" className="service-btn service-btn-primary">
               <i className="fas fa-clipboard-list"></i>
               Start Privacy Compliance Intake
             </Link>

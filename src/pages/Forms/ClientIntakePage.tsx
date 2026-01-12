@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
 import { PaymentModal } from '../../components/Common/PaymentModal';
@@ -94,7 +94,7 @@ export const ClientIntakePage: React.FC = () => {
       <section className="form-hero">
         <div className="form-hero-container">
           <div className="form-breadcrumb">
-            <Link to="/">Home</Link> / <span>Client Intake</span>
+            <Link href="/">Home</Link> / <span>Client Intake</span>
           </div>
 
           <div className="form-hero-badge">
@@ -310,7 +310,7 @@ export const ClientIntakePage: React.FC = () => {
         <h2>Questions About Our Services?</h2>
         <p>Explore our practice areas or call us directly to discuss your needs.</p>
         <div className="form-cta-buttons">
-          <Link to="/#services" className="form-cta-btn primary">
+          <Link href="/#services" className="form-cta-btn primary">
             <i className="fas fa-briefcase"></i>
             View All Services
           </Link>
@@ -324,7 +324,7 @@ export const ClientIntakePage: React.FC = () => {
       {/* Footer */}
       <footer className="form-footer">
         <p>&copy; 2024 Rivalis Law. Licensed in New York & Michigan.</p>
-        <p><Link to="/">Return to Main Site</Link></p>
+        <p><Link href="/">Return to Main Site</Link></p>
       </footer>
     </FormAccessGuard>
   );

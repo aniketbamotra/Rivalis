@@ -37,12 +37,12 @@ export function ProtectedRoute({ children, requireAdmin = false }: ProtectedRout
 
   // Not logged in - redirect to login
   if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate href="/login" state={{ from: location }} replace />;
   }
 
   // Requires admin but user is not admin
   if (requireAdmin && !isAdmin) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate href="/dashboard" replace />;
   }
 
   return <>{children}</>;
