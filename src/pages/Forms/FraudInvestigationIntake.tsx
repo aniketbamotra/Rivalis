@@ -6,6 +6,7 @@ import { AccountCreationNudge } from '../../components/Common/AccountCreationNud
 import { useFormSubmissionWithPayment } from '../../hooks/useFormSubmissionWithPayment';
 import { submitForm } from '../../lib/supabase';
 import '../../styles/form-page.css';
+import '../../styles/home.css';
 import '../../styles/fraud-investigation.css';
 
 export const FraudInvestigationIntake: React.FC = () => {

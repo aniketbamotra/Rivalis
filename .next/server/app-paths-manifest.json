@@ -1,10 +1,7 @@
 {
-  "/forms/employment-law/page": "app/forms/employment-law/page.js",
-  "/forms/ip-strategy/page": "app/forms/ip-strategy/page.js",
-  "/forms/fraud-investigation/page": "app/forms/fraud-investigation/page.js",
-  "/forms/fundraising/page": "app/forms/fundraising/page.js",
-  "/services/fraud-investigation/page": "app/services/fraud-investigation/page.js",
   "/services/contracts/page": "app/services/contracts/page.js",
-  "/services/employment/page": "app/services/employment/page.js",
-  "/services/fundraising/page": "app/services/fundraising/page.js"
+  "/forms/contracts/page": "app/forms/contracts/page.js",
+  "/forms/ip-strategy/page": "app/forms/ip-strategy/page.js",
+  "/services/fraud-investigation/page": "app/services/fraud-investigation/page.js",
+  "/forms/fraud-investigation/page": "app/forms/fraud-investigation/page.js"
 }
