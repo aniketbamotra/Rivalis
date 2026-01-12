@@ -1,7 +1,7 @@
 {
-  "/services/contracts/page": "app/services/contracts/page.js",
   "/forms/eb2-niw-intake/page": "app/forms/eb2-niw-intake/page.js",
+  "/services/contracts/page": "app/services/contracts/page.js",
   "/forms/contracts/page": "app/forms/contracts/page.js",
-  "/services/data-privacy/page": "app/services/data-privacy/page.js",
-  "/forms/data-privacy/page": "app/forms/data-privacy/page.js"
+  "/forms/data-privacy/page": "app/forms/data-privacy/page.js",
+  "/services/data-privacy/page": "app/services/data-privacy/page.js"
 }

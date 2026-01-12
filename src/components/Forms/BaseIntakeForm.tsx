@@ -118,7 +118,7 @@ export const BaseIntakeForm: React.FC<BaseIntakeFormProps> = ({
       <section className="form-hero">
         <div className="form-hero-container">
           <div className="form-breadcrumb">
-            <Link href="/">Home</Link> / <Link to={`/services${servicePath}`}>{serviceName}</Link> / <span>Intake Form</span>
+            <Link href="/">Home</Link> / <Link href={`/services${servicePath}`}>{serviceName}</Link> / <span>Intake Form</span>
           </div>
 
           <div 
@@ -806,7 +806,7 @@ export const BaseIntakeForm: React.FC<BaseIntakeFormProps> = ({
         <h2>Strategic Legal Solutions for Forward-Thinking Businesses</h2>
         <p>Explore our comprehensive {serviceName.toLowerCase()} services and let us handle your case with expertise.</p>
         <div className="form-cta-buttons">
-          <Link to={`/services${servicePath}`} className="form-cta-btn primary">
+          <Link href={`/services${servicePath}`} className="form-cta-btn primary">
             <span style={{ marginRight: '0.5rem' }}>{serviceIcon}</span>
             {serviceName} Services
           </Link>
