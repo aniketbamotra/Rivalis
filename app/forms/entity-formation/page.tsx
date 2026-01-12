@@ -1,6 +1,6 @@
 'use client';
 
-import { EntityFormationIntake } from '@/pages/Forms/EntityFormationIntake';
+import EntityFormationIntake from '@/pages/Forms/EntityFormationIntake';
 
 export default function FormPage() {
   return <EntityFormationIntake />;
