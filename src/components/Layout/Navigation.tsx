@@ -140,7 +140,7 @@ export const Navigation: React.FC = () => {
             </a>
             <div className="nav-dropdown-menu">
               {selectServices.map((service) => (
-                <Link key={service.href} to={service.href} className="nav-dropdown-item">
+                <Link key={service.href} href={service.href} className="nav-dropdown-item">
                   {service.label}
                 </Link>
               ))}
@@ -217,7 +217,7 @@ export const Navigation: React.FC = () => {
             {coreServices.map((service) => (
               <div key={service.href}>
                 <Link 
-                  to={service.href} 
+                  href={service.href} 
                   className="nav-mobile-link nested"
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -226,7 +226,7 @@ export const Navigation: React.FC = () => {
                 {service.submenu && service.submenu.map((subitem) => (
                   <Link 
                     key={subitem.href} 
-                    to={subitem.href} 
+                    href={subitem.href} 
                     className="nav-mobile-link nested"
                     style={{ paddingLeft: '2rem', fontSize: '0.9rem' }}
                     onClick={() => setMobileMenuOpen(false)}
@@ -243,7 +243,7 @@ export const Navigation: React.FC = () => {
             {selectServices.map((service) => (
               <Link 
                 key={service.href} 
-                to={service.href} 
+                href={service.href} 
                 className="nav-mobile-link nested"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -271,7 +271,7 @@ export const Navigation: React.FC = () => {
           {user ? (
             <>
               <Link 
-                to={dashboardPath} 
+                href={dashboardPath} 
                 className="nav-mobile-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -286,7 +286,7 @@ export const Navigation: React.FC = () => {
             </>
           ) : (
             <Link 
-              to="/login" 
+              href="/login" 
               className="nav-mobile-login"
               onClick={() => setMobileMenuOpen(false)}
             >

@@ -1,11 +1,13 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '../../hooks/useAuth';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
 
 const EnhancedFooter: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
   const { user } = useAuth();
   const { settings } = useSiteSettings();
 
@@ -35,9 +37,9 @@ const EnhancedFooter: React.FC = () => {
 
   const handleEmergencyClick = () => {
     if (user) {
-      navigate('/dashboard?tab=emergency');
+      router.push('/dashboard?tab=emergency');
     } else {
-      navigate('/login?redirect=/dashboard&tab=emergency');
+      router.push('/login?redirect=/dashboard&tab=emergency');
     }
   };
 
