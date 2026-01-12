@@ -8,7 +8,7 @@ import { getServiceSlugFromFormType } from '../../utils/serviceMapping';
 import { EmergencyConsultationForm } from '../../components/Forms/EmergencyConsultationForm';
 import { EmergencyHistory } from '../../components/Dashboard/EmergencyHistory';
 import type { Purchase, FormSubmission, Service } from '../../types/database';
-import './dashboard.css';
+import '../../styles/dashboard.css';
 
 type PurchaseWithRelations = Purchase & {
   service: Service | null;

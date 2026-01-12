@@ -140,6 +140,30 @@
       "static/chunks/main-app.js",
       "static/css/app/forms/eb2-niw-intake/page.css",
       "static/chunks/app/forms/eb2-niw-intake/page.js"
+    ],
+    "/forms/ip-strategy/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/forms/ip-strategy/page.css",
+      "static/chunks/app/forms/ip-strategy/page.js"
+    ],
+    "/forms/fraud-investigation/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/forms/fraud-investigation/page.css",
+      "static/chunks/app/forms/fraud-investigation/page.js"
+    ],
+    "/forms/employment-law/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/forms/employment-law/page.css",
+      "static/chunks/app/forms/employment-law/page.js"
+    ],
+    "/forms/fundraising/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/forms/fundraising/page.css",
+      "static/chunks/app/forms/fundraising/page.js"
     ]
   }
 }
