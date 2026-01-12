@@ -1,7 +1,7 @@
 {
-  "/services/ip-strategy/page": "app/services/ip-strategy/page.js",
-  "/services/ma/page": "app/services/ma/page.js",
   "/page": "app/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/login/page": "app/login/page.js"
+  "/services/ma/page": "app/services/ma/page.js",
+  "/services/ip-strategy/page": "app/services/ip-strategy/page.js",
+  "/login/page": "app/login/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js"
 }
