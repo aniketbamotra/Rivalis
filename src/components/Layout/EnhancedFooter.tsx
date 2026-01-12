@@ -56,7 +56,7 @@ const EnhancedFooter: React.FC = () => {
           </div>
           <div className="footer-links">
             <a href={settings?.linkedin_url || 'https://linkedin.com/in/aaishaeron'} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="/legal">Legal Information</a>
+            <a href="/legal-information">Legal Information</a>
             <a href="#privacy" onClick={handleModalOpen}>Privacy & Terms</a>
           </div>
         </div>
