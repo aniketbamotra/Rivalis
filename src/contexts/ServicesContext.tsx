@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { getServices } from '../lib/supabase';
 import type { Service } from '../types/database';

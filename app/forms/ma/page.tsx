@@ -1,7 +1,7 @@
 'use client';
 
-import ClientIntakePage from '@/pages/Forms/ClientIntakePage';
+import { MAIntake } from '@/pages/Forms/MAIntake';
 
 export default function FormPage() {
-  return <ClientIntakePage />;
+  return <MAIntake />;
 }

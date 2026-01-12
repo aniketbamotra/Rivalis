@@ -1,7 +1,7 @@
 'use client';
 
-import ClientIntakePage from '@/pages/Forms/ClientIntakePage';
+import { DataPrivacyIntake } from '@/pages/Forms/DataPrivacyIntake';
 
 export default function FormPage() {
-  return <ClientIntakePage />;
+  return <DataPrivacyIntake />;
 }

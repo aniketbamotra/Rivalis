@@ -1,8 +1,10 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
-import { useServices } from '../../contexts/ServicesContext';
+import { useServices } from '../../providers/ServicesProvider';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
 import '../../styles/service-page.css';
 import '../../styles/home.css';
