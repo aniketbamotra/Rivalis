@@ -44,6 +44,30 @@
       "static/chunks/main-app.js",
       "static/css/app/admin/dashboard/page.css",
       "static/chunks/app/admin/dashboard/page.js"
+    ],
+    "/services/governance/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/governance/page.css",
+      "static/chunks/app/services/governance/page.js"
+    ],
+    "/services/immigration/eb1-extraordinary-ability/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/immigration/eb1-extraordinary-ability/page.css",
+      "static/chunks/app/services/immigration/eb1-extraordinary-ability/page.js"
+    ],
+    "/services/immigration/work-visas/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/immigration/work-visas/page.css",
+      "static/chunks/app/services/immigration/work-visas/page.js"
+    ],
+    "/forms/work-visa-intake/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/forms/work-visa-intake/page.css",
+      "static/chunks/app/forms/work-visa-intake/page.js"
     ]
   }
 }

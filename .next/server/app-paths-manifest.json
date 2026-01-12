@@ -1,6 +1,7 @@
 {
-  "/login/page": "app/login/page.js",
-  "/payment-success/page": "app/payment-success/page.js",
-  "/page": "app/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js"
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/services/governance/page": "app/services/governance/page.js",
+  "/services/immigration/eb1-extraordinary-ability/page": "app/services/immigration/eb1-extraordinary-ability/page.js",
+  "/services/immigration/work-visas/page": "app/services/immigration/work-visas/page.js",
+  "/forms/work-visa-intake/page": "app/forms/work-visa-intake/page.js"
 }
