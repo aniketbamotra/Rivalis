@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '../../hooks/useAuth';
 import { MainLayout } from '../../components/Layout';
@@ -17,7 +17,8 @@ type PurchaseWithRelations = Purchase & {
 
 export function UserDashboard() {
   const { user, profile } = useAuth();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const [purchases, setPurchases] = useState<PurchaseWithRelations[]>([]);
   const [submissions, setSubmissions] = useState<FormSubmission[]>([]);
   const [services, setServices] = useState<Service[]>([]);
@@ -36,7 +37,7 @@ export function UserDashboard() {
       if (successParam === 'true') {
         setShowEmergencySuccess(true);
         // Clear the success param from URL
-        setSearchParams({ tab: 'emergency' });
+        router.replace('/dashboard?tab=emergency');
         
         // Hide success message after 5 seconds
         setTimeout(() => {
@@ -44,7 +45,7 @@ export function UserDashboard() {
         }, 5000);
       }
     }
-  }, [searchParams, setSearchParams]);
+  }, [searchParams, router]);
 
   useEffect(() => {
     const fetchData = async () => {
