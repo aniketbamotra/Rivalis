@@ -101,7 +101,7 @@ export const PaymentSuccess: React.FC = () => {
     };
 
     processPayment();
-  }, [searchParams, navigate]);
+  }, [searchParams, router]);
 
   if (loading) {
     return (
