@@ -203,12 +203,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      userEmailId: userEmailResponse.id,
-      adminEmailId: adminEmailResponse.id,
+      userEmailId: userEmailResponse.data?.id || 'unknown',
+      adminEmailId: adminEmailResponse.data?.id || 'unknown',
       message: 'Emergency consultation emails sent successfully'
     });
 
-  } catch (error: any) {
+  } catch (err: unknown) {
+    const error = err as Error;
     console.error('Error sending emergency emails:', error);
     return NextResponse.json(
       { 
