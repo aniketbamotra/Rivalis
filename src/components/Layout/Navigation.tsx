@@ -121,7 +121,7 @@ export const Navigation: React.FC = () => {
                   {service.submenu && (
                     <div className="nav-submenu">
                       {service.submenu.map((subitem) => (
-                        <Link key={subitem.href} to={subitem.href} className="nav-submenu-item">
+                        <Link key={subitem.href} href={subitem.href} className="nav-submenu-item">
                           {subitem.label}
                         </Link>
                       ))}
