@@ -1,7 +1,7 @@
 {
-  "/forms/fraud-investigation/page": "app/forms/fraud-investigation/page.js",
   "/services/contracts/page": "app/services/contracts/page.js",
   "/forms/contracts/page": "app/forms/contracts/page.js",
   "/forms/ip-strategy/page": "app/forms/ip-strategy/page.js",
-  "/services/fraud-investigation/page": "app/services/fraud-investigation/page.js"
+  "/services/fraud-investigation/page": "app/services/fraud-investigation/page.js",
+  "/forms/fraud-investigation/page": "app/forms/fraud-investigation/page.js"
 }

@@ -365,6 +365,31 @@ input[type="radio"] {
     color: var(--accent);
 }
 
+/* Privacy Notice */
+.privacy-notice {
+    background: rgba(212, 175, 55, 0.1);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.privacy-notice h4 {
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.privacy-notice p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    line-height: 1.6;
+}
+
 /* Info Boxes */
 .form-info-box {
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
