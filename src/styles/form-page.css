@@ -122,6 +122,27 @@ input[type="radio"] {
     color: var(--accent);
 }
 
+/* Form Header */
+.form-header {
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.form-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+}
+
+.form-header p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
 /* Form Section */
 .form-section {
     padding: 5rem 3rem;
