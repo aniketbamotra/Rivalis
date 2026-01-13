@@ -6,80 +6,11 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/forms/fraud-investigation/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
-    ],
-    "/api/checkout/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/checkout/route.js"
-    ],
-    "/payment-success/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/payment-success/page.js"
-    ],
-    "/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/login/page.css",
-      "static/chunks/app/login/page.js"
-    ],
-    "/dashboard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/dashboard/page.css",
-      "static/chunks/app/dashboard/page.js"
-    ],
-    "/admin/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/admin/page.js"
-    ],
-    "/admin/dashboard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/admin/dashboard/page.css",
-      "static/chunks/app/admin/dashboard/page.js"
-    ],
-    "/services/governance/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/services/governance/page.css",
-      "static/chunks/app/services/governance/page.js"
-    ],
-    "/services/immigration/eb1-extraordinary-ability/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/services/immigration/eb1-extraordinary-ability/page.css",
-      "static/chunks/app/services/immigration/eb1-extraordinary-ability/page.js"
-    ],
-    "/services/immigration/work-visas/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/services/immigration/work-visas/page.css",
-      "static/chunks/app/services/immigration/work-visas/page.js"
-    ],
-    "/forms/work-visa-intake/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/forms/work-visa-intake/page.css",
-      "static/chunks/app/forms/work-visa-intake/page.js"
-    ],
-    "/services/contracts/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/services/contracts/page.css",
-      "static/chunks/app/services/contracts/page.js"
-    ],
-    "/forms/contracts/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/forms/contracts/page.css",
-      "static/chunks/app/forms/contracts/page.js"
+      "static/css/app/forms/fraud-investigation/page.css",
+      "static/chunks/app/forms/fraud-investigation/page.js"
     ],
     "/services/data-privacy/page": [
       "static/chunks/webpack.js",
@@ -87,83 +18,17 @@
       "static/css/app/services/data-privacy/page.css",
       "static/chunks/app/services/data-privacy/page.js"
     ],
-    "/services/ip-strategy/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/services/ip-strategy/page.css",
-      "static/chunks/app/services/ip-strategy/page.js"
-    ],
-    "/services/fraud-investigation/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/services/fraud-investigation/page.css",
-      "static/chunks/app/services/fraud-investigation/page.js"
-    ],
-    "/services/employment/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/services/employment/page.css",
-      "static/chunks/app/services/employment/page.js"
-    ],
-    "/services/fundraising/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/services/fundraising/page.css",
-      "static/chunks/app/services/fundraising/page.js"
-    ],
     "/forms/data-privacy/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/forms/data-privacy/page.css",
       "static/chunks/app/forms/data-privacy/page.js"
     ],
-    "/services/immigration/eb5/page": [
+    "/services/fraud-investigation/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/services/immigration/eb5/page.css",
-      "static/chunks/app/services/immigration/eb5/page.js"
-    ],
-    "/forms/eb5-intake/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/forms/eb5-intake/page.css",
-      "static/chunks/app/forms/eb5-intake/page.js"
-    ],
-    "/forms/eb1-intake/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/forms/eb1-intake/page.css",
-      "static/chunks/app/forms/eb1-intake/page.js"
-    ],
-    "/forms/eb2-niw-intake/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/forms/eb2-niw-intake/page.css",
-      "static/chunks/app/forms/eb2-niw-intake/page.js"
-    ],
-    "/forms/ip-strategy/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/forms/ip-strategy/page.css",
-      "static/chunks/app/forms/ip-strategy/page.js"
-    ],
-    "/forms/fraud-investigation/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/forms/fraud-investigation/page.css",
-      "static/chunks/app/forms/fraud-investigation/page.js"
-    ],
-    "/forms/employment-law/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/forms/employment-law/page.css",
-      "static/chunks/app/forms/employment-law/page.js"
-    ],
-    "/forms/fundraising/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/forms/fundraising/page.css",
-      "static/chunks/app/forms/fundraising/page.js"
+      "static/css/app/services/fraud-investigation/page.css",
+      "static/chunks/app/services/fraud-investigation/page.js"
     ]
   }
 }

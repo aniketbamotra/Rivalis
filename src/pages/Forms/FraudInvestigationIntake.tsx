@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navigation } from '../../components/Layout/Navigation';
+import { EnhancedFooter } from '../../components/Layout';
 import { FormAccessGuard } from '../../components/Common/FormAccessGuard';
 import { PaymentModal } from '../../components/Common/PaymentModal';
 import { AccountCreationNudge } from '../../components/Common/AccountCreationNudge';
@@ -138,124 +139,138 @@ export const FraudInvestigationIntake: React.FC = () => {
     <FormAccessGuard>
       <Navigation />
 
-      {/* Confidential Header */}
-      <section className="confidential-header">
-        <div className="confidential-badge">
-          <i className="fas fa-shield-alt"></i>
-          ATTORNEY-CLIENT PRIVILEGED & CONFIDENTIAL
+      {/* Hero Section */}
+      <section className="form-hero">
+        <div className="form-hero-container">
+          <div className="form-hero-badge">
+            <i className="fas fa-shield-alt"></i>
+            CONFIDENTIAL & ATTORNEY-CLIENT PRIVILEGED
+          </div>
+          <h1>Corporate Fraud Investigation<br /><span className="highlight">Confidential Intake Form</span></h1>
+          <p className="form-hero-subtitle">
+            Secure assessment of suspected fraud, misconduct, or regulatory matters. All information is protected by attorney-client privilege.
+          </p>
         </div>
-        <h1>Corporate Fraud Investigation Intake</h1>
-        <p>Complete this secure form for immediate assessment of your situation</p>
       </section>
 
       <div className="container">
         <div className="form-container">
-          <div className="form-header">
-            <h2>Confidential Case Assessment</h2>
-            <p>All information submitted is protected by attorney-client privilege considerations</p>
-          </div>
-
-          <div className="urgency-notice">
-            <h4><i className="fas fa-exclamation-triangle"></i> URGENT MATTER?</h4>
-            <p>If you require immediate assistance with an active fraud investigation, regulatory inquiry, or whistleblower situation, call our emergency line directly.</p>
-            <a href="tel:+1-313-771-2283" className="emergency-btn">
-              <i className="fas fa-phone-alt"></i>
-              EMERGENCY LINE: +1 (313) 771-2283
-            </a>
+          {/* Emergency Alert */}
+          <div className="alert-box alert-urgent">
+            <div className="alert-icon">
+              <i className="fas fa-exclamation-circle"></i>
+            </div>
+            <div className="alert-content">
+              <h3>Need Immediate Assistance?</h3>
+              <p>For active investigations, regulatory inquiries, or whistleblower matters requiring urgent response:</p>
+              <a href="tel:+1-313-771-2283" className="alert-btn">
+                <i className="fas fa-phone-alt"></i>
+                Call Emergency Hotline: +1 (313) 771-2283
+              </a>
+            </div>
           </div>
 
           <form onSubmit={handleSubmit}>
-            {/* Contact Information */}
-            <div className="form-section">
-              <h3 className="section-title">
-                <i className="fas fa-user-tie"></i> Your Information
-              </h3>
+            {/* Section 1: Contact Information */}
+            <fieldset className="form-fieldset">
+              <legend className="fieldset-legend">
+                <i className="fas fa-user-circle"></i>
+                Your Information
+              </legend>
               
-              <div className="form-group">
-                <label htmlFor="fullName">Full Name <span className="required">*</span></label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  required
-                />
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="fullName">Full Name <span className="required">*</span></label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
+                    placeholder="Enter your full legal name"
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="position">Position/Title <span className="required">*</span></label>
+                  <input
+                    type="text"
+                    id="position"
+                    name="position"
+                    value={formData.position}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your role in the organization"
+                  />
+                </div>
               </div>
               
-              <div className="form-group">
-                <label htmlFor="position">Position/Title <span className="required">*</span></label>
-                <input
-                  type="text"
-                  id="position"
-                  name="position"
-                  value={formData.position}
-                  onChange={handleChange}
-                  required
-                />
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="company">Company/Organization <span className="required">*</span></label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    required
+                    placeholder="Organization name"
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="email">Email Address <span className="required">*</span></label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="your.email@example.com"
+                  />
+                </div>
               </div>
-              
-              <div className="form-group">
-                <label htmlFor="company">Company/Organization <span className="required">*</span></label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="email">Email Address <span className="required">*</span></label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="phone">Phone Number <span className="required">*</span></label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="preferredContact">Preferred Contact Method</label>
-                <select
-                  id="preferredContact"
-                  name="preferredContact"
-                  value={formData.preferredContact}
-                  onChange={handleChange}
-                >
-                  <option value="email">Email</option>
-                  <option value="phone">Phone Call</option>
-                  <option value="text">Text Message</option>
-                  <option value="secure">Secure Portal</option>
-                </select>
-              </div>
-            </div>
 
-            {/* Situation Overview */}
-            <div className="form-section">
-              <h3 className="section-title">
-                <i className="fas fa-exclamation-circle"></i> Situation Overview
-              </h3>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="phone">Phone Number <span className="required">*</span></label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    placeholder="(123) 456-7890"
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="preferredContact">Preferred Contact Method</label>
+                  <select id="preferredContact" name="preferredContact" value={formData.preferredContact} onChange={handleChange}>
+                    <option value="">Select preferred method...</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone Call</option>
+                    <option value="text">Text Message</option>
+                    <option value="secure">Secure Portal Only</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            {/* Section 2: Situation Overview */}
+            <fieldset className="form-fieldset">
+              <legend className="fieldset-legend">
+                <i className="fas fa-exclamation-triangle"></i>
+                Situation Overview
+              </legend>
               
               <div className="form-group">
                 <label>Type of Suspected Fraud <span className="required">*</span></label>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.5rem' }}>
+                <div className="checkbox-group">
                   {[
                     { value: 'financialStatement', label: 'Financial Statement Fraud' },
                     { value: 'assetMisappropriation', label: 'Asset Misappropriation' },
@@ -264,75 +279,48 @@ export const FraudInvestigationIntake: React.FC = () => {
                     { value: 'payrollFraud', label: 'Payroll Fraud' },
                     { value: 'executiveMisconduct', label: 'Executive Misconduct' },
                     { value: 'other', label: 'Other (please describe below)' }
-                  ].map((type) => (
-                    <label key={type.value} style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: '0.5rem', 
-                      fontWeight: 'normal', 
-                      cursor: 'pointer',
-                      width: '100%',
-                      justifyContent: 'flex-start'
-                    }}>
+                  ].map(option => (
+                    <label key={option.value} className="checkbox-label">
                       <input
                         type="checkbox"
+                        value={option.value}
                         name="fraudType"
-                        value={type.value}
-                        checked={formData.fraudType.includes(type.value)}
+                        checked={formData.fraudType.includes(option.value)}
                         onChange={handleChange}
-                        style={{ 
-                          marginRight: '0.5rem',
-                          flexShrink: 0,
-                          order: 1
-                        }}
                       />
-                      <span style={{ order: 2, flex: 1 }}>{type.label}</span>
+                      <span>{option.label}</span>
                     </label>
                   ))}
                 </div>
               </div>
-              
-              <div className="form-group">
-                <label htmlFor="suspectedAmount">Estimated Financial Impact</label>
-                <select
-                  id="suspectedAmount"
-                  name="suspectedAmount"
-                  value={formData.suspectedAmount}
-                  onChange={handleChange}
-                >
-                  <option value="">Select range</option>
-                  <option value="under50k">Under $50,000</option>
-                  <option value="50k-250k">$50,000 - $250,000</option>
-                  <option value="250k-1m">$250,000 - $1 Million</option>
-                  <option value="1m-5m">$1 Million - $5 Million</option>
-                  <option value="over5m">Over $5 Million</option>
-                  <option value="unknown">Unknown at this time</option>
-                </select>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="suspectedAmount">Estimated Financial Impact</label>
+                  <select id="suspectedAmount" name="suspectedAmount" value={formData.suspectedAmount} onChange={handleChange}>
+                    <option value="">Select range...</option>
+                    <option value="under50k">Under $50,000</option>
+                    <option value="50k-250k">$50,000 - $250,000</option>
+                    <option value="250k-1m">$250,000 - $1 Million</option>
+                    <option value="1m-5m">$1 Million - $5 Million</option>
+                    <option value="over5m">Over $5 Million</option>
+                    <option value="unknown">Unknown at this time</option>
+                  </select>
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="discoveryDate">When Was This Discovered? <span className="required">*</span></label>
+                  <input
+                    type="date"
+                    id="discoveryDate"
+                    name="discoveryDate"
+                    value={formData.discoveryDate}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
               </div>
-              
-              <div className="form-group">
-                <label htmlFor="discoveryDate">When Was This Discovered? <span className="required">*</span></label>
-                <input
-                  type="date"
-                  id="discoveryDate"
-                  name="discoveryDate"
-                  value={formData.discoveryDate}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="suspectedIndividuals">Suspected Individuals/Departments</label>
-                <textarea
-                  id="suspectedIndividuals"
-                  name="suspectedIndividuals"
-                  value={formData.suspectedIndividuals}
-                  onChange={handleChange}
-                  placeholder="Please describe who you suspect may be involved and their positions..."
-                />
-              </div>
-              
+
               <div className="form-group">
                 <label htmlFor="situationDescription">Description of Situation <span className="required">*</span></label>
                 <textarea
@@ -342,32 +330,39 @@ export const FraudInvestigationIntake: React.FC = () => {
                   onChange={handleChange}
                   required
                   placeholder="Please provide a detailed description of the suspected fraud, how it was discovered, and any evidence you currently have..."
+                  rows={6}
                 />
               </div>
-            </div>
 
-            {/* Current Status */}
-            <div className="form-section">
-              <h3 className="section-title">
-                <i className="fas fa-clipboard-list"></i> Current Status
-              </h3>
+              <div className="form-group">
+                <label htmlFor="suspectedIndividuals">Suspected Individuals/Departments</label>
+                <textarea
+                  id="suspectedIndividuals"
+                  name="suspectedIndividuals"
+                  value={formData.suspectedIndividuals}
+                  onChange={handleChange}
+                  placeholder="Please describe who you suspect may be involved and their positions..."
+                  rows={4}
+                />
+              </div>
+            </fieldset>
+
+            {/* Section 3: Current Status */}
+            <fieldset className="form-fieldset">
+              <legend className="fieldset-legend">
+                <i className="fas fa-clipboard-list"></i>
+                Current Status & External Involvement
+              </legend>
               
               <div className="form-group">
                 <label>Has This Been Reported Internally? <span className="required">*</span></label>
-                <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
+                <div className="radio-group">
                   {[
                     { value: 'yes', label: 'Yes' },
                     { value: 'no', label: 'No' },
                     { value: 'partial', label: 'Partially' }
-                  ].map((option) => (
-                    <label key={option.value} style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: '0.5rem', 
-                      fontWeight: 'normal', 
-                      cursor: 'pointer',
-                      justifyContent: 'flex-start'
-                    }}>
+                  ].map(option => (
+                    <label key={option.value} className="radio-label">
                       <input
                         type="radio"
                         name="reportedInternally"
@@ -375,18 +370,13 @@ export const FraudInvestigationIntake: React.FC = () => {
                         checked={formData.reportedInternally === option.value}
                         onChange={handleChange}
                         required
-                        style={{ 
-                          marginRight: '0.5rem',
-                          flexShrink: 0,
-                          order: 1
-                        }}
                       />
-                      <span style={{ order: 2 }}>{option.label}</span>
+                      <span>{option.label}</span>
                     </label>
                   ))}
                 </div>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="internalReportingDetails">If Reported, To Whom and When?</label>
                 <textarea
@@ -395,46 +385,34 @@ export const FraudInvestigationIntake: React.FC = () => {
                   value={formData.internalReportingDetails}
                   onChange={handleChange}
                   placeholder="Please specify who was notified internally and when..."
+                  rows={4}
                 />
               </div>
-              
+
               <div className="form-group">
                 <label>External Reporting Status</label>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.5rem' }}>
+                <div className="checkbox-group">
                   {[
                     { value: 'lawEnforcement', label: 'Law Enforcement Involved' },
                     { value: 'regulatory', label: 'Regulatory Agencies Involved' },
                     { value: 'externalCounsel', label: 'Other Legal Counsel Involved' },
                     { value: 'auditors', label: 'External Auditors Involved' },
                     { value: 'none', label: 'No External Parties Involved' }
-                  ].map((option) => (
-                    <label key={option.value} style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: '0.5rem', 
-                      fontWeight: 'normal', 
-                      cursor: 'pointer',
-                      width: '100%',
-                      justifyContent: 'flex-start'
-                    }}>
+                  ].map(option => (
+                    <label key={option.value} className="checkbox-label">
                       <input
                         type="checkbox"
-                        name="externalReporting"
                         value={option.value}
+                        name="externalReporting"
                         checked={formData.externalReporting.includes(option.value)}
                         onChange={handleChange}
-                        style={{ 
-                          marginRight: '0.5rem',
-                          flexShrink: 0,
-                          order: 1
-                        }}
                       />
-                      <span style={{ order: 2, flex: 1 }}>{option.label}</span>
+                      <span>{option.label}</span>
                     </label>
                   ))}
                 </div>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="externalDetails">External Involvement Details</label>
                 <textarea
@@ -442,19 +420,15 @@ export const FraudInvestigationIntake: React.FC = () => {
                   name="externalDetails"
                   value={formData.externalDetails}
                   onChange={handleChange}
-                  placeholder="Please provide details about any external parties involved, including agency names, contact information, and current status..."
+                  placeholder="Please provide details about any external parties involved, including agency names and current status..."
+                  rows={4}
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="documentsPreserved">Have Documents/Evidence Been Preserved?</label>
-                <select
-                  id="documentsPreserved"
-                  name="documentsPreserved"
-                  value={formData.documentsPreserved}
-                  onChange={handleChange}
-                >
-                  <option value="">Select status</option>
+                <select id="documentsPreserved" name="documentsPreserved" value={formData.documentsPreserved} onChange={handleChange}>
+                  <option value="">Select status...</option>
                   <option value="fully">Fully Preserved</option>
                   <option value="partially">Partially Preserved</option>
                   <option value="planned">Preservation Planned</option>
@@ -462,19 +436,22 @@ export const FraudInvestigationIntake: React.FC = () => {
                   <option value="unknown">Unknown</option>
                 </select>
               </div>
-            </div>
+            </fieldset>
 
-            {/* Electronic Signature */}
-            <div className="form-section">
-              <h3 className="section-title">
-                <i className="fas fa-signature"></i> Authorization & Acknowledgment
-              </h3>
+            {/* Section 4: Authorization & Signature */}
+            <fieldset className="form-fieldset">
+              <legend className="fieldset-legend">
+                <i className="fas fa-signature"></i>
+                Acknowledgment & Authorization
+              </legend>
               
-              <div className="privacy-notice">
-                <h4><i className="fas fa-shield-alt"></i> Confidentiality Notice</h4>
-                <p>This intake form and all information provided is confidential and protected by attorney-client privilege considerations. Rivalis Law maintains strict confidentiality protocols and secure data handling procedures.</p>
+              <div className="info-box">
+                <i className="fas fa-lock"></i>
+                <div>
+                  <strong>Confidentiality Notice:</strong> This intake form and all information provided is confidential and protected by attorney-client privilege considerations. Rivalis Law maintains strict confidentiality protocols and secure data handling procedures.
+                </div>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="additionalInfo">Additional Information or Questions</label>
                 <textarea
@@ -483,9 +460,10 @@ export const FraudInvestigationIntake: React.FC = () => {
                   value={formData.additionalInfo}
                   onChange={handleChange}
                   placeholder="Please provide any additional information you think would be helpful for our assessment..."
+                  rows={4}
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="electronicSignature">Electronic Signature (Type your full name) <span className="required">*</span></label>
                 <input
@@ -497,54 +475,45 @@ export const FraudInvestigationIntake: React.FC = () => {
                   required
                   placeholder="Type your full legal name as your electronic signature"
                 />
-                <p className="form-note">
-                  By typing your name above, you acknowledge that this constitutes your electronic signature and agreement to the terms stated in this intake form.
-                </p>
+                <p className="form-hint">By typing your name above, you acknowledge this constitutes your electronic signature and agreement to submit this confidential intake form.</p>
               </div>
-            </div>
+            </fieldset>
 
-            <button type="submit" className="submit-btn" disabled={loading}>
-              {loading ? (
-                <>
-                  <i className="fas fa-spinner fa-spin"></i>
-                  Submitting Securely...
-                </>
-              ) : (
-                <>
-                  <i className="fas fa-shield-alt"></i>
-                  Submit Confidential Assessment
-                </>
-              )}
+            {/* Submit Button */}
+            <button 
+              type="submit" 
+              className="submit-btn" 
+              disabled={loading}
+            >
+              <i className="fas fa-lock"></i>
+              {loading ? 'Submitting...' : 'Submit Confidential Assessment'}
             </button>
           </form>
 
-          <div className="emergency-contact">
-            <h4>Need Immediate Assistance?</h4>
-            <p>For urgent fraud investigation matters requiring immediate attention</p>
-            <a href="tel:+1-313-771-2283" className="emergency-btn">
-              <i className="fas fa-phone"></i>
-              Call Emergency Line: +1 (313) 771-2283
-            </a>
-          </div>
+          {/* Payment/Success Modals */}
+          {showPaymentModal && (
+            <PaymentModal
+              isOpen={showPaymentModal}
+              amount={5000}
+              serviceType="fraud_investigation"
+              email={currentEmail}
+              onClose={closePaymentModal}
+              onPaymentSuccess={handlePaymentSuccess}
+            />
+          )}
+
+          {showNudgeModal && (
+            <AccountCreationNudge
+              isOpen={showNudgeModal}
+              email={currentEmail}
+              paymentId={paymentId}
+              onSkip={handleSkipAccount}
+            />
+          )}
         </div>
       </div>
 
-      {/* Payment Modal */}
-      <PaymentModal
-        isOpen={showPaymentModal}
-        onClose={closePaymentModal}
-        onSuccess={handlePaymentSuccess}
-        email={currentEmail}
-        
-      />
-
-      {/* Account Creation Nudge Modal */}
-      <AccountCreationNudge
-        isOpen={showNudgeModal}
-        email={currentEmail}
-        paymentId={paymentId}
-        onSkip={handleSkipAccount}
-      />
+      <EnhancedFooter />
     </FormAccessGuard>
   );
 };

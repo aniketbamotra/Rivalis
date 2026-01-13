@@ -3,6 +3,25 @@
    Matches service page design system
    ===================================================== */
 
+/* Generic Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Form Container */
+.form-container {
+    max-width: 100%;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
 /* Form Input Positioning Fixes */
 input[type="checkbox"], 
 input[type="radio"] {
@@ -145,8 +164,10 @@ input[type="radio"] {
 
 /* Form Section */
 .form-section {
-    padding: 5rem 3rem;
+    padding: 2.5rem 2rem;
     background: var(--gray-50);
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .form-section-container {
@@ -201,6 +222,30 @@ input[type="radio"] {
 
 .form-section-title i {
     color: var(--accent);
+}
+
+/* Override section-title for use in forms */
+.form-section .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--accent-light);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    line-height: 1.3;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    width: 100%;
+}
+
+.form-section .section-title i {
+    color: var(--accent);
+    flex-shrink: 0;
 }
 
 /* Form Grid */
@@ -344,6 +389,39 @@ input[type="radio"] {
 }
 
 .form-submit-btn i {
+    font-size: 1rem;
+}
+
+/* Generic Submit Button (for custom forms like FraudInvestigation) */
+.submit-btn {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: var(--primary);
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
+}
+
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.submit-btn i {
     font-size: 1rem;
 }
 
@@ -556,6 +634,192 @@ input[type="radio"] {
 .form-cta-btn.secondary:hover {
     background: white;
     color: var(--primary);
+}
+
+/* Form Fieldsets & Legend */
+.form-fieldset {
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.fieldset-legend {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.fieldset-legend i {
+    color: var(--accent);
+    font-size: 1.4rem;
+}
+
+/* Form Row - 2 Column Layout */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-row .form-group {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Checkbox & Radio Groups */
+.checkbox-group,
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.checkbox-label,
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--dark);
+    transition: all 0.2s ease;
+    padding: 0.75rem;
+    border-radius: 4px;
+}
+
+.checkbox-label:hover,
+.radio-label:hover {
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.checkbox-label input[type="checkbox"],
+.checkbox-label input[type="radio"],
+.radio-label input[type="checkbox"],
+.radio-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+}
+
+.checkbox-label span,
+.radio-label span {
+    flex: 1;
+}
+
+/* Info Box */
+.info-box {
+    display: flex;
+    gap: 1rem;
+    background: rgba(212, 175, 55, 0.08);
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+.info-box i {
+    color: var(--accent);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.info-box div {
+    flex: 1;
+}
+
+.info-box strong {
+    color: var(--dark);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.info-box div > div,
+.info-box p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Alert Box */
+.alert-box {
+    border: 2px solid #fee;
+    border-left: 6px solid #dc2626;
+    background: #fef2f2;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.alert-box.alert-urgent {
+    background: linear-gradient(135deg, #fef2f2 0%, rgba(220, 38, 38, 0.05) 100%);
+    border-color: #dc2626;
+}
+
+.alert-icon {
+    flex-shrink: 0;
+    font-size: 1.75rem;
+    color: #dc2626;
+}
+
+.alert-content {
+    flex: 1;
+}
+
+.alert-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+}
+
+.alert-content p {
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.alert-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: white;
+    padding: 0.875rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.alert-btn:hover {
+    background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
+}
+
+/* Form Hint Text */
+.form-hint {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 0.5rem;
+    font-style: italic;
 }
 
 /* Footer */
