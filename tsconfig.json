@@ -1,13 +1,4 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -15,6 +6,8 @@
         "./src/*"
       ]
     },
+    "skipLibCheck": true,
+    "noEmit": true,
     "target": "ES2017",
     "lib": [
       "dom",
@@ -22,9 +15,7 @@
       "esnext"
     ],
     "allowJs": true,
-    "skipLibCheck": true,
     "strict": false,
-    "noEmit": true,
     "incremental": true,
     "module": "esnext",
     "esModuleInterop": true,
@@ -39,13 +30,12 @@
     ],
     "strictNullChecks": true
   },
+  "exclude": [
+    "node_modules",
+    ".next"
+  ],
   "include": [
     "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
+    ".next/types/**/*.ts"
   ]
 }
