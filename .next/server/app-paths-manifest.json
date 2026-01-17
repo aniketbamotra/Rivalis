@@ -1,13 +1,7 @@
 {
+  "/apply/partner-inquiry/page": "app/apply/partner-inquiry/page.js",
+  "/services/contracts/page": "app/services/contracts/page.js",
   "/page": "app/page.js",
-  "/services/governance/page": "app/services/governance/page.js",
-  "/forms/ai-governance/page": "app/forms/ai-governance/page.js",
-  "/services/immigration/eb1-extraordinary-ability/page": "app/services/immigration/eb1-extraordinary-ability/page.js",
-  "/forms/eb1-intake/page": "app/forms/eb1-intake/page.js",
-  "/services/ip-strategy/page": "app/services/ip-strategy/page.js",
-  "/forms/ip-strategy/page": "app/forms/ip-strategy/page.js",
-  "/services/employment/page": "app/services/employment/page.js",
-  "/forms/employment-law/page": "app/forms/employment-law/page.js",
-  "/services/fraud-investigation/page": "app/services/fraud-investigation/page.js",
-  "/forms/fraud-investigation/page": "app/forms/fraud-investigation/page.js"
+  "/intelligence-hub/page": "app/intelligence-hub/page.js",
+  "/join-firm/page": "app/join-firm/page.js"
 }

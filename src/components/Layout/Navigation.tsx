@@ -99,12 +99,6 @@ export const Navigation: React.FC = () => {
         
         {/* Desktop Menu */}
         <ul className="nav-menu">
-          <li>
-            <a href="/#why-rivalis" className="nav-link" onClick={(e) => handleNavClick(e, '/#why-rivalis')}>
-              Why Rivalis
-            </a>
-          </li>
-          
           {/* Our 3 Specialties Dropdown */}
           <li className="nav-dropdown">
             <a href="/#services" className="nav-link" onClick={(e) => handleNavClick(e, '/#services')}>
@@ -147,11 +141,20 @@ export const Navigation: React.FC = () => {
             </div>
           </li>
 
+          {/* Intelligence Hub */}
           <li>
-            <a href="/#how-we-work" className="nav-link" onClick={(e) => handleNavClick(e, '/#how-we-work')}>
-              How We Work
-            </a>
+            <Link href="/intelligence-hub" className="nav-link">
+              Intelligence Hub
+            </Link>
           </li>
+
+          {/* Join the Firm */}
+          <li>
+            <Link href="/join-firm" className="nav-link">
+              Join the Firm
+            </Link>
+          </li>
+
           <li>
             <a href="/#qualify" className="nav-cta" onClick={(e) => handleNavClick(e, '/#qualify')}>
               Get Started
@@ -204,13 +207,6 @@ export const Navigation: React.FC = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="nav-mobile-menu">
-          <a 
-            href="/#why-rivalis" 
-            className="nav-mobile-link" 
-            onClick={(e) => handleNavClick(e, '/#why-rivalis')}
-          >
-            Why Rivalis
-          </a>
           
           <div className="nav-mobile-section">
             <div className="nav-mobile-section-title">Our 3 Specialties</div>
@@ -252,13 +248,21 @@ export const Navigation: React.FC = () => {
             ))}
           </div>
 
-          <a 
-            href="/#how-we-work" 
-            className="nav-mobile-link" 
-            onClick={(e) => handleNavClick(e, '/#how-we-work')}
+          <Link 
+            href="/intelligence-hub" 
+            className="nav-mobile-link"
+            onClick={() => setMobileMenuOpen(false)}
           >
-            How We Work
-          </a>
+            Intelligence Hub
+          </Link>
+
+          <Link 
+            href="/join-firm" 
+            className="nav-mobile-link"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Join the Firm
+          </Link>
           
           <a 
             href="/#qualify" 

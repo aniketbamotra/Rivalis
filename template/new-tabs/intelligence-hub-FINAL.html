@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Hub | Rivalis Law - AI Governance & Frontier Legal Insights</title>
+    <meta name="description" content="Proprietary intelligence on AI regulation, space law, CRISPR compliance, and frontier legal issues. Subscribe for biweekly updates from leading specialists.">
+    <meta name="keywords" content="AI governance, space law, CRISPR regulation, quantum computing law, legal intelligence">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --cyber-black: #0a0a0a;
+            --cyber-dark: #0f0f0f;
+            --cyber-gray: #1a1a1a;
+            --cyber-cyan: #00ffff;
+            --cyber-cyan-dim: #00cccc;
+            --cyber-cyan-glow: rgba(0, 255, 255, 0.3);
+            --cyber-blue: #0066ff;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --text-dim: #666666;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cyber-black);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Grid Background */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--cyber-cyan) 1px, transparent 1px),
+                linear-gradient(90deg, var(--cyber-cyan) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.03;
+            pointer-events: none;
+            animation: gridScroll 20s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes gridScroll {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Navigation */
+        nav {
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cyber-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--cyber-cyan);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--cyber-cyan);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--cyber-cyan), transparent);
+        }
+        
+        .hero-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--cyber-cyan);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--text-white) 0%, var(--cyber-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, var(--cyber-cyan), var(--cyber-cyan-dim));
+            color: var(--cyber-black);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px var(--cyber-cyan-glow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 30px var(--cyber-cyan-glow);
+        }
+        
+        /* Featured Section */
+        .featured {
+            padding: 100px 0;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        
+        .featured-card {
+            background: linear-gradient(135deg, var(--cyber-dark) 0%, var(--cyber-gray) 100%);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--cyber-cyan-glow) 0%, transparent 70%);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .featured-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--cyber-cyan);
+            color: var(--cyber-black);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .featured-card h2 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: var(--text-white);
+        }
+        
+        .featured-card p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .featured-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+        
+        .feature-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--cyber-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--cyber-black);
+            flex-shrink: 0;
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .feature-text h4 {
+            color: var(--text-white);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .feature-text p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--cyber-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+        
+        .section-header h2 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--text-white);
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Perspectives Grid */
+        .perspectives {
+            padding: 100px 0;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-tab {
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            color: var(--text-gray);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+        
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: var(--cyber-cyan);
+            color: var(--cyber-black);
+            border-color: var(--cyber-cyan);
+        }
+        
+        .perspectives-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .perspective-card {
+            background: var(--cyber-dark);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .perspective-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 10px 40px var(--cyber-cyan-glow);
+        }
+        
+        .perspective-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--cyber-gray), var(--cyber-dark));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .perspective-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--cyber-cyan-glow), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .perspective-card:hover .perspective-image::before {
+            opacity: 1;
+        }
+        
+        .perspective-content {
+            padding: 30px;
+        }
+        
+        .perspective-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .perspective-category {
+            color: var(--cyber-cyan);
+        }
+        
+        .perspective-content h3 {
+            font-size: 1.4rem;
+            color: var(--text-white);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .perspective-excerpt {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .read-more {
+            color: var(--cyber-cyan);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .read-more::after {
+            content: '→';
+            transition: transform 0.3s;
+        }
+        
+        .read-more:hover::after {
+            transform: translateX(5px);
+        }
+        
+        /* Resources Section */
+        .resources {
+            padding: 100px 0;
+            background: var(--cyber-dark);
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .resource-card {
+            background: var(--cyber-black);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 40px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .resource-card:hover {
+            border-color: var(--cyber-cyan);
+            transform: translateY(-5px);
+        }
+        
+        .premium-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--cyber-cyan);
+            color: var(--cyber-black);
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--cyber-cyan-glow), transparent);
+            border: 2px solid var(--cyber-cyan);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+        
+        .resource-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-white);
+        }
+        
+        .resource-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .btn-download {
+            display: inline-block;
+            padding: 12px 25px;
+            background: transparent;
+            border: 2px solid var(--cyber-cyan);
+            color: var(--cyber-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .btn-download:hover {
+            background: var(--cyber-cyan);
+            color: var(--cyber-black);
+        }
+        
+        /* Newsroom */
+        .newsroom {
+            padding: 100px 0;
+        }
+        
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--cyber-cyan), transparent);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 60px;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--cyber-dark);
+            border: 3px solid var(--cyber-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--cyber-cyan);
+            z-index: 2;
+        }
+        
+        .timeline-content {
+            background: var(--cyber-dark);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+        }
+        
+        .timeline-content h4 {
+            font-size: 1.3rem;
+            color: var(--text-white);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-link {
+            color: var(--cyber-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        /* Newsletter CTA */
+        .newsletter-cta {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--cyber-dark) 0%, var(--cyber-gray) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--cyber-cyan-glow) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: pulse 10s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .newsletter-content h2 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: var(--text-white);
+        }
+        
+        .newsletter-content p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 18px 25px;
+            background: var(--cyber-black);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            color: var(--text-white);
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 20px var(--cyber-cyan-glow);
+        }
+        
+        .newsletter-form button {
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--cyber-cyan), var(--cyber-cyan-dim));
+            color: var(--cyber-black);
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px var(--cyber-cyan-glow);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        footer p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: var(--cyber-cyan);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .perspectives-grid,
+            .resources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .featured-features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .perspectives-grid,
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-card {
+                padding: 40px 30px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-overlay"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">RIVALIS LAW</div>
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                    <a href="/services">Services</a>
+                    <a href="/intelligence-hub">Intelligence</a>
+                    <a href="/join-firm">Join Us</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-tag">Intelligence Hub</div>
+            <h1>INTELLIGENCE<br>HUB</h1>
+            <p class="hero-subtitle">Proprietary intelligence, not generic insights. Real-time analysis of frontier legal developments from the world's leading specialists.</p>
+            <a href="#subscribe" class="btn">Subscribe to Briefings</a>
+        </div>
+    </section>
+    
+    <!-- Featured: AI Governance Framework -->
+    <section class="featured">
+        <div class="container">
+            <div class="featured-card">
+                <span class="featured-badge">Featured</span>
+                <h2>AI Governance Framework</h2>
+                <p>The most comprehensive, living compliance resource for AI regulation. Updated within 48 hours of regulatory changes across 42 jurisdictions.</p>
+                <p>Our flagship intelligence product combines automated monitoring of 100+ regulatory sources with expert analysis from practicing attorneys. See exactly what regulations apply to your AI use case, jurisdiction by jurisdiction.</p>
+                
+                <div class="featured-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">42</div>
+                        <div class="feature-text">
+                            <h4>Global Jurisdictions</h4>
+                            <p>EU, US states, UK, China, Canada, and more</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">48h</div>
+                        <div class="feature-text">
+                            <h4>Update Speed</h4>
+                            <p>Regulatory changes reflected within 2 days</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">50+</div>
+                        <div class="feature-text">
+                            <h4>Model Policies</h4>
+                            <p>Templates, contracts, assessment tools</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">∞</div>
+                        <div class="feature-text">
+                            <h4>Living Document</h4>
+                            <p>Continuously updated, version-controlled</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="/framework" class="btn">Explore Framework</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Perspectives (Blog) -->
+    <section class="perspectives">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Analysis</div>
+                <h2>PERSPECTIVES</h2>
+                <p>In-depth analysis of regulatory changes, case law developments, and emerging trends in frontier legal practice areas.</p>
+            </div>
+            
+            <div class="filter-tabs">
+                <button class="filter-tab active">All</button>
+                <button class="filter-tab">Regulatory</button>
+                <button class="filter-tab">Case Law</button>
+                <button class="filter-tab">Industry Trends</button>
+                <button class="filter-tab">How-To Guides</button>
+            </div>
+            
+            <div class="perspectives-grid">
+                <!-- Article 1 -->
+                <article class="perspective-card">
+                    <div class="perspective-image"></div>
+                    <div class="perspective-content">
+                        <div class="perspective-meta">
+                            <span class="perspective-category">AI Governance</span>
+                            <span>Dec 15, 2024</span>
+                        </div>
+                        <h3>EU AI Act Article 52: New Transparency Requirements Explained</h3>
+                        <p class="perspective-excerpt">The European Commission's latest amendments to Article 52 introduce stricter disclosure requirements for high-risk AI systems. Here's what companies need to know...</p>
+                        <a href="/perspectives/eu-ai-act-article-52" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Article 2 -->
+                <article class="perspective-card">
+                    <div class="perspective-image"></div>
+                    <div class="perspective-content">
+                        <div class="perspective-meta">
+                            <span class="perspective-category">Space Law</span>
+                            <span>Dec 12, 2024</span>
+                        </div>
+                        <h3>FCC Updates Satellite Licensing Requirements: What Changed</h3>
+                        <p class="perspective-excerpt">The FCC's December 2024 update to Part 25 regulations affects all commercial satellite operators. We break down the key changes and compliance deadlines...</p>
+                        <a href="/perspectives/fcc-satellite-updates" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Article 3 -->
+                <article class="perspective-card">
+                    <div class="perspective-image"></div>
+                    <div class="perspective-content">
+                        <div class="perspective-meta">
+                            <span class="perspective-category">CRISPR Law</span>
+                            <span>Dec 10, 2024</span>
+                        </div>
+                        <h3>FDA Approves Third CRISPR Therapy: Regulatory Pathway Analysis</h3>
+                        <p class="perspective-excerpt">Following approval of a sickle cell treatment, we analyze the FDA's evolving framework for gene editing therapies and what it means for biotech companies...</p>
+                        <a href="/perspectives/fda-crispr-approval" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Article 4 -->
+                <article class="perspective-card">
+                    <div class="perspective-image"></div>
+                    <div class="perspective-content">
+                        <div class="perspective-meta">
+                            <span class="perspective-category">Quantum Computing</span>
+                            <span>Dec 8, 2024</span>
+                        </div>
+                        <h3>NIST Post-Quantum Cryptography Standards: Implementation Guide</h3>
+                        <p class="perspective-excerpt">NIST's newly finalized post-quantum cryptography standards (FIPS 203, 204, 205) are now mandatory for federal agencies. Here's your compliance roadmap...</p>
+                        <a href="/perspectives/nist-pqc-standards" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Article 5 -->
+                <article class="perspective-card">
+                    <div class="perspective-image"></div>
+                    <div class="perspective-content">
+                        <div class="perspective-meta">
+                            <span class="perspective-category">Corporate Immigration</span>
+                            <span>Dec 5, 2024</span>
+                        </div>
+                        <h3>H-1B Lottery 2025: Strategy Changes for Tech Companies</h3>
+                        <p class="perspective-excerpt">With new USCIS guidance on specialty occupation definitions, tech companies need to adjust their H-1B filing strategies. Our recommendations...</p>
+                        <a href="/perspectives/h1b-strategy-2025" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Article 6 -->
+                <article class="perspective-card">
+                    <div class="perspective-image"></div>
+                    <div class="perspective-content">
+                        <div class="perspective-meta">
+                            <span class="perspective-category">Blockchain Law</span>
+                            <span>Dec 3, 2024</span>
+                        </div>
+                        <h3>EU MiCA Regulation: Full Implementation Checklist for Crypto Firms</h3>
+                        <p class="perspective-excerpt">The Markets in Crypto-Assets (MiCA) regulation is fully effective as of January 2025. Are you compliant? Our complete checklist...</p>
+                        <a href="/perspectives/mica-implementation" class="read-more">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Resources -->
+    <section class="resources">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Tools & Templates</div>
+                <h2>RESOURCES</h2>
+                <p>Practical tools, templates, and guides to help you navigate complex regulatory landscapes. Free resources available; Premium content marked.</p>
+            </div>
+            
+            <div class="resources-grid">
+                <!-- Resource 1 -->
+                <div class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <h3>AI Compliance Checklist</h3>
+                    <p>Step-by-step checklist for EU AI Act compliance covering risk classification, documentation, and ongoing obligations.</p>
+                    <a href="/resources/ai-compliance-checklist" class="btn-download">Download Free</a>
+                </div>
+                
+                <!-- Resource 2 -->
+                <div class="resource-card">
+                    <span class="premium-badge">Premium</span>
+                    <div class="resource-icon">📊</div>
+                    <h3>Jurisdiction Comparison Matrix</h3>
+                    <p>Side-by-side comparison of AI regulations across 42 jurisdictions. Interactive spreadsheet with filtering and search.</p>
+                    <a href="/resources/jurisdiction-matrix" class="btn-download">Premium Only</a>
+                </div>
+                
+                <!-- Resource 3 -->
+                <div class="resource-card">
+                    <div class="resource-icon">📄</div>
+                    <h3>Model AI Ethics Board Charter</h3>
+                    <p>Template charter for establishing an AI governance committee, including roles, responsibilities, and decision frameworks.</p>
+                    <a href="/resources/ethics-board-charter" class="btn-download">Download Free</a>
+                </div>
+                
+                <!-- Resource 4 -->
+                <div class="resource-card">
+                    <span class="premium-badge">Premium</span>
+                    <div class="resource-icon">🔒</div>
+                    <h3>AI Vendor Agreement Template</h3>
+                    <p>Comprehensive vendor agreement for AI services covering liability, data rights, compliance obligations, and audit rights.</p>
+                    <a href="/resources/vendor-agreement" class="btn-download">Premium Only</a>
+                </div>
+                
+                <!-- Resource 5 -->
+                <div class="resource-card">
+                    <div class="resource-icon">🎯</div>
+                    <h3>CRISPR Regulatory Roadmap</h3>
+                    <p>Visual guide to FDA approval pathways for gene editing therapies, from IND to BLA, with timelines and requirements.</p>
+                    <a href="/resources/crispr-roadmap" class="btn-download">Download Free</a>
+                </div>
+                
+                <!-- Resource 6 -->
+                <div class="resource-card">
+                    <span class="premium-badge">Premium</span>
+                    <div class="resource-icon">⚖️</div>
+                    <h3>Algorithmic Impact Assessment Tool</h3>
+                    <p>Interactive tool for conducting algorithmic impact assessments required under EU AI Act and similar regulations.</p>
+                    <a href="/resources/impact-assessment" class="btn-download">Premium Only</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsroom -->
+    <section class="newsroom">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">In the Media</div>
+                <h2>NEWSROOM</h2>
+                <p>Press mentions, speaking engagements, and firm announcements.</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">DEC<br>18</div>
+                    <div class="timeline-content">
+                        <h4>Featured in TechCrunch: "The Law Firms Building AI Governance Practices"</h4>
+                        <p>TechCrunch profiles Rivalis Law's approach to automated legal intelligence and how we're helping companies navigate the EU AI Act.</p>
+                        <a href="#" class="timeline-link">Read Article →</a>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">DEC<br>10</div>
+                    <div class="timeline-content">
+                        <h4>Speaking Engagement: AI & Law Summit 2025 (San Francisco)</h4>
+                        <p>Partner Sarah Chen will present on "Implementing EU AI Act Compliance in US Tech Companies" at the AI & Law Summit on January 15, 2025.</p>
+                        <a href="#" class="timeline-link">Event Details →</a>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">NOV<br>28</div>
+                    <div class="timeline-content">
+                        <h4>Bloomberg Law Quotes Partner on Post-Quantum Cryptography Standards</h4>
+                        <p>"The NIST standards create immediate compliance obligations for federal contractors," Partner Marcus Rodriguez told Bloomberg Law.</p>
+                        <a href="#" class="timeline-link">Read Coverage →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter CTA -->
+    <section class="newsletter-cta" id="subscribe">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>BIWEEKLY INTELLIGENCE BRIEFINGS</h2>
+                <p>Get the latest regulatory changes, case law updates, and frontier legal analysis delivered to your inbox every Monday and Thursday.</p>
+                
+                <form class="newsletter-form">
+                    <input type="email" placeholder="your@email.com" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                
+                <p style="margin-top: 20px; font-size: 0.9rem;">Join 2,000+ legal professionals and executives. Unsubscribe anytime. <a href="/premium" style="color: var(--cyber-cyan); text-decoration: none;">Upgrade to Premium</a> for full access.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Rivalis Law. All rights reserved. | <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Filter tabs functionality
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // In production, this would filter the articles
+            });
+        });
+        
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert('Thank you for subscribing! Check your email to confirm.');
+            this.reset();
+            // In production, integrate with ConvertKit or Mailchimp API
+        });
+    </script>
+</body>
+</html>
