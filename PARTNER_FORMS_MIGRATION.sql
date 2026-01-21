@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS partner_applications (
     additional_docs_urls TEXT[], -- array of URLs
     
     -- Section 6: References
-    references JSONB, -- array of reference objects
+    professional_references JSONB, -- array of reference objects
     has_conflicts BOOLEAN,
     conflicts_details TEXT,
     additional_info TEXT,

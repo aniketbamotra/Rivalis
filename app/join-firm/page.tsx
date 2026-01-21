@@ -279,11 +279,11 @@ export default function JoinTheFirmPage() {
                     </div>
                   </div>
                   <a
-                    href="#careers"
+                    href="/apply/careers"
                     className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold uppercase tracking-wider transition-all transform hover:scale-105 shadow-lg"
                     style={{ background: 'linear-gradient(90deg, #d4af37 0%, #f4d03f 100%)', color: '#1a1a2e' }}
                   >
-                    View Open Positions
+                    Apply Now
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -416,12 +416,6 @@ export default function JoinTheFirmPage() {
                   {practice.title}
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">{practice.desc}</p>
-                <div className="flex items-center gap-2 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#d4af37' }}>
-                  <span>Learn more</span>
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
               </div>
             ))}
           </div>
@@ -777,20 +771,14 @@ export default function JoinTheFirmPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/careers"
+                href="/apply/careers"
                 className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-lg font-bold uppercase tracking-wider transition-all transform hover:scale-105 shadow-lg"
                 style={{ background: 'linear-gradient(90deg, #d4af37 0%, #f4d03f 100%)', color: '#1a1a2e' }}
               >
-                <span>View All Openings</span>
+                <span>Apply Now</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
-              <a
-                href="/apply/careers"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white px-10 py-4 rounded-lg font-bold uppercase tracking-wider transition-all"
-              >
-                Submit General Application
               </a>
             </div>
           </div>

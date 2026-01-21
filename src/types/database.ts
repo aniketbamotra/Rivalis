@@ -309,6 +309,71 @@ export type SiteSettings = Database['public']['Tables']['site_settings']['Row'];
 export type Purchase = Database['public']['Tables']['purchases']['Row'];
 export type Payment = Database['public']['Tables']['payments']['Row'];
 
+// Partner types
+export interface PartnerInquiry {
+  id: string;
+  created_at: string;
+  full_name: string;
+  email: string;
+  phone?: string | null;
+  pathway_interest: string;
+  primary_specialty: string;
+  years_practice: number;
+  practice_overview: string;
+  why_rivalis: string;
+  status: string;
+  reviewed_by?: string | null;
+  reviewed_at?: string | null;
+  notes?: string | null;
+  application_token?: string | null;
+  application_link_sent_at?: string | null;
+}
+
+export interface PartnerApplication {
+  id: string;
+  created_at: string;
+  inquiry_id?: string | null;
+  access_token: string;
+  full_name: string;
+  email: string;
+  phone?: string | null;
+  linkedin_url?: string | null;
+  current_firm?: string | null;
+  current_position?: string | null;
+  bar_admissions?: string[] | null;
+  primary_specialties?: string[] | null;
+  years_experience?: number | null;
+  education_credentials?: string | null;
+  notable_achievements?: string | null;
+  annual_billings?: string | null;
+  portable_book?: string | null;
+  client_base_description?: string | null;
+  business_dev_strengths?: string[] | null;
+  preferred_pathway?: string | null;
+  capital_contribution_capacity?: string | null;
+  current_compensation?: string | null;
+  transition_timeline?: string | null;
+  why_rivalis?: string | null;
+  resume_url?: string | null;
+  writing_sample_url?: string | null;
+  client_list_url?: string | null;
+  additional_docs_urls?: string[] | null;
+  professional_references?: unknown | null; // JSONB
+  has_conflicts?: boolean | null;
+  conflicts_details?: string | null;
+  additional_info?: string | null;
+  status: string;
+  reviewed_by?: string | null;
+  reviewed_at?: string | null;
+  decision_notes?: string | null;
+  completed_at?: string | null;
+  inquiry?: {
+    full_name?: string;
+    email?: string;
+    pathway_interest?: string;
+  } | null;
+}
+
 // Insert types
 export type ProfileInsert = Database['public']['Tables']['profiles']['Insert'];
 export type ServiceInsert = Database['public']['Tables']['services']['Insert'];

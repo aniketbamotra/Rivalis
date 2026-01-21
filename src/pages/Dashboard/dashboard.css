@@ -671,3 +671,150 @@ tr:hover {
     gap: 1rem;
   }
 }
+
+/* Partnership Applications Section */
+.partnerships-section .section-header {
+  margin-bottom: 2rem;
+}
+
+.partnerships-section .overview-grid {
+  margin-bottom: 2rem;
+}
+
+.partnerships-section .sub-tabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
+.partnerships-section .sub-tabs .tab {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.partnerships-section .sub-tabs .tab.active {
+  background: rgba(212, 175, 55, 0.1);
+  border-bottom-color: #d4af37;
+  color: #d4af37;
+}
+
+.partnerships-section .sub-tabs .tab:hover {
+  color: #d4af37;
+}
+
+.status-filter-row {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-filter-row label {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.inquiries-table,
+.applications-table {
+  overflow-x: auto;
+}
+
+.inquiries-table table,
+.applications-table table {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.inquiries-table th,
+.applications-table th {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #d4af37;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.inquiries-table td,
+.applications-table td {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.inquiries-table tr:hover,
+.applications-table tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.notes-preview {
+  font-size: 0.85rem;
+  color: #60a5fa;
+  max-width: 100px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.document-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.document-links a {
+  color: #60a5fa;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.2s ease;
+}
+
+.document-links a:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+/* Responsive adjustments for partnership section */
+@media (max-width: 768px) {
+  .partnerships-section .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .partnerships-section .sub-tabs {
+    overflow-x: auto;
+    padding: 0.5rem 0;
+  }
+
+  .inquiries-table table,
+  .applications-table table {
+    font-size: 0.8rem;
+  }
+
+  .inquiries-table th,
+  .applications-table th,
+  .inquiries-table td,
+  .applications-table td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+

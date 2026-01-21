@@ -1,7 +1,8 @@
 {
-  "/apply/partner-inquiry/page": "app/apply/partner-inquiry/page.js",
-  "/services/contracts/page": "app/services/contracts/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
+  "/join-firm/page": "app/join-firm/page.js",
   "/intelligence-hub/page": "app/intelligence-hub/page.js",
-  "/join-firm/page": "app/join-firm/page.js"
+  "/apply/careers/page": "app/apply/careers/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
 }

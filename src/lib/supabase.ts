@@ -314,3 +314,152 @@ export const updateUserRole = async (userId: string, role: 'user' | 'admin') => 
   if (error) throw error;
   return data;
 };
+
+// ============================================
+// PARTNER APPLICATIONS ADMIN FUNCTIONS
+// ============================================
+
+// Admin: Get all partner inquiries
+export const getPartnerInquiries = async () => {
+  const { data, error } = await supabase
+    .from('partner_inquiries')
+    .select('*')
+    .order('created_at', { ascending: false });
+  
+  if (error) throw error;
+  return data || [];
+};
+
+// Admin: Get all partner applications
+export const getPartnerApplications = async () => {
+  const { data, error } = await supabase
+    .from('partner_applications')
+    .select(`
+      *,
+      inquiry:partner_inquiries(
+        full_name,
+        email,
+        pathway_interest
+      )
+    `)
+    .order('created_at', { ascending: false });
+  
+  if (error) throw error;
+  return data || [];
+};
+
+// Admin: Update partner inquiry status
+export const updateInquiryStatus = async (
+  inquiryId: string, 
+  status: string, 
+  reviewedBy?: string
+) => {
+  const updates: Record<string, string> = { 
+    status,
+    reviewed_at: new Date().toISOString()
+  };
+  
+  if (reviewedBy) {
+    updates.reviewed_by = reviewedBy;
+  }
+  
+  const { data, error } = await supabase
+    .from('partner_inquiries')
+    // @ts-expect-error - Supabase type inference issue with partner_inquiries table
+    .update(updates)
+    .eq('id', inquiryId)
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
+};
+
+// Admin: Update partner inquiry notes
+export const updateInquiryNotes = async (
+  inquiryId: string, 
+  notes: string
+) => {
+  const { data, error } = await supabase
+    .from('partner_inquiries')
+    // @ts-expect-error - Supabase type inference issue with partner_inquiries table
+    .update({ notes })
+    .eq('id', inquiryId)
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
+};
+
+// Admin: Update partner application status
+export const updateApplicationStatus = async (
+  applicationId: string, 
+  status: string, 
+  reviewedBy?: string
+) => {
+  const updates: Record<string, string> = { 
+    status,
+    reviewed_at: new Date().toISOString()
+  };
+  
+  if (reviewedBy) {
+    updates.reviewed_by = reviewedBy;
+  }
+  
+  const { data, error } = await supabase
+    .from('partner_applications')
+    // @ts-expect-error - Supabase type inference issue with partner_applications table
+    .update(updates)
+    .eq('id', applicationId)
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
+};
+
+// Admin: Update partner application decision notes
+export const updateApplicationNotes = async (
+  applicationId: string, 
+  decisionNotes: string
+) => {
+  const { data, error } = await supabase
+    .from('partner_applications')
+    // @ts-expect-error - Supabase type inference issue with partner_applications table
+    .update({ decision_notes: decisionNotes })
+    .eq('id', applicationId)
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
+};
+
+// Admin: Generate and save application token for qualified inquiry
+export const generateApplicationToken = async (inquiryId: string) => {
+  // Generate UUID token using database function
+  // @ts-expect-error - RPC function may not be in generated types
+  const { data, error } = await supabase
+    .rpc('generate_partner_application_token', { inquiry_id: inquiryId });
+  
+  if (error) {
+    // Fallback: Update directly with gen_random_uuid()
+    const { data: fallbackData, error: fallbackError } = await supabase
+      .from('partner_inquiries')
+      // @ts-expect-error - Supabase type inference issue with partner_inquiries table
+      .update({ 
+        application_token: crypto.randomUUID(),
+        application_link_sent_at: new Date().toISOString(),
+        status: 'qualified'
+      })
+      .eq('id', inquiryId)
+      .select()
+      .single();
+    
+    if (fallbackError) throw fallbackError;
+    return fallbackData;
+  }
+  
+  return data;
+};

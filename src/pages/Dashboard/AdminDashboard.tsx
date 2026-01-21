@@ -6,9 +6,16 @@ import {
   getAllUsers, 
   getFormSubmissions,
   updateFormSubmissionStatus,
+  getPartnerInquiries,
+  getPartnerApplications,
+  updateInquiryStatus,
+  updateInquiryNotes,
+  updateApplicationStatus,
+  updateApplicationNotes,
   supabase 
 } from '../../lib/supabase';
-import type { Service, Profile, FormSubmission, SiteSettings } from '../../types/database';
+import type { Service, Profile, FormSubmission, SiteSettings, PartnerInquiry, PartnerApplication } from '../../types/database';
+import { sendApplicationInvite } from '../../lib/partnerEmails';
 import {
   Dialog,
   DialogContent,
@@ -46,7 +53,8 @@ export function AdminDashboard() {
   const [submissions, setSubmissions] = useState<FormSubmission[]>([]);
   const [emergencyRequests, setEmergencyRequests] = useState<EmergencyRequest[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'overview' | 'services' | 'users' | 'submissions' | 'emergency' | 'settings'>('overview');
+  type TabType = 'overview' | 'services' | 'users' | 'submissions' | 'partnerships' | 'emergency' | 'settings';
+  const [activeTab, setActiveTab] = useState<TabType>('overview');
   
   // Edit modal state
   const [editingService, setEditingService] = useState<Service | null>(null);
@@ -66,6 +74,22 @@ export function AdminDashboard() {
   const [editingSiteSettings, setEditingSiteSettings] = useState(false);
   const [settingsForm, setSettingsForm] = useState<Partial<SiteSettings>>({});
 
+  // Partner Applications state
+  const [partnerInquiries, setPartnerInquiries] = useState<PartnerInquiry[]>([]);
+  const [partnerApplications, setPartnerApplications] = useState<PartnerApplication[]>([]);
+  const [partnerSubTab, setPartnerSubTab] = useState<'inquiries' | 'applications'>('inquiries');
+  const [inquiryStatusFilter, setInquiryStatusFilter] = useState<string>('all');
+  const [applicationStatusFilter, setApplicationStatusFilter] = useState<string>('all');
+  
+  // Partner modal state
+  const [viewingInquiry, setViewingInquiry] = useState<PartnerInquiry | null>(null);
+  const [viewingApplication, setViewingApplication] = useState<PartnerApplication | null>(null);
+  const [editingInquiryNotes, setEditingInquiryNotes] = useState<PartnerInquiry | null>(null);
+  const [inquiryNotesText, setInquiryNotesText] = useState('');
+  const [editingApplicationNotes, setEditingApplicationNotes] = useState<PartnerApplication | null>(null);
+  const [applicationNotesText, setApplicationNotesText] = useState('');
+  const [sendingAppLink, setSendingAppLink] = useState(false);
+
   useEffect(() => {
     if (!authLoading && !isAdmin) {
       router.push('/dashboard');
@@ -77,7 +101,7 @@ export function AdminDashboard() {
       if (!isAdmin) return;
       
       try {
-        const [servicesData, usersData, submissionsData, emergencyData, settingsData] = await Promise.all([
+        const [servicesData, usersData, submissionsData, emergencyData, settingsData, partnerInquiriesData, partnerApplicationsData] = await Promise.all([
           supabase.from('services').select('*').order('display_order'),
           getAllUsers(),
           getFormSubmissions(),
@@ -85,7 +109,9 @@ export function AdminDashboard() {
             .from('emergency_requests')
             .select('*')
             .order('created_at', { ascending: false }),
-          supabase.from('site_settings').select('*').single() as unknown as { data: SiteSettings | null; error: any }
+          supabase.from('site_settings').select('*').single() as unknown as { data: SiteSettings | null; error: any },
+          getPartnerInquiries(),
+          getPartnerApplications()
         ]);
         
         // Fetch profiles for emergency requests
@@ -110,6 +136,8 @@ export function AdminDashboard() {
         setUsers(usersData);
         setSubmissions(submissionsData);
         setEmergencyRequests(emergencyWithProfiles);
+        setPartnerInquiries(partnerInquiriesData || []);
+        setPartnerApplications(partnerApplicationsData || []);
         if (settingsData.data) {
           setSiteSettings(settingsData.data as SiteSettings);
           setSettingsForm(settingsData.data as Partial<SiteSettings>);
@@ -182,6 +210,118 @@ export function AdminDashboard() {
       setNotesText('');
     } catch (error) {
       console.error('Error saving notes:', error);
+    }
+  };
+
+  // Partner Inquiry Handlers
+  const handleUpdateInquiryStatus = async (inquiryId: string, newStatus: string) => {
+    try {
+      await updateInquiryStatus(inquiryId, newStatus);
+      setPartnerInquiries(partnerInquiries.map(i =>
+        i.id === inquiryId ? { ...i, status: newStatus } : i
+      ));
+    } catch (error) {
+      console.error('Error updating inquiry status:', error);
+    }
+  };
+
+  const handleSaveInquiryNotes = async () => {
+    if (!editingInquiryNotes) return;
+    
+    try {
+      await updateInquiryNotes(editingInquiryNotes.id, inquiryNotesText);
+      
+      setPartnerInquiries(partnerInquiries.map(i => 
+        i.id === editingInquiryNotes.id ? { ...i, notes: inquiryNotesText } : i
+      ));
+      
+      setEditingInquiryNotes(null);
+      setInquiryNotesText('');
+    } catch (error) {
+      console.error('Error saving inquiry notes:', error);
+    }
+  };
+
+  const handleSendApplicationLink = async (inquiryId: string) => {
+    if (!confirm('This will generate a unique application link and send it to the applicant via email. Continue?')) {
+      return;
+    }
+
+    setSendingAppLink(true);
+    try {
+      // Generate token and update inquiry
+      const token = crypto.randomUUID();
+      const { error: updateError } = await supabase
+        .from('partner_inquiries')
+        .update({ 
+          application_token: token,
+          application_link_sent_at: new Date().toISOString(),
+          status: 'qualified'
+        } as never)
+        .eq('id', inquiryId);
+
+      if (updateError) throw updateError;
+
+      // Get inquiry details for email
+      const inquiry = partnerInquiries.find(i => i.id === inquiryId);
+      if (!inquiry) throw new Error('Inquiry not found');
+
+      // Send email
+      const emailResult = await sendApplicationInvite({
+        email: inquiry.email,
+        name: inquiry.full_name,
+        token: token
+      });
+
+      if (!emailResult.success) {
+        throw new Error('Failed to send email');
+      }
+
+      // Update local state
+      setPartnerInquiries(partnerInquiries.map(i => 
+        i.id === inquiryId ? { 
+          ...i, 
+          application_token: token,
+          application_link_sent_at: new Date().toISOString(),
+          status: 'qualified'
+        } : i
+      ));
+
+      alert('Application link sent successfully!');
+    } catch (error) {
+      console.error('Error sending application link:', error);
+      alert('Failed to send application link. Please try again.');
+    } finally {
+      setSendingAppLink(false);
+    }
+  };
+
+  // Partner Application Handlers
+  const handleUpdateApplicationStatus = async (applicationId: string, newStatus: string) => {
+    try {
+      await updateApplicationStatus(applicationId, newStatus);
+      setPartnerApplications(partnerApplications.map(a =>
+        a.id === applicationId ? { ...a, status: newStatus } : a
+      ));
+    } catch (error) {
+      console.error('Error updating application status:', error);
+    }
+  };
+
+  const handleSaveApplicationNotes = async () => {
+    if (!editingApplicationNotes) return;
+    
+    try {
+      await updateApplicationNotes(editingApplicationNotes.id, applicationNotesText);
+      
+      setPartnerApplications(partnerApplications.map(a => 
+        a.id === editingApplicationNotes.id ? { ...a, decision_notes: applicationNotesText } : a
+      ));
+      
+      setEditingApplicationNotes(null);
+      setApplicationNotesText('');
+    } catch (error) {
+      console.error('Error saving application notes:', error);
     }
   };
 
@@ -292,6 +432,12 @@ export function AdminDashboard() {
             onClick={() => setActiveTab('submissions')}
           >
             Submissions ({submissions.length})
+          </button>
+          <button 
+            className={`tab ${activeTab === 'partnerships' ? 'active' : ''}`}
+            onClick={() => setActiveTab('partnerships')}
+          >
+            🤝 Partnerships ({partnerInquiries.length + partnerApplications.length})
           </button>
           <button 
             className={`tab ${activeTab === 'emergency' ? 'active' : ''}`}
@@ -972,83 +1118,362 @@ export function AdminDashboard() {
               )}
             </div>
           )}
-        </div>
 
-        {/* Edit Price Modal */}
-        {editingService && (
-          <div className="modal-overlay" onClick={() => setEditingService(null)}>
-            <div className="modal" onClick={(e) => e.stopPropagation()}>
-              <h3>Edit Service Details</h3>
-              <p className="modal-service-name">{editingService.name}</p>
-              
-              <div className="modal-form">
-                <label htmlFor="price">Price ($)</label>
-                <input
-                  id="price"
-                  type="number"
-                  value={newPrice}
-                  onChange={(e) => setNewPrice(e.target.value)}
-                  placeholder="Enter price"
-                  min="0"
-                  step="0.01"
-                />
+          {/* Partnerships Tab */}
+          {activeTab === 'partnerships' && (
+            <div className="partnerships-section">
+              <div className="section-header">
+                <h2>🤝 Partnership Applications</h2>
+                <p>Review and manage partnership inquiries and applications</p>
+              </div>
 
-                <label htmlFor="calendly" style={{ marginTop: '1rem' }}>Calendly Scheduling URL (optional)</label>
-                <input
-                  id="calendly"
-                  type="url"
-                  value={newCalendlyUrl}
-                  onChange={(e) => setNewCalendlyUrl(e.target.value)}
-                  placeholder="https://calendly.com/your-username/event-type"
+              {/* Stats Overview */}
+              <div className="overview-grid" style={{ marginBottom: '2rem' }}>
+                <div className="stat-card">
+                  <div className="stat-icon" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa' }}>
+                    📝
+                  </div>
+                  <div className="stat-info">
+                    <span className="stat-number">{partnerInquiries.length}</span>
+                    <span className="stat-label">Total Inquiries</span>
+                  </div>
+                </div>
+                
+                <div className="stat-card">
+                  <div className="stat-icon" style={{ background: 'rgba(251, 191, 36, 0.15)', color: '#fbbf24' }}>
+                    ⏳
+                  </div>
+                  <div className="stat-info">
+                    <span className="stat-number">
+                      {partnerInquiries.filter(i => i.status === 'pending').length}
+                    </span>
+                    <span className="stat-label">Pending Review</span>
+                  </div>
+                </div>
+                
+                <div className="stat-card">
+                  <div className="stat-icon" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#a78bfa' }}>
+                    📋
+                  </div>
+                  <div className="stat-info">
+                    <span className="stat-number">{partnerApplications.length}</span>
+                    <span className="stat-label">Full Applications</span>
+                  </div>
+                </div>
+                
+                <div className="stat-card">
+                  <div className="stat-icon" style={{ background: 'rgba(34, 197, 94, 0.15)', color: '#4ade80' }}>
+                    ✅
+                  </div>
+                  <div className="stat-info">
+                    <span className="stat-number">
+                      {partnerInquiries.filter(i => i.status === 'qualified').length}
+                    </span>
+                    <span className="stat-label">Qualified</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Sub-tabs */}
+              <div className="sub-tabs" style={{ 
+                borderBottom: '1px solid rgba(255, 255, 255, 0.1)', 
+                marginBottom: '2rem',
+                display: 'flex',
+                gap: '1rem'
+              }}>
+                <button 
+                  className={`tab ${partnerSubTab === 'inquiries' ? 'active' : ''}`}
+                  onClick={() => setPartnerSubTab('inquiries')}
                   style={{
-                    width: '100%',
-                    padding: '0.75rem',
-                    border: '1px solid #ddd',
-                    borderRadius: '8px',
-                    fontSize: '1rem',
+                    padding: '0.75rem 1.5rem',
+                    background: partnerSubTab === 'inquiries' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                    border: 'none',
+                    borderBottom: partnerSubTab === 'inquiries' ? '2px solid #d4af37' : '2px solid transparent',
+                    color: partnerSubTab === 'inquiries' ? '#d4af37' : '#94a3b8',
+                    cursor: 'pointer',
+                    fontSize: '0.9rem',
+                    fontWeight: '500',
                   }}
-                />
-                <p style={{
-                  fontSize: '0.85rem',
-                  color: '#666',
-                  marginTop: '0.5rem',
-                  marginBottom: 0,
-                }}>
-                  Users will see this Calendly link when booking consultations for this service
+                >
+                  Inquiries ({partnerInquiries.length})
+                </button>
+                <button 
+                  className={`tab ${partnerSubTab === 'applications' ? 'active' : ''}`}
+                  onClick={() => setPartnerSubTab('applications')}
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    background: partnerSubTab === 'applications' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                    border: 'none',
+                    borderBottom: partnerSubTab === 'applications' ? '2px solid #d4af37' : '2px solid transparent',
+                    color: partnerSubTab === 'applications' ? '#d4af37' : '#94a3b8',
+                    cursor: 'pointer',
+                    fontSize: '0.9rem',
+                    fontWeight: '500',
+                  }}
+                >
+                  Full Applications ({partnerApplications.length})
+                </button>
+              </div>
+
+              {/* Inquiries Table */}
+              {partnerSubTab === 'inquiries' && (
+                <div className="inquiries-table">
+                  {/* Status Filter */}
+                  <div className="status-filter-row" style={{
+                    marginBottom: '1rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem'
+                  }}>
+                    <label style={{ color: '#94a3b8', fontSize: '0.9rem' }}>Filter by status:</label>
+                    <select
+                      value={inquiryStatusFilter}
+                      onChange={(e) => setInquiryStatusFilter(e.target.value)}
+                      className="status-select"
+                      style={{ padding: '0.5rem', borderRadius: '6px' }}
+                    >
+                      <option value="all">All Statuses</option>
+                      <option value="pending">Pending</option>
+                      <option value="reviewing">Reviewing</option>
+                      <option value="qualified">Qualified</option>
+                      <option value="rejected">Rejected</option>
+                    </select>
+                  </div>
+
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Pathway</th>
+                        <th>Years</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                        <th>Submitted</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {partnerInquiries
+                        .filter(i => inquiryStatusFilter === 'all' || i.status === inquiryStatusFilter)
+                        .map((inquiry) => (
+                        <tr key={inquiry.id}>
+                          <td>{inquiry.full_name}</td>
+                          <td>{inquiry.email}</td>
+                          <td className="capitalize">{inquiry.pathway_interest}</td>
+                          <td>{inquiry.years_practice} yrs</td>
+                          <td>
+                            <select
+                              value={inquiry.status}
+                              onChange={(e) => handleUpdateInquiryStatus(inquiry.id, e.target.value)}
+                              className="status-select"
+                            >
+                              <option value="pending">Pending</option>
+                              <option value="reviewing">Reviewing</option>
+                              <option value="qualified">Qualified</option>
+                              <option value="rejected">Rejected</option>
+                            </select>
+                          </td>
+                          <td>
+                            {inquiry.notes ? (
+                              <span style={{
+                                fontSize: '0.85rem',
+                                color: '#60a5fa',
+                                maxWidth: '100px',
+                                display: 'inline-block',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap'
+                              }}>
+                                {inquiry.notes.substring(0, 30)}...
+                              </span>
+                            ) : (
+                              <span style={{ color: '#666', fontSize: '0.85rem' }}>—</span>
+                            )}
+                          </td>
+                          <td>{formatDate(inquiry.created_at)}</td>
+                          <td>
+                            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                              <button 
+                                className="view-button"
+                                onClick={() => setViewingInquiry(inquiry)}
+                                style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem' }}
+                              >
+                                View
+                              </button>
+                              <button 
+                                className="edit-button"
+                                onClick={() => {
+                                  setEditingInquiryNotes(inquiry);
+                                  setInquiryNotesText(inquiry.notes || '');
+                                }}
+                                style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem' }}
+                              >
+                                Notes
+                              </button>
+                              {inquiry.status === 'qualified' && !inquiry.application_link_sent_at && (
+                                <button 
+                                  className="save-button"
+                                  onClick={() => handleSendApplicationLink(inquiry.id)}
+                                  disabled={sendingAppLink}
+                                  style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem' }}
+                                >
+                                  {sendingAppLink ? 'Sending...' : 'Send Link'}
+                                </button>
+                              )}
+                              {inquiry.application_link_sent_at && (
+                                <span style={{
+                                  fontSize: '0.75rem',
+                                  color: '#10b981',
+                                  padding: '0.4rem 0.8rem',
+                                  background: 'rgba(16, 185, 129, 0.1)',
+                                  borderRadius: '4px'
+                                }}>
+                                  ✓ Link Sent
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  
+                  {partnerInquiries.filter(i => inquiryStatusFilter === 'all' || i.status === inquiryStatusFilter).length === 0 && (
+                    <div style={{ textAlign: 'center', padding: '2rem', color: '#94a3b8' }}>
+                      No inquiries found for the selected filter.
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Applications Table */}
+              {partnerSubTab === 'applications' && (
+                <div className="applications-table">
+                  {/* Status Filter */}
+                  <div className="status-filter-row" style={{
+                    marginBottom: '1rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem'
+                  }}>
+                    <label style={{ color: '#94a3b8', fontSize: '0.9rem' }}>Filter by status:</label>
+                    <select
+                      value={applicationStatusFilter}
+                      onChange={(e) => setApplicationStatusFilter(e.target.value)}
+                      className="status-select"
+                      style={{ padding: '0.5rem', borderRadius: '6px' }}
+                    >
+                      <option value="all">All Statuses</option>
+                      <option value="submitted">Submitted</option>
+                      <option value="under_review">Under Review</option>
+                      <option value="interview">Interview</option>
+                      <option value="accepted">Accepted</option>
+                      <option value="rejected">Rejected</option>
+                    </select>
+                  </div>
+
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Current Firm</th>
+                        <th>Pathway</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                        <th>Submitted</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {partnerApplications
+                        .filter(a => applicationStatusFilter === 'all' || a.status === applicationStatusFilter)
+                        .map((app) => (
+                        <tr key={app.id}>
+                          <td>{app.full_name}</td>
+                          <td>{app.email}</td>
+                          <td>{app.current_firm || '—'}</td>
+                          <td className="capitalize">{app.preferred_pathway || '—'}</td>
+                          <td>
+                            <select
+                              value={app.status}
+                              onChange={(e) => handleUpdateApplicationStatus(app.id, e.target.value)}
+                              className="status-select"
+                            >
+                              <option value="submitted">Submitted</option>
+                              <option value="under_review">Under Review</option>
+                              <option value="interview">Interview</option>
+                              <option value="accepted">Accepted</option>
+                              <option value="rejected">Rejected</option>
+                            </select>
+                          </td>
+                          <td>
+                            {app.decision_notes ? (
+                              <span style={{
+                                fontSize: '0.85rem',
+                                color: '#60a5fa',
+                                maxWidth: '100px',
+                                display: 'inline-block',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap'
+                              }}>
+                                {app.decision_notes.substring(0, 30)}...
+                              </span>
+                            ) : (
+                              <span style={{ color: '#666', fontSize: '0.85rem' }}>—</span>
+                            )}
+                          </td>
+                          <td>{formatDate(app.created_at)}</td>
+                          <td>
+                            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                              <button 
+                                className="view-button"
+                                onClick={() => setViewingApplication(app)}
+                                style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem' }}
+                              >
+                                View Full App
+                              </button>
+                              <button 
+                                className="edit-button"
+                                onClick={() => {
+                                  setEditingApplicationNotes(app);
+                                  setApplicationNotesText(app.decision_notes || '');
+                                }}
+                                style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem' }}
+                              >
+                                Notes
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  
+                  {partnerApplications.filter(a => applicationStatusFilter === 'all' || a.status === applicationStatusFilter).length === 0 && (
+                    <div style={{ textAlign: 'center', padding: '2rem', color: '#94a3b8' }}>
+                      No applications found for the selected filter.
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Site Settings Tab */}
+          {activeTab === 'settings' && (
+            <div className="admin-section" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div className="section-header" style={{ marginBottom: '2rem', width: '100%', maxWidth: '900px' }}>
+                <h2>Site Settings</h2>
+                <p style={{ color: '#94a3b8', marginTop: '0.5rem' }}>
+                  Manage your firm information, contact details, and social media links
                 </p>
               </div>
-              
-              <div className="modal-actions">
-                <button 
-                  className="cancel-button"
-                  onClick={() => setEditingService(null)}
-                >
-                  Cancel
-                </button>
-                <button 
-                  className="save-button"
-                  onClick={handleUpdatePrice}
-                  disabled={saving}
-                >
-                  {saving ? 'Saving...' : 'Save Changes'}
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
 
-        {/* Site Settings Tab */}
-        {activeTab === 'settings' && (
-          <div className="admin-section" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div className="section-header" style={{ marginBottom: '2rem', width: '100%', maxWidth: '900px' }}>
-              <h2>Site Settings</h2>
-              <p style={{ color: '#94a3b8', marginTop: '0.5rem' }}>
-                Manage your firm information, contact details, and social media links
-              </p>
-            </div>
-
-            {siteSettings && (
-              <div style={{ maxWidth: '900px', width: '100%' }}>
+              {siteSettings && (
+                <div style={{ maxWidth: '900px', width: '100%' }}>
                 {/* Business Information Section */}
                 <div style={{ background: '#1e293b', padding: '2rem', borderRadius: '12px', marginBottom: '1.5rem', boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '1.5rem', color: '#f1f5f9' }}>Business Information</h3>
@@ -1518,8 +1943,72 @@ export function AdminDashboard() {
             )}
           </div>
         )}
+        </div>
 
-        {/* Submission Details Modal */}
+        {/* Edit Price Modal */}
+        {editingService && (
+          <div className="modal-overlay" onClick={() => setEditingService(null)}>
+            <div className="modal" onClick={(e) => e.stopPropagation()}>
+              <h3>Edit Service Details</h3>
+              <p className="modal-service-name">{editingService.name}</p>
+              
+              <div className="modal-form">
+                <label htmlFor="price">Price ($)</label>
+                <input
+                  id="price"
+                  type="number"
+                  value={newPrice}
+                  onChange={(e) => setNewPrice(e.target.value)}
+                  placeholder="Enter price"
+                  min="0"
+                  step="0.01"
+                />
+
+                <label htmlFor="calendly" style={{ marginTop: '1rem' }}>Calendly Scheduling URL (optional)</label>
+                <input
+                  id="calendly"
+                  type="url"
+                  value={newCalendlyUrl}
+                  onChange={(e) => setNewCalendlyUrl(e.target.value)}
+                  placeholder="https://calendly.com/your-username/event-type"
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    fontSize: '1rem',
+                  }}
+                />
+                <p style={{
+                  fontSize: '0.85rem',
+                  color: '#666',
+                  marginTop: '0.5rem',
+                  marginBottom: 0,
+                }}>
+                  Users will see this Calendly link when booking consultations for this service
+                </p>
+              </div>
+              
+              <div className="modal-actions">
+                <button 
+                  className="cancel-button"
+                  onClick={() => setEditingService(null)}
+                >
+                  Cancel
+                </button>
+                <button 
+                  className="save-button"
+                  onClick={handleUpdatePrice}
+                  disabled={saving}
+                >
+                  {saving ? 'Saving...' : 'Save Changes'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Other Modals */}
         <Dialog open={!!viewingSubmission} onOpenChange={(open) => !open && setViewingSubmission(null)}>
           <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
             <DialogHeader>
@@ -1622,6 +2111,471 @@ export function AdminDashboard() {
                 </button>
                 <button
                   onClick={handleSaveNotes}
+                  className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md font-medium transition-colors"
+                >
+                  Save Notes
+                </button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Partner Inquiry Details Modal */}
+        <Dialog open={!!viewingInquiry} onOpenChange={(open) => {
+          if (!open) setViewingInquiry(null);
+        }}>
+          <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Partnership Inquiry Details</DialogTitle>
+              <DialogDescription>
+                {viewingInquiry && (
+                  <>
+                    Submitted on {new Date(viewingInquiry.created_at).toLocaleString()}
+                  </>
+                )}
+              </DialogDescription>
+            </DialogHeader>
+            
+            {viewingInquiry && (
+              <div className="space-y-4 mt-4">
+                {/* Contact Information */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h3 className="text-lg font-semibold mb-3">Contact Information</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Full Name</p>
+                      <p className="text-sm">{viewingInquiry.full_name}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Email</p>
+                      <p className="text-sm">{viewingInquiry.email}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Phone</p>
+                      <p className="text-sm">{viewingInquiry.phone || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Status</p>
+                      <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium capitalize ${
+                        viewingInquiry.status === 'qualified' ? 'bg-green-100 text-green-800' :
+                        viewingInquiry.status === 'reviewing' ? 'bg-blue-100 text-blue-800' :
+                        viewingInquiry.status === 'rejected' ? 'bg-red-100 text-red-800' :
+                        'bg-gray-100 text-gray-800'
+                      }`}>
+                        {viewingInquiry.status}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Professional Details */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h3 className="text-lg font-semibold mb-3">Professional Details</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Pathway Interest</p>
+                      <p className="text-sm capitalize">{viewingInquiry.pathway_interest}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Primary Specialty</p>
+                      <p className="text-sm">{viewingInquiry.primary_specialty}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Years in Practice</p>
+                      <p className="text-sm">{viewingInquiry.years_practice} years</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Practice Overview</p>
+                      <p className="text-sm whitespace-pre-wrap">{viewingInquiry.practice_overview}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Why Rivalis?</p>
+                      <p className="text-sm whitespace-pre-wrap">{viewingInquiry.why_rivalis}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Admin Tracking */}
+                {(viewingInquiry.notes || viewingInquiry.reviewed_by) && (
+                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <h3 className="text-lg font-semibold mb-3 text-blue-900">Admin Information</h3>
+                    <div className="space-y-2">
+                      {viewingInquiry.reviewed_by && (
+                        <div>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">Reviewed By</p>
+                          <p className="text-sm">{viewingInquiry.reviewed_by}</p>
+                        </div>
+                      )}
+                      {viewingInquiry.reviewed_at && (
+                        <div>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">Reviewed At</p>
+                          <p className="text-sm">{formatDate(viewingInquiry.reviewed_at)}</p>
+                        </div>
+                      )}
+                      {viewingInquiry.application_link_sent_at && (
+                        <div>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">Application Link Sent</p>
+                          <p className="text-sm">{formatDate(viewingInquiry.application_link_sent_at)}</p>
+                        </div>
+                      )}
+                      {viewingInquiry.notes && (
+                        <div>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">Notes</p>
+                          <p className="text-sm whitespace-pre-wrap">{viewingInquiry.notes}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+
+        {/* Partner Application Details Modal */}
+        <Dialog open={!!viewingApplication} onOpenChange={(open) => {
+          if (!open) setViewingApplication(null);
+        }}>
+          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Full Partnership Application</DialogTitle>
+              <DialogDescription>
+                {viewingApplication && (
+                  <>
+                    {viewingApplication.full_name} • Submitted on {new Date(viewingApplication.created_at).toLocaleString()}
+                  </>
+                )}
+              </DialogDescription>
+            </DialogHeader>
+            
+            {viewingApplication && (
+              <div className="space-y-4 mt-4">
+                {/* Section 1: Contact Information */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h3 className="text-lg font-semibold mb-3">1. Contact Information</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Full Name</p>
+                      <p className="text-sm">{viewingApplication.full_name}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Email</p>
+                      <p className="text-sm">{viewingApplication.email}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Phone</p>
+                      <p className="text-sm">{viewingApplication.phone || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">LinkedIn</p>
+                      <p className="text-sm">{viewingApplication.linkedin_url ? (
+                        <a href={viewingApplication.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                          View Profile
+                        </a>
+                      ) : 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Current Firm</p>
+                      <p className="text-sm">{viewingApplication.current_firm || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Current Position</p>
+                      <p className="text-sm">{viewingApplication.current_position || 'Not provided'}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Section 2: Professional Experience */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h3 className="text-lg font-semibold mb-3">2. Professional Experience</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Bar Admissions</p>
+                      <p className="text-sm">{viewingApplication.bar_admissions?.join(', ') || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Primary Specialties</p>
+                      <p className="text-sm">{viewingApplication.primary_specialties?.join(', ') || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Years of Experience</p>
+                      <p className="text-sm">{viewingApplication.years_experience || 0} years</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Education & Credentials</p>
+                      <p className="text-sm whitespace-pre-wrap">{viewingApplication.education_credentials || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Notable Achievements</p>
+                      <p className="text-sm whitespace-pre-wrap">{viewingApplication.notable_achievements || 'Not provided'}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Section 3: Business Development */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h3 className="text-lg font-semibold mb-3">3. Business Development</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Annual Billings</p>
+                      <p className="text-sm">{viewingApplication.annual_billings || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Portable Book of Business</p>
+                      <p className="text-sm">{viewingApplication.portable_book || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Client Base Description</p>
+                      <p className="text-sm whitespace-pre-wrap">{viewingApplication.client_base_description || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Business Development Strengths</p>
+                      <p className="text-sm">{viewingApplication.business_dev_strengths?.join(', ') || 'Not provided'}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Section 4: Partnership Details */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h3 className="text-lg font-semibold mb-3">4. Partnership Details</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Preferred Pathway</p>
+                      <p className="text-sm capitalize">{viewingApplication.preferred_pathway || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Capital Contribution Capacity</p>
+                      <p className="text-sm">{viewingApplication.capital_contribution_capacity || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Current Compensation</p>
+                      <p className="text-sm">{viewingApplication.current_compensation || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Transition Timeline</p>
+                      <p className="text-sm">{viewingApplication.transition_timeline || 'Not provided'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Why Rivalis?</p>
+                      <p className="text-sm whitespace-pre-wrap">{viewingApplication.why_rivalis || 'Not provided'}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Section 5: Documents */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h3 className="text-lg font-semibold mb-3">5. Documents</h3>
+                  <div className="space-y-2">
+                    {viewingApplication.resume_url && (
+                      <div>
+                        <a 
+                          href={viewingApplication.resume_url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-blue-600 hover:underline text-sm"
+                        >
+                          📄 View Resume/CV
+                        </a>
+                      </div>
+                    )}
+                    {viewingApplication.writing_sample_url && (
+                      <div>
+                        <a 
+                          href={viewingApplication.writing_sample_url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-blue-600 hover:underline text-sm"
+                        >
+                          📝 View Writing Sample
+                        </a>
+                      </div>
+                    )}
+                    {viewingApplication.client_list_url && (
+                      <div>
+                        <a 
+                          href={viewingApplication.client_list_url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-blue-600 hover:underline text-sm"
+                        >
+                          📋 View Client List
+                        </a>
+                      </div>
+                    )}
+                    {(!viewingApplication.resume_url && !viewingApplication.writing_sample_url && !viewingApplication.client_list_url) && (
+                      <p className="text-sm text-gray-500">No documents uploaded</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Section 6: References & Additional Info */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h3 className="text-lg font-semibold mb-3">6. References & Additional Information</h3>
+                  <div className="space-y-3">
+                    {viewingApplication.professional_references && (
+                      <div>
+                        <p className="text-sm font-semibold text-gray-600 mb-1">References</p>
+                        <pre className="text-sm whitespace-pre-wrap bg-white p-2 rounded border">
+                          {JSON.stringify(viewingApplication.professional_references, null, 2)}
+                        </pre>
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Conflicts of Interest</p>
+                      <p className="text-sm">{viewingApplication.has_conflicts ? 'Yes' : 'No'}</p>
+                      {viewingApplication.has_conflicts && viewingApplication.conflicts_details && (
+                        <p className="text-sm mt-1 whitespace-pre-wrap">{viewingApplication.conflicts_details}</p>
+                      )}
+                    </div>
+                    {viewingApplication.additional_info && (
+                      <div>
+                        <p className="text-sm font-semibold text-gray-600 mb-1">Additional Information</p>
+                        <p className="text-sm whitespace-pre-wrap">{viewingApplication.additional_info}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Admin Tracking */}
+                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <h3 className="text-lg font-semibold mb-3 text-blue-900">Admin Information</h3>
+                  <div className="space-y-2">
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-1">Status</p>
+                      <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium capitalize ${
+                        viewingApplication.status === 'accepted' ? 'bg-green-100 text-green-800' :
+                        viewingApplication.status === 'interview' ? 'bg-purple-100 text-purple-800' :
+                        viewingApplication.status === 'under_review' ? 'bg-blue-100 text-blue-800' :
+                        viewingApplication.status === 'rejected' ? 'bg-red-100 text-red-800' :
+                        'bg-gray-100 text-gray-800'
+                      }`}>
+                        {viewingApplication.status.replace('_', ' ')}
+                      </span>
+                    </div>
+                    {viewingApplication.reviewed_by && (
+                      <div>
+                        <p className="text-sm font-semibold text-gray-600 mb-1">Reviewed By</p>
+                        <p className="text-sm">{viewingApplication.reviewed_by}</p>
+                      </div>
+                    )}
+                    {viewingApplication.reviewed_at && (
+                      <div>
+                        <p className="text-sm font-semibold text-gray-600 mb-1">Reviewed At</p>
+                        <p className="text-sm">{formatDate(viewingApplication.reviewed_at)}</p>
+                      </div>
+                    )}
+                    {viewingApplication.decision_notes && (
+                      <div>
+                        <p className="text-sm font-semibold text-gray-600 mb-1">Decision Notes</p>
+                        <p className="text-sm whitespace-pre-wrap">{viewingApplication.decision_notes}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+
+        {/* Partner Inquiry Notes Modal */}
+        <Dialog open={!!editingInquiryNotes} onOpenChange={(open) => {
+          if (!open) {
+            setEditingInquiryNotes(null);
+            setInquiryNotesText('');
+          }
+        }}>
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle>Inquiry Notes</DialogTitle>
+              <DialogDescription>
+                {editingInquiryNotes && (
+                  <>
+                    Add or update notes for {editingInquiryNotes.full_name}'s partnership inquiry
+                  </>
+                )}
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-4 mt-4">
+              <div>
+                <label className="text-sm font-semibold text-gray-700 mb-2 block">
+                  Internal Notes
+                </label>
+                <textarea
+                  value={inquiryNotesText}
+                  onChange={(e) => setInquiryNotesText(e.target.value)}
+                  placeholder="Enter internal notes about this inquiry..."
+                  rows={6}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                />
+              </div>
+              
+              <div className="flex justify-end gap-3 pt-4 border-t">
+                <button
+                  onClick={() => {
+                    setEditingInquiryNotes(null);
+                    setInquiryNotesText('');
+                  }}
+                  className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md font-medium transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleSaveInquiryNotes}
+                  className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md font-medium transition-colors"
+                >
+                  Save Notes
+                </button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Partner Application Notes Modal */}
+        <Dialog open={!!editingApplicationNotes} onOpenChange={(open) => {
+          if (!open) {
+            setEditingApplicationNotes(null);
+            setApplicationNotesText('');
+          }
+        }}>
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle>Decision Notes</DialogTitle>
+              <DialogDescription>
+                {editingApplicationNotes && (
+                  <>
+                    Add or update decision notes for {editingApplicationNotes.full_name}'s application
+                  </>
+                )}
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-4 mt-4">
+              <div>
+                <label className="text-sm font-semibold text-gray-700 mb-2 block">
+                  Decision Notes
+                </label>
+                <textarea
+                  value={applicationNotesText}
+                  onChange={(e) => setApplicationNotesText(e.target.value)}
+                  placeholder="Enter decision notes and evaluation comments..."
+                  rows={6}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                />
+              </div>
+              
+              <div className="flex justify-end gap-3 pt-4 border-t">
+                <button
+                  onClick={() => {
+                    setEditingApplicationNotes(null);
+                    setApplicationNotesText('');
+                  }}
+                  className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md font-medium transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleSaveApplicationNotes}
                   className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md font-medium transition-colors"
                 >
                   Save Notes
