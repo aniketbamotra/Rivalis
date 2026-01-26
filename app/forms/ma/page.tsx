@@ -1,6 +1,6 @@
 'use client';
 
-import { MAIntake } from '@/pages/Forms/MAIntake';
+import { MAIntake } from '@/page-components/Forms/MAIntake';
 
 export default function FormPage() {
   return <MAIntake />;

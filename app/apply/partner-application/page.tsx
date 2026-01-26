@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Navigation, EnhancedFooter } from '@/components/Layout';
 
@@ -14,7 +14,7 @@ const SECTIONS = [
   { id: 'references', title: 'References', icon: '✅' },
 ];
 
-export default function PartnerApplicationPage() {
+function PartnerApplicationContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
 
@@ -949,5 +949,13 @@ export default function PartnerApplicationPage() {
       </div>
       <EnhancedFooter />
     </>
+  );
+}
+
+export default function PartnerApplicationPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PartnerApplicationContent />
+    </Suspense>
   );
 }

@@ -1,7 +1,12 @@
 'use client';
 
-import { UserDashboard } from '@/pages/Dashboard/UserDashboard';
-
+import { Suspense } from 'react';
+import { UserDashboard } from '@/page-components/Dashboard/UserDashboard';
+export const dynamic = 'force-dynamic';
 export default function Dashboard() {
-  return <UserDashboard />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <UserDashboard />
+    </Suspense>
+  );
 }

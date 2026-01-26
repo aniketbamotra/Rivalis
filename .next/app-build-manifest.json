@@ -6,41 +6,39 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/intelligence-hub/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/intelligence-hub/page.js"
-    ],
-    "/intelligence-hub/newsroom/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/intelligence-hub/newsroom/[slug]/page.js"
-    ],
-    "/intelligence-hub/newsroom/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/intelligence-hub/newsroom/page.js"
-    ],
-    "/intelligence-hub/perspectives/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/intelligence-hub/perspectives/page.js"
-    ],
-    "/intelligence-hub/perspectives/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/intelligence-hub/perspectives/[slug]/page.js"
-    ],
-    "/api/newsletter/subscribe/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/newsletter/subscribe/route.js"
-    ],
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/page.css",
       "static/chunks/app/page.js"
+    ],
+    "/robots.txt/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/robots.txt/route.js"
+    ],
+    "/services/governance/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/governance/page.css",
+      "static/chunks/app/services/governance/page.js"
+    ],
+    "/services/ip-strategy/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/ip-strategy/page.css",
+      "static/chunks/app/services/ip-strategy/page.js"
+    ],
+    "/services/employment/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/services/employment/page.css",
+      "static/chunks/app/services/employment/page.js"
+    ],
+    "/intelligence-hub/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/intelligence-hub/page.js"
     ],
     "/join-firm/page": [
       "static/chunks/webpack.js",
@@ -53,27 +51,33 @@
       "static/chunks/main-app.js",
       "static/chunks/app/apply/partner-inquiry/page.js"
     ],
-    "/admin/page": [
+    "/services/immigration/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/page.js"
+      "static/css/app/services/immigration/page.css",
+      "static/chunks/app/services/immigration/page.js"
     ],
-    "/admin/dashboard/page": [
+    "/services/contracts/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/admin/dashboard/page.css",
-      "static/chunks/app/admin/dashboard/page.js"
+      "static/css/app/services/contracts/page.css",
+      "static/chunks/app/services/contracts/page.js"
     ],
-    "/apply/careers/page": [
+    "/api/checkout/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/apply/careers/page.js"
+      "static/chunks/app/api/checkout/route.js"
     ],
-    "/dashboard/page": [
+    "/payment-success/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/dashboard/page.css",
-      "static/chunks/app/dashboard/page.js"
+      "static/chunks/app/payment-success/page.js"
+    ],
+    "/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/login/page.css",
+      "static/chunks/app/login/page.js"
     ]
   }
 }

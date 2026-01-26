@@ -1,6 +1,6 @@
 'use client';
 
-import EmploymentLawIntake from '@/pages/Forms/EmploymentLawIntake';
+import EmploymentLawIntake from '@/page-components/Forms/EmploymentLawIntake';
 
 export default function FormPage() {
   return <EmploymentLawIntake />;

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { Navigation } from '@/components/Layout/Navigation';
 import EnhancedFooter from '@/components/Layout/EnhancedFooter';
 import { SearchBar } from '@/components/IntelligenceHub/SearchBar';
@@ -7,6 +8,41 @@ import { NewsletterForm } from '@/components/IntelligenceHub/NewsletterForm';
 import { getArticles, formatDate } from '@/lib/hashnode';
 
 export const revalidate = 3600; // Revalidate every hour
+
+export const metadata: Metadata = {
+  title: 'Intelligence Hub | Legal Insights & AI Compliance News | Rivalis Law',
+  description: 'Expert legal perspectives on AI governance, immigration law, M&A transactions, and business law. Stay informed with in-depth analysis and actionable insights from Big 4 trained attorneys.',
+  keywords: 'legal insights, AI governance news, immigration law updates, M&A legal analysis, business law perspectives, legal intelligence, attorney blog',
+  openGraph: {
+    title: 'Intelligence Hub | Legal Insights & AI Compliance News',
+    description: 'Expert legal perspectives on AI governance, immigration law, and business transactions.',
+    url: 'https://rivalislaw.com/intelligence-hub',
+    siteName: 'Rivalis Law',
+    type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/og-images/intelligence-hub.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Rivalis Law Intelligence Hub',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Intelligence Hub | Legal Insights & AI Compliance News',
+    description: 'Expert legal perspectives on AI governance, immigration law, and business transactions.',
+    images: ['/og-images/intelligence-hub.jpg'],
+  },
+  alternates: {
+    canonical: 'https://rivalislaw.com/intelligence-hub',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default async function IntelligenceHubPage() {
   // Fetch all articles once

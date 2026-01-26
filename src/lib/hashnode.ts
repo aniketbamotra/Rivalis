@@ -119,7 +119,7 @@ export async function getArticles(
     };
   }
 
-  let posts = data.publication.posts;
+  const posts = data.publication.posts;
 
   // Filter by tag if specified
   if (tag && tag !== 'all') {

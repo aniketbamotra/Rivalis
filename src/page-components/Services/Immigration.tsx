@@ -1,16 +1,27 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import { EnhancedFooter } from '../../components/Layout';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
+import { getServiceSchema, renderStructuredData } from '../../lib/structuredData';
 import '../../styles/service-page.css';
 import '../../styles/home.css';
 
 export const Immigration: React.FC = () => {
   const { settings } = useSiteSettings();
   
+  const serviceSchema = getServiceSchema({
+    name: 'Immigration Law Services',
+    description: 'Expert immigration attorney specializing in work visas, EB-1 extraordinary ability, EB-2 NIW, EB-5 investor visas, and global talent mobility.',
+    url: 'https://rivalislaw.com/services/immigration',
+    priceRange: '$$-$$$',
+  });
+  
   return (
     <>
+      {renderStructuredData(serviceSchema)}
       {/* Navigation */}
       <Navigation />
 

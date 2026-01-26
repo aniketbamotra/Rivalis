@@ -1,16 +1,69 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { Metadata } from 'next';
 import ReactMarkdown from 'react-markdown';
 import { Navigation } from '@/components/Layout/Navigation';
 import EnhancedFooter from '@/components/Layout/EnhancedFooter';
 import { ArticleCard } from '@/components/IntelligenceHub/ArticleCard';
 import { getArticleBySlug, getRelatedArticles, formatDate, getAllArticleSlugs } from '@/lib/hashnode';
+import { getArticleSchema, getBreadcrumbSchema, renderStructuredData } from '@/lib/structuredData';
 
 export const revalidate = 3600; // Revalidate every hour
 
 export async function generateStaticParams() {
   const slugs = await getAllArticleSlugs();
   return slugs.slice(0, 20).map((slug) => ({ slug })); // Pre-render first 20 articles
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const article = await getArticleBySlug(params.slug);
+
+  if (!article) {
+    return {
+      title: 'Article Not Found | Rivalis Law',
+    };
+  }
+
+  const description = article.brief || article.subtitle || `Read ${article.title} on Rivalis Law Intelligence Hub`;
+  const imageUrl = article.coverImage?.url || '/og-images/default-article.jpg';
+
+  return {
+    title: `${article.title} | Perspectives | Rivalis Law`,
+    description: description.slice(0, 160),
+    keywords: article.tags.map(tag => tag.name).join(', ') + ', legal perspectives, attorney insights, legal analysis',
+    openGraph: {
+      title: article.title,
+      description: description.slice(0, 160),
+      url: `https://rivalislaw.com/intelligence-hub/perspectives/${params.slug}`,
+      siteName: 'Rivalis Law',
+      type: 'article',
+      publishedTime: article.publishedAt,
+      authors: ['Rivalis Law'],
+      tags: article.tags.map(tag => tag.name),
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: description.slice(0, 160),
+      images: [imageUrl],
+    },
+    alternates: {
+      canonical: `https://rivalislaw.com/intelligence-hub/perspectives/${params.slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
 }
 
 export default async function ArticleDetailPage({ params }: { params: { slug: string } }) {
@@ -26,8 +79,27 @@ export default async function ArticleDetailPage({ params }: { params: { slug: st
     3
   );
 
+  // Generate structured data
+  const articleSchema = getArticleSchema({
+    headline: article.title,
+    description: article.brief || article.subtitle || article.title,
+    url: `https://rivalislaw.com/intelligence-hub/perspectives/${params.slug}`,
+    image: article.coverImage?.url,
+    datePublished: article.publishedAt,
+    author: 'Rivalis Law',
+  });
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: 'https://rivalislaw.com' },
+    { name: 'Intelligence Hub', url: 'https://rivalislaw.com/intelligence-hub' },
+    { name: 'Perspectives', url: 'https://rivalislaw.com/intelligence-hub/perspectives' },
+    { name: article.title },
+  ]);
+
   return (
     <>
+      {renderStructuredData(articleSchema)}
+      {renderStructuredData(breadcrumbSchema)}
       <Navigation />
       <div className="min-h-screen bg-white">
         {/* Article Header */}

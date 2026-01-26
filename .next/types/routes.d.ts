@@ -3,7 +3,7 @@
 
 type AppRoutes = "/" | "/admin" | "/admin/dashboard" | "/apply/careers" | "/apply/partner-application" | "/apply/partner-inquiry" | "/dashboard" | "/disclaimers" | "/forms/ai-governance" | "/forms/contracts" | "/forms/data-privacy" | "/forms/eb1-intake" | "/forms/eb2-niw-intake" | "/forms/eb5-intake" | "/forms/employment-law" | "/forms/entity-formation" | "/forms/fraud-investigation" | "/forms/fundraising" | "/forms/immigration" | "/forms/ip-strategy" | "/forms/ma" | "/forms/work-visa-intake" | "/intake/ai-governance" | "/intake/eb1" | "/intake/eb2-niw" | "/intake/eb5" | "/intake/immigration" | "/intake/work-visa" | "/intelligence-hub" | "/intelligence-hub/newsroom" | "/intelligence-hub/newsroom/[slug]" | "/intelligence-hub/perspectives" | "/intelligence-hub/perspectives/[slug]" | "/join-firm" | "/legal-information" | "/login" | "/payment-success" | "/privacy" | "/services/contracts" | "/services/data-privacy" | "/services/employment" | "/services/entity-formation" | "/services/fraud-investigation" | "/services/fundraising" | "/services/governance" | "/services/immigration" | "/services/immigration/eb1-extraordinary-ability" | "/services/immigration/eb5" | "/services/immigration/work-visas" | "/services/ip-strategy" | "/services/ma" | "/signup" | "/terms"
 type AppRouteHandlerRoutes = "/api/career-application" | "/api/checkout" | "/api/consultation-fee" | "/api/emergency-email" | "/api/newsletter/subscribe" | "/api/partner-application" | "/api/partner-inquiry" | "/api/upload-document" | "/api/webhooks/stripe"
-type PageRoutes = "/Auth" | "/Auth/LoginPage" | "/Auth/SignupPage" | "/Dashboard" | "/Dashboard/AdminDashboard" | "/Dashboard/UserDashboard" | "/Forms" | "/Forms/AIGovernanceIntake" | "/Forms/ClientIntakePage" | "/Forms/ContractReviewIntake" | "/Forms/DataPrivacyIntake" | "/Forms/EB1Intake" | "/Forms/EB2NIWIntake" | "/Forms/EB5Intake" | "/Forms/EmploymentLawIntake" | "/Forms/EntityFormationIntake" | "/Forms/FraudInvestigationIntake" | "/Forms/FundraisingIntake" | "/Forms/IPStrategyIntake" | "/Forms/ImmigrationIntake" | "/Forms/MAIntake" | "/Forms/QualificationForm" | "/Forms/WorkVisaIntake" | "/Home" | "/Legal" | "/Legal/Disclaimers" | "/Legal/LegalInformation" | "/Legal/Privacy" | "/Legal/Terms" | "/PaymentSuccess" | "/Services" | "/Services/ContractReview" | "/Services/DataPrivacy" | "/Services/EmploymentLaw" | "/Services/EntityFormation" | "/Services/FraudInvestigation" | "/Services/Fundraising" | "/Services/GovernanceCompliance" | "/Services/IPStrategy" | "/Services/Immigration" | "/Services/Immigration/EB1ExtraordinaryAbility" | "/Services/Immigration/EB2NIW" | "/Services/Immigration/EB5Investor" | "/Services/Immigration/WorkVisas" | "/Services/MAndA" | "/exports"
+type PageRoutes = never
 type LayoutRoutes = "/"
 type RedirectRoutes = never
 type RewriteRoutes = never
@@ -26,47 +26,22 @@ interface ParamMap {
   "/apply/careers": {}
   "/apply/partner-application": {}
   "/apply/partner-inquiry": {}
-  "/Auth": {}
-  "/Auth/LoginPage": {}
-  "/Auth/SignupPage": {}
   "/dashboard": {}
-  "/Dashboard": {}
-  "/Dashboard/AdminDashboard": {}
-  "/Dashboard/UserDashboard": {}
   "/disclaimers": {}
-  "/exports": {}
-  "/Forms": {}
   "/forms/ai-governance": {}
-  "/Forms/AIGovernanceIntake": {}
-  "/Forms/ClientIntakePage": {}
-  "/Forms/ContractReviewIntake": {}
   "/forms/contracts": {}
   "/forms/data-privacy": {}
-  "/Forms/DataPrivacyIntake": {}
   "/forms/eb1-intake": {}
-  "/Forms/EB1Intake": {}
   "/forms/eb2-niw-intake": {}
-  "/Forms/EB2NIWIntake": {}
   "/forms/eb5-intake": {}
-  "/Forms/EB5Intake": {}
   "/forms/employment-law": {}
-  "/Forms/EmploymentLawIntake": {}
   "/forms/entity-formation": {}
-  "/Forms/EntityFormationIntake": {}
   "/forms/fraud-investigation": {}
-  "/Forms/FraudInvestigationIntake": {}
   "/forms/fundraising": {}
-  "/Forms/FundraisingIntake": {}
   "/forms/immigration": {}
-  "/Forms/ImmigrationIntake": {}
   "/forms/ip-strategy": {}
-  "/Forms/IPStrategyIntake": {}
   "/forms/ma": {}
-  "/Forms/MAIntake": {}
-  "/Forms/QualificationForm": {}
   "/forms/work-visa-intake": {}
-  "/Forms/WorkVisaIntake": {}
-  "/Home": {}
   "/intake/ai-governance": {}
   "/intake/eb1": {}
   "/intake/eb2-niw": {}
@@ -79,44 +54,23 @@ interface ParamMap {
   "/intelligence-hub/perspectives": {}
   "/intelligence-hub/perspectives/[slug]": { "slug": string; }
   "/join-firm": {}
-  "/Legal": {}
   "/legal-information": {}
-  "/Legal/Disclaimers": {}
-  "/Legal/LegalInformation": {}
-  "/Legal/Privacy": {}
-  "/Legal/Terms": {}
   "/login": {}
   "/payment-success": {}
-  "/PaymentSuccess": {}
   "/privacy": {}
-  "/Services": {}
-  "/Services/ContractReview": {}
   "/services/contracts": {}
   "/services/data-privacy": {}
-  "/Services/DataPrivacy": {}
   "/services/employment": {}
-  "/Services/EmploymentLaw": {}
   "/services/entity-formation": {}
-  "/Services/EntityFormation": {}
   "/services/fraud-investigation": {}
-  "/Services/FraudInvestigation": {}
   "/services/fundraising": {}
-  "/Services/Fundraising": {}
   "/services/governance": {}
-  "/Services/GovernanceCompliance": {}
   "/services/immigration": {}
-  "/Services/Immigration": {}
   "/services/immigration/eb1-extraordinary-ability": {}
-  "/Services/Immigration/EB1ExtraordinaryAbility": {}
-  "/Services/Immigration/EB2NIW": {}
   "/services/immigration/eb5": {}
-  "/Services/Immigration/EB5Investor": {}
   "/services/immigration/work-visas": {}
-  "/Services/Immigration/WorkVisas": {}
   "/services/ip-strategy": {}
-  "/Services/IPStrategy": {}
   "/services/ma": {}
-  "/Services/MAndA": {}
   "/signup": {}
   "/terms": {}
 }

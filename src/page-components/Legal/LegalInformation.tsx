@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { MainLayout } from '../../components';
 import { useSiteSettings } from '../../hooks/useSiteSettings';

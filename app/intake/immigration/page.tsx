@@ -1,6 +1,6 @@
 'use client';
 
-import { ImmigrationIntake } from '@/pages/Forms/ImmigrationIntake';
+import { ImmigrationIntake } from '@/page-components/Forms/ImmigrationIntake';
 
 export default function ImmigrationIntakePage() {
   return <ImmigrationIntake />;

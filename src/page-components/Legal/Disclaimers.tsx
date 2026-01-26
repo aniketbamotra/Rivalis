@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { MainLayout, Hero } from '../../components';
 import { useSiteSettings } from '../../hooks/useSiteSettings';

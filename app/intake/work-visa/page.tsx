@@ -1,6 +1,6 @@
 'use client';
 
-import WorkVisaIntake from '@/pages/Forms/WorkVisaIntake';
+import WorkVisaIntake from '@/page-components/Forms/WorkVisaIntake';
 
 export default function WorkVisaIntakePage() {
   return <WorkVisaIntake />;

@@ -16,10 +16,12 @@
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-toast": "^1.2.15",
+    "@react-email/render": "^2.0.4",
     "@stripe/stripe-js": "^8.5.3",
     "@supabase/supabase-js": "^2.87.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "git-filter-repo": "^0.0.30",
     "lucide-react": "^0.561.0",
     "next": "^15.1.6",
     "react": "^19.2.0",
@@ -35,7 +37,6 @@
     "@types/node": "^24.10.4",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.22",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
@@ -46,7 +47,6 @@
     "tailwindcss": "^3.4.19",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.4"
+    "typescript-eslint": "^8.46.4"
   }
 }

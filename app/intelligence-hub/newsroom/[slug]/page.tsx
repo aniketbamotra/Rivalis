@@ -1,11 +1,64 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { Metadata } from 'next';
 import ReactMarkdown from 'react-markdown';
 import { Navigation } from '@/components/Layout/Navigation';
 import EnhancedFooter from '@/components/Layout/EnhancedFooter';
 import { getArticleBySlug, formatDate } from '@/lib/hashnode';
+import { getArticleSchema, getBreadcrumbSchema, renderStructuredData } from '@/lib/structuredData';
 
 export const revalidate = 3600;
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const item = await getArticleBySlug(params.slug);
+
+  if (!item) {
+    return {
+      title: 'Article Not Found | Rivalis Law',
+    };
+  }
+
+  const description = item.brief || item.subtitle || `Read ${item.title} on Rivalis Law Intelligence Hub`;
+  const imageUrl = item.coverImage?.url || '/og-images/default-article.jpg';
+
+  return {
+    title: `${item.title} | Newsroom | Rivalis Law`,
+    description: description.slice(0, 160),
+    keywords: item.tags.map(tag => tag.name).join(', ') + ', legal news, law firm updates, legal insights',
+    openGraph: {
+      title: item.title,
+      description: description.slice(0, 160),
+      url: `https://rivalislaw.com/intelligence-hub/newsroom/${params.slug}`,
+      siteName: 'Rivalis Law',
+      type: 'article',
+      publishedTime: item.publishedAt,
+      authors: ['Rivalis Law'],
+      tags: item.tags.map(tag => tag.name),
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: item.title,
+        },
+      ],
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: item.title,
+      description: description.slice(0, 160),
+      images: [imageUrl],
+    },
+    alternates: {
+      canonical: `https://rivalislaw.com/intelligence-hub/newsroom/${params.slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export default async function NewsroomDetailPage({ params }: { params: { slug: string } }) {
   const item = await getArticleBySlug(params.slug);
@@ -14,8 +67,27 @@ export default async function NewsroomDetailPage({ params }: { params: { slug: s
     notFound();
   }
 
+  // Generate structured data
+  const articleSchema = getArticleSchema({
+    headline: item.title,
+    description: item.brief || item.subtitle || item.title,
+    url: `https://rivalislaw.com/intelligence-hub/newsroom/${params.slug}`,
+    image: item.coverImage?.url,
+    datePublished: item.publishedAt,
+    author: 'Rivalis Law',
+  });
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: 'https://rivalislaw.com' },
+    { name: 'Intelligence Hub', url: 'https://rivalislaw.com/intelligence-hub' },
+    { name: 'Newsroom', url: 'https://rivalislaw.com/intelligence-hub/newsroom' },
+    { name: item.title },
+  ]);
+
   return (
     <>
+      {renderStructuredData(articleSchema)}
+      {renderStructuredData(breadcrumbSchema)}
       <Navigation />
       <div className="min-h-screen bg-white">
         {/* Article Header */}

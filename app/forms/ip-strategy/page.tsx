@@ -1,6 +1,6 @@
 'use client';
 
-import IPStrategyIntake from '@/pages/Forms/IPStrategyIntake';
+import IPStrategyIntake from '@/page-components/Forms/IPStrategyIntake';
 
 export default function FormPage() {
   return <IPStrategyIntake />;
