@@ -1,16 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import { sendCareerApplicationConfirmation, sendCareerApplicationAdminAlert } from '@/lib/careerEmails';
-
-// Create Supabase admin client
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-);
+import { getSupabaseAdmin } from '@/lib/supabase-admin';
 
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
+    const supabaseAdmin = getSupabaseAdmin();
 
     // Insert into career_applications table
     const { data: application, error } = await supabaseAdmin

@@ -1,17 +1,13 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
-);
+import { getSupabaseAdmin } from '@/lib/supabase-admin';
 
 // Defer Resend client initialization to avoid build-time errors
 const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
+    const supabase = getSupabaseAdmin();
     const resend = getResend(); 
     const {
       userEmail, 

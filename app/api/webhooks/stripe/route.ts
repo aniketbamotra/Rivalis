@@ -1,18 +1,16 @@
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import Stripe from 'stripe';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdmin } from '@/lib/supabase-admin';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
+// Lazy load Stripe to avoid build-time issues
+const getStripe = () => new Stripe(process.env.STRIPE_SECRET_KEY || '', {
   apiVersion: '2025-11-17.clover',
 });
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || '' // Use service role key for admin access
-);
-
 export async function POST(request: Request) {
+  const stripe = getStripe();
+  const supabase = getSupabaseAdmin();
   const body = await request.text();
   const headersList = await headers();
   const sig = headersList.get('stripe-signature');
