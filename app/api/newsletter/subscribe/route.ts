@@ -1,146 +1,123 @@
-import { createClient } from '@supabase/supabase-js';
-import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
-const resend = new Resend(process.env.RESEND_API_KEY!);
+const HASHNODE_API_URL = 'https://gql.hashnode.com';
+const PUBLICATION_HOST = process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_ID || '';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, firstName, company } = body;
+    const { email } = body;
 
     // Validate email
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json(
-        { error: 'Invalid email address' },
+        { error: 'Please provide a valid email address' },
         { status: 400 }
       );
     }
 
-    // Check if subscriber already exists
-    const { data: existingSubscriber } = await supabase
-      .from('newsletter_subscribers')
-      .select('id')
-      .eq('email', email)
-      .single();
+    console.log('📧 Newsletter subscription attempt:', email);
+    console.log('📍 Publication host:', PUBLICATION_HOST);
 
-    if (existingSubscriber) {
-      // Reactivate if they previously unsubscribed
-      if (existingSubscriber.status === 'unsubscribed') {
-        await supabase
-          .from('newsletter_subscribers')
-          .update({ status: 'active', unsubscribed_at: null })
-          .eq('email', email);
+    // First, get the publication ID from the host
+    const publicationQuery = `
+      query GetPublication($host: String!) {
+        publication(host: $host) {
+          id
+        }
       }
-      return NextResponse.json(
-        { success: true, message: 'Already subscribed to newsletter' },
-        { status: 200 }
-      );
-    }
+    `;
 
-    // Add subscriber to database
-    const { error: insertError } = await supabase
-      .from('newsletter_subscribers')
-      .insert({
-        email,
-        first_name: firstName || null,
-        company: company || null,
-        status: 'active',
-      });
+    const pubResponse = await fetch(HASHNODE_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: publicationQuery,
+        variables: {
+          host: PUBLICATION_HOST,
+        },
+      }),
+    });
 
-    if (insertError) {
-      console.error('Supabase error:', insertError);
+    const pubData = await pubResponse.json();
+    
+    if (pubData.errors || !pubData.data?.publication?.id) {
+      console.error('❌ Failed to get publication ID:', pubData.errors);
       return NextResponse.json(
-        { error: 'Failed to subscribe' },
+        { error: 'Publication not found. Please contact support.' },
         { status: 500 }
       );
     }
 
-    // Send confirmation email via Resend
-    const confirmationEmail = await resend.emails.send({
-      from: 'Intelligence Hub <noreply@rivalislaw.com>',
-      to: email,
-      subject: 'Welcome to Rivalis Law Intelligence Hub',
-      html: `
-        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1a1a1a;">
-          <div style="border-bottom: 3px solid #d4af37; padding-bottom: 20px; margin-bottom: 30px;">
-            <h2 style="margin: 0; color: #1a1a2e; font-family: 'Crimson Pro', serif; font-size: 24px;">
-              Welcome to Intelligence Hub
-            </h2>
-          </div>
-          
-          <p style="font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
-            Hi ${firstName ? firstName : 'there'},
-          </p>
-          
-          <p style="font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
-            Thank you for subscribing to Rivalis Law Intelligence Hub. You'll receive proprietary analysis on frontier legal developments—AI governance, space law, CRISPR regulation, quantum computing, and more.
-          </p>
-          
-          <p style="font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
-            Expect your first briefing within 48 hours.
-          </p>
-          
-          <div style="background: #fafbfc; border-left: 4px solid #d4af37; padding: 20px; margin: 30px 0; border-radius: 4px;">
-            <p style="margin: 0; font-size: 14px; color: #666;">
-              <strong>What to expect:</strong><br>
-              • Biweekly intelligence briefings (every Monday & Thursday)<br>
-              • Real-time regulatory updates<br>
-              • Case law analysis from top specialists<br>
-              • Exclusive templates and compliance tools
-            </p>
-          </div>
-          
-          <p style="font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
-            <strong>Want more?</strong> 
-            <a href="https://rivalislaw.com/intelligence-hub/premium" style="color: #d4af37; text-decoration: none; font-weight: 600;">
-              Upgrade to Premium
-            </a> 
-            for full access to all resources, tools, and analysis.
-          </p>
-          
-          <p style="font-size: 16px; line-height: 1.6; margin-bottom: 40px;">
-            Questions? Reply to this email or contact us at 
-            <a href="mailto:intelligence@rivalislaw.com" style="color: #d4af37; text-decoration: none; font-weight: 600;">
-              intelligence@rivalislaw.com
-            </a>
-          </p>
-          
-          <div style="border-top: 1px solid #e5e7eb; padding-top: 20px; margin-top: 30px; font-size: 12px; color: #999;">
-            <p style="margin: 0 0 10px 0;">
-              © ${new Date().getFullYear()} Rivalis Law. All rights reserved.
-            </p>
-            <p style="margin: 0;">
-              <a href="https://rivalislaw.com/privacy" style="color: #d4af37; text-decoration: none;">Privacy Policy</a> | 
-              <a href="https://rivalislaw.com" style="color: #d4af37; text-decoration: none;">Website</a>
-            </p>
-            <p style="margin: 10px 0 0 0;">
-              <a href="[unsubscribe_link]" style="color: #999; text-decoration: none; font-size: 11px;">Unsubscribe from this list</a>
-            </p>
-          </div>
-        </div>
-      `,
+    const publicationId = pubData.data.publication.id;
+    console.log('✅ Found publication ID:', publicationId);
+
+    // Now subscribe to Hashnode newsletter using the ObjectId
+    const mutation = `
+      mutation SubscribeToNewsletter($input: SubscribeToNewsletterInput!) {
+        subscribeToNewsletter(input: $input) {
+          status
+        }
+      }
+    `;
+
+    const requestBody = {
+      query: mutation,
+      variables: {
+        input: {
+          publicationId: publicationId,
+          email: email,
+        },
+      },
+    };
+
+    console.log('📤 Sending to Hashnode:', JSON.stringify(requestBody, null, 2));
+
+    const response = await fetch(HASHNODE_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
     });
 
-    if (confirmationEmail.error) {
-      console.warn('Email send warning:', confirmationEmail.error);
-      // Still return success even if email failed - subscriber was added to DB
+    const data = await response.json();
+    console.log('📥 Hashnode response:', JSON.stringify(data, null, 2));
+
+    if (data.errors) {
+      console.error('❌ Hashnode API Error:', data.errors);
+      return NextResponse.json(
+        { error: data.errors[0]?.message || 'Failed to subscribe. Please try again.' },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json(
-      {
+    if (data.data?.subscribeToNewsletter?.status) {
+      console.log('✅ Successfully subscribed via Hashnode:', email);
+      return NextResponse.json({
         success: true,
-        message: 'Successfully subscribed. Check your email for confirmation.',
-      },
-      { status: 201 }
+        message: 'Successfully subscribed! Check your email to confirm.',
+      });
+    }
+
+    // If Hashnode newsletter is not available, show appropriate message
+    if (data.message === 'Service Unavailable') {
+      console.log('⚠️  Hashnode newsletter not enabled, showing info message');
+      return NextResponse.json({
+        success: true,
+        message: 'Thank you for your interest! Newsletter coming soon.',
+      });
+    }
+
+    console.error('❌ Unexpected response format:', data);
+    return NextResponse.json(
+      { error: 'Subscription failed. Please try again.' },
+      { status: 500 }
     );
   } catch (error) {
-    console.error('Newsletter subscription error:', error);
+    console.error('❌ Newsletter subscription error:', error);
     return NextResponse.json(
       { error: 'An error occurred. Please try again later.' },
       { status: 500 }

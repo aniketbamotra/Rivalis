@@ -1,537 +1,452 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
-import './styles.css';
-import { intelligenceArticles } from '../data/intelligence-articles';
-import { intelligenceResources } from '../data/intelligence-resources';
-import { newsroomItems } from '../data/intelligence-newsroom';
 import { Navigation } from '@/components/Layout/Navigation';
 import EnhancedFooter from '@/components/Layout/EnhancedFooter';
+import { SearchBar } from '@/components/IntelligenceHub/SearchBar';
+import { ArticleCard } from '@/components/IntelligenceHub/ArticleCard';
+import { NewsletterForm } from '@/components/IntelligenceHub/NewsletterForm';
+import { getArticles, formatDate } from '@/lib/hashnode';
 
-const categories = ['All', 'AI Governance', 'Space Law', 'CRISPR Law', 'Quantum Computing', 'Corporate Immigration', 'Blockchain Law'];
+export const revalidate = 3600; // Revalidate every hour
 
-export default function IntelligenceHubPage() {
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [newsletter, setNewsletter] = useState({ email: '', loading: false, submitted: false, error: '' });
+export default async function IntelligenceHubPage() {
+  // Fetch all articles once
+  const allArticlesData = await getArticles(50);
+  const allArticles = allArticlesData.edges.map(({ node }) => node);
+  
+  // Filter client-side
+  const recentPerspectives = allArticles
+    .filter(article => article.tags.some(t => t.slug.toLowerCase() === 'perspectives'))
+    .slice(0, 6);
+  
+  const recentNewsroom = allArticles
+    .filter(article => article.tags.some(t => t.slug.toLowerCase() === 'newsroom'))
+    .slice(0, 4);
+  
 
-  const filteredArticles = activeFilter === 'All'
-    ? intelligenceArticles
-    : intelligenceArticles.filter(article => article.category === activeFilter);
 
-  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setNewsletter(prev => ({ ...prev, loading: true, error: '' }));
-
-    try {
-      const response = await fetch('/api/newsletter/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: newsletter.email }),
-      });
-
-      if (response.ok) {
-        setNewsletter({ email: '', loading: false, submitted: true, error: '' });
-        setTimeout(() => setNewsletter(prev => ({ ...prev, submitted: false })), 5000);
-      } else {
-        const error = await response.json();
-        setNewsletter(prev => ({ ...prev, loading: false, error: error.error || 'Failed to subscribe' }));
-      }
-    } catch (error) {
-      console.error('Newsletter error:', error);
-      setNewsletter(prev => ({ ...prev, loading: false, error: 'An error occurred. Please try again.' }));
-    }
-  };
+  const resources = [
+    {
+      title: 'AI Compliance Checklist',
+      description: 'Step-by-step checklist for EU AI Act compliance covering risk classification, documentation, and ongoing obligations.',
+      isPremium: false,
+      href: '/resources/ai-compliance-checklist.pdf',
+    },
+    {
+      title: 'Jurisdiction Comparison Matrix',
+      description: 'Side-by-side comparison of AI regulations across 42 jurisdictions. Interactive spreadsheet with filtering and search.',
+      isPremium: true,
+      href: '/resources/jurisdiction-matrix',
+    },
+    {
+      title: 'Model AI Ethics Board Charter',
+      description: 'Template charter for establishing an AI governance committee, including roles, responsibilities, and decision frameworks.',
+      isPremium: false,
+      href: '/resources/ethics-board-charter.pdf',
+    },
+    {
+      title: 'AI Vendor Agreement Template',
+      description: 'Comprehensive vendor agreement for AI services covering liability, data rights, compliance obligations, and audit rights.',
+      isPremium: true,
+      href: '/resources/vendor-agreement',
+    },
+    {
+      title: 'CRISPR Regulatory Roadmap',
+      description: 'Visual guide to FDA approval pathways for gene editing therapies, from IND to BLA, with timelines and requirements.',
+      isPremium: false,
+      href: '/resources/crispr-roadmap.pdf',
+    },
+    {
+      title: 'Algorithmic Impact Assessment Tool',
+      description: 'Interactive tool for conducting algorithmic impact assessments required under EU AI Act and similar regulations.',
+      isPremium: true,
+      href: '/resources/impact-assessment',
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
+    <>
       <Navigation />
-      
-      {/* Hero Section */}
-      <section className="hero-section relative overflow-hidden">
-        <div className="absolute inset-0 hero-gradient"></div>
-        <div className="absolute inset-0 hero-mesh-pattern"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40 relative z-10">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-              <span className="text-sm font-semibold text-white tracking-wide">
-                Intelligence Hub
-              </span>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden">
+          {/* Animated gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
+            <div className="absolute inset-0 opacity-30">
+              <div className="absolute top-0 -left-4 w-96 h-96 bg-[#d4af37] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+              <div className="absolute top-0 -right-4 w-96 h-96 bg-[#b8941f] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+              <div className="absolute -bottom-8 left-20 w-96 h-96 bg-[#d4af37] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
             </div>
-            
-            <h1 className="hero-title text-white mb-6">
-              Frontier Legal Intelligence
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-500">
-                Redefining Tomorrow
-              </span>
-            </h1>
-            
-            <p className="hero-description text-gray-100 max-w-3xl mx-auto mb-10">
-              Navigate the future of law with real-time intelligence on emerging regulations, 
-              breakthrough case law, and strategic insights from the world's leading frontier legal specialists.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="#subscribe"
-                className="group relative inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-900 rounded-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-24 md:py-40">
+            <div className="text-center max-w-5xl mx-auto">
+              <div
+                className="inline-flex items-center gap-3 backdrop-blur-md border rounded-full px-6 py-3 mb-10 shadow-xl"
+                style={{ 
+                  background: 'rgba(212, 175, 55, 0.15)', 
+                  borderColor: 'rgba(212, 175, 55, 0.3)',
+                  boxShadow: '0 8px 32px rgba(212, 175, 55, 0.1)'
+                }}
               >
-                <span>Get Started Free</span>
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: '#d4af37' }}></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3" style={{ background: '#d4af37' }}></span>
+                </span>
+                <span className="text-sm font-bold tracking-[0.2em] uppercase" style={{ color: '#d4af37' }}>
+                  Intelligence Hub
+                </span>
+              </div>
+
+              <h1 className="font-serif text-6xl md:text-8xl font-bold mb-8 leading-[1.1] text-white">
+                Where{' '}
+                <span className="inline-block bg-gradient-to-r from-[#d4af37] via-[#f4d483] to-[#d4af37] bg-clip-text text-transparent animate-gradient">
+                  Legal Innovation
+                </span>
+                <br />Meets Insight
+              </h1>
+
+              <p className="text-xl md:text-2xl text-gray-300 mb-14 leading-relaxed max-w-3xl mx-auto">
+                Cutting-edge perspectives on emerging technologies, regulatory developments, and the future of specialized law.
+              </p>
+
+              <div className="max-w-2xl mx-auto">
+                <SearchBar placeholder="Search articles, insights, and resources..." />
+              </div>
+            </div>
+          </div>
+
+          {/* Decorative elements */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-50"></div>
+        </section>
+
+        {/* Featured: AI Governance Framework */}
+        <section className="py-24 relative">
+          <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <div className="relative group">
+              {/* Glow effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+              
+              <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-10 md:p-16 border border-gray-200 shadow-2xl overflow-hidden">
+                {/* Decorative background elements */}
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#d4af37]/5 to-transparent rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-[#b8941f]/5 to-transparent rounded-full blur-3xl"></div>
+                
+                <div className="relative z-10">
+                  <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white font-bold text-xs uppercase tracking-[0.2em] rounded-full mb-8 shadow-lg">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    Featured
+                  </div>
+                  
+                  <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#1a1a2e] mb-6 leading-tight">
+                    AI Governance Framework
+                  </h2>
+                  
+                  <p className="text-xl md:text-2xl text-gray-700 mb-5 leading-relaxed font-medium">
+                    The most comprehensive, living compliance resource for AI regulation. Updated within 48 hours of regulatory changes across 42 jurisdictions.
+                  </p>
+                  
+                  <p className="text-lg text-gray-600 mb-12 leading-relaxed">
+                    Our flagship intelligence product combines automated monitoring of 100+ regulatory sources with expert analysis from practicing attorneys. See exactly what regulations apply to your AI use case, jurisdiction by jurisdiction.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                    <div className="group/card bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 hover:border-[#d4af37] transition-all hover:shadow-xl hover:-translate-y-1">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#b8941f] flex items-center justify-center shadow-lg group-hover/card:scale-110 transition-transform">
+                        <span className="text-2xl font-bold text-white">42</span>
+                      </div>
+                      <h4 className="font-bold text-[#1a1a2e] mb-2 text-center">Global Jurisdictions</h4>
+                      <p className="text-sm text-gray-600 text-center leading-relaxed">EU, US states, UK, China, Canada, and more</p>
+                    </div>
+                    
+                    <div className="group/card bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 hover:border-[#d4af37] transition-all hover:shadow-xl hover:-translate-y-1">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#b8941f] flex items-center justify-center shadow-lg group-hover/card:scale-110 transition-transform">
+                        <span className="text-2xl font-bold text-white">48h</span>
+                      </div>
+                      <h4 className="font-bold text-[#1a1a2e] mb-2 text-center">Update Speed</h4>
+                      <p className="text-sm text-gray-600 text-center leading-relaxed">Regulatory changes reflected within 2 days</p>
+                    </div>
+                    
+                    <div className="group/card bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 hover:border-[#d4af37] transition-all hover:shadow-xl hover:-translate-y-1">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#b8941f] flex items-center justify-center shadow-lg group-hover/card:scale-110 transition-transform">
+                        <span className="text-2xl font-bold text-white">50+</span>
+                      </div>
+                      <h4 className="font-bold text-[#1a1a2e] mb-2 text-center">Model Policies</h4>
+                      <p className="text-sm text-gray-600 text-center leading-relaxed">Templates, contracts, assessment tools</p>
+                    </div>
+                    
+                    <div className="group/card bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 hover:border-[#d4af37] transition-all hover:shadow-xl hover:-translate-y-1">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#b8941f] flex items-center justify-center shadow-lg group-hover/card:scale-110 transition-transform">
+                        <span className="text-2xl font-bold text-white">∞</span>
+                      </div>
+                      <h4 className="font-bold text-[#1a1a2e] mb-2 text-center">Living Document</h4>
+                      <p className="text-sm text-gray-600 text-center leading-relaxed">Continuously updated, version-controlled</p>
+                    </div>
+                  </div>
+                  
+                  <Link
+                    href="/framework"
+                    className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white font-bold text-lg rounded-xl hover:shadow-2xl hover:shadow-[#d4af37]/50 transition-all hover:scale-105 group/btn"
+                  >
+                    Explore Framework
+                    <svg className="w-6 h-6 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Perspectives Section */}
+        <section className="py-24 relative">
+          {/* Background decoration */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-50 to-transparent"></div>
+          
+          <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+              <div>
+                <div className="inline-block px-4 py-1.5 bg-[#d4af37]/10 text-[#d4af37] text-sm font-bold uppercase tracking-wider rounded-full mb-4">
+                  Analysis
+                </div>
+                <h2 className="font-serif text-5xl md:text-6xl font-bold text-[#1a1a2e] mb-4">
+                  <span className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] bg-clip-text text-transparent">Perspectives</span>
+                </h2>
+                <p className="text-xl text-gray-600 max-w-2xl">In-depth analysis of regulatory changes, case law developments, and emerging trends</p>
+              </div>
+              <Link
+                href="/intelligence-hub/perspectives"
+                className="hidden md:inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white rounded-xl font-semibold hover:shadow-xl hover:shadow-[#d4af37]/30 transition-all hover:scale-105 group"
+              >
+                View All Articles
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
-              <a
-                href="#perspectives"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-md text-white rounded-xl font-semibold border border-white/20 hover:bg-white/20 transition-all duration-300"
-              >
-                <span>Explore Insights</span>
-              </a>
+              </Link>
             </div>
-          </div>
-        </div>
-        
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-amber-400/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-amber-400/20 rounded-full blur-3xl animate-float-delayed"></div>
-      </section>
 
-      {/* Featured: AI Governance Framework */}
-      <section className="py-20 md:py-32 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="featured-spotlight relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 md:p-12 lg:p-16">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0" style={{
-                backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-                backgroundSize: '40px 40px'
-              }}></div>
-            </div>
-            
-            {/* Gradient Orbs */}
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-amber-500/20 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-amber-500/20 rounded-full blur-3xl"></div>
-            
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/20 backdrop-blur-sm border border-amber-500/30 mb-6">
-                <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <span className="text-sm font-bold text-amber-300 tracking-wide uppercase">Featured Framework</span>
+            {recentPerspectives.length === 0 ? (
+              <div className="bg-white rounded-2xl p-16 text-center border border-gray-200 shadow-lg">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
+                  <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h3 className="font-serif text-2xl font-bold text-[#1a1a2e] mb-3">No Articles Available</h3>
+                <p className="text-gray-600 text-lg">Check back soon for new perspectives and insights.</p>
               </div>
-              
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                AI Governance <br className="hidden md:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-500">
-                  Compliance Engine
-                </span>
-              </h2>
-              
-              <p className="text-xl text-gray-100 mb-10 max-w-3xl leading-relaxed">
-                The world's most comprehensive living compliance resource for AI regulation. 
-                Real-time updates within 48 hours of regulatory changes across 42 jurisdictions.
-              </p>
-
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                <div className="featured-stat-card group">
-                  <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-amber-400 to-amber-600 mb-2">
-                    42
-                  </div>
-                  <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Jurisdictions</p>
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-                
-                <div className="featured-stat-card group">
-                  <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-emerald-400 to-emerald-600 mb-2">
-                    48h
-                  </div>
-                  <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Update Speed</p>
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-                
-                <div className="featured-stat-card group">
-                  <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-amber-400 to-amber-600 mb-2">
-                    50+
-                  </div>
-                  <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Model Policies</p>
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-                
-                <div className="featured-stat-card group">
-                  <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-amber-400 to-amber-600 mb-2">
-                    ∞
-                  </div>
-                  <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Living Updates</p>
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {recentPerspectives.map((article) => (
+                  <ArticleCard key={article.id} article={article} />
+                ))}
               </div>
+            )}
 
-              <a
-                href="/intelligence-hub/framework"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-900 rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            <div className="mt-16 text-center md:hidden">
+              <Link
+                href="/intelligence-hub/perspectives"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white rounded-xl font-semibold"
               >
-                <span>Explore Framework</span>
+                View All Articles
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Perspectives (Blog) */}
-      <section id="perspectives" className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 border border-amber-200 mb-6">
-              <svg className="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-              </svg>
-              <span className="text-sm font-bold text-amber-900 uppercase tracking-wide">Expert Analysis</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
-              Legal Perspectives
-            </h2>
-            
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              In-depth analysis of regulatory changes, case law developments, and emerging trends 
-              in frontier legal practice areas from our team of specialists.
-            </p>
-          </div>
-
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                className={`filter-btn-modern ${activeFilter === cat ? 'active' : ''}`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Articles Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredArticles.map((article, index) => (
-              <article
-                key={article.id}
-                className="article-card-modern group"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="article-image-container">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg className="w-16 h-16 text-white/20" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
-                    </svg>
-                  </div>
-                  <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full text-xs font-bold bg-white/20 backdrop-blur-md border border-white/30 text-white uppercase tracking-wider">
-                    {article.category}
-                  </span>
-                </div>
-                
-                <div className="p-6 flex flex-col flex-grow bg-white">
-                  <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
-                    </svg>
-                    <span className="font-medium">{article.date}</span>
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-amber-600 transition-colors">
-                    {article.title}
-                  </h3>
-                  
-                  <p className="text-slate-600 leading-relaxed mb-6 flex-grow">
-                    {article.excerpt}
-                  </p>
-                  
-                  <a
-                    href={`/intelligence-hub/perspectives/${article.slug}`}
-                    className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-bold group/link"
-                  >
-                    <span>Read Article</span>
-                    <svg className="w-5 h-5 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Resources */}
-      <section className="py-20 md:py-32 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 border border-amber-200 mb-6">
-              <svg className="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
-              </svg>
-              <span className="text-sm font-bold text-amber-900 uppercase tracking-wide">Tools & Templates</span>
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
-              Practice Resources
-            </h2>
-            
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Practical tools, templates, and comprehensive guides to help you navigate 
-              complex regulatory landscapes with confidence and precision.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {intelligenceResources.map((resource, index) => (
-              <div
-                key={resource.id}
-                className="resource-card-modern group"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {resource.isPremium && (
-                  <div className="absolute top-4 right-4 z-10">
-                    <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg">
-                      Premium
-                    </div>
-                  </div>
-                )}
-                
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-yellow-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                
-                <div className="relative z-10 p-8">
-                  <div className="resource-icon-modern mb-6 text-5xl">
-                    {resource.icon}
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4 leading-tight">
-                    {resource.title}
-                  </h3>
-                  
-                  <p className="text-slate-600 leading-relaxed mb-6">
-                    {resource.description}
-                  </p>
-                  
-                  <a
-                    href={`/intelligence-hub/resources/${resource.slug}`}
-                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all duration-300 ${
-                      resource.isPremium
-                        ? 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white shadow-lg hover:shadow-xl hover:scale-105'
-                        : 'bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white shadow-lg hover:shadow-xl hover:scale-105'
-                    }`}
-                  >
-                    <span>{resource.isPremium ? 'Get Premium Access' : 'Download Free'}</span>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                    </svg>
-                  </a>
-                </div>
+        {/* Resources Section */}
+        <section className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+          {/* Decorative background */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-[#d4af37]/5 to-transparent rounded-full blur-3xl"></div>
+          
+          <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-1.5 bg-[#d4af37]/10 text-[#d4af37] text-sm font-bold uppercase tracking-wider rounded-full mb-4">
+                Tools & Templates
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsroom */}
-      <section className="py-20 md:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 border border-amber-200 mb-6">
-              <svg className="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clipRule="evenodd" />
-                <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
-              </svg>
-              <span className="text-sm font-bold text-amber-900 uppercase tracking-wide">In The Media</span>
+              <h2 className="font-serif text-5xl md:text-6xl font-bold text-[#1a1a2e] mb-6">
+                <span className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] bg-clip-text text-transparent">Resources</span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Practical tools, templates, and guides to help you navigate complex regulatory landscapes
+              </p>
             </div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
-              Newsroom
-            </h2>
-            
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Press mentions, speaking engagements, and firm announcements from our team of frontier legal experts.
-            </p>
-          </div>
 
-          <div className="max-w-4xl mx-auto space-y-8">
-            {newsroomItems.map((item, index) => (
-              <div 
-                key={item.id} 
-                className="newsroom-item-modern group"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="flex flex-col md:flex-row gap-6 items-start">
-                  <div className="flex-shrink-0">
-                    <div className="newsroom-date-badge">
-                      <div className="text-3xl font-bold text-slate-900">
-                        {item.date.split(' ')[0]}
-                      </div>
-                      <div className="text-sm font-semibold text-slate-600 uppercase">
-                        {item.date.split(' ')[1]}
-                      </div>
-                    </div>
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {resources.map((resource, index) => (
+                <div
+                  key={index}
+                  className="group relative bg-white rounded-2xl p-8 border border-gray-200 hover:border-[#d4af37] transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                >
+                  {/* Hover glow effect */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-300"></div>
                   
-                  <div className="flex-grow">
-                    <h4 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
-                      {item.title}
-                    </h4>
+                  <div className="relative">
+                    {resource.isPremium && (
+                      <div className="absolute -top-4 -right-4 px-4 py-1.5 bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-lg flex items-center gap-1.5">
+                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        Premium
+                      </div>
+                    )}
                     
-                    <p className="text-slate-600 leading-relaxed mb-4">
-                      {item.description}
-                    </p>
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#b8941f] flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    
+                    <h3 className="font-bold text-xl text-[#1a1a2e] mb-3 group-hover:text-[#d4af37] transition-colors leading-tight">
+                      {resource.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 mb-6 leading-relaxed text-[15px]">{resource.description}</p>
                     
                     <a
-                      href={item.link}
-                      className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-bold group/link"
+                      href={resource.href}
+                      className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#d4af37] text-[#d4af37] font-semibold rounded-xl hover:bg-[#d4af37] hover:text-white transition-all group-hover:shadow-lg"
                     >
-                      <span>Read Full Story</span>
-                      <svg className="w-5 h-5 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      {resource.isPremium ? 'Premium Only' : 'Download Free'}
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
                       </svg>
                     </a>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter CTA */}
-      <section id="subscribe" className="newsletter-section-modern relative overflow-hidden py-24 md:py-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
-        
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }}></div>
-        </div>
-        
-        {/* Gradient Orbs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse-slower"></div>
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-              <span className="text-sm font-semibold text-white tracking-wide">
-                Free Intelligence Briefings
-              </span>
+              ))}
             </div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Stay Ahead of the Curve
-            </h2>
-            
-            <p className="text-xl text-gray-100 mb-10 leading-relaxed max-w-2xl mx-auto">
-              Get the latest regulatory changes, case law updates, and frontier legal analysis 
-              delivered to your inbox every Monday and Thursday.
-            </p>
+          </div>
+        </section>
 
-            {newsletter.submitted ? (
-              <div className="success-message-modern max-w-md mx-auto mb-8">
-                <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div className="text-left">
-                    <p className="font-bold text-white">Successfully Subscribed!</p>
-                    <p className="text-sm text-gray-200">Check your email to confirm your subscription.</p>
-                  </div>
+        {/* Newsroom Section */}
+        <section className="py-24 bg-white relative">
+          <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+              <div>
+                <div className="inline-block px-4 py-1.5 bg-[#d4af37]/10 text-[#d4af37] text-sm font-bold uppercase tracking-wider rounded-full mb-4">
+                  In the Media
                 </div>
+                <h2 className="font-serif text-5xl md:text-6xl font-bold text-[#1a1a2e] mb-4">
+                  <span className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] bg-clip-text text-transparent">Newsroom</span>
+                </h2>
+                <p className="text-xl text-gray-600 max-w-2xl">Latest press mentions, speaking engagements, and firm updates</p>
+              </div>
+              <Link
+                href="/intelligence-hub/newsroom"
+                className="hidden md:inline-flex items-center gap-2 px-8 py-4 border-2 border-[#d4af37] text-[#d4af37] rounded-xl font-semibold hover:bg-[#d4af37] hover:text-white transition-all hover:scale-105 group"
+              >
+                View All News
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+
+            {recentNewsroom.length === 0 ? (
+              <div className="bg-white rounded-2xl p-16 text-center border border-gray-200 shadow-lg">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
+                  <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                  </svg>
+                </div>
+                <h3 className="font-serif text-2xl font-bold text-[#1a1a2e] mb-3">No News Available</h3>
+                <p className="text-gray-600 text-lg">Check back soon for press mentions and firm updates.</p>
               </div>
             ) : (
-              <form onSubmit={handleNewsletterSubmit} className="max-w-2xl mx-auto mb-8">
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <input
-                    type="email"
-                    placeholder="Enter your email address"
-                    value={newsletter.email}
-                    onChange={e => setNewsletter(prev => ({ ...prev, email: e.target.value }))}
-                    required
-                    className="flex-1 px-6 py-4 rounded-xl bg-white/10 backdrop-blur-md border-2 border-white/20 text-white placeholder-gray-300 focus:border-white/40 focus:bg-white/15 focus:outline-none transition-all"
-                  />
-                  <button
-                    type="submit"
-                    disabled={newsletter.loading}
-                    className="group px-8 py-4 bg-white hover:bg-blue-50 text-slate-900 rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 disabled:hover:scale-100"
+              <div className="space-y-6">
+                {recentNewsroom.map((item, index) => (
+                  <Link
+                    key={item.id}
+                    href={`/intelligence-hub/newsroom/${item.slug}`}
+                    className="block bg-white rounded-2xl p-8 border border-gray-200 hover:border-[#d4af37] shadow-sm hover:shadow-xl transition-all group"
                   >
-                    <span className="flex items-center gap-2">
-                      {newsletter.loading ? (
-                        <>
-                          <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          <span>Subscribing...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Subscribe Now</span>
-                          <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
-                        </>
-                      )}
-                    </span>
-                  </button>
-                </div>
-                {newsletter.error && (
-                  <p className="mt-4 text-red-300 text-sm font-medium">{newsletter.error}</p>
-                )}
-              </form>
+                    <div className="flex items-start gap-6">
+                      <div className="flex-shrink-0">
+                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8941f] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <span className="text-white font-bold text-xl">{index + 1}</span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className="text-sm font-semibold text-[#d4af37]">
+                            {formatDate(item.publishedAt)}
+                          </span>
+                          {item.tags[0] && (
+                            <>
+                              <span className="text-gray-300">•</span>
+                              <span className="text-sm text-gray-500 uppercase tracking-wider font-medium">
+                                {item.tags[0].name}
+                              </span>
+                            </>
+                          )}
+                        </div>
+                        <h3 className="font-serif text-2xl font-bold text-[#1a1a2e] group-hover:text-[#d4af37] transition-colors mb-3 leading-tight">
+                          {item.title}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed line-clamp-2">{item.brief}</p>
+                      </div>
+                      <svg
+                        className="w-6 h-6 text-gray-400 group-hover:text-[#d4af37] group-hover:translate-x-1 transition-all flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             )}
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-blue-200">
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            <div className="mt-16 text-center md:hidden">
+              <Link
+                href="/intelligence-hub/newsroom"
+                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#d4af37] text-[#d4af37] rounded-xl font-semibold"
+              >
+                View All News
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-                <span className="font-medium">2,000+ subscribers</span>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span className="font-medium">Unsubscribe anytime</span>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span className="font-medium">No spam, ever</span>
-              </div>
+              </Link>
             </div>
-            
-            <p className="mt-8 text-blue-200">
-              Want full access to all resources?{' '}
-              <a href="/intelligence-hub/premium" className="text-amber-400 hover:text-amber-300 font-bold underline underline-offset-4">
-                Upgrade to Premium
-              </a>
-            </p>
           </div>
-        </div>
-      </section>
-      
-      {/* Footer */}
+        </section>
+
+        {/* Newsletter CTA */}
+        <section
+          style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)' }}
+          className="py-20 text-white"
+        >
+          <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
+              Stay <span style={{ color: '#d4af37' }}>Informed</span>
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              Get weekly insights on emerging technologies, regulatory changes, and the future of specialized law delivered to your inbox.
+            </p>
+            
+            <NewsletterForm />
+          </div>
+        </section>
+      </div>
       <EnhancedFooter />
-    </div>
+    </>
   );
 }

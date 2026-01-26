@@ -6,15 +6,52 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/intelligence-hub/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/intelligence-hub/page.js"
+    ],
+    "/intelligence-hub/newsroom/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/intelligence-hub/newsroom/[slug]/page.js"
+    ],
+    "/intelligence-hub/newsroom/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/intelligence-hub/newsroom/page.js"
+    ],
+    "/intelligence-hub/perspectives/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/intelligence-hub/perspectives/page.js"
+    ],
+    "/intelligence-hub/perspectives/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/intelligence-hub/perspectives/[slug]/page.js"
+    ],
+    "/api/newsletter/subscribe/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/newsletter/subscribe/route.js"
+    ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+    ],
+    "/join-firm/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/join-firm/page.css",
+      "static/chunks/app/join-firm/page.js"
+    ],
     "/apply/partner-inquiry/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/apply/partner-inquiry/page.js"
-    ],
-    "/api/partner-inquiry/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/partner-inquiry/route.js"
     ],
     "/admin/page": [
       "static/chunks/webpack.js",
@@ -27,39 +64,16 @@
       "static/css/app/admin/dashboard/page.css",
       "static/chunks/app/admin/dashboard/page.js"
     ],
-    "/join-firm/page": [
+    "/apply/careers/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/join-firm/page.css",
-      "static/chunks/app/join-firm/page.js"
+      "static/chunks/app/apply/careers/page.js"
     ],
     "/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/dashboard/page.css",
       "static/chunks/app/dashboard/page.js"
-    ],
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
-    ],
-    "/intelligence-hub/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/intelligence-hub/page.css",
-      "static/chunks/app/intelligence-hub/page.js"
-    ],
-    "/apply/careers/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/apply/careers/page.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
     ]
   }
 }
