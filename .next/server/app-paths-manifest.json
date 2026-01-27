@@ -1,3 +1,7 @@
 {
-  "/join-firm/page": "app/join-firm/page.js"
+  "/join-firm/page": "app/join-firm/page.js",
+  "/login/page": "app/login/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/page": "app/page.js"
 }
