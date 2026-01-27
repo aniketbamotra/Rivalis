@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '../../hooks/useAuth';
 import { MainLayout } from '../../components/Layout';
@@ -11,28 +11,32 @@ export function LoginPage() {
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   
-  const { signIn, user, loading: authLoading, isAdmin } = useAuth();
+  const { signIn, user, profile, loading: authLoading, isAdmin } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
   
-  // Get the intended destination - will come from session storage in Next.js
-  const from = typeof window !== 'undefined' ? sessionStorage.getItem('redirectAfterLogin') : null;
+  // Get the intended destination from URL params or session storage
+  const redirectTo = searchParams.get('redirectTo') || 
+    (typeof window !== 'undefined' ? sessionStorage.getItem('redirectAfterLogin') : null);
 
   // Redirect if logged in and auth is not loading
+  // Wait for profile to be loaded to ensure isAdmin is accurate
   useEffect(() => {
-    if (!authLoading && user) {
+    if (!authLoading && user && profile !== null) {
       // Determine where to redirect
       let destination = '/dashboard';
-      if (from) {
-        destination = from;
+      if (redirectTo) {
+        destination = redirectTo;
       } else if (isAdmin) {
         destination = '/admin';
       }
+      console.log('Redirecting to:', destination, { isAdmin, profile });
       router.push(destination);
       if (typeof window !== 'undefined') {
         sessionStorage.removeItem('redirectAfterLogin');
       }
     }
-  }, [user, authLoading, isAdmin, router, from]);
+  }, [user, profile, authLoading, isAdmin, router, redirectTo]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

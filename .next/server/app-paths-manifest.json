@@ -1,8 +1,7 @@
 {
-  "/apply/partner-inquiry/page": "app/apply/partner-inquiry/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
   "/page": "app/page.js",
-  "/login/page": "app/login/page.js",
-  "/services/immigration/page": "app/services/immigration/page.js",
-  "/services/contracts/page": "app/services/contracts/page.js",
-  "/payment-success/page": "app/payment-success/page.js"
+  "/join-firm/page": "app/join-firm/page.js",
+  "/intelligence-hub/page": "app/intelligence-hub/page.js"
 }

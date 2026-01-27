@@ -155,15 +155,13 @@ export default async function IntelligenceHubPage() {
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-50"></div>
         </section>
 
-        {/* Featured: AI Governance Framework */}
-        <section className="py-24 relative">
+        {/* Featured: AI Governance Framework - COMMENTED OUT FOR NOW */}
+        {/* <section className="py-24 relative">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             <div className="relative group">
-              {/* Glow effect */}
               <div className="absolute -inset-1 bg-gradient-to-r from-[#d4af37] to-[#b8941f] rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-1000"></div>
               
               <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-10 md:p-16 border border-gray-200 shadow-2xl overflow-hidden">
-                {/* Decorative background elements */}
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#d4af37]/5 to-transparent rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-[#b8941f]/5 to-transparent rounded-full blur-3xl"></div>
                 
@@ -234,7 +232,7 @@ export default async function IntelligenceHubPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Perspectives Section */}
         <section className="py-24 relative">
@@ -299,6 +297,51 @@ export default async function IntelligenceHubPage() {
         <section className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
           {/* Decorative background */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-[#d4af37]/5 to-transparent rounded-full blur-3xl"></div>
+          
+          {/* Coming Soon Overlay */}
+          <div className="absolute inset-0 z-20 backdrop-blur-[2px] bg-white/40 flex items-center justify-center">
+            <div className="relative max-w-2xl mx-auto px-6 py-16 text-center">
+              {/* Decorative elements */}
+              <div className="absolute -top-8 -left-8 w-24 h-24 bg-[#d4af37]/20 rounded-full blur-2xl animate-pulse"></div>
+              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#b8941f]/20 rounded-full blur-2xl animate-pulse animation-delay-2000"></div>
+              
+              <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border-2 border-[#d4af37]/30">
+                {/* Icon */}
+                <div className="w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#d4af37] to-[#b8941f] flex items-center justify-center shadow-xl">
+                  <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-[#d4af37]/10 to-[#b8941f]/10 border border-[#d4af37]/30 rounded-full mb-4">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af37] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#d4af37]"></span>
+                  </span>
+                  <span className="text-sm font-bold text-[#d4af37] uppercase tracking-wider">In Progress</span>
+                </div>
+                
+                {/* Heading */}
+                <h3 className="font-serif text-4xl md:text-5xl font-bold text-[#1a1a2e] mb-4 leading-tight">
+                  Coming Soon
+                </h3>
+                
+                {/* Description */}
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  We're curating an exceptional collection of practical tools, templates, and guides. Check back soon for premium resources to help navigate complex regulatory landscapes.
+                </p>
+                
+                {/* Additional info */}
+                <div className="inline-flex items-center gap-2 text-sm text-gray-600">
+                  <svg className="w-4 h-4 text-[#d4af37]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  </svg>
+                  <span>Expected launch: Q2 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
           
           <div className="relative max-w-7xl mx-auto px-4 md:px-8">
             <div className="text-center mb-16">

@@ -251,7 +251,7 @@ export default function JoinTheFirmPage() {
                         </svg>
                       </div>
                       <div>
-                        <h4 className="font-bold mb-1" style={{ color: '#1a1a2e' }}>100% Remote First</h4>
+                        <h4 className="font-bold mb-1" style={{ color: '#1a1a2e' }}>100% Hybrid First</h4>
                         <p className="text-gray-600">Work from anywhere in the world</p>
                       </div>
                     </div>

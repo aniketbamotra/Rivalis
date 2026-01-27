@@ -1,44 +1,10 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient as createBrowserClient } from './supabase/client';
 import type { Database } from '../types/database';
 
-// Lazy-loaded Supabase client to avoid build-time errors
-let supabaseInstance: SupabaseClient<Database> | null = null;
+// Use the new SSR-compatible client
+export const supabase = createBrowserClient();
 
-function getSupabase(): SupabaseClient<Database> {
-  if (supabaseInstance) {
-    return supabaseInstance;
-  }
-
-  // Support both Vite and Next.js environment variables during migration
-  const supabaseUrl = 
-    process.env.NEXT_PUBLIC_SUPABASE_URL || 
-    (typeof window !== 'undefined' && (window as any).ENV?.VITE_SUPABASE_URL) ||
-    '';
-    
-  const supabaseAnonKey = 
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 
-    (typeof window !== 'undefined' && (window as any).ENV?.VITE_SUPABASE_ANON_KEY) ||
-    '';
-
-  if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error('Missing Supabase environment variables');
-  }
-
-  supabaseInstance = createClient<Database>(supabaseUrl, supabaseAnonKey);
-  return supabaseInstance;
-}
-
-// Export lazy-loaded instance getter
-export const supabase = new Proxy({} as SupabaseClient<Database>, {
-  get: (_target, prop) => {
-    const client = getSupabase();
-    return (client as any)[prop];
-  }
-});
-
-// Helper functions for common operations
-
-// Services
+// Helper functions for common operations// Services
 export const getServices = async () => {
   const { data, error } = await supabase
     .from('services')

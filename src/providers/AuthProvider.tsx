@@ -2,8 +2,10 @@
 
 import { createContext, useEffect, useState, useCallback, type ReactNode } from 'react';
 import type { User, Session, AuthError } from '@supabase/supabase-js';
-import { supabase } from '../lib/supabase';
+import { createClient } from '../lib/supabase/client';
 import type { Profile } from '../types/database';
+
+const supabase = createClient();
 
 interface AuthContextType {
   user: User | null;
