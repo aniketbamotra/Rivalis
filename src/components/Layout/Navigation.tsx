@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '../../hooks/useAuth';
 
@@ -95,7 +96,16 @@ export const Navigation: React.FC = () => {
   return (
     <nav className={`nav ${isHomePage ? '' : 'nav-no-emergency'}`}>
       <div className="nav-container">
-        <Link href="/" className="nav-logo">Rivalis Law</Link>
+        <Link href="/" className="nav-logo">
+          <Image 
+            src="/logo.png" 
+            alt="Rivalis Law" 
+            width={160} 
+            height={40}
+            priority
+            style={{ height: 'auto' }}
+          />
+        </Link>
         
         {/* Desktop Menu */}
         <ul className="nav-menu">

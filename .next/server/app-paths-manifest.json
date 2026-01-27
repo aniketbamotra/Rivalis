@@ -1,7 +1,3 @@
 {
-  "/admin/page": "app/admin/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/page": "app/page.js",
-  "/join-firm/page": "app/join-firm/page.js",
-  "/intelligence-hub/page": "app/intelligence-hub/page.js"
+  "/join-firm/page": "app/join-firm/page.js"
 }

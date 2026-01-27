@@ -15,6 +15,20 @@ export const metadata: Metadata = {
   description: 'Expert legal services in AI governance, immigration law, M&A transactions, and more. NY & MI Bar certified attorney with Big 4 training.',
   keywords: 'immigration attorney, AI governance, M&A attorney, employment law, intellectual property, data privacy',
   metadataBase: new URL('https://rivalislaw.com'),
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'android-chrome-192x192', url: '/android-chrome-192x192.png' },
+      { rel: 'android-chrome-512x512', url: '/android-chrome-512x512.png' },
+    ],
+  },
   openGraph: {
     title: 'Rivalis Law - Big 4 Trained Attorney',
     description: 'Expert legal services in AI governance, immigration law, and M&A transactions.',
