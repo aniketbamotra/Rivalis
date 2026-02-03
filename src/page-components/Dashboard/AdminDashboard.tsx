@@ -15,7 +15,7 @@ import {
   supabase 
 } from '../../lib/supabase';
 import type { Service, Profile, FormSubmission, SiteSettings, PartnerInquiry, PartnerApplication } from '../../types/database';
-import { sendApplicationInvite } from '../../lib/partnerEmails';
+// Removed: sendApplicationInvite - now handled by API route
 import {
   Dialog,
   DialogContent,
@@ -243,54 +243,57 @@ export function AdminDashboard() {
   };
 
   const handleSendApplicationLink = async (inquiryId: string) => {
-    if (!confirm('This will generate a unique application link and send it to the applicant via email. Continue?')) {
-      return;
-    }
+    const inquiry = partnerInquiries.find(i => i.id === inquiryId);
+    if (!inquiry) return;
+    
+    const isResend = !!inquiry.application_link_sent_at;
+    const confirmMessage = isResend 
+      ? 'Resend the application link to this candidate? They will receive the same unique link.'
+      : 'Send application link to this candidate via email?';
+    
+    if (!confirm(confirmMessage)) return;
 
     setSendingAppLink(true);
+    
     try {
-      // Generate token and update inquiry
-      const token = crypto.randomUUID();
-      const { error: updateError } = await supabase
-        .from('partner_inquiries')
-        .update({ 
-          application_token: token,
-          application_link_sent_at: new Date().toISOString(),
-          status: 'qualified'
-        } as never)
-        .eq('id', inquiryId);
-
-      if (updateError) throw updateError;
-
-      // Get inquiry details for email
-      const inquiry = partnerInquiries.find(i => i.id === inquiryId);
-      if (!inquiry) throw new Error('Inquiry not found');
-
-      // Send email
-      const emailResult = await sendApplicationInvite({
-        email: inquiry.email,
-        name: inquiry.full_name,
-        token: token
+      // Call API route to send email (server-side)
+      const response = await fetch('/api/partnership/send-application-link', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ inquiryId }),
       });
 
-      if (!emailResult.success) {
-        throw new Error('Failed to send email');
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Failed to send application link');
       }
 
-      // Update local state
+      // Update local state with the updated inquiry data from server
       setPartnerInquiries(partnerInquiries.map(i => 
-        i.id === inquiryId ? { 
-          ...i, 
-          application_token: token,
-          application_link_sent_at: new Date().toISOString(),
-          status: 'qualified'
-        } : i
+        i.id === inquiryId ? result.inquiry : i
       ));
 
-      alert('Application link sent successfully!');
+      alert(result.isResend
+        ? 'Application link resent successfully!' 
+        : 'Application link sent successfully!'
+      );
+      
     } catch (error) {
       console.error('Error sending application link:', error);
-      alert('Failed to send application link. Please try again.');
+      alert('Failed to send email. Please check your configuration and try again.');
+      
+      // Refresh inquiries to get latest status from server
+      const { data: updatedInquiries } = await supabase
+        .from('partner_inquiries')
+        .select('*')
+        .order('created_at', { ascending: false });
+      
+      if (updatedInquiries) {
+        setPartnerInquiries(updatedInquiries);
+      }
     } finally {
       setSendingAppLink(false);
     }
@@ -1311,26 +1314,43 @@ export function AdminDashboard() {
                               >
                                 Notes
                               </button>
-                              {inquiry.status === 'qualified' && !inquiry.application_link_sent_at && (
-                                <button 
-                                  className="save-button"
-                                  onClick={() => handleSendApplicationLink(inquiry.id)}
-                                  disabled={sendingAppLink}
-                                  style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem' }}
-                                >
-                                  {sendingAppLink ? 'Sending...' : 'Send Link'}
-                                </button>
-                              )}
-                              {inquiry.application_link_sent_at && (
-                                <span style={{
-                                  fontSize: '0.75rem',
-                                  color: '#10b981',
-                                  padding: '0.4rem 0.8rem',
-                                  background: 'rgba(16, 185, 129, 0.1)',
-                                  borderRadius: '4px'
-                                }}>
-                                  ✓ Link Sent
-                                </span>
+                              {inquiry.status === 'qualified' && (
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                  <button 
+                                    className="save-button"
+                                    onClick={() => handleSendApplicationLink(inquiry.id)}
+                                    disabled={sendingAppLink}
+                                    style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem' }}
+                                  >
+                                    {sendingAppLink ? 'Sending...' : 
+                                     inquiry.application_link_sent_at ? 'Resend Link' : 'Send Link'}
+                                  </button>
+                                  
+                                  {inquiry.application_link_sent_at && (
+                                    <div style={{ fontSize: '0.75rem', color: '#64748b' }}>
+                                      {inquiry.application_link_last_send_status === 'failed' && (
+                                        <span style={{ color: '#ef4444' }}>
+                                          ⚠ Last send failed
+                                        </span>
+                                      )}
+                                      {inquiry.application_link_last_send_status === 'success' && (
+                                        <span style={{ color: '#10b981' }}>
+                                          ✓ Sent {formatDate(inquiry.application_link_sent_at)}
+                                        </span>
+                                      )}
+                                      {!inquiry.application_link_last_send_status && (
+                                        <span style={{ color: '#10b981' }}>
+                                          ✓ Sent {formatDate(inquiry.application_link_sent_at)}
+                                        </span>
+                                      )}
+                                      {inquiry.application_link_send_count && inquiry.application_link_send_count > 1 && (
+                                        <span style={{ color: '#94a3b8', marginLeft: '0.5rem' }}>
+                                          ({inquiry.application_link_send_count}x)
+                                        </span>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
                               )}
                             </div>
                           </td>
@@ -2214,8 +2234,19 @@ export function AdminDashboard() {
                       )}
                       {viewingInquiry.application_link_sent_at && (
                         <div>
-                          <p className="text-sm font-semibold text-gray-600 mb-1">Application Link Sent</p>
-                          <p className="text-sm">{formatDate(viewingInquiry.application_link_sent_at)}</p>
+                          <p className="text-sm font-semibold text-gray-600 mb-1">Application Link Status</p>
+                          <p className="text-sm">
+                            Last sent: {formatDate(viewingInquiry.application_link_sent_at)}
+                            {viewingInquiry.application_link_send_count && viewingInquiry.application_link_send_count > 1 && 
+                              ` (sent ${viewingInquiry.application_link_send_count} times)`
+                            }
+                          </p>
+                          {viewingInquiry.application_link_last_send_status === 'failed' && (
+                            <p className="text-sm text-red-600 mt-1">⚠ Last send failed - click Resend Link to retry</p>
+                          )}
+                          {viewingInquiry.application_link_last_send_status === 'success' && (
+                            <p className="text-sm text-green-600 mt-1">✓ Email delivered successfully</p>
+                          )}
                         </div>
                       )}
                       {viewingInquiry.notes && (
@@ -2412,12 +2443,38 @@ export function AdminDashboard() {
                 <div className="bg-gray-50 rounded-lg p-4">
                   <h3 className="text-lg font-semibold mb-3">6. References & Additional Information</h3>
                   <div className="space-y-3">
-                    {viewingApplication.professional_references && (
+                    {viewingApplication.professional_references && Array.isArray(viewingApplication.professional_references) && (
                       <div>
-                        <p className="text-sm font-semibold text-gray-600 mb-1">References</p>
-                        <pre className="text-sm whitespace-pre-wrap bg-white p-2 rounded border">
-                          {JSON.stringify(viewingApplication.professional_references, null, 2)}
-                        </pre>
+                        <p className="text-sm font-semibold text-gray-600 mb-3">Professional References</p>
+                        <div className="space-y-3">
+                          {viewingApplication.professional_references.map((ref: any, index: number) => (
+                            <div key={index} className="bg-white p-3 rounded-lg border border-gray-200">
+                              <p className="text-sm font-semibold text-gray-800 mb-2">Reference {index + 1}</p>
+                              <div className="grid grid-cols-2 gap-2 text-sm">
+                                <div>
+                                  <span className="font-semibold text-gray-600">Name:</span>
+                                  <span className="ml-2">{ref.name}</span>
+                                </div>
+                                <div>
+                                  <span className="font-semibold text-gray-600">Relationship:</span>
+                                  <span className="ml-2">{ref.relationship}</span>
+                                </div>
+                                <div>
+                                  <span className="font-semibold text-gray-600">Email:</span>
+                                  <a href={`mailto:${ref.email}`} className="ml-2 text-blue-600 hover:underline">
+                                    {ref.email}
+                                  </a>
+                                </div>
+                                <div>
+                                  <span className="font-semibold text-gray-600">Phone:</span>
+                                  <a href={`tel:${ref.phone}`} className="ml-2 text-blue-600 hover:underline">
+                                    {ref.phone}
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     )}
                     <div>

@@ -98,10 +98,10 @@ export const Navigation: React.FC = () => {
       <div className="nav-container">
         <Link href="/" className="nav-logo">
           <Image 
-            src="/logo.png" 
-            alt="Rivalis Law" 
-            width={160} 
-            height={40}
+            src="/logo2.png" 
+            alt="Rivalis Law Logo" 
+            width={200} 
+            height={50}
             priority
             style={{ height: 'auto' }}
           />

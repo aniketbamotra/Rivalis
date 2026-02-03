@@ -17,16 +17,16 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://rivalislaw.com'),
   icons: {
     icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon/favicon.ico', sizes: 'any' },
+      { url: '/favicon/favicon.svg', type: 'image/svg+xml' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      { rel: 'android-chrome-192x192', url: '/android-chrome-192x192.png' },
-      { rel: 'android-chrome-512x512', url: '/android-chrome-512x512.png' },
+      { rel: 'web-app-manifest-192x192', url: '/favicon/web-app-manifest-192x192.png' },
+      { rel: 'web-app-manifest-512x512', url: '/favicon/web-app-manifest-512x512.png' },
     ],
   },
   openGraph: {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: '/og-images/home.jpg',
+        url: '/og-images/og.png',
         width: 1200,
         height: 630,
         alt: 'Rivalis Law - Expert Legal Services',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Rivalis Law - Big 4 Trained Attorney',
     description: 'Expert legal services in AI governance, immigration law, and M&A transactions.',
-    images: ['/og-images/home.jpg'],
+    images: ['/og-images/og.png'],
   },
   robots: {
     index: true,

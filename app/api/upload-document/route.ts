@@ -35,8 +35,9 @@ export async function POST(request: NextRequest) {
     const filename = `${inquiry.id}/${timestamp}_${sanitizedFilename}`;
 
     // Upload to Supabase Storage
+    const bucketName = process.env.SUPABASE_STORAGE_BUCKET || 'partner-documents';
     const { error } = await supabase.storage
-      .from('partner-documents')
+      .from(bucketName)
       .upload(filename, file, {
         contentType: file.type,
         upsert: false,
@@ -52,7 +53,7 @@ export async function POST(request: NextRequest) {
 
     // Get public URL
     const { data: urlData } = supabase.storage
-      .from('partner-documents')
+      .from(bucketName)
       .getPublicUrl(filename);
 
     return NextResponse.json({ 

@@ -327,6 +327,8 @@ export interface PartnerInquiry {
   notes?: string | null;
   application_token?: string | null;
   application_link_sent_at?: string | null;
+  application_link_send_count?: number | null;
+  application_link_last_send_status?: 'success' | 'failed' | 'sending' | null;
 }
 
 export interface PartnerApplication {

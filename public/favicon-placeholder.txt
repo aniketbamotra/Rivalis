@@ -1,2 +1,0 @@
-<!-- Placeholder for favicon - Replace with actual favicon.ico file -->
-<!-- To add a real favicon, replace this file with a .ico file at public/favicon.ico -->

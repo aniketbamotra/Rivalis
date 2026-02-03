@@ -1,7 +1,6 @@
 {
-  "/join-firm/page": "app/join-firm/page.js",
-  "/login/page": "app/login/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
   "/page": "app/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js"
+  "/apply/partner-application/page": "app/apply/partner-application/page.js",
+  "/legal-information/page": "app/legal-information/page.js"
 }

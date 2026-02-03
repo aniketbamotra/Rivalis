@@ -8,7 +8,7 @@ export function getOrganizationSchema(): WithContext<Organization> {
     alternateName: 'Rivalis Law Firm',
     description: 'Big 4 Trained Attorney specializing in AI Governance, Global Immigration, and M&A Transactions',
     url: 'https://rivalislaw.com',
-    logo: 'https://rivalislaw.com/logo.png',
+    logo: 'https://rivalislaw.com/logo2.png',
     image: 'https://rivalislaw.com/og-images/home.jpg',
     telephone: '+1-313-771-2283',
     email: 'aaishaeron@gmail.com',
@@ -136,7 +136,7 @@ export function getArticleSchema(article: {
       url: 'https://rivalislaw.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://rivalislaw.com/logo.png',
+        url: 'https://rivalislaw.com/logo2.png',
       },
     },
     mainEntityOfPage: {
