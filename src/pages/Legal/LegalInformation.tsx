@@ -390,7 +390,7 @@ export const LegalInformation: React.FC = () => {
                 Bar Admissions
               </h3>
               <p style={{ color: '#2d3748', lineHeight: 1.8, marginBottom: '1.25rem' }}>
-                {settings?.attorney_name || 'Aaishwarya Aeron, Esq.'}, the attorney operating {settings?.firm_name || 'Rivalis Law'}, is admitted to practice law in the following jurisdictions:
+                {settings?.attorney_name || 'The Founder of Rivalis Laws, Esq.'}, the attorney operating {settings?.firm_name || 'Rivalis Law'}, is admitted to practice law in the following jurisdictions:
               </p>
 
               <div style={{ background: '#f0e6d2', borderLeft: '4px solid #d4af37', padding: '1.5rem', borderRadius: '8px', margin: '2rem 0' }}>
@@ -682,7 +682,7 @@ export const LegalInformation: React.FC = () => {
                 {settings?.firm_name || 'Rivalis Law'}
               </h3>
               <p style={{ color: '#2d3748', lineHeight: 1.8, marginBottom: '1.25rem' }}>
-                <strong>Principal Attorney:</strong> {settings?.attorney_name || 'Aaishwarya Aeron, Esq.'}
+                <strong>Principal Attorney:</strong> {settings?.attorney_name || 'The Founder of Rivalis Laws, Esq.'}
               </p>
 
               <h4 style={{ fontSize: '1.15rem', fontWeight: 600, color: '#0f1419', marginTop: '1.5rem', marginBottom: '0.75rem' }}>
