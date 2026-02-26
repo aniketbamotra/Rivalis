@@ -11,7 +11,7 @@ import '@/styles/service-page.css';
 import '@/styles/fraud-investigation.css';
 
 export const metadata: Metadata = {
-  title: 'Rivalis Law - Big 4 Trained Attorney | AI Governance | Global Immigration',
+  title: 'Rivalis Law - Big 4 Trained Attorney | AI Governance | Global Immigration Outside',
   description: 'Expert legal services in AI governance, immigration law, M&A transactions, and more. NY & MI Bar certified attorney with Big 4 training.',
   keywords: 'immigration attorney, AI governance, M&A attorney, employment law, intellectual property, data privacy',
   metadataBase: new URL('https://rivalislaw.com'),
