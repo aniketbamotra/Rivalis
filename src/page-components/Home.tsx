@@ -182,7 +182,7 @@ export const Home: React.FC = () => {
             </h1>
 
             <p className="hero-subtitle">
-              Your AI product launch. Your global expansion. Your $50M acquisition. At Rivalis Law, our **AI governance & startup law firm** expertise ensures the wrong legal counsel never puts your company at risk. Get Big 4-trained guidance without conflicts, delays, or six-figure bills.
+              At Rivalis Law, our **AI Governance & Startup Law Firm** expertise protects your AI product launch, cross-border M&A, and global expansion from legal risks—without conflicts, delays, or six-figure bills.
             </p>
 
             <div className="launch-notice">
