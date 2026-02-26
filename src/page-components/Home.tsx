@@ -256,22 +256,60 @@ export const Home: React.FC = () => {
         <div className="section-container">
           <div className="section-header">
             <div className="section-tag">WHY RIVALIS LAW</div>
-            <h2>What You Get That Big Law Can't Offer</h2>
-            <p>Elite firm expertise without the conflicts, bureaucracy, or inflated bills. Personal attention from an attorney trained at the highest levels.</p>
+            <h2 className="section-title">What You Get That Big Law Can't Offer</h2>
+            <p className="section-subtitle">
+              Elite firm expertise without the conflicts, bureaucracy, or inflated bills. Personal attention from an attorney trained at the highest levels.
+            </p>
           </div>
 
           <div className="impact-grid">
-            <div className="impact-card"><h3>Big 4 Training</h3><p>Multiple years at top Big 4 firms handling Fortune 100 companies' complex corporate matters, immigration cases, and high-stakes transactions. You get that level of expertise without the $1,200/hour rate.</p></div>
+            <div className="impact-card">
+              <div className="impact-icon">
+                <i className="fas fa-building"></i>
+              </div>
+              <div className="impact-label">Big 4 Training</div>
+              <p className="impact-desc">Multiple years at top Big 4 firms handling Fortune 100 companies' complex corporate matters, immigration cases, and high-stakes transactions. You get that level of expertise without the $1,200/hour rate.</p>
+            </div>
 
-            <div className="impact-card"><h3>Oxford AI Certified</h3><p>Completed Oxford's AI Governance Programme. Most lawyers claim they understand AI—I have the certification and specialized training to prove it.</p></div>
+            <div className="impact-card">
+              <div className="impact-icon">
+                <i className="fas fa-graduation-cap"></i>
+              </div>
+              <div className="impact-label">Oxford AI Certified</div>
+              <p className="impact-desc">Completed Oxford's AI Governance Programme. Most lawyers claim they understand AI—I have the certification and specialized training to prove it.</p>
+            </div>
 
-            <div className="impact-card"><h3>Direct Partner Access</h3><p>At big firms, junior associates handle your work. Here, you get direct access to an experienced attorney on every matter—no delegation to untrained staff.</p></div>
+            <div className="impact-card">
+              <div className="impact-icon">
+                <i className="fas fa-user-tie"></i>
+              </div>
+              <div className="impact-label">Direct Partner Access</div>
+              <p className="impact-desc">At big firms, junior associates handle your work. Here, you get direct access to an experienced attorney on every matter—no delegation to untrained staff.</p>
+            </div>
 
-            <div className="impact-card"><h3>No Conflicts of Interest</h3><p>Big firms can't take your case because they represent your competitor. Boutique practice means we work for YOU, not a roster of conflicting clients.</p></div>
+            <div className="impact-card">
+              <div className="impact-icon">
+                <i className="fas fa-shield-alt"></i>
+              </div>
+              <div className="impact-label">No Conflicts of Interest</div>
+              <p className="impact-desc">Big firms can't take your case because they represent your competitor. Boutique practice means we work for YOU, not a roster of conflicting clients.</p>
+            </div>
 
-            <div className="impact-card"><h3>Responsive & Agile</h3><p>Need an answer today? You'll get it. No committees, no approval chains, no waiting 3 weeks for a 15-minute call. Just direct, immediate counsel.</p></div>
+            <div className="impact-card">
+              <div className="impact-icon">
+                <i className="fas fa-bolt"></i>
+              </div>
+              <div className="impact-label">Responsive & Agile</div>
+              <p className="impact-desc">Need an answer today? You'll get it. No committees, no approval chains, no waiting 3 weeks for a 15-minute call. Just direct, immediate counsel.</p>
+            </div>
 
-            <div className="impact-card"><h3>Transparent Pricing</h3><p>You see pricing upfront. No surprise bills, no nickel-and-diming for emails, no hidden fees. Know exactly what you're investing before we start.</p></div>
+            <div className="impact-card">
+              <div className="impact-icon">
+                <i className="fas fa-hand-holding-usd"></i>
+              </div>
+              <div className="impact-label">Transparent Pricing</div>
+              <p className="impact-desc">You see pricing upfront. No surprise bills, no nickel-and-diming for emails, no hidden fees. Know exactly what you're investing before we start.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -281,51 +319,164 @@ export const Home: React.FC = () => {
         <div className="section-container">
           <div className="section-header">
             <div className="section-tag">THREE CORE SPECIALIZATIONS</div>
-            <h2>We Don't Do Everything. We Master Three Things.</h2>
-            <p>Elite counsel in the three areas where one mistake costs millions: AI compliance, global talent mobility, and high-stakes corporate transactions.</p>
+            <h2 className="section-title">We Don't Do Everything. We Master Three Things.</h2>
+            <p className="section-subtitle">
+              Elite counsel in the three areas where one mistake costs millions: AI compliance, global talent mobility, and high-stakes corporate transactions.
+            </p>
           </div>
 
           <div className="services-grid">
             {/* Service 1: AI Governance */}
             <div className="service-card">
-              <div className="service-icon"><i className="fas fa-brain"></i></div>
+              <div className="service-icon">
+                <i className="fas fa-brain"></i>
+              </div>
               <h3>AI Governance & Compliance</h3>
               <p className="service-tagline">Your Product. Their Lawsuit. Tomorrow's Headlines.</p>
-              <p>Your AI made a biased decision. Investor questions, EU AI Act compliance—our Oxford AI Programme-certified counsel prepares you for all scenarios.</p>
+
+              <div className="pricing-badge">
+                <div className="price-range">Contact for Pricing</div>
+                <div className="price-note">Enterprise frameworks custom quoted</div>
+              </div>
+
+              <p>Your AI made a biased decision. A journalist is asking questions. Your Series A investor wants governance docs you don't have. EU customers demand AI Act compliance you can't prove.</p>
+
+              <div className="roi-highlight">
+                <i className="fas fa-certificate"></i>
+                <strong>Why this matters:</strong> Oxford AI Programme provides technical governance training most attorneys don't have
+              </div>
+
               <ul className="service-features">
                 <li>Emergency AI risk assessment before product launch</li>
                 <li>Investor-ready governance documentation</li>
                 <li>EU AI Act & US regulatory compliance</li>
                 <li>Crisis response for AI system issues</li>
               </ul>
+
+              <div className="deliverables">
+                <h4><i className="fas fa-clipboard-check"></i> What's Included:</h4>
+                <ul>
+                  <li>Risk assessment report</li>
+                  <li>Governance framework</li>
+                  <li>Policy documentation</li>
+                  <li>Compliance roadmap</li>
+                  <li>Board presentation deck</li>
+                  <li>Implementation guide</li>
+                </ul>
+              </div>
+
+              <div className="service-cta">
+                <a href="/services/governance" className="service-cta-btn primary">
+                  <i className="fas fa-bolt"></i>
+                  Learn More
+                </a>
+                <a href="/forms/ai-governance" className="service-cta-btn secondary">
+                  <i className="fas fa-calendar-check"></i>
+                  Get Started
+                </a>
+              </div>
             </div>
 
             {/* Service 2: Immigration */}
             <div className="service-card">
-              <div className="service-icon"><i className="fas fa-passport"></i></div>
-              <h3>Global Expansion & Immigration</h3>
+              <div className="service-icon">
+                <i className="fas fa-passport"></i>
+              </div>
+              <h5>Global Expansion & Immigration</h5>
               <p className="service-tagline">Your Launch. Their Visa Denial. Your Disaster.</p>
-              <p>Emergency RFE responses, H-1B/O-1 strategies, and green card guidance—Big 4-trained experience for global hires.</p>
+
+              <div className="pricing-badge">
+                <div className="price-range">{getServicePrice('immigration')}</div>
+                <div className="price-note">O-1: Starting at $18K | RFE Emergency: Contact for pricing</div>
+              </div>
+
+              <p>Your CTO is stuck overseas. Launch is in 6 weeks. You just got an H-1B RFE with a 15-day deadline. Your star engineer's visa expires in 30 days and you have no backup.</p>
+
+              <div className="roi-highlight">
+                <i className="fas fa-award"></i>
+                <strong>The advantage:</strong> Big 4 immigration experience means knowing what USCIS scrutinizes
+              </div>
+
               <ul className="service-features">
                 <li>Emergency RFE responses & visa crisis management</li>
-                <li>Strategy for H-1B, L-1, O-1, EB-1, EB-2 NIW, EB-5 critical hires</li>
+                <li>H-1B, L-1, O-1, EB-1, EB-2 NIW, EB-5 strategy for critical hires</li>
                 <li>Same-day immigration case assessment</li>
                 <li>Green card & PERM certification strategy</li>
               </ul>
+
+              <div className="deliverables">
+                <h4><i className="fas fa-clipboard-check"></i> What's Included:</h4>
+                <ul>
+                  <li>Complete petition package</li>
+                  <li>Support letter drafting</li>
+                  <li>Evidence compilation</li>
+                  <li>USCIS filing</li>
+                  <li>RFE response (if needed)</li>
+                  <li>Status tracking</li>
+                </ul>
+              </div>
+
+              <div className="service-cta">
+                <a href="/services/immigration" className="service-cta-btn primary">
+                  <i className="fas fa-passport"></i>
+                  Learn More
+                </a>
+                <a href="/forms/immigration" className="service-cta-btn secondary">
+                  <i className="fas fa-calendar-check"></i>
+                  Get Started
+                </a>
+              </div>
             </div>
 
             {/* Service 3: M&A */}
             <div className="service-card">
-              <div className="service-icon"><i className="fas fa-handshake"></i></div>
-              <h3>M&A & Corporate Transactions</h3>
+              <div className="service-icon">
+                <i className="fas fa-handshake"></i>
+              </div>
+              <h4>M&A & Corporate Transactions</h4>
               <p className="service-tagline">Their Offer. Your Hidden Liability. Deal Over.</p>
-              <p>Rapid due diligence, tax structuring, and deal rescue from Big 4 experience ensures you never miss deal-critical issues.</p>
+
+              <div className="pricing-badge">
+                <div className="price-range">{getServicePrice('ma')}</div>
+                <div className="price-note">Full transaction: Starting at $75K based on deal size</div>
+              </div>
+
+              <p>You're acquiring a company. Due diligence reveals tax issues that kill the deal—or worse, you miss them. The liability clause in your LOI exposes you to millions.</p>
+
+              <div className="roi-highlight">
+                <i className="fas fa-briefcase"></i>
+                <strong>What you get:</strong> Experience reviewing multimillion-dollar deals at Big 4 level
+              </div>
+
               <ul className="service-features">
-                <li>Rapid M&A due diligence</li>
+                <li>Rapid M&A due diligence that finds deal-killers early</li>
                 <li>Tax liability identification & structuring</li>
                 <li>Transaction structuring for maximum value</li>
                 <li>Deal rescue when other counsel missed issues</li>
               </ul>
+
+              <div className="deliverables">
+                <h4><i className="fas fa-clipboard-check"></i> What's Included:</h4>
+                <ul>
+                  <li>Due diligence report</li>
+                  <li>Risk analysis memo</li>
+                  <li>Tax structure recommendations</li>
+                  <li>Deal documentation review</li>
+                  <li>Negotiation support</li>
+                  <li>Closing coordination</li>
+                </ul>
+              </div>
+
+              <div className="service-cta">
+                <a href="/services/ma" className="service-cta-btn primary">
+                  <i className="fas fa-handshake"></i>
+                  Learn More
+                </a>
+                <a href="/#qualify" className="service-cta-btn secondary">
+                  <i className="fas fa-calendar-check"></i>
+                  Get Started
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -336,17 +487,84 @@ export const Home: React.FC = () => {
         <div className="section-container">
           <div className="section-header">
             <div className="section-tag">ADDITIONAL SERVICES</div>
-            <h2>Select Legal Services</h2>
-            <p>Beyond our three core specializations, we offer targeted services for specific business needs.</p>
+            <h2 className="section-title">Select Legal Services</h2>
+            <p className="section-subtitle">
+              Beyond our three core specializations, we offer targeted services for specific business needs
+            </p>
           </div>
 
           <div className="select-services-grid">
-            <a href="/services/contracts" className="select-service-card"><h3>Contract Review & Drafting</h3></a>
-            <a href="/services/data-privacy" className="select-service-card"><h3>Data Privacy Compliance</h3></a>
-            <a href="/services/ip-strategy" className="select-service-card"><h3>IP Strategy & Protection</h3></a>
-            <a href="/services/fraud-investigation" className="select-service-card"><h3>Corporate Fraud Investigation</h3></a>
-            <a href="/services/employment" className="select-service-card"><h3>Employment Law Counsel</h3></a>
-            <a href="/services/fundraising" className="select-service-card"><h3>Fundraising & Securities</h3></a>
+            <a href="/services/contracts" className="select-service-card">
+              <div className="select-icon">
+                <i className="fas fa-file-contract"></i>
+              </div>
+              <h3>Contract Review & Drafting</h3>
+              <p>Get expert eyes on your vendor agreements, NDAs, employment contracts, and partnership deals before you sign.</p>
+              <div className="select-pricing">{getServicePrice('contracts')}</div>
+              <div className="select-cta">
+                Request Quote <i className="fas fa-arrow-right"></i>
+              </div>
+            </a>
+
+            <a href="/services/data-privacy" className="select-service-card">
+              <div className="select-icon">
+                <i className="fas fa-shield-alt"></i>
+              </div>
+              <h4>Data Privacy Compliance</h4>
+              <p>GDPR, CCPA, and privacy policy development for companies handling customer data.</p>
+              <div className="select-pricing">{getServicePrice('data-privacy')}</div>
+              <div className="select-cta">
+                Learn More <i className="fas fa-arrow-right"></i>
+              </div>
+            </a>
+
+            <a href="/services/ip-strategy" className="select-service-card">
+              <div className="select-icon">
+                <i className="fas fa-copyright"></i>
+              </div>
+              <h4>IP Strategy & Protection</h4>
+              <p>Trademark filings, trade secret protection, and IP portfolio development for growing companies.</p>
+              <div className="select-pricing">{getServicePrice('ip-strategy')}</div>
+              <div className="select-cta">
+                Discuss IP Needs <i className="fas fa-arrow-right"></i>
+              </div>
+            </a>
+
+            <a href="/services/fraud-investigation" className="select-service-card">
+              <div className="select-icon">
+                <i className="fas fa-search"></i>
+              </div>
+              <h4>Corporate Fraud Investigation</h4>
+              <p>Whistleblower allegations, financial irregularities, or executive misconduct threatening your company's survival. Get privileged investigation before regulators or journalists do.</p>
+              <div className="select-pricing">{getServicePrice('fraud-investigation')}</div>
+              <div className="select-cta">
+                Confidential Emergency Line <i className="fas fa-arrow-right"></i>
+              </div>
+            </a>
+
+            <a href="/services/employment" className="select-service-card">
+              <div className="select-icon">
+                <i className="fas fa-users"></i>
+              </div>
+              <h4>Employment Law Counsel</h4>
+              <p>Offer letters, employee handbooks, termination guidance, and HR compliance for scaling teams.</p>
+              <div className="select-pricing">{getServicePrice('employment')}</div>
+              <div className="select-cta">
+                Get HR Support <i className="fas fa-arrow-right"></i>
+              </div>
+            </a>
+
+            <a href="/services/fundraising" className="select-service-card">
+              <div className="select-icon">
+                <i className="fas fa-chart-line"></i>
+              </div>
+              <h4>Fundraising & Securities</h4>
+              <p>SAFE agreements, convertible notes, and Series A preparation for venture-backed companies.</p>
+              <div className="select-pricing">{getServicePrice('fundraising')}</div>
+              <div className="select-cta">
+                Prepare for Funding <i className="fas fa-arrow-right"></i>
+              </div>
+            </a>
           </div>
         </div>
       </section>
