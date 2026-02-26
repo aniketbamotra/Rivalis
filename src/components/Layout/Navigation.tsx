@@ -1,14 +1,18 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '../../hooks/useAuth';
 
 export const Navigation: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
   const { user, signOut, isAdmin } = useAuth();
   
-  const isHomePage = location.pathname === '/';
+  const isHomePage = pathname === '/';
 
   // Get the correct dashboard path based on user role
   const dashboardPath = isAdmin ? '/admin' : '/dashboard';
@@ -20,25 +24,28 @@ export const Navigation: React.FC = () => {
     try {
       await signOut();
       console.log('signOut completed, navigating to /');
-      navigate('/', { replace: true });
+      router.push('/');
+      router.refresh();
     } catch (error) {
       console.error('Error during sign out:', error);
       // Navigate anyway
-      navigate('/', { replace: true });
+      router.push('/');
+      router.refresh();
     }
   };
 
   // Handle scrolling to hash on page load or hash change
   useEffect(() => {
-    if (location.hash) {
+    const hash = window.location.hash;
+    if (hash) {
       setTimeout(() => {
-        const element = document.querySelector(location.hash);
+        const element = document.querySelector(hash);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }, 100);
     }
-  }, [location]);
+  }, [pathname]);
 
   // Handle navigation link clicks
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -49,14 +56,14 @@ export const Navigation: React.FC = () => {
       const hash = href.substring(1); // Remove the leading /
       
       // If we're already on home page, just scroll
-      if (location.pathname === '/') {
+      if (pathname === '/') {
         const element = document.querySelector(hash);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       } else {
         // Navigate to home page with hash
-        navigate('/' + hash);
+        router.push('/' + hash);
       }
     }
     
@@ -89,16 +96,19 @@ export const Navigation: React.FC = () => {
   return (
     <nav className={`nav ${isHomePage ? '' : 'nav-no-emergency'}`}>
       <div className="nav-container">
-        <Link to="/" className="nav-logo">Rivalis Law</Link>
+        <Link href="/" className="nav-logo">
+          <Image 
+            src="/logo2.png" 
+            alt="Rivalis Law Logo" 
+            width={200} 
+            height={50}
+            priority
+            style={{ height: 'auto' }}
+          />
+        </Link>
         
         {/* Desktop Menu */}
         <ul className="nav-menu">
-          <li>
-            <a href="/#why-rivalis" className="nav-link" onClick={(e) => handleNavClick(e, '/#why-rivalis')}>
-              Why Rivalis
-            </a>
-          </li>
-          
           {/* Our 3 Specialties Dropdown */}
           <li className="nav-dropdown">
             <a href="/#services" className="nav-link" onClick={(e) => handleNavClick(e, '/#services')}>
@@ -108,14 +118,14 @@ export const Navigation: React.FC = () => {
             <div className="nav-dropdown-menu">
               {coreServices.map((service) => (
                 <div key={service.href}>
-                  <Link to={service.href} className="nav-dropdown-item">
+                  <Link href={service.href} className="nav-dropdown-item">
                     {service.label}
                     {service.submenu && <i className="fas fa-chevron-right" style={{ marginLeft: 'auto', fontSize: '0.75rem' }}></i>}
                   </Link>
                   {service.submenu && (
                     <div className="nav-submenu">
                       {service.submenu.map((subitem) => (
-                        <Link key={subitem.href} to={subitem.href} className="nav-submenu-item">
+                        <Link key={subitem.href} href={subitem.href} className="nav-submenu-item">
                           {subitem.label}
                         </Link>
                       ))}
@@ -134,18 +144,27 @@ export const Navigation: React.FC = () => {
             </a>
             <div className="nav-dropdown-menu">
               {selectServices.map((service) => (
-                <Link key={service.href} to={service.href} className="nav-dropdown-item">
+                <Link key={service.href} href={service.href} className="nav-dropdown-item">
                   {service.label}
                 </Link>
               ))}
             </div>
           </li>
 
+          {/* Intelligence Hub */}
           <li>
-            <a href="/#how-we-work" className="nav-link" onClick={(e) => handleNavClick(e, '/#how-we-work')}>
-              How We Work
-            </a>
+            <Link href="/intelligence-hub" className="nav-link">
+              Intelligence Hub
+            </Link>
           </li>
+
+          {/* Join the Firm */}
+          <li>
+            <Link href="/join-firm" className="nav-link">
+              Join the Firm
+            </Link>
+          </li>
+
           <li>
             <a href="/#qualify" className="nav-cta" onClick={(e) => handleNavClick(e, '/#qualify')}>
               Get Started
@@ -159,7 +178,7 @@ export const Navigation: React.FC = () => {
                 </svg>
               </button>
               <div className="nav-dropdown-menu nav-user-menu">
-                <Link to={dashboardPath} className="nav-dropdown-item">
+                <Link href={dashboardPath} className="nav-dropdown-item">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
                     <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
                     <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
@@ -176,7 +195,7 @@ export const Navigation: React.FC = () => {
             </li>
           ) : (
             <li>
-              <Link to="/login" className="nav-login-btn">
+              <Link href="/login" className="nav-login-btn">
                 Login
               </Link>
             </li>
@@ -198,20 +217,13 @@ export const Navigation: React.FC = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="nav-mobile-menu">
-          <a 
-            href="/#why-rivalis" 
-            className="nav-mobile-link" 
-            onClick={(e) => handleNavClick(e, '/#why-rivalis')}
-          >
-            Why Rivalis
-          </a>
           
           <div className="nav-mobile-section">
             <div className="nav-mobile-section-title">Our 3 Specialties</div>
             {coreServices.map((service) => (
               <div key={service.href}>
                 <Link 
-                  to={service.href} 
+                  href={service.href} 
                   className="nav-mobile-link nested"
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -220,7 +232,7 @@ export const Navigation: React.FC = () => {
                 {service.submenu && service.submenu.map((subitem) => (
                   <Link 
                     key={subitem.href} 
-                    to={subitem.href} 
+                    href={subitem.href} 
                     className="nav-mobile-link nested"
                     style={{ paddingLeft: '2rem', fontSize: '0.9rem' }}
                     onClick={() => setMobileMenuOpen(false)}
@@ -237,7 +249,7 @@ export const Navigation: React.FC = () => {
             {selectServices.map((service) => (
               <Link 
                 key={service.href} 
-                to={service.href} 
+                href={service.href} 
                 className="nav-mobile-link nested"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -246,13 +258,21 @@ export const Navigation: React.FC = () => {
             ))}
           </div>
 
-          <a 
-            href="/#how-we-work" 
-            className="nav-mobile-link" 
-            onClick={(e) => handleNavClick(e, '/#how-we-work')}
+          <Link 
+            href="/intelligence-hub" 
+            className="nav-mobile-link"
+            onClick={() => setMobileMenuOpen(false)}
           >
-            How We Work
-          </a>
+            Intelligence Hub
+          </Link>
+
+          <Link 
+            href="/join-firm" 
+            className="nav-mobile-link"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Join the Firm
+          </Link>
           
           <a 
             href="/#qualify" 
@@ -265,7 +285,7 @@ export const Navigation: React.FC = () => {
           {user ? (
             <>
               <Link 
-                to={dashboardPath} 
+                href={dashboardPath} 
                 className="nav-mobile-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -280,7 +300,7 @@ export const Navigation: React.FC = () => {
             </>
           ) : (
             <Link 
-              to="/login" 
+              href="/login" 
               className="nav-mobile-login"
               onClick={() => setMobileMenuOpen(false)}
             >

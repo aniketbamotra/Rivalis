@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { canAccessForms, getConsultationEmail, STORAGE_KEYS } from '../../utils/consultationFlow';
 import { supabase } from '../../lib/supabase';
 import { EmailVerificationModal } from './EmailVerificationModal';
@@ -14,7 +15,7 @@ interface FormAccessGuardProps {
  * Shows email verification modal for cross-device access
  */
 export const FormAccessGuard: React.FC<FormAccessGuardProps> = ({ children }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [user, setUser] = React.useState<unknown>(null);
   const [loading, setLoading] = React.useState(true);
   const [accessBlocked, setAccessBlocked] = React.useState(false);
@@ -129,12 +130,13 @@ export const FormAccessGuard: React.FC<FormAccessGuardProps> = ({ children }) =>
             You've completed your consultation payment! To access additional forms, please create your account.
           </p>
           <button
-            onClick={() => navigate('/signup', {
-              state: {
-                email,
-                fromConsultation: true,
-              },
-            })}
+            onClick={() => {
+              if (email) {
+                sessionStorage.setItem('signupEmail', email);
+                sessionStorage.setItem('fromConsultation', 'true');
+              }
+              router.push('/signup');
+            }}
             style={{
               width: '100%',
               padding: '0.75rem 1.5rem',
@@ -154,7 +156,7 @@ export const FormAccessGuard: React.FC<FormAccessGuardProps> = ({ children }) =>
             Create Account
           </button>
           <Link
-            to="/"
+            href="/"
             style={{
               display: 'inline-block',
               color: '#666',

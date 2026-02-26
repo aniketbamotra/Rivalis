@@ -110,23 +110,26 @@ Steps to get your key:
   Example: re_...
   Found under: API Keys section after creation
 
-To set up your domain for sending emails:
-1. In Resend, go to "Domains" in the left sidebar
-2. Click "Add Domain"
-3. Enter: rivalislaw.com
-4. Follow the DNS verification steps shown (we can help with this)
-5. Wait for verification (usually 15-30 minutes)
+Domain Setup Status:
+✅ COMPLETED: Domain "notifications.rivalislaw.com" is already verified in Resend!
+   - All DNS records (DKIM, SPF, DMARC) are properly configured
+   - Sending and receiving are both enabled
+   - Ready for production use
 
 □ Admin Email for Notifications
   Your email for receiving emergency consultation alerts: _______________________
-  Example: admin@rivalislaw.com or your-email@yourdomain.com
+  Example: partners@notifications.rivalislaw.com
+  Note: Can use any email address; notifications come from the verified domain
 
 □ From Email for Sending
   Email address to send notifications from: _______________________
-  Example: noreply@rivalislaw.com or notifications@rivalislaw.com
-  Note: Must be from your verified domain in Resend
+  Example: noreply@notifications.rivalislaw.com
+  Note: Must use @notifications.rivalislaw.com (your verified domain in Resend)
 
-Note: Until domain is verified, we'll use Resend's test domain for testing.
+□ Application URL
+  Your website URL for email links: _______________________
+  Example: https://rivalislaw.com
+  Note: This is used in email templates for links back to your website
 
 
 ================================================================================
@@ -209,12 +212,14 @@ Before launching, please confirm:
 □ All API keys collected and securely stored
 □ Stripe account fully activated (business details completed)
 □ Custom domain (rivalislaw.com) access confirmed
-□ Email domain verified in Resend
+✅ Email domain verified in Resend (notifications.rivalislaw.com - COMPLETE)
 □ Admin email address confirmed for notifications
+□ Application URL (NEXT_PUBLIC_APP_URL) configured
 □ Calendly booking links ready
 □ Site Settings configured in Admin Dashboard (after deployment)
 □ Test payment completed successfully
 □ Emergency consultation flow tested end-to-end
+□ All email flows tested (emergency, career, partner inquiry, partner application)
 □ All forms tested and receiving submissions
 
 

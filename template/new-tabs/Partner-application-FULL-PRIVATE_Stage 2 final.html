@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnership Application | Rivalis Law</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+        
+        .progress-fill {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            z-index: 1;
+            transition: width 0.3s;
+        }
+        
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #9ca3af;
+            transition: all 0.3s;
+        }
+        
+        .progress-step.completed .step-circle {
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            border-color: #d4af37;
+            color: white;
+        }
+        
+        .progress-step.active .step-circle {
+            border-color: #d4af37;
+            color: #d4af37;
+            border-width: 4px;
+        }
+        
+        .step-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .progress-step.active .step-label {
+            color: #1a1a2e;
+        }
+        
+        /* Header */
+        .header {
+            padding: 60px 60px 40px;
+            text-align: center;
+            background: white;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            color: #4a5568;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        /* Form Content */
+        .form-content {
+            padding: 40px 60px 60px;
+        }
+        
+        .form-section {
+            display: none;
+        }
+        
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+        
+        .section-description {
+            color: #6b7280;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        label .required {
+            color: #d4af37;
+        }
+        
+        label .optional {
+            color: #9ca3af;
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .helper-text {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+        
+        /* Radio Groups */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: start;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .radio-option:hover {
+            border-color: #d4af37;
+            background: #fafbfc;
+        }
+        
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            margin-top: 4px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .radio-option.selected {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.05);
+        }
+        
+        .radio-content {
+            flex: 1;
+        }
+        
+        .radio-label {
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        
+        .radio-description {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        
+        /* Checkbox Groups */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checkbox-option:hover {
+            border-color: #d4af37;
+        }
+        
+        .checkbox-option input[type="checkbox"] {
+            margin-right: 10px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+        
+        .checkbox-option.checked {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.05);
+        }
+        
+        /* Conditional Fields */
+        .conditional-field {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #fafbfc;
+            border-left: 4px solid #d4af37;
+            border-radius: 4px;
+        }
+        
+        .conditional-field.visible {
+            display: block;
+        }
+        
+        /* File Upload */
+        .file-upload {
+            position: relative;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload-area:hover {
+            border-color: #d4af37;
+            background: #fafbfc;
+        }
+        
+        .file-upload-area.dragover {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.05);
+        }
+        
+        .file-upload-icon {
+            font-size: 3rem;
+            color: #9ca3af;
+            margin-bottom: 15px;
+        }
+        
+        .file-upload-text {
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+        
+        .file-upload-text strong {
+            color: #d4af37;
+        }
+        
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        
+        .uploaded-files {
+            margin-top: 15px;
+        }
+        
+        .uploaded-file {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: #f3f4f6;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .file-icon {
+            color: #d4af37;
+            font-size: 1.2rem;
+        }
+        
+        .file-name {
+            font-size: 0.9rem;
+            color: #1a1a2e;
+        }
+        
+        .file-remove {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 4px;
+        }
+        
+        /* References */
+        .reference-fields {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fafbfc;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .reference-header {
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .reference-number {
+            width: 30px;
+            height: 30px;
+            background: #d4af37;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Navigation Buttons */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .btn {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #4a5568;
+        }
+        
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Alert Box */
+        .alert {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .alert-warning {
+            background: #fff8e1;
+            border-left: 4px solid #d4af37;
+            color: #4a5568;
+        }
+        
+        .alert-info {
+            background: #e0f2fe;
+            border-left: 4px solid #0ea5e9;
+            color: #4a5568;
+        }
+        
+        /* Confirmation Screen */
+        .confirmation {
+            display: none;
+            text-align: center;
+            padding: 60px 40px;
+        }
+        
+        .confirmation.active {
+            display: block;
+        }
+        
+        .confirmation-icon {
+            font-size: 5rem;
+            color: #10b981;
+            margin-bottom: 30px;
+        }
+        
+        .confirmation h2 {
+            font-size: 2.5rem;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .next-steps-box {
+            text-align: left;
+            margin: 40px auto;
+            max-width: 700px;
+            padding: 30px;
+            background: #fafbfc;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .next-steps-box h3 {
+            color: #1a1a2e;
+            margin-bottom: 20px;
+        }
+        
+        .next-steps-box ol {
+            padding-left: 25px;
+        }
+        
+        .next-steps-box li {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: #4a5568;
+        }
+        
+        .next-steps-box strong {
+            color: #d4af37;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .progress-container,
+            .header,
+            .form-content {
+                padding: 30px 25px;
+            }
+            
+            .form-row,
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-bar {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .step-label {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+                <div class="progress-step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Background</div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Practice</div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Business</div>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Financials</div>
+                </div>
+                <div class="progress-step" data-step="5">
+                    <div class="step-circle">5</div>
+                    <div class="step-label">Documents</div>
+                </div>
+                <div class="progress-step" data-step="6">
+                    <div class="step-circle">6</div>
+                    <div class="step-label">References</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">RIVALIS LAW</div>
+            <h1>Partnership Application</h1>
+            <p>Complete application for qualified candidates. This detailed application helps us understand your practice, book of business, and partnership preferences.</p>
+        </div>
+        
+        <!-- Form Content -->
+        <div class="form-content">
+            <form id="partnershipApplication">
+                
+                <!-- SECTION 1: BACKGROUND & CONTACT -->
+                <div class="form-section active" data-section="1">
+                    <h2 class="section-title">Background & Contact Information</h2>
+                    <p class="section-description">Let's start with your basic information. Some of this may be pre-filled from your initial inquiry.</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name <span class="required">*</span></label>
+                            <input type="text" name="first_name" required placeholder="Jane">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name <span class="required">*</span></label>
+                            <input type="text" name="last_name" required placeholder="Smith">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email Address <span class="required">*</span></label>
+                            <input type="email" name="email" required placeholder="jane.smith@lawfirm.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number <span class="required">*</span></label>
+                            <input type="tel" name="phone" required placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>LinkedIn Profile URL <span class="optional">(Optional)</span></label>
+                        <input type="text" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Current City <span class="required">*</span></label>
+                            <input type="text" name="city" required placeholder="San Francisco">
+                        </div>
+                        <div class="form-group">
+                            <label>State/Country <span class="required">*</span></label>
+                            <input type="text" name="location" required placeholder="California, USA">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>How did you hear about Rivalis Law? <span class="required">*</span></label>
+                        <select name="referral_source" required>
+                            <option value="">-- Select --</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="colleague">Colleague/Referral</option>
+                            <option value="conference">Conference/Event</option>
+                            <option value="press">Press/Media Coverage</option>
+                            <option value="search">Google Search</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- SECTION 2: PRACTICE DETAILS -->
+                <div class="form-section" data-section="2">
+                    <h2 class="section-title">Practice Details</h2>
+                    <p class="section-description">Tell us about your legal practice, experience, and specializations.</p>
+                    
+                    <div class="form-group">
+                        <label>Years in Practice <span class="required">*</span></label>
+                        <select name="years_practice" required>
+                            <option value="">-- Select --</option>
+                            <option value="7-10">7-10 years</option>
+                            <option value="11-15">11-15 years</option>
+                            <option value="16-20">16-20 years</option>
+                            <option value="21-25">21-25 years</option>
+                            <option value="25+">25+ years</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Primary Practice Area <span class="required">*</span></label>
+                        <select name="primary_specialty" required>
+                            <option value="">-- Select --</option>
+                            <optgroup label="Technology & AI">
+                                <option value="ai-governance">AI Governance & Ethics</option>
+                                <option value="quantum">Quantum Computing Law</option>
+                                <option value="blockchain">Blockchain & Web3 Law</option>
+                                <option value="cybersecurity">Cybersecurity & Data Privacy</option>
+                            </optgroup>
+                            <optgroup label="Space, Aviation & Mobility">
+                                <option value="space">Space Law & Policy</option>
+                                <option value="aviation">Aviation & Aerospace Law</option>
+                                <option value="autonomous">Autonomous Systems & Drones</option>
+                            </optgroup>
+                            <optgroup label="Life Sciences & Biotech">
+                                <option value="crispr">CRISPR & Genomic Law</option>
+                                <option value="biotech">Biotech & Pharma IP</option>
+                                <option value="synthetic-bio">Synthetic Biology Law</option>
+                            </optgroup>
+                            <optgroup label="Immigration & Mobility">
+                                <option value="corp-immigration">Corporate Immigration</option>
+                                <option value="tech-talent">Tech Talent Visas</option>
+                                <option value="global-mobility">Global Mobility Law</option>
+                            </optgroup>
+                            <optgroup label="Emerging Specialties">
+                                <option value="climate">Climate Tech & Carbon Law</option>
+                                <option value="neurotech">Neurotechnology Law</option>
+                                <option value="other">Other Emerging Specialty</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Current Position & Firm <span class="required">*</span></label>
+                        <input type="text" name="current_position" required placeholder="Partner at BigLaw Firm">
+                        <p class="helper-text">Example: "Partner at Wilson Sonsini" or "Solo Practitioner"</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Bar Admissions <span class="required">*</span></label>
+                        <textarea name="bar_admissions" required placeholder="California State Bar (2010), New York State Bar (2012)"></textarea>
+                        <p class="helper-text">List all jurisdictions where you're admitted to practice</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Education <span class="required">*</span></label>
+                        <textarea name="education" required placeholder="J.D., Stanford Law School (2010)
+B.S. Computer Science, MIT (2007)"></textarea>
+                        <p class="helper-text">Law school, undergraduate, any relevant graduate degrees</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Notable Matters or Achievements <span class="optional">(Optional)</span></label>
+                        <textarea name="achievements" placeholder="Lead counsel in landmark AI liability case; Published author on EU AI Act compliance; Advised Fortune 100 companies on algorithmic auditing..."></textarea>
+                        <p class="helper-text">Major cases, publications, speaking engagements, awards, recognitions</p>
+                    </div>
+                </div>
+                
+                <!-- SECTION 3: BUSINESS DEVELOPMENT -->
+                <div class="form-section" data-section="3">
+                    <h2 class="section-title">Business Development & Client Base</h2>
+                    <p class="section-description">Help us understand the business side of your practice.</p>
+                    
+                    <div class="alert alert-info">
+                        <strong>Confidentiality:</strong> All information you provide is strictly confidential and will only be reviewed by Rivalis founding partners. Client names are optional at this stage.
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Annual Billings/Originations (Last 12 Months) <span class="required">*</span></label>
+                        <select name="annual_billings" required>
+                            <option value="">-- Select --</option>
+                            <option value="under-250k">Under $250K</option>
+                            <option value="250k-500k">$250K - $500K</option>
+                            <option value="500k-750k">$500K - $750K</option>
+                            <option value="750k-1m">$750K - $1M</option>
+                            <option value="1m-1.5m">$1M - $1.5M</option>
+                            <option value="1.5m-2m">$1.5M - $2M</option>
+                            <option value="2m+">$2M+</option>
+                        </select>
+                        <p class="helper-text">Your personal originations, not firm-wide revenue</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Portable Book of Business <span class="required">*</span></label>
+                        <textarea name="portable_book" required placeholder="Approximately 15-20 active clients, primarily mid-stage startups and Fortune 500 tech companies. Strong relationships with 5-7 clients who have indicated willingness to follow..."></textarea>
+                        <p class="helper-text">How many clients would likely follow you? What types of clients? You don't need to name specific clients yet.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Client Base Description <span class="required">*</span></label>
+                        <textarea name="client_base" required placeholder="Mix of early-stage startups (30%), growth-stage companies (40%), and established tech firms (30%). Industries: AI/ML, biotech, fintech. Geographic focus: US with some EU clients."></textarea>
+                        <p class="helper-text">Industries, company stages, geographic distribution</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Business Development Strengths <span class="required">*</span></label>
+                        <p class="helper-text" style="margin-bottom: 12px;">Select all that apply:</p>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="bd_strengths" value="existing-relationships">
+                                <span>Existing client relationships</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="bd_strengths" value="industry-networking">
+                                <span>Industry networking</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="bd_strengths" value="thought-leadership">
+                                <span>Thought leadership (writing/speaking)</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="bd_strengths" value="referral-network">
+                                <span>Strong referral network</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="bd_strengths" value="technical-credibility">
+                                <span>Technical credibility in niche</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="bd_strengths" value="cross-selling">
+                                <span>Cross-selling to existing clients</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SECTION 4: FINANCIALS & PARTNERSHIP TIER -->
+                <div class="form-section" data-section="4">
+                    <h2 class="section-title">Partnership Preferences & Financials</h2>
+                    <p class="section-description">Help us understand which partnership structure aligns with your goals.</p>
+                    
+                    <div class="alert alert-warning">
+                        <strong>Note:</strong> Detailed compensation structures and formulas will be shared in our partnership deck after this application is reviewed. This section helps us understand your preferences and constraints.
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Which partnership pathway interests you most? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option" data-value="project">
+                                <input type="radio" name="pathway" value="project" required>
+                                <div class="radio-content">
+                                    <div class="radio-label">Project Collaboration (Of Counsel Track)</div>
+                                    <div class="radio-description">Flexible, project-based engagement. No capital contribution required. Test our partnership before deeper commitment.</div>
+                                </div>
+                            </label>
+                            
+                            <label class="radio-option" data-value="full-partnership">
+                                <input type="radio" name="pathway" value="full-partnership" required>
+                                <div class="radio-content">
+                                    <div class="radio-label">Full Partnership (Non-Equity Track)</div>
+                                    <div class="radio-description">Partner title and status with performance-based compensation. No capital contribution required. Clear pathway to equity ownership.</div>
+                                </div>
+                            </label>
+                            
+                            <label class="radio-option" data-value="equity">
+                                <input type="radio" name="pathway" value="equity" required>
+                                <div class="radio-content">
+                                    <div class="radio-label">Equity Ownership</div>
+                                    <div class="radio-description">True ownership stake with capital contribution. Share in firm profits, voting rights, and long-term equity value creation.</div>
+                                </div>
+                            </label>
+                            
+                            <label class="radio-option" data-value="discuss">
+                                <input type="radio" name="pathway" value="discuss" required>
+                                <div class="radio-content">
+                                    <div class="radio-label">Open to Discussion</div>
+                                    <div class="radio-description">Let's discuss which pathway makes most sense based on my situation and goals.</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Conditional: Capital Contribution Capacity (shows if Equity selected) -->
+                    <div class="conditional-field" id="capitalField">
+                        <div class="form-group">
+                            <label>Capital Contribution Capacity <span class="required">*</span></label>
+                            <select name="capital_capacity">
+                                <option value="">-- Select --</option>
+                                <option value="25k-50k">$25,000 - $50,000</option>
+                                <option value="50k-75k">$50,000 - $75,000</option>
+                                <option value="75k-100k">$75,000 - $100,000</option>
+                                <option value="100k-150k">$100,000 - $150,000</option>
+                                <option value="150k+">$150,000+</option>
+                                <option value="financing">Would require financing/payment plan</option>
+                            </select>
+                            <p class="helper-text">Equity partners typically contribute $75K-$150K (industry standard: 25-30% of expected annual compensation). We offer financing over 24-36 months via profit distributions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Current Annual Compensation <span class="optional">(Optional but helpful for calibration)</span></label>
+                        <select name="current_compensation">
+                            <option value="">-- Prefer not to say --</option>
+                            <option value="under-200k">Under $200K</option>
+                            <option value="200k-300k">$200K - $300K</option>
+                            <option value="300k-400k">$300K - $400K</option>
+                            <option value="400k-500k">$400K - $500K</option>
+                            <option value="500k-750k">$500K - $750K</option>
+                            <option value="750k-1m">$750K - $1M</option>
+                            <option value="1m+">$1M+</option>
+                        </select>
+                        <p class="helper-text">Helps us ensure our offer is competitive. This won't affect your partnership prospects.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Timeline for Transition <span class="required">*</span></label>
+                        <select name="timeline" required>
+                            <option value="">-- Select --</option>
+                            <option value="immediate">Immediate (0-1 month)</option>
+                            <option value="1-3-months">1-3 months</option>
+                            <option value="3-6-months">3-6 months</option>
+                            <option value="6-12-months">6-12 months</option>
+                            <option value="exploratory">Exploratory (12+ months out)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Why Rivalis? What attracts you to this opportunity? <span class="required">*</span></label>
+                        <textarea name="why_rivalis" required placeholder="I'm drawn to Rivalis's focus on emerging specialties and the platform model. The opportunity to collaborate with other specialists while maintaining autonomy appeals to me..."></textarea>
+                        <p class="helper-text">What specifically interests you about joining Rivalis Law?</p>
+                    </div>
+                </div>
+                
+                <!-- SECTION 5: DOCUMENTS -->
+                <div class="form-section" data-section="5">
+                    <h2 class="section-title">Supporting Documents</h2>
+                    <p class="section-description">Upload documents that support your application. Some are required, others optional but helpful.</p>
+                    
+                    <div class="form-group">
+                        <label>Resume / CV <span class="required">*</span></label>
+                        <div class="file-upload">
+                            <div class="file-upload-area" onclick="document.getElementById('resume').click()">
+                                <div class="file-upload-icon">📄</div>
+                                <div class="file-upload-text">
+                                    <strong>Click to upload</strong> or drag and drop<br>
+                                    PDF, DOC, DOCX (Max 10MB)
+                                </div>
+                            </div>
+                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                            <div class="uploaded-files" id="resumeFiles"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Writing Sample <span class="optional">(Optional but recommended)</span></label>
+                        <div class="file-upload">
+                            <div class="file-upload-area" onclick="document.getElementById('writing_sample').click()">
+                                <div class="file-upload-icon">📝</div>
+                                <div class="file-upload-text">
+                                    <strong>Click to upload</strong> or drag and drop<br>
+                                    Published article, brief, memo, or whitepaper<br>
+                                    PDF, DOC, DOCX (Max 10MB)
+                                </div>
+                            </div>
+                            <input type="file" id="writing_sample" name="writing_sample" accept=".pdf,.doc,.docx">
+                            <div class="uploaded-files" id="writingSampleFiles"></div>
+                        </div>
+                        <p class="helper-text">Published articles, thought leadership, or representative legal writing</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Client List or Matter Summary <span class="optional">(Optional, for equity track)</span></label>
+                        <div class="file-upload">
+                            <div class="file-upload-area" onclick="document.getElementById('client_list').click()">
+                                <div class="file-upload-icon">📊</div>
+                                <div class="file-upload-text">
+                                    <strong>Click to upload</strong> or drag and drop<br>
+                                    Confidential list of clients/matters<br>
+                                    PDF, DOC, DOCX, XLS, XLSX (Max 10MB)
+                                </div>
+                            </div>
+                            <input type="file" id="client_list" name="client_list" accept=".pdf,.doc,.docx,.xls,.xlsx">
+                            <div class="uploaded-files" id="clientListFiles"></div>
+                        </div>
+                        <p class="helper-text">Can be anonymized (e.g., "Fortune 500 tech company"). Helps us understand your practice depth. Strictly confidential.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Additional Materials <span class="optional">(Optional)</span></label>
+                        <div class="file-upload">
+                            <div class="file-upload-area" onclick="document.getElementById('additional').click()">
+                                <div class="file-upload-icon">📎</div>
+                                <div class="file-upload-text">
+                                    <strong>Click to upload</strong> or drag and drop<br>
+                                    Publications, presentations, awards, etc.<br>
+                                    Multiple files OK (Max 10MB each)
+                                </div>
+                            </div>
+                            <input type="file" id="additional" name="additional" accept=".pdf,.doc,.docx,.ppt,.pptx" multiple>
+                            <div class="uploaded-files" id="additionalFiles"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SECTION 6: REFERENCES -->
+                <div class="form-section" data-section="6">
+                    <h2 class="section-title">Professional References</h2>
+                    <p class="section-description">Please provide three professional references. We'll contact them only if we move forward with your application.</p>
+                    
+                    <div class="alert alert-info">
+                        <strong>Confidentiality:</strong> References will only be contacted after we've had initial conversations with you and with your explicit permission.
+                    </div>
+                    
+                    <!-- Reference 1 -->
+                    <div class="reference-fields">
+                        <div class="reference-header">
+                            <div class="reference-number">1</div>
+                            Reference #1
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name <span class="required">*</span></label>
+                                <input type="text" name="ref1_name" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Relationship <span class="required">*</span></label>
+                                <input type="text" name="ref1_relationship" required placeholder="Former colleague, BigLaw Partner">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email <span class="required">*</span></label>
+                                <input type="email" name="ref1_email" required placeholder="john@lawfirm.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone <span class="required">*</span></label>
+                                <input type="tel" name="ref1_phone" required placeholder="+1 (555) 123-4567">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reference 2 -->
+                    <div class="reference-fields">
+                        <div class="reference-header">
+                            <div class="reference-number">2</div>
+                            Reference #2
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name <span class="required">*</span></label>
+                                <input type="text" name="ref2_name" required placeholder="Jane Smith">
+                            </div>
+                            <div class="form-group">
+                                <label>Relationship <span class="required">*</span></label>
+                                <input type="text" name="ref2_relationship" required placeholder="Client, CEO of TechCorp">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email <span class="required">*</span></label>
+                                <input type="email" name="ref2_email" required placeholder="jane@techcorp.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone <span class="required">*</span></label>
+                                <input type="tel" name="ref2_phone" required placeholder="+1 (555) 234-5678">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reference 3 -->
+                    <div class="reference-fields">
+                        <div class="reference-header">
+                            <div class="reference-number">3</div>
+                            Reference #3
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name <span class="required">*</span></label>
+                                <input type="text" name="ref3_name" required placeholder="Robert Johnson">
+                            </div>
+                            <div class="form-group">
+                                <label>Relationship <span class="required">*</span></label>
+                                <input type="text" name="ref3_relationship" required placeholder="Professional contact, Industry expert">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email <span class="required">*</span></label>
+                                <input type="email" name="ref3_email" required placeholder="robert@company.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone <span class="required">*</span></label>
+                                <input type="tel" name="ref3_phone" required placeholder="+1 (555) 345-6789">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Any potential conflicts of interest or restrictions? <span class="required">*</span></label>
+                        <div class="radio-group" style="flex-direction: row; gap: 30px;">
+                            <label style="display: flex; align-items: center; gap: 10px;">
+                                <input type="radio" name="conflicts" value="no" required>
+                                <span>No conflicts</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px;">
+                                <input type="radio" name="conflicts" value="yes" required>
+                                <span>Yes, details below</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="conditional-field" id="conflictsField">
+                        <div class="form-group">
+                            <label>Please explain <span class="required">*</span></label>
+                            <textarea name="conflicts_details" placeholder="Non-compete agreement, client restrictions, pending matters, etc."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Is there anything else we should know? <span class="optional">(Optional)</span></label>
+                        <textarea name="additional_info" placeholder="Any additional context, special circumstances, or information that would help us understand your application..."></textarea>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 30px;">
+                        <label style="display: flex; align-items: start; gap: 12px; cursor: pointer;">
+                            <input type="checkbox" name="agreement" required style="margin-top: 4px; width: 20px; height: 20px;">
+                            <span>I certify that all information provided in this application is true and accurate to the best of my knowledge. I understand that providing false information may result in disqualification from consideration. <span class="required">*</span></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">← Previous</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">Next →</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">Submit Application</button>
+                </div>
+            </form>
+            
+            <!-- Confirmation Screen -->
+            <div class="confirmation" id="confirmationScreen">
+                <div class="confirmation-icon">✓</div>
+                <h2>Application Submitted Successfully</h2>
+                <p>Thank you for completing your partnership application. We've received your materials and will review them thoroughly.</p>
+                
+                <div class="next-steps-box">
+                    <h3>What Happens Next:</h3>
+                    <ol>
+                        <li><strong>Confirmation Email:</strong> You'll receive a confirmation email within 5 minutes with your application ID.</li>
+                        <li><strong>Initial Review:</strong> Our founding partners review all applications weekly (every Monday).</li>
+                        <li><strong>Response:</strong> You'll hear from us within 7-10 business days if there's potential alignment.</li>
+                        <li><strong>Partnership Deck:</strong> Qualified candidates receive our comprehensive partnership deck with full compensation structures and financial details.</li>
+                        <li><strong>Conversation:</strong> We'll schedule a 30-minute video call to discuss your practice, answer questions, and assess mutual fit.</li>
+                        <li><strong>Detailed Interviews:</strong> If there's strong alignment, we move to 2-3 in-depth interviews.</li>
+                        <li><strong>Final Decision:</strong> Offers typically extended within 4-6 weeks of initial application.</li>
+                    </ol>
+                </div>
+                
+                <p style="margin-top: 30px;"><strong>Questions?</strong> Email us at <a href="mailto:partners@rivalislaw.com" style="color: #d4af37; text-decoration: none; font-weight: 600;">partners@rivalislaw.com</a></p>
+                
+                <p style="margin-top: 20px; font-size: 0.95rem; color: #6b7280;">Your application ID: <strong>#PA-2024-[AUTO-GENERATED]</strong></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Multi-step form logic
+        let currentStep = 1;
+        const totalSteps = 6;
+        
+        const form = document.getElementById('partnershipApplication');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const progressFill = document.getElementById('progressFill');
+        
+        function showStep(step) {
+            // Hide all sections
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show current section
+            document.querySelector(`[data-section="${step}"]`).classList.add('active');
+            
+            // Update progress bar
+            document.querySelectorAll('.progress-step').forEach(progressStep => {
+                const stepNum = parseInt(progressStep.dataset.step);
+                if (stepNum < step) {
+                    progressStep.classList.add('completed');
+                    progressStep.classList.remove('active');
+                } else if (stepNum === step) {
+                    progressStep.classList.add('active');
+                    progressStep.classList.remove('completed');
+                } else {
+                    progressStep.classList.remove('active', 'completed');
+                }
+            });
+            
+            // Update progress fill
+            const progressPercentage = ((step - 1) / (totalSteps - 1)) * 100;
+            progressFill.style.width = progressPercentage + '%';
+            
+            // Show/hide buttons
+            prevBtn.style.display = step === 1 ? 'none' : 'block';
+            nextBtn.style.display = step === totalSteps ? 'none' : 'block';
+            submitBtn.style.display = step === totalSteps ? 'block' : 'none';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        nextBtn.addEventListener('click', () => {
+            // Validate current section before proceeding
+            const currentSection = document.querySelector(`[data-section="${currentStep}"]`);
+            const requiredFields = currentSection.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value && field.type !== 'checkbox' && field.type !== 'radio') {
+                    isValid = false;
+                    field.style.borderColor = '#ef4444';
+                } else if (field.type === 'checkbox' && !field.checked) {
+                    isValid = false;
+                } else if (field.type === 'radio') {
+                    const radioGroup = currentSection.querySelectorAll(`[name="${field.name}"]`);
+                    const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+                    if (!isChecked) isValid = false;
+                } else {
+                    field.style.borderColor = '#e5e7eb';
+                }
+            });
+            
+            if (isValid && currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            } else if (!isValid) {
+                alert('Please fill in all required fields before proceeding.');
+            }
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+        
+        // Form submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Hide form
+            document.querySelector('.form-content').innerHTML = '';
+            
+            // Show confirmation
+            document.getElementById('confirmationScreen').classList.add('active');
+            
+            // In production, this would actually submit to your backend
+            console.log('Form submitted');
+        });
+        
+        // Conditional field: Capital contribution (shows if Equity selected)
+        document.querySelectorAll('[name="pathway"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const capitalField = document.getElementById('capitalField');
+                if (this.value === 'equity') {
+                    capitalField.classList.add('visible');
+                    capitalField.querySelector('select').required = true;
+                } else {
+                    capitalField.classList.remove('visible');
+                    capitalField.querySelector('select').required = false;
+                }
+                
+                // Visual feedback
+                document.querySelectorAll('.radio-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.closest('.radio-option').classList.add('selected');
+            });
+        });
+        
+        // Conditional field: Conflicts details (shows if Yes selected)
+        document.querySelectorAll('[name="conflicts"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const conflictsField = document.getElementById('conflictsField');
+                if (this.value === 'yes') {
+                    conflictsField.classList.add('visible');
+                    conflictsField.querySelector('textarea').required = true;
+                } else {
+                    conflictsField.classList.remove('visible');
+                    conflictsField.querySelector('textarea').required = false;
+                }
+            });
+        });
+        
+        // Checkbox visual feedback
+        document.querySelectorAll('.checkbox-option input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    this.closest('.checkbox-option').classList.add('checked');
+                } else {
+                    this.closest('.checkbox-option').classList.remove('checked');
+                }
+            });
+        });
+        
+        // File upload handling (simplified - in production use proper file upload library)
+        function setupFileUpload(inputId, filesDisplayId) {
+            const input = document.getElementById(inputId);
+            const filesDisplay = document.getElementById(filesDisplayId);
+            
+            if (input && filesDisplay) {
+                input.addEventListener('change', function() {
+                    filesDisplay.innerHTML = '';
+                    Array.from(this.files).forEach(file => {
+                        const fileDiv = document.createElement('div');
+                        fileDiv.className = 'uploaded-file';
+                        fileDiv.innerHTML = `
+                            <div class="file-info">
+                                <span class="file-icon">📄</span>
+                                <span class="file-name">${file.name}</span>
+                            </div>
+                            <button type="button" class="file-remove" onclick="this.closest('.uploaded-file').remove()">×</button>
+                        `;
+                        filesDisplay.appendChild(fileDiv);
+                    });
+                });
+            }
+        }
+        
+        setupFileUpload('resume', 'resumeFiles');
+        setupFileUpload('writing_sample', 'writingSampleFiles');
+        setupFileUpload('client_list', 'clientListFiles');
+        setupFileUpload('additional', 'additionalFiles');
+        
+        // Initialize
+        showStep(1);
+    </script>
+</body>
+</html>

@@ -6,7 +6,7 @@ let stripePromise: Promise<Stripe | null>;
 
 export const getStripe = () => {
   if (!stripePromise) {
-    const publishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+    const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
     
     if (!publishableKey) {
       console.error('Missing VITE_STRIPE_PUBLISHABLE_KEY environment variable');
@@ -23,7 +23,7 @@ export const getStripe = () => {
  */
 export const createCheckoutSession = async (email: string, amount: number) => {
   try {
-    const response = await fetch('/.netlify/functions/create-checkout-session', {
+    const response = await fetch('/api/checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

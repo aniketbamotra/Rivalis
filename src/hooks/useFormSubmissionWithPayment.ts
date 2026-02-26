@@ -1,5 +1,7 @@
+'use client';
+
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useToast } from './use-toast';
 import { setAccountCreationPending } from '../utils/consultationFlow';
 import { recordConsultationPayment, updateFormSubmissionsAfterPayment, getConsultationFee } from '../lib/supabase';
@@ -25,7 +27,7 @@ export function useFormSubmissionWithPayment(): UseFormSubmissionWithPaymentRetu
   const [currentEmail, setCurrentEmail] = useState('');
   const [paymentId, setPaymentId] = useState('');
   const { toast } = useToast();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleFormSubmit = (email: string, needsPayment: boolean) => {
     setCurrentEmail(email);
@@ -86,7 +88,8 @@ export function useFormSubmissionWithPayment(): UseFormSubmissionWithPaymentRetu
     
     // Navigate to home page after a short delay
     setTimeout(() => {
-      navigate('/', { replace: true });
+      router.push('/');
+      router.refresh();
     }, 300); // Small delay to let modal close animation complete
   };
 

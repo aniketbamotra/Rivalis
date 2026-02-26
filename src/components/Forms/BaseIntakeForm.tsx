@@ -1,5 +1,5 @@
 import React, { useState, type ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Navigation } from '../../components/Layout/Navigation';
 import '../../styles/form-page.css';
 
@@ -118,7 +118,7 @@ export const BaseIntakeForm: React.FC<BaseIntakeFormProps> = ({
       <section className="form-hero">
         <div className="form-hero-container">
           <div className="form-breadcrumb">
-            <Link to="/">Home</Link> / <Link to={`/services${servicePath}`}>{serviceName}</Link> / <span>Intake Form</span>
+            <Link href="/">Home</Link> / <Link href={`/services${servicePath}`}>{serviceName}</Link> / <span>Intake Form</span>
           </div>
 
           <div 
@@ -806,7 +806,7 @@ export const BaseIntakeForm: React.FC<BaseIntakeFormProps> = ({
         <h2>Strategic Legal Solutions for Forward-Thinking Businesses</h2>
         <p>Explore our comprehensive {serviceName.toLowerCase()} services and let us handle your case with expertise.</p>
         <div className="form-cta-buttons">
-          <Link to={`/services${servicePath}`} className="form-cta-btn primary">
+          <Link href={`/services${servicePath}`} className="form-cta-btn primary">
             <span style={{ marginRight: '0.5rem' }}>{serviceIcon}</span>
             {serviceName} Services
           </Link>
@@ -820,7 +820,7 @@ export const BaseIntakeForm: React.FC<BaseIntakeFormProps> = ({
       {/* Footer */}
       <footer className="form-footer">
         <p>&copy; 2024 Rivalis Law. Licensed in New York & Michigan.</p>
-        <p><Link to="/">Return to Main Site</Link></p>
+        <p><Link href="/">Return to Main Site</Link></p>
       </footer>
     </>
   );

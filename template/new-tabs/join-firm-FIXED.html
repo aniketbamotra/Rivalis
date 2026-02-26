@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Firm | Rivalis Law Partnership & Careers</title>
+    <meta name="description" content="Partnership opportunities for elite legal specialists in frontier practice areas. Join the premier consortium for specialized law.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafbfc;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+        }
+        
+        .hero-tag {
+            color: #d4af37;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 16px 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            color: #1a1a2e;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .btn-secondary:hover {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Two Column Section */
+        .two-col-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin: 80px 0;
+        }
+        
+        .col {
+            padding: 80px 60px;
+        }
+        
+        .col-dark {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+        
+        .col-light {
+            background: #f5f5dc;
+            color: #1a1a1a;
+        }
+        
+        .col-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+        
+        .col h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .col p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        /* Practice Areas */
+        .practice-areas {
+            padding: 100px 20px;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-tag {
+            color: #d4af37;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+        }
+        
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .practice-card {
+            background: #fafbfc;
+            padding: 40px 30px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+        }
+        
+        .practice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #d4af37;
+        }
+        
+        .practice-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #1a1a2e;
+        }
+        
+        .practice-card p {
+            font-size: 0.95rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+        
+        /* Partnership Pathways */
+        .pathways-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #f5f5dc 0%, #fafbfc 100%);
+        }
+        
+        .pathways-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .pathway-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 12px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .pathway-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+            border-color: #d4af37;
+        }
+        
+        .pathway-card.featured {
+            border-color: #d4af37;
+            border-width: 3px;
+        }
+        
+        .pathway-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            color: #1a1a2e;
+            padding: 8px 24px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 20px;
+        }
+        
+        .pathway-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(212, 175, 55, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .pathway-card h3 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+        }
+        
+        .pathway-card > p {
+            font-size: 1.05rem;
+            color: #4a5568;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .pathway-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pathway-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            color: #1a1a1a;
+            font-size: 0.95rem;
+        }
+        
+        .pathway-features li:before {
+            content: "→";
+            color: #d4af37;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .pathway-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .btn-apply {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* Disclosure Note */
+        .disclosure-note {
+            max-width: 900px;
+            margin: 60px auto 0;
+            padding: 30px;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            border-radius: 4px;
+        }
+        
+        .disclosure-note p {
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+        
+        .disclosure-note strong {
+            color: #1a1a2e;
+        }
+        
+        /* Philosophy Section */
+        .philosophy {
+            padding: 100px 20px;
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+        }
+        
+        .philosophy h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 3rem;
+            margin-bottom: 40px;
+        }
+        
+        .philosophy-quote {
+            font-size: 1.8rem;
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #d4af37;
+        }
+        
+        .philosophy-text {
+            max-width: 800px;
+            margin: 40px auto 0;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .two-col-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .practice-grid,
+            .pathways-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .col {
+                padding: 60px 30px;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-tag">Partnership & Careers</div>
+        <h1>Build the Future of Specialized Law</h1>
+        <p class="hero-subtitle">Join the premier consortium of legal specialists defining the boundaries of AI governance, space law, biotechnology regulation, and emerging frontiers.</p>
+        <div class="hero-cta">
+            <a href="#pathways" class="btn btn-primary">Explore Partnership</a>
+            <a href="#careers" class="btn btn-secondary">View Careers</a>
+        </div>
+    </section>
+
+    <!-- Two Column: Partnership vs Careers -->
+    <section class="two-col-section">
+        <div class="col col-dark">
+            <div class="col-label">For Attorneys</div>
+            <h2>Partnership Opportunities</h2>
+            <p>Three partnership pathways designed for attorneys at different career stages. Whether you're testing the platform through project collaboration, joining as a full partner, or building long-term ownership, we offer flexible structures that reward expertise and entrepreneurship.</p>
+            <p><strong>Who this is for:</strong> Attorneys with 7+ years of practice, proven expertise in specialized areas, and ambition to co-create the future of their field.</p>
+            <a href="#pathways" class="btn btn-primary">Learn About Partnership</a>
+        </div>
+        
+        <div class="col col-light">
+            <div class="col-label">For Professionals</div>
+            <h2>Build Your Career</h2>
+            <p>Join our team of exceptional professionals supporting the future of specialized law. We're hiring across all functions: associates, paralegals, practice managers, client success, business development, legal technology, and operations.</p>
+            <p><strong>Who this is for:</strong> Talented professionals who want meaningful work, growth opportunities, and the chance to shape a pioneering law firm from the ground up.</p>
+            <a href="#careers" class="btn btn-primary">View Open Positions</a>
+        </div>
+    </section>
+
+    <!-- Practice Areas -->
+    <section class="practice-areas">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Our Specialties</div>
+                <h2>15+ Frontier Practice Areas</h2>
+                <p>We assemble the world's leading specialists in emerging legal domains. These aren't practice areas with hundreds of qualified attorneys—these are fields where the top 10 specialists globally shape the entire discipline.</p>
+            </div>
+            
+            <div class="practice-grid">
+                <div class="practice-card">
+                    <h3>AI Governance & Ethics</h3>
+                    <p>EU AI Act, algorithmic accountability, bias auditing, and AI deployment frameworks for enterprises.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Quantum Computing Law</h3>
+                    <p>Post-quantum cryptography standards, quantum threat mitigation, and NIST compliance strategies.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Blockchain & Web3</h3>
+                    <p>Cryptocurrency regulation, DeFi protocols, smart contract law, NFT compliance, and DAO governance.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Space Law & Policy</h3>
+                    <p>Satellite regulation, space commerce, lunar resource rights, and international space treaties.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Aviation & Aerospace</h3>
+                    <p>Aircraft leasing, FAA compliance, sustainable aviation fuel, and advanced air mobility.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Autonomous Systems</h3>
+                    <p>Drone regulation, unmanned aerial systems, autonomous vehicle liability, and robotics law.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>CRISPR & Genomic Law</h3>
+                    <p>Gene editing regulation, germline ethics, FDA approval pathways, and bioethics compliance.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Biotech & Pharma IP</h3>
+                    <p>Biologics patents, FDA regulatory pathways, clinical trial law, and biosimilars strategy.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Synthetic Biology</h3>
+                    <p>Bioengineering regulation, biosafety protocols, and synthetic organism containment.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Corporate Immigration</h3>
+                    <p>H-1B strategy, O-1 extraordinary ability petitions, EB-1/EB-2 NIW, and tech talent mobility.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Tech Talent Visas</h3>
+                    <p>AI researcher visas, quantum physicist petitions, and exceptional ability cases for STEM talent.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Global Mobility Law</h3>
+                    <p>Cross-border assignments, expatriate taxation, remote work visas, and digital nomad compliance.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Climate Tech & Carbon</h3>
+                    <p>Carbon credit trading, ESG compliance, renewable energy law, and climate disclosure requirements.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Neurotechnology</h3>
+                    <p>Brain-computer interfaces, neural data privacy, cognitive liberty, and neurorights legislation.</p>
+                </div>
+                
+                <div class="practice-card">
+                    <h3>Cybersecurity & Privacy</h3>
+                    <p>GDPR/CCPA compliance, data breach response, NIS2 directive, and zero trust architecture law.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="philosophy">
+        <div class="container">
+            <h2>Our Partnership Philosophy</h2>
+            <p class="philosophy-quote">"Clients don't need more lawyers. They need the right lawyers."</p>
+            <p class="philosophy-text">Traditional firms were built for leverage and volume. We're built for specialized depth. The future belongs to the top 5 specialists in each critical area—not the 5,000th corporate generalist. We're assembling that consortium.</p>
+        </div>
+    </section>
+
+    <!-- Partnership Pathways -->
+    <section class="pathways-section" id="pathways">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Three Pathways</div>
+                <h2>Choose Your Partnership Journey</h2>
+                <p>Flexible structures designed for different career stages and risk profiles. All pathways offer access to our platform, brand, and specialist network.</p>
+            </div>
+            
+            <div class="pathways-grid">
+                <!-- Pathway 1 -->
+                <div class="pathway-card">
+                    <div class="pathway-number">01</div>
+                    <h3>Project Collaboration</h3>
+                    <p>Work with us on high-value matters while maintaining your independence. Perfect for testing cultural fit and building relationships before deeper commitment.</p>
+                    <ul class="pathway-features">
+                        <li>Flexible, project-based engagement</li>
+                        <li>No long-term commitment required</li>
+                        <li>Access to firm platform and brand</li>
+                        <li>1-year renewable agreements</li>
+                    </ul>
+                    <button class="btn-apply" onclick="window.location.href='/apply/partner-inquiry'">Express Interest</button>
+                </div>
+                
+                <!-- Pathway 2 -->
+                <div class="pathway-card featured">
+                    <div class="pathway-badge">Most Popular</div>
+                    <div class="pathway-number">02</div>
+                    <h3>Full Partnership</h3>
+                    <p>Join as a full partner with all the benefits of partnership status, without capital barriers. Performance-based compensation with clear pathway to ownership.</p>
+                    <ul class="pathway-features">
+                        <li>Partner title and full status</li>
+                        <li>Performance-based compensation</li>
+                        <li>No capital requirement</li>
+                        <li>Clear path to equity ownership</li>
+                    </ul>
+                    <button class="btn-apply" onclick="window.location.href='/apply/partner-inquiry'">Express Interest</button>
+                </div>
+                
+                <!-- Pathway 3 -->
+                <div class="pathway-card">
+                    <div class="pathway-number">03</div>
+                    <h3>Equity Ownership</h3>
+                    <p>Build long-term value as an owner of the firm. Share in profits, participate in governance, and create generational wealth through equity appreciation.</p>
+                    <ul class="pathway-features">
+                        <li>True ownership stake</li>
+                        <li>Profit participation and distributions</li>
+                        <li>Voting rights and firm governance</li>
+                        <li>Long-term equity value creation</li>
+                    </ul>
+                    <button class="btn-apply" onclick="window.location.href='/apply/partner-inquiry'">Express Interest</button>
+                </div>
+            </div>
+            
+            <!-- Disclosure -->
+            <div class="disclosure-note">
+                <p><strong>About Compensation & Terms:</strong> Detailed financial structures, compensation formulas, and partnership terms are shared during the confidential interview process with qualified candidates. We believe in complete transparency with serious applicants—not public pricing that creates anchoring effects, reveals competitive information, or invites "just looking" inquiries. If you're genuinely interested in partnership, we'll share everything during our conversations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section class="practice-areas" id="careers" style="background: #fafbfc;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Careers</div>
+                <h2>Build Your Career With Us</h2>
+                <p>We're hiring exceptional professionals across all functions. Remote-first, competitive compensation, and the opportunity to shape the future of specialized law from the ground up.</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="/careers" class="btn btn-primary" style="display: inline-block; margin: 10px;">View Open Roles</a>
+                <a href="/apply/careers" class="btn btn-secondary" style="display: inline-block; margin: 10px; background: white; color: #1a1a2e; border: 2px solid #d4af37;">Submit General Application</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

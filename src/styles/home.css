@@ -116,11 +116,6 @@ body {
     text-decoration: none;
 }
 
-.nav-logo::before {
-    content: '⚖ ';
-    color: var(--accent);
-}
-
 .nav-menu {
     display: flex;
     gap: 2.5rem;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 
-const STRIPE_CHECKOUT_URL = '/.netlify/functions/create-checkout-session';
+const STRIPE_CHECKOUT_URL = '/api/checkout';
 
 type UrgencyLevel = 'critical' | 'urgent' | 'high';
 type ContactMode = 'call' | 'email' | 'video';
@@ -203,26 +203,6 @@ export function EmergencyConsultationForm() {
         </div>
       </div>
 
-      {/* Alert Banner */}
-      <div style={{
-        backgroundColor: '#fef3c7',
-        border: '1px solid #fbbf24',
-        borderRadius: '8px',
-        padding: '1rem',
-        marginBottom: '1.5rem',
-      }}>
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <span style={{ fontSize: '1.25rem' }}>⚠️</span>
-          <div>
-            <p style={{ color: '#92400e', margin: 0, fontSize: '0.95rem', fontWeight: '600', marginBottom: '0.25rem' }}>
-              For Life-Threatening Emergencies
-            </p>
-            <p style={{ color: '#92400e', margin: 0, fontSize: '0.9rem' }}>
-              If you're in immediate danger, please call 911 first. This service is for urgent legal matters requiring immediate attorney attention.
-            </p>
-          </div>
-        </div>
-      </div>
 
       {/* Form */}
       <form onSubmit={handleSubmit}>
