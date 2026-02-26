@@ -23,7 +23,7 @@ export const Home: React.FC = () => {
   const [finesRisk, setFinesRisk] = useState(250000);
   const [showCustomInput, setShowCustomInput] = useState(false);
   const [customAmount, setCustomAmount] = useState('');
-  
+
   // Intake form state
   const [formData, setFormData] = useState({
     fullName: '',
@@ -62,14 +62,14 @@ export const Home: React.FC = () => {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       // Submit form and check if payment is needed
       const result = await submitForm('client-intake', formData.email, formData);
-      
+
       // Handle payment flow through the hook
       handlePaymentFlow(formData.email, result.needsPayment || false);
-      
+
       // Clear form on successful submission
       setFormData({
         fullName: '',
@@ -177,16 +177,19 @@ export const Home: React.FC = () => {
             </div>
 
             <h1 className="hero-title">
-              One Mistake Could Cost You<br /><span className="highlight">Everything You've Built</span>
+              AI Governance & Startup Law Firm<br />
+              <span className="highlight">Protecting Everything You've Built</span>
             </h1>
 
             <p className="hero-subtitle">
-              Your AI product launch. Your global expansion. Your $50M acquisition. The wrong legal counsel doesn't just slow you down—it puts everything at risk. Get Big 4-trained expertise without the conflicts, delays, and six-figure bills.
+              Your AI product launch. Your global expansion. Your $50M acquisition. At Rivalis Law, our **AI governance & startup law firm** expertise ensures the wrong legal counsel never puts your company at risk. Get Big 4-trained guidance without conflicts, delays, or six-figure bills.
             </p>
 
             <div className="launch-notice">
-              <h4>🚀 Now Accepting First Clients</h4>
-              <p>After multiple years at top Big 4 firms handling Fortune 100 companies' business, I'm launching an independent practice focused on three critical areas: AI Governance, Global Immigration, and M&A Transactions. Limited capacity available for founding clients.</p>
+              <h2>🚀 Now Accepting First Clients</h2>
+              <p>
+                After multiple years at top Big 4 firms handling Fortune 100 companies, I’m launching an independent practice — a focused **AI governance & startup law firm** providing expertise in cross-border M&A, business immigration, and compliance matters. Limited capacity is available for founding clients.
+              </p>
             </div>
 
             {/* Capacity Counter */}
@@ -265,7 +268,7 @@ export const Home: React.FC = () => {
 
             {/* ROI Calculator */}
             <div className="roi-calculator">
-              <h3>What's Inaction Costing You?</h3>
+              <h5>What's Inaction Costing You?</h5>
               <div className="calc-inputs">
                 <div className="calc-group">
                   <label>Days of executive time wasted:</label>
@@ -291,8 +294,8 @@ export const Home: React.FC = () => {
                       }
                     }}
                   >
-                    <SelectTrigger style={{ 
-                      background: '#fff', 
+                    <SelectTrigger style={{
+                      background: '#fff',
                       color: '#000',
                       border: '1px solid #ccc'
                     }}>
@@ -351,7 +354,7 @@ export const Home: React.FC = () => {
               <div className="global-feature">
                 <i className="fas fa-plane"></i>
                 <div className="global-feature-text">
-                  <h4>Cross-Border Transactions</h4>
+                  <h3>Cross-Border Transactions</h3>
                   <p>US-Global M&A and business structuring</p>
                 </div>
               </div>
@@ -383,7 +386,7 @@ export const Home: React.FC = () => {
           </div>
 
           <div style={{ background: 'rgba(255,255,255,0.1)', padding: '3rem', borderRadius: '12px', border: '2px solid rgba(212, 175, 55, 0.3)' }}>
-            <h3 style={{ fontSize: '1.75rem', marginBottom: '1.5rem' }}>Common Scenarios We Handle:</h3>
+            <h5 style={{ fontSize: '1.75rem', marginBottom: '1.5rem' }}>Common Scenarios We Handle:</h5>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <li style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                 <i className="fas fa-check-circle" style={{ color: 'var(--accent)', fontSize: '1.25rem', marginTop: '0.25rem' }}></i>
@@ -420,7 +423,7 @@ export const Home: React.FC = () => {
           <div className="process-timeline">
             <div className="process-step">
               <div className="process-number">1</div>
-              <h4>Initial Contact</h4>
+              <h3>Initial Contact</h3>
               <p>Submit qualification form or call our emergency line for urgent matters</p>
               <span className="process-time">Same day</span>
             </div>
@@ -580,7 +583,7 @@ export const Home: React.FC = () => {
               <div className="service-icon">
                 <i className="fas fa-passport"></i>
               </div>
-              <h3>Global Expansion & Immigration</h3>
+              <h5>Global Expansion & Immigration</h5>
               <p className="service-tagline">Your Launch. Their Visa Denial. Your Disaster.</p>
 
               <div className="pricing-badge">
@@ -631,7 +634,7 @@ export const Home: React.FC = () => {
               <div className="service-icon">
                 <i className="fas fa-handshake"></i>
               </div>
-              <h3>M&A & Corporate Transactions</h3>
+              <h4>M&A & Corporate Transactions</h4>
               <p className="service-tagline">Their Offer. Your Hidden Liability. Deal Over.</p>
 
               <div className="pricing-badge">
@@ -696,7 +699,7 @@ export const Home: React.FC = () => {
               <div className="select-icon">
                 <i className="fas fa-file-contract"></i>
               </div>
-              <h4>Contract Review & Drafting</h4>
+              <h3>Contract Review & Drafting</h3>
               <p>Get expert eyes on your vendor agreements, NDAs, employment contracts, and partnership deals before you sign.</p>
               <div className="select-pricing">{getServicePrice('contracts')}</div>
               <div className="select-cta">
@@ -781,7 +784,7 @@ export const Home: React.FC = () => {
           <div className="testimonial-grid">
             <div className="testimonial">
               <div className="stars"><i className="fas fa-comments"></i></div>
-              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Have Direct Access</h4>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)' }}>You'll Have Direct Access</h3>
               <p className="testimonial-text">
                 When you reach out, you'll speak directly with me—not an intake coordinator, not a junior associate. Your matters get personal attention from experienced counsel, not delegation to someone learning on your time.
               </p>
@@ -789,7 +792,7 @@ export const Home: React.FC = () => {
 
             <div className="testimonial">
               <div className="stars"><i className="fas fa-clock"></i></div>
-              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Get Responsive Communication</h4>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)' }}>You'll Get Responsive Communication</h3>
               <p className="testimonial-text">
                 Urgent matters get same-day responses. Standard questions within 24 hours. You'll never wonder if your email got lost or if anyone's working on your case. Clear timelines, regular updates, proactive communication.
               </p>
@@ -797,7 +800,7 @@ export const Home: React.FC = () => {
 
             <div className="testimonial">
               <div className="stars"><i className="fas fa-file-invoice-dollar"></i></div>
-              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Know What You're Paying</h4>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)' }}>You'll Know What You're Paying</h4>
               <p className="testimonial-text">
                 Before we start, you'll see the investment required. Most matters are fixed-fee or have clear price ranges. No surprise bills for reading emails. No anxiety about the meter running. Just transparent pricing for defined work.
               </p>
@@ -805,19 +808,19 @@ export const Home: React.FC = () => {
 
             <div className="testimonial">
               <div className="stars"><i className="fas fa-handshake"></i></div>
-              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Work With Someone Who Gets It</h4>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)' }}>You'll Work With Someone Who Gets It</h4>
               <p className="testimonial-text">
                 Whether it's AI product risks, visa timelines, or M&A tax issues—you'll work with counsel who has Big 4 training and specialized expertise. Technical knowledge meets practical business understanding.
               </p>
             </div>
           </div>
 
-          <div style={{marginTop: '4rem', textAlign: 'center', padding: '3rem', background: 'var(--accent-light)', borderRadius: '12px', border: '2px solid var(--accent)'}}>
-            <h3 style={{fontSize: '1.75rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '1.5rem', fontFamily: '"Cormorant Garamond", serif'}}>The Promise</h3>
-            <p style={{fontSize: '1.15rem', color: 'var(--gray-700)', maxWidth: '850px', margin: '0 auto 1.5rem', lineHeight: 1.8}}>
+          <div style={{ marginTop: '4rem', textAlign: 'center', padding: '3rem', background: 'var(--accent-light)', borderRadius: '12px', border: '2px solid var(--accent)' }}>
+            <h4 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '1.5rem', fontFamily: '"Cormorant Garamond", serif' }}>The Promise</h4>
+            <p style={{ fontSize: '1.15rem', color: 'var(--gray-700)', maxWidth: '850px', margin: '0 auto 1.5rem', lineHeight: 1.8 }}>
               Elite-firm expertise without the bureaucracy. Specialized knowledge without the conflicts. Partner-level attention without the partner-level bill. This is what boutique counsel should feel like.
             </p>
-            <p style={{fontSize: '1rem', color: 'var(--gray-600)', maxWidth: '750px', margin: '0 auto', lineHeight: 1.7}}>
+            <p style={{ fontSize: '1rem', color: 'var(--gray-600)', maxWidth: '750px', margin: '0 auto', lineHeight: 1.7 }}>
               If at any point you're not getting responsive, high-quality counsel with transparent pricing—you'll let me know, and we'll fix it immediately. That's the commitment.
             </p>
           </div>
@@ -829,7 +832,7 @@ export const Home: React.FC = () => {
         <div className="section-container">
           <div className="section-header">
             <div className="section-tag">WORK WITH US</div>
-            <h2 className="section-title">Is Rivalis Law Right for Your Situation?</h2>
+            <h4 className="section-title">Is Rivalis Law Right for Your Situation?</h4>
             <p className="section-subtitle">We work with companies facing high-stakes legal challenges where failure isn't an option. Answer a few questions to see if we're the right fit.</p>
           </div>
 
@@ -865,7 +868,7 @@ export const Home: React.FC = () => {
           </div>
 
           <div className="qualification-form">
-            <h3>Client Intake - Get Started</h3>
+            <h4>Client Intake - Get Started</h4>
             <p style={{ marginBottom: '1.5rem', color: '#666', fontSize: '0.95rem' }}>
               <i className="fas fa-shield-alt"></i> Attorney-Client Privilege Protected | <i className="fas fa-dollar-sign"></i> $499 Consultation Fee
             </p>
@@ -873,54 +876,54 @@ export const Home: React.FC = () => {
 
               <div className="form-group">
                 <label>Full Name *</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  required 
-                  placeholder="Your full name" 
+                  required
+                  placeholder="Your full name"
                 />
               </div>
 
               <div className="form-group">
                 <label>Email Address *</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required 
-                  placeholder="you@company.com" 
+                  required
+                  placeholder="you@company.com"
                 />
               </div>
 
               <div className="form-group">
                 <label>Phone Number *</label>
-                <input 
-                  type="tel" 
+                <input
+                  type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  required 
-                  placeholder="+1 (313) 771-2283" 
+                  required
+                  placeholder="+1 (313) 771-2283"
                 />
               </div>
 
               <div className="form-group">
                 <label>Company Name (optional)</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  placeholder="Your company" 
+                  placeholder="Your company"
                 />
               </div>
 
               <div className="form-group">
                 <label>Service Type *</label>
-                <select 
+                <select
                   name="serviceType"
                   value={formData.serviceType}
                   onChange={handleChange}
@@ -943,7 +946,7 @@ export const Home: React.FC = () => {
 
               <div className="form-group">
                 <label>Timeline / Urgency *</label>
-                <select 
+                <select
                   name="urgency"
                   value={formData.urgency}
                   onChange={handleChange}
@@ -959,13 +962,13 @@ export const Home: React.FC = () => {
 
               <div className="form-group">
                 <label>Brief Description *</label>
-                <textarea 
+                <textarea
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
-                  rows={3} 
+                  rows={3}
                   required
-                  placeholder="Please describe your legal needs and situation..." 
+                  placeholder="Please describe your legal needs and situation..."
                 />
               </div>
 
@@ -1021,20 +1024,20 @@ export const Home: React.FC = () => {
             </div>
           </div>
 
-          <div className="cta-group" style={{justifyContent: 'center'}}>
-            <a href="#qualify" className="btn btn-primary" style={{fontSize: '1.1rem', padding: '1.375rem 2.75rem'}}>
+          <div className="cta-group" style={{ justifyContent: 'center' }}>
+            <a href="#qualify" className="btn btn-primary" style={{ fontSize: '1.1rem', padding: '1.375rem 2.75rem' }}>
               <i className="fas fa-calendar-check"></i>
               Start Assessment
             </a>
-            <a href={`tel:${settings?.phone_primary || '+1-313-771-2283'}`} className="btn btn-secondary" style={{fontSize: '1.1rem', padding: '1.375rem 2.75rem', background: 'rgba(255,255,255,0.12)', borderColor: 'rgba(255,255,255,0.3)', color: 'white'}}>
+            <a href={`tel:${settings?.phone_primary || '+1-313-771-2283'}`} className="btn btn-secondary" style={{ fontSize: '1.1rem', padding: '1.375rem 2.75rem', background: 'rgba(255,255,255,0.12)', borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}>
               <i className="fas fa-phone"></i>
               Call: {settings?.phone_display || '+1 (313) 771-2283'}
             </a>
           </div>
 
-          <div style={{marginTop: '4rem', paddingTop: '2.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.2)'}}>
-            <p style={{opacity: 0.7, fontSize: '1rem'}}>
-              <i className="fas fa-map-marker-alt" style={{marginRight: '0.5rem'}}></i>
+          <div style={{ marginTop: '4rem', paddingTop: '2.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.2)' }}>
+            <p style={{ opacity: 0.7, fontSize: '1rem' }}>
+              <i className="fas fa-map-marker-alt" style={{ marginRight: '0.5rem' }}></i>
               Washington, DC Office | Licensed in NY & MI | Big 4 Trained | Serving Clients Globally
             </p>
           </div>

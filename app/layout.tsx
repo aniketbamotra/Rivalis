@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Rivalis Law - Big 4 Trained Attorney',
-    description: 'Expert legal services in AI governance, immigration law, and M&A transactions.',
+    title: 'AI Governance & Startup Law Firm | Rivalis Law',
+    description: 'AI governance lawyer for startups advising on cross-border M&A, business immigration, contract review, securities, GDPR, and data privacy compliance.',
     url: 'https://rivalislaw.com',
     siteName: 'Rivalis Law',
     type: 'website',
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rivalis Law - Big 4 Trained Attorney',
-    description: 'Expert legal services in AI governance, immigration law, and M&A transactions.',
+    title: 'AI Governance & Startup Law Firm | Rivalis Law',
+    description: 'AI governance lawyer for startups advising on cross-border M&A, business immigration, contract review, securities, GDPR, and data privacy compliance.',
     images: ['/og-images/og.png'],
   },
   robots: {
