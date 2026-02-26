@@ -23,7 +23,7 @@ export const Home: React.FC = () => {
   const [finesRisk, setFinesRisk] = useState(250000);
   const [showCustomInput, setShowCustomInput] = useState(false);
   const [customAmount, setCustomAmount] = useState('');
-
+  
   // Intake form state
   const [formData, setFormData] = useState({
     fullName: '',
@@ -62,14 +62,14 @@ export const Home: React.FC = () => {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
+    
     try {
       // Submit form and check if payment is needed
       const result = await submitForm('client-intake', formData.email, formData);
-
+      
       // Handle payment flow through the hook
       handlePaymentFlow(formData.email, result.needsPayment || false);
-
+      
       // Clear form on successful submission
       setFormData({
         fullName: '',
@@ -153,100 +153,298 @@ export const Home: React.FC = () => {
       {/* Navigation */}
       <Navigation />
 
-
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="hero">
         <div className="hero-container">
           <div>
             <div className="hero-badges">
-              <div className="badge"><i className="fas fa-briefcase"></i>Big 4 Trained</div>
-              <div className="badge"><i className="fas fa-graduation-cap"></i>Oxford AI Certified</div>
-              <div className="badge"><i className="fas fa-gavel"></i>{settings?.bar_admission || 'NY & MI Bar'}</div>
-              <div className="badge urgent"><i className="fas fa-bolt"></i>Limited Capacity</div>
+              <div className="badge">
+                <i className="fas fa-briefcase"></i>
+                Big 4 Trained
+              </div>
+              <div className="badge">
+                <i className="fas fa-graduation-cap"></i>
+                Oxford AI Certified
+              </div>
+              <div className="badge">
+                <i className="fas fa-gavel"></i>
+                {settings?.bar_admission || 'NY & MI Bar'}
+              </div>
+              <div className="badge urgent">
+                <i className="fas fa-bolt"></i>
+                Limited Capacity
+              </div>
             </div>
 
             <h1 className="hero-title">
-              AI Governance & Startup Law Firm<br />
-              <span className="highlight">Protecting Everything You've Built</span>
+              One Mistake Could Cost You<br /><span className="highlight">Everything You've Built</span>
             </h1>
 
             <p className="hero-subtitle">
-              At Rivalis Law, our <strong>AI Governance & Startup Law Firm</strong> expertise protects your AI product launch, cross-border M&A, and global expansion from legal risks—without conflicts, delays, or six-figure bills.
+              Your AI product launch. Your global expansion. Your $50M acquisition. The wrong legal counsel doesn't just slow you down—it puts everything at risk. Get Big 4-trained expertise without the conflicts, delays, and six-figure bills.
             </p>
 
-            <h2>🚀 Now Accepting First Clients</h2>
-            <p>
-              After multiple years at top Big 4 firms handling Fortune 100 companies, I’m launching an independent practice — a focused <strong>AI Governance & Startup Law Firm</strong> providing expertise in cross-border M&A, business immigration, and compliance matters. Limited capacity is available for founding clients.
-            </p>
+            <div className="launch-notice">
+              <h4>🚀 Now Accepting First Clients</h4>
+              <p>After multiple years at top Big 4 firms handling Fortune 100 companies' business, I'm launching an independent practice focused on three critical areas: AI Governance, Global Immigration, and M&A Transactions. Limited capacity available for founding clients.</p>
+            </div>
 
-            <h2>⚠️ Limited Availability This Quarter</h2>
-            <div className="capacity-meter"><div className="capacity-fill"></div></div>
-            <p><strong>Client Capacity: 13% Remaining</strong></p>
-            <p className="urgency-note">Next availability: 6-8 weeks for non-emergency matters</p>
+            {/* Capacity Counter */}
+            <div className="capacity-alert">
+              <h3 className="capacity-title">⚠️ Limited Availability This Quarter</h3>
+              <div className="capacity-meter">
+                <div className="capacity-fill"></div>
+              </div>
+              <p><strong>Client Capacity: 13% Remaining</strong></p>
+              <p className="urgency-note">Next availability: 6-8 weeks for non-emergency matters</p>
+            </div>
 
             <div className="cta-group">
-              <a href="#qualify" className="btn btn-primary"><i className="fas fa-calendar-check"></i>Schedule Consultation</a>
-              <a href="#services" className="btn btn-secondary">View Specialties</a>
+              <a href="#qualify" className="btn btn-primary">
+                <i className="fas fa-calendar-check"></i>
+                Schedule Consultation
+              </a>
+              <a href="#services" className="btn btn-secondary">
+                View Specialties
+              </a>
             </div>
           </div>
 
           <div className="hero-media">
-            <h2>Our Credentials</h2>
             <div className="credentials-list">
-              <div className="credential"><h3>Big 4 Experience</h3><p>Multiple years at top firms handling Fortune 100 companies</p></div>
-              <div className="credential"><h3>AI Governance Certified</h3><p>Oxford University Programme Graduate</p></div>
-              <div className="credential"><h3>Immigration Expertise</h3><p>H-1B, L-1, O-1, EB-1, EB-2 NIW, EB-5 Specialist</p></div>
-              <div className="credential"><h3>M&A Experience</h3><p>Tax Due Diligence & Transactions</p></div>
-              <div className="credential"><h3>Global Practice</h3><p>US & UAE Markets</p></div>
+              <div className="credential">
+                <div className="credential-icon">
+                  <i className="fas fa-building"></i>
+                </div>
+                <div className="credential-text">
+                  <h4>Big 4 Experience</h4>
+                  <p>Multiple years at top firms handling Fortune 100 companies</p>
+                </div>
+              </div>
+
+              <div className="credential">
+                <div className="credential-icon">
+                  <i className="fas fa-robot"></i>
+                </div>
+                <div className="credential-text">
+                  <h4>AI Governance Certified</h4>
+                  <p>Oxford University Programme Graduate</p>
+                </div>
+              </div>
+
+              <div className="credential">
+                <div className="credential-icon">
+                  <i className="fas fa-passport"></i>
+                </div>
+                <div className="credential-text">
+                  <h4>Immigration Expertise</h4>
+                  <p>H-1B, L-1, O-1, EB-1, EB-2 NIW, EB-5 Specialist</p>
+                </div>
+              </div>
+
+              <div className="credential">
+                <div className="credential-icon">
+                  <i className="fas fa-handshake"></i>
+                </div>
+                <div className="credential-text">
+                  <h4>M&A Experience</h4>
+                  <p>Tax Due Diligence & Transactions</p>
+                </div>
+              </div>
+
+              <div className="credential">
+                <div className="credential-icon">
+                  <i className="fas fa-globe"></i>
+                </div>
+                <div className="credential-text">
+                  <h4>Global Practice</h4>
+                  <p>US & UAE Markets</p>
+                </div>
+              </div>
             </div>
 
-            <h2>What's Inaction Costing You?</h2>
-            <div className="calc-inputs">
-              {/* ROI calculator inputs here */}
+            {/* ROI Calculator */}
+            <div className="roi-calculator">
+              <h3>What's Inaction Costing You?</h3>
+              <div className="calc-inputs">
+                <div className="calc-group">
+                  <label>Days of executive time wasted:</label>
+                  <input
+                    type="range"
+                    min="5"
+                    max="90"
+                    value={timeWasted}
+                    onChange={(e) => setTimeWasted(parseInt(e.target.value))}
+                  />
+                  <span>{timeWasted} days</span>
+                </div>
+                <div className="calc-group">
+                  <Select
+                    value={showCustomInput ? 'custom' : finesRisk.toString()}
+                    onValueChange={(value) => {
+                      if (value === 'custom') {
+                        setShowCustomInput(true);
+                      } else {
+                        setShowCustomInput(false);
+                        setFinesRisk(parseInt(value));
+                        setCustomAmount('');
+                      }
+                    }}
+                  >
+                    <SelectTrigger style={{ 
+                      background: '#fff', 
+                      color: '#000',
+                      border: '1px solid #ccc'
+                    }}>
+                      <SelectValue placeholder="Select amount" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="50000">$50,000</SelectItem>
+                      <SelectItem value="250000">$250,000</SelectItem>
+                      <SelectItem value="1000000">$1,000,000+</SelectItem>
+                      <SelectItem value="5000000">$5,000,000 + reputational damage</SelectItem>
+                      <SelectItem value="custom">Custom Amount</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {showCustomInput && (
+                    <input
+                      type="number"
+                      placeholder="Enter custom amount"
+                      value={customAmount}
+                      onChange={(e) => {
+                        setCustomAmount(e.target.value);
+                        setFinesRisk(parseInt(e.target.value) || 0);
+                      }}
+                      style={{
+                        marginTop: '8px',
+                        padding: '10px 12px',
+                        borderRadius: '4px',
+                        border: '1px solid #ccc',
+                        background: '#fff',
+                        color: '#000',
+                        fontSize: '1rem',
+                        width: '100%'
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="calc-result">
+                <strong>Estimated cost of delay: ${calculateCost().toLocaleString()}</strong>
+                <small>vs. our solution {getServicePrice('data-privacy')}</small>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Global Capabilities Section */}
+      {/* Global Capabilities */}
       <section className="global-section">
         <div className="global-container">
-          <h2>Serving US & Global Markets</h2>
-          <p style={{ fontSize: '1.1rem', opacity: 0.9, lineHeight: 1.8 }}>
-            Whether you're expanding from Dubai to Washington or scaling from Silicon Valley to Abu Dhabi, get counsel who understands cross-border business, US immigration requirements, and AI regulations across jurisdictions.
-          </p>
+          <div className="global-content">
+            <h2>Serving US & Global Markets</h2>
+            <p style={{ fontSize: '1.1rem', opacity: 0.9, lineHeight: 1.8 }}>
+              Whether you're expanding from Dubai to Washington or scaling from Silicon Valley to Abu Dhabi, get counsel who understands cross-border business, US immigration requirements, and AI regulations across jurisdictions.
+            </p>
 
-          <div className="global-features">
-            <div className="global-feature"><i className="fas fa-plane"></i><h3>Cross-Border Transactions</h3><p>US-Global M&A and business structuring</p></div>
-            <div className="global-feature"><i className="fas fa-passport"></i><h3>US Immigration from Around the World</h3><p>H-1B, L-1, O-1, EB-1, EB-2 NIW, EB-5 for global nationals</p></div>
-            <div className="global-feature"><i className="fas fa-balance-scale"></i><h3>Multi-Jurisdiction AI Compliance</h3><p>US & global regulatory frameworks</p></div>
-            <div className="global-feature"><i className="fas fa-video"></i><h3>Virtual Consultations</h3><p>Available across time zones</p></div>
+            <div className="global-features">
+              <div className="global-feature">
+                <i className="fas fa-plane"></i>
+                <div className="global-feature-text">
+                  <h4>Cross-Border Transactions</h4>
+                  <p>US-Global M&A and business structuring</p>
+                </div>
+              </div>
+
+              <div className="global-feature">
+                <i className="fas fa-passport"></i>
+                <div className="global-feature-text">
+                  <h4>US Immigration from around the world</h4>
+                  <p>H-1B, L-1, O-1, EB-1, EB-2 NIW, EB-5 for Global nationals</p>
+                </div>
+              </div>
+
+              <div className="global-feature">
+                <i className="fas fa-balance-scale"></i>
+                <div className="global-feature-text">
+                  <h4>Multi-Jurisdiction AI Compliance</h4>
+                  <p>US & Global regulatory frameworks</p>
+                </div>
+              </div>
+
+              <div className="global-feature">
+                <i className="fas fa-video"></i>
+                <div className="global-feature-text">
+                  <h4>Virtual Consultations</h4>
+                  <p>Available across time zones</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <h3>Common Scenarios We Handle</h3>
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <li><i className="fas fa-check-circle" style={{ color: 'var(--accent)', fontSize: '1.25rem', marginTop: '0.25rem' }}></i>Global entrepreneur expanding operations to United States</li>
-            <li><i className="fas fa-check-circle" style={{ color: 'var(--accent)', fontSize: '1.25rem', marginTop: '0.25rem' }}></i>US tech company acquiring global-based business</li>
-            <li><i className="fas fa-check-circle" style={{ color: 'var(--accent)', fontSize: '1.25rem', marginTop: '0.25rem' }}></i>Global national seeking US work authorization</li>
-            <li><i className="fas fa-check-circle" style={{ color: 'var(--accent)', fontSize: '1.25rem', marginTop: '0.25rem' }}></i>AI companies navigating US & global compliance requirements</li>
-          </ul>
+          <div style={{ background: 'rgba(255,255,255,0.1)', padding: '3rem', borderRadius: '12px', border: '2px solid rgba(212, 175, 55, 0.3)' }}>
+            <h3 style={{ fontSize: '1.75rem', marginBottom: '1.5rem' }}>Common Scenarios We Handle:</h3>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <i className="fas fa-check-circle" style={{ color: 'var(--accent)', fontSize: '1.25rem', marginTop: '0.25rem' }}></i>
+                <span>Global entrepreneur expanding operations to United States</span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <i className="fas fa-check-circle" style={{ color: 'var(--accent)', fontSize: '1.25rem', marginTop: '0.25rem' }}></i>
+                <span>US tech company acquiring Global-based business</span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <i className="fas fa-check-circle" style={{ color: 'var(--accent)', fontSize: '1.25rem', marginTop: '0.25rem' }}></i>
+                <span>Global national seeking US work authorization</span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <i className="fas fa-check-circle" style={{ color: 'var(--accent)', fontSize: '1.25rem', marginTop: '0.25rem' }}></i>
+                <span>AI companies navigating US & Global compliance requirements</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* How We Work / Process Section */}
+      {/* How We Work Process */}
       <section id="how-we-work" className="process-section">
         <div className="section-container">
           <div className="section-header">
             <div className="section-tag">OUR PROCESS</div>
-            <h2>How We Work Together</h2>
-            <p>From first contact to final deliverable—a clear, efficient process with no surprises</p>
+            <h2 className="section-title">How We Work Together</h2>
+            <p className="section-subtitle">
+              From first contact to final deliverable—a clear, efficient process with no surprises
+            </p>
           </div>
 
           <div className="process-timeline">
-            <div className="process-step"><div className="process-number">1</div><h3>Initial Contact</h3><p>Submit qualification form or call our emergency line for urgent matters</p><span className="process-time">Same day</span></div>
-            <div className="process-step"><div className="process-number">2</div><h3>Assessment Call</h3><p>30-minute consultation to understand your situation and determine fit</p><span className="process-time">Within 24 hours</span></div>
-            <div className="process-step"><div className="process-number">3</div><h3>Proposal & Engagement</h3><p>Clear scope of work, deliverables, timeline, and transparent pricing</p><span className="process-time">48 hours</span></div>
-            <div className="process-step"><div className="process-number">4</div><h3>Execution & Delivery</h3><p>Regular updates, direct access, and on-time delivery of all work product</p><span className="process-time">Per agreement</span></div>
+            <div className="process-step">
+              <div className="process-number">1</div>
+              <h4>Initial Contact</h4>
+              <p>Submit qualification form or call our emergency line for urgent matters</p>
+              <span className="process-time">Same day</span>
+            </div>
+
+            <div className="process-step">
+              <div className="process-number">2</div>
+              <h4>Assessment Call</h4>
+              <p>30-minute consultation to understand your situation and determine fit</p>
+              <span className="process-time">Within 24 hours</span>
+            </div>
+
+            <div className="process-step">
+              <div className="process-number">3</div>
+              <h4>Proposal & Engagement</h4>
+              <p>Clear scope of work, deliverables, timeline, and transparent pricing</p>
+              <span className="process-time">48 hours</span>
+            </div>
+
+            <div className="process-step">
+              <div className="process-number">4</div>
+              <h4>Execution & Delivery</h4>
+              <p>Regular updates, direct access, and on-time delivery of all work product</p>
+              <span className="process-time">Per agreement</span>
+            </div>
           </div>
         </div>
       </section>
@@ -382,7 +580,7 @@ export const Home: React.FC = () => {
               <div className="service-icon">
                 <i className="fas fa-passport"></i>
               </div>
-              <h5>Global Expansion & Immigration</h5>
+              <h3>Global Expansion & Immigration</h3>
               <p className="service-tagline">Your Launch. Their Visa Denial. Your Disaster.</p>
 
               <div className="pricing-badge">
@@ -433,7 +631,7 @@ export const Home: React.FC = () => {
               <div className="service-icon">
                 <i className="fas fa-handshake"></i>
               </div>
-              <h4>M&A & Corporate Transactions</h4>
+              <h3>M&A & Corporate Transactions</h3>
               <p className="service-tagline">Their Offer. Your Hidden Liability. Deal Over.</p>
 
               <div className="pricing-badge">
@@ -498,7 +696,7 @@ export const Home: React.FC = () => {
               <div className="select-icon">
                 <i className="fas fa-file-contract"></i>
               </div>
-              <h3>Contract Review & Drafting</h3>
+              <h4>Contract Review & Drafting</h4>
               <p>Get expert eyes on your vendor agreements, NDAs, employment contracts, and partnership deals before you sign.</p>
               <div className="select-pricing">{getServicePrice('contracts')}</div>
               <div className="select-cta">
@@ -583,7 +781,7 @@ export const Home: React.FC = () => {
           <div className="testimonial-grid">
             <div className="testimonial">
               <div className="stars"><i className="fas fa-comments"></i></div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)' }}>You'll Have Direct Access</h3>
+              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Have Direct Access</h4>
               <p className="testimonial-text">
                 When you reach out, you'll speak directly with me—not an intake coordinator, not a junior associate. Your matters get personal attention from experienced counsel, not delegation to someone learning on your time.
               </p>
@@ -591,7 +789,7 @@ export const Home: React.FC = () => {
 
             <div className="testimonial">
               <div className="stars"><i className="fas fa-clock"></i></div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)' }}>You'll Get Responsive Communication</h3>
+              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Get Responsive Communication</h4>
               <p className="testimonial-text">
                 Urgent matters get same-day responses. Standard questions within 24 hours. You'll never wonder if your email got lost or if anyone's working on your case. Clear timelines, regular updates, proactive communication.
               </p>
@@ -599,7 +797,7 @@ export const Home: React.FC = () => {
 
             <div className="testimonial">
               <div className="stars"><i className="fas fa-file-invoice-dollar"></i></div>
-              <h4 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)' }}>You'll Know What You're Paying</h4>
+              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Know What You're Paying</h4>
               <p className="testimonial-text">
                 Before we start, you'll see the investment required. Most matters are fixed-fee or have clear price ranges. No surprise bills for reading emails. No anxiety about the meter running. Just transparent pricing for defined work.
               </p>
@@ -607,19 +805,19 @@ export const Home: React.FC = () => {
 
             <div className="testimonial">
               <div className="stars"><i className="fas fa-handshake"></i></div>
-              <h4 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)' }}>You'll Work With Someone Who Gets It</h4>
+              <h4 style={{fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--primary)'}}>You'll Work With Someone Who Gets It</h4>
               <p className="testimonial-text">
                 Whether it's AI product risks, visa timelines, or M&A tax issues—you'll work with counsel who has Big 4 training and specialized expertise. Technical knowledge meets practical business understanding.
               </p>
             </div>
           </div>
 
-          <div style={{ marginTop: '4rem', textAlign: 'center', padding: '3rem', background: 'var(--accent-light)', borderRadius: '12px', border: '2px solid var(--accent)' }}>
-            <h4 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '1.5rem', fontFamily: '"Cormorant Garamond", serif' }}>The Promise</h4>
-            <p style={{ fontSize: '1.15rem', color: 'var(--gray-700)', maxWidth: '850px', margin: '0 auto 1.5rem', lineHeight: 1.8 }}>
+          <div style={{marginTop: '4rem', textAlign: 'center', padding: '3rem', background: 'var(--accent-light)', borderRadius: '12px', border: '2px solid var(--accent)'}}>
+            <h3 style={{fontSize: '1.75rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '1.5rem', fontFamily: '"Cormorant Garamond", serif'}}>The Promise</h3>
+            <p style={{fontSize: '1.15rem', color: 'var(--gray-700)', maxWidth: '850px', margin: '0 auto 1.5rem', lineHeight: 1.8}}>
               Elite-firm expertise without the bureaucracy. Specialized knowledge without the conflicts. Partner-level attention without the partner-level bill. This is what boutique counsel should feel like.
             </p>
-            <p style={{ fontSize: '1rem', color: 'var(--gray-600)', maxWidth: '750px', margin: '0 auto', lineHeight: 1.7 }}>
+            <p style={{fontSize: '1rem', color: 'var(--gray-600)', maxWidth: '750px', margin: '0 auto', lineHeight: 1.7}}>
               If at any point you're not getting responsive, high-quality counsel with transparent pricing—you'll let me know, and we'll fix it immediately. That's the commitment.
             </p>
           </div>
@@ -631,7 +829,7 @@ export const Home: React.FC = () => {
         <div className="section-container">
           <div className="section-header">
             <div className="section-tag">WORK WITH US</div>
-            <h4 className="section-title">Is Rivalis Law Right for Your Situation?</h4>
+            <h2 className="section-title">Is Rivalis Law Right for Your Situation?</h2>
             <p className="section-subtitle">We work with companies facing high-stakes legal challenges where failure isn't an option. Answer a few questions to see if we're the right fit.</p>
           </div>
 
@@ -667,7 +865,7 @@ export const Home: React.FC = () => {
           </div>
 
           <div className="qualification-form">
-            <h4>Client Intake - Get Started</h4>
+            <h3>Client Intake - Get Started</h3>
             <p style={{ marginBottom: '1.5rem', color: '#666', fontSize: '0.95rem' }}>
               <i className="fas fa-shield-alt"></i> Attorney-Client Privilege Protected | <i className="fas fa-dollar-sign"></i> $499 Consultation Fee
             </p>
@@ -675,54 +873,54 @@ export const Home: React.FC = () => {
 
               <div className="form-group">
                 <label>Full Name *</label>
-                <input
-                  type="text"
+                <input 
+                  type="text" 
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  required
-                  placeholder="Your full name"
+                  required 
+                  placeholder="Your full name" 
                 />
               </div>
 
               <div className="form-group">
                 <label>Email Address *</label>
-                <input
-                  type="email"
+                <input 
+                  type="email" 
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
-                  placeholder="you@company.com"
+                  required 
+                  placeholder="you@company.com" 
                 />
               </div>
 
               <div className="form-group">
                 <label>Phone Number *</label>
-                <input
-                  type="tel"
+                <input 
+                  type="tel" 
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  required
-                  placeholder="+1 (313) 771-2283"
+                  required 
+                  placeholder="+1 (313) 771-2283" 
                 />
               </div>
 
               <div className="form-group">
                 <label>Company Name (optional)</label>
-                <input
-                  type="text"
+                <input 
+                  type="text" 
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  placeholder="Your company"
+                  placeholder="Your company" 
                 />
               </div>
 
               <div className="form-group">
                 <label>Service Type *</label>
-                <select
+                <select 
                   name="serviceType"
                   value={formData.serviceType}
                   onChange={handleChange}
@@ -745,7 +943,7 @@ export const Home: React.FC = () => {
 
               <div className="form-group">
                 <label>Timeline / Urgency *</label>
-                <select
+                <select 
                   name="urgency"
                   value={formData.urgency}
                   onChange={handleChange}
@@ -761,13 +959,13 @@ export const Home: React.FC = () => {
 
               <div className="form-group">
                 <label>Brief Description *</label>
-                <textarea
+                <textarea 
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
-                  rows={3}
+                  rows={3} 
                   required
-                  placeholder="Please describe your legal needs and situation..."
+                  placeholder="Please describe your legal needs and situation..." 
                 />
               </div>
 
@@ -823,20 +1021,20 @@ export const Home: React.FC = () => {
             </div>
           </div>
 
-          <div className="cta-group" style={{ justifyContent: 'center' }}>
-            <a href="#qualify" className="btn btn-primary" style={{ fontSize: '1.1rem', padding: '1.375rem 2.75rem' }}>
+          <div className="cta-group" style={{justifyContent: 'center'}}>
+            <a href="#qualify" className="btn btn-primary" style={{fontSize: '1.1rem', padding: '1.375rem 2.75rem'}}>
               <i className="fas fa-calendar-check"></i>
               Start Assessment
             </a>
-            <a href={`tel:${settings?.phone_primary || '+1-313-771-2283'}`} className="btn btn-secondary" style={{ fontSize: '1.1rem', padding: '1.375rem 2.75rem', background: 'rgba(255,255,255,0.12)', borderColor: 'rgba(255,255,255,0.3)', color: 'white' }}>
+            <a href={`tel:${settings?.phone_primary || '+1-313-771-2283'}`} className="btn btn-secondary" style={{fontSize: '1.1rem', padding: '1.375rem 2.75rem', background: 'rgba(255,255,255,0.12)', borderColor: 'rgba(255,255,255,0.3)', color: 'white'}}>
               <i className="fas fa-phone"></i>
               Call: {settings?.phone_display || '+1 (313) 771-2283'}
             </a>
           </div>
 
-          <div style={{ marginTop: '4rem', paddingTop: '2.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.2)' }}>
-            <p style={{ opacity: 0.7, fontSize: '1rem' }}>
-              <i className="fas fa-map-marker-alt" style={{ marginRight: '0.5rem' }}></i>
+          <div style={{marginTop: '4rem', paddingTop: '2.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.2)'}}>
+            <p style={{opacity: 0.7, fontSize: '1rem'}}>
+              <i className="fas fa-map-marker-alt" style={{marginRight: '0.5rem'}}></i>
               Washington, DC Office | Licensed in NY & MI | Big 4 Trained | Serving Clients Globally
             </p>
           </div>
