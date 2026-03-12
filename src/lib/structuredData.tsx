@@ -1,6 +1,6 @@
-import { Organization, WithContext, LegalService, Attorney } from 'schema-dts';
+import { WithContext, Thing } from 'schema-dts';
 
-export function getOrganizationSchema(): WithContext<Organization> {
+export function getOrganizationSchema(): WithContext<Thing> {
   return {
     '@context': 'https://schema.org',
     '@type': 'LegalService',
@@ -67,7 +67,7 @@ export function getOrganizationSchema(): WithContext<Organization> {
         },
       ],
     },
-  };
+  } as unknown as WithContext<Thing>;
 }
 
 export function getServiceSchema(service: {
@@ -75,7 +75,7 @@ export function getServiceSchema(service: {
   description: string;
   url: string;
   priceRange?: string;
-}): WithContext<LegalService> {
+}): WithContext<Thing> {
   return {
     '@context': 'https://schema.org',
     '@type': 'LegalService',
@@ -92,10 +92,10 @@ export function getServiceSchema(service: {
       name: 'United States',
     },
     ...(service.priceRange && { priceRange: service.priceRange }),
-  };
+  } as unknown as WithContext<Thing>;
 }
 
-export function getBreadcrumbSchema(items: { name: string; url?: string }[]): WithContext<any> {
+export function getBreadcrumbSchema(items: { name: string; url?: string }[]): WithContext<Thing> {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -116,7 +116,7 @@ export function getArticleSchema(article: {
   datePublished: string;
   dateModified?: string;
   author?: string;
-}): WithContext<any> {
+}): WithContext<Thing> {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -146,7 +146,7 @@ export function getArticleSchema(article: {
   };
 }
 
-export function renderStructuredData(data: WithContext<any>) {
+export function renderStructuredData(data: WithContext<Thing>) {
   return (
     <script
       type="application/ld+json"

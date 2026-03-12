@@ -28,11 +28,6 @@ interface ApplicationInviteParams {
   token: string;
 }
 
-interface ApplicationConfirmationParams {
-  email: string;
-  name: string;
-}
-
 interface ApplicationNotificationParams {
   full_name: string;
   email: string;

@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
     const applicantName = `${formData.first_name} ${formData.last_name}`.trim();
     sendConfirmationEmail(formData.email, applicantName)
       .then(() => console.log('✅ Application confirmation email sent'))
-      .catch(err => console.error('❌ Failed to send confirmation email:', err));
+      .catch((err: unknown) => console.error('❌ Failed to send confirmation email:', err));
 
     // Transform application data for email (matches email template expectations)
     const emailData = {
@@ -132,13 +132,13 @@ export async function POST(request: NextRequest) {
       resume_url: application.resume_url,
       writing_sample_url: application.writing_sample_url,
       client_list_url: application.client_list_url,
-      references: application.professional_references as any || [] // Map back
+      references: (application.professional_references as Array<{ name: string; relationship: string; firm: string; email: string; phone: string }>) || [] // Map back
     };
 
     // Send notification to partners (non-blocking)
     sendPartnerNotification(emailData)
       .then(() => console.log('✅ Partner notification email sent'))
-      .catch(err => console.error('❌ Failed to send partner notification:', err));
+      .catch((err: unknown) => console.error('❌ Failed to send partner notification:', err));
 
     return NextResponse.json({ success: true, data: application });
   } catch (error) {
