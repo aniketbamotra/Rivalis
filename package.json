@@ -28,7 +28,7 @@
     "git-filter-repo": "^0.0.30",
     "lucide-react": "^0.561.0",
     "next": "^15.1.6",
-    "next-sanity": "^12.1.1",
+    "next-sanity": "9.12.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.66.1",
