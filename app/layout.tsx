@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   description: 'AI governance lawyer for startups advising on cross-border M&A, business immigration, contract review, securities, GDPR, and data privacy compliance.',
   keywords: 'AI governance lawyer, Cross-border M&A lawyer, Business immigration lawyer for startups, Contract review lawyer, GDPR compliance attorney, Data privacy compliance lawyer, Startup securities attorney',
   metadataBase: new URL('https://rivalislaw.com'),
+
+  verification: {
+    google: '2uKvlXEP-nqBpJYsvaaxZIcdT-3htRMfkGvXc5lakwQ',
+  },
+  
   icons: {
     icon: [
       { url: '/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
