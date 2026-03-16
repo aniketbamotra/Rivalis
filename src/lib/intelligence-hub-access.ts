@@ -71,7 +71,7 @@ export async function checkResourceAccess(
       return {
         hasAccess: true,
         reason: 'premium_subscriber',
-        accessExpiry: new Date(payment.created_at).getTime() + 30 * 24 * 60 * 60 * 1000,
+        accessExpiry: new Date(new Date(payment.created_at).getTime() + 30 * 24 * 60 * 60 * 1000),
       };
     }
 

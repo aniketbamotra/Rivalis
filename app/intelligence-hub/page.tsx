@@ -5,9 +5,9 @@ import EnhancedFooter from '@/components/Layout/EnhancedFooter';
 import { SearchBar } from '@/components/IntelligenceHub/SearchBar';
 import { ArticleCard } from '@/components/IntelligenceHub/ArticleCard';
 import { NewsletterForm } from '@/components/IntelligenceHub/NewsletterForm';
-import { getArticles, formatDate } from '@/lib/hashnode';
+import { getPosts, getNewsroomItems, formatDate } from '@/lib/sanity/queries';
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Intelligence Hub | Legal Insights & AI Compliance News | Rivalis Law',
@@ -45,18 +45,10 @@ export const metadata: Metadata = {
 };
 
 export default async function IntelligenceHubPage() {
-  // Fetch all articles once
-  const allArticlesData = await getArticles(50);
-  const allArticles = allArticlesData.edges.map(({ node }) => node);
-  
-  // Filter client-side
-  const recentPerspectives = allArticles
-    .filter(article => article.tags.some(t => t.slug.toLowerCase() === 'perspectives'))
-    .slice(0, 6);
-  
-  const recentNewsroom = allArticles
-    .filter(article => article.tags.some(t => t.slug.toLowerCase() === 'newsroom'))
-    .slice(0, 4);
+  const [recentPerspectives, recentNewsroomItems] = await Promise.all([
+    getPosts(6),
+    getNewsroomItems(undefined, 4),
+  ]);
   
 
 
@@ -274,7 +266,7 @@ export default async function IntelligenceHubPage() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {recentPerspectives.map((article) => (
-                  <ArticleCard key={article.id} article={article} />
+                  <ArticleCard key={article._id} article={article} section="perspectives" />
                 ))}
               </div>
             )}
@@ -437,7 +429,7 @@ export default async function IntelligenceHubPage() {
               </Link>
             </div>
 
-            {recentNewsroom.length === 0 ? (
+            {recentNewsroomItems.length === 0 ? (
               <div className="bg-white rounded-2xl p-16 text-center border border-gray-200 shadow-lg">
                 <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
                   <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -449,10 +441,10 @@ export default async function IntelligenceHubPage() {
               </div>
             ) : (
               <div className="space-y-6">
-                {recentNewsroom.map((item, index) => (
+                {recentNewsroomItems.map((item, index) => (
                   <Link
-                    key={item.id}
-                    href={`/intelligence-hub/newsroom/${item.slug}`}
+                    key={item._id}
+                    href={`/intelligence-hub/newsroom/${item.slug.current}`}
                     className="block bg-white rounded-2xl p-8 border border-gray-200 hover:border-[#d4af37] shadow-sm hover:shadow-xl transition-all group"
                   >
                     <div className="flex items-start gap-6">
@@ -466,11 +458,11 @@ export default async function IntelligenceHubPage() {
                           <span className="text-sm font-semibold text-[#d4af37]">
                             {formatDate(item.publishedAt)}
                           </span>
-                          {item.tags[0] && (
+                          {item.type && (
                             <>
                               <span className="text-gray-300">•</span>
                               <span className="text-sm text-gray-500 uppercase tracking-wider font-medium">
-                                {item.tags[0].name}
+                                {item.type}
                               </span>
                             </>
                           )}
@@ -478,7 +470,7 @@ export default async function IntelligenceHubPage() {
                         <h3 className="font-serif text-2xl font-bold text-[#1a1a2e] group-hover:text-[#d4af37] transition-colors mb-3 leading-tight">
                           {item.title}
                         </h3>
-                        <p className="text-gray-600 leading-relaxed line-clamp-2">{item.brief}</p>
+                        <p className="text-gray-600 leading-relaxed line-clamp-2">{item.excerpt}</p>
                       </div>
                       <svg
                         className="w-6 h-6 text-gray-400 group-hover:text-[#d4af37] group-hover:translate-x-1 transition-all flex-shrink-0"

@@ -492,13 +492,16 @@ export const FraudInvestigationIntake: React.FC = () => {
 
           {/* Payment/Success Modals */}
           {showPaymentModal && (
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             <PaymentModal
-              isOpen={showPaymentModal}
-              amount={5000}
-              serviceType="fraud_investigation"
-              email={currentEmail}
-              onClose={closePaymentModal}
-              onPaymentSuccess={handlePaymentSuccess}
+              {...({
+                isOpen: showPaymentModal,
+                amount: 5000,
+                serviceType: "fraud_investigation",
+                email: currentEmail,
+                onClose: closePaymentModal,
+                onPaymentSuccess: handlePaymentSuccess,
+              } as any)}
             />
           )}
 

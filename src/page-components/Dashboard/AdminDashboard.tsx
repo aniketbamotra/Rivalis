@@ -2443,11 +2443,12 @@ export function AdminDashboard() {
                 <div className="bg-gray-50 rounded-lg p-4">
                   <h3 className="text-lg font-semibold mb-3">6. References & Additional Information</h3>
                   <div className="space-y-3">
-                    {viewingApplication.professional_references && Array.isArray(viewingApplication.professional_references) && (
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                    {(viewingApplication as any).professional_references && Array.isArray((viewingApplication as any).professional_references) && (
                       <div>
                         <p className="text-sm font-semibold text-gray-600 mb-3">Professional References</p>
                         <div className="space-y-3">
-                          {viewingApplication.professional_references.map((ref: any, index: number) => (
+                          {((viewingApplication as any).professional_references as any[]).map((ref: any, index: number) => (
                             <div key={index} className="bg-white p-3 rounded-lg border border-gray-200">
                               <p className="text-sm font-semibold text-gray-800 mb-2">Reference {index + 1}</p>
                               <div className="grid grid-cols-2 gap-2 text-sm">

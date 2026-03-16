@@ -1,39 +1,48 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
-import ReactMarkdown from 'react-markdown';
+import { PortableText, PortableTextComponents } from '@portabletext/react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { Navigation } from '@/components/Layout/Navigation';
 import EnhancedFooter from '@/components/Layout/EnhancedFooter';
-import { getArticleBySlug, formatDate } from '@/lib/hashnode';
+import { getNewsroomItemBySlug, getAllNewsroomSlugs, formatDate } from '@/lib/sanity/queries';
+import { urlFor } from '@/lib/sanity/image';
 import { getArticleSchema, getBreadcrumbSchema, renderStructuredData } from '@/lib/structuredData';
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const item = await getArticleBySlug(params.slug);
+export async function generateStaticParams() {
+  const slugs = await getAllNewsroomSlugs();
+  return slugs.slice(0, 20).map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const item = await getNewsroomItemBySlug(slug);
 
   if (!item) {
     return {
-      title: 'Article Not Found | Rivalis Law',
+      title: 'Not Found | Rivalis Law',
     };
   }
 
-  const description = item.brief || item.subtitle || `Read ${item.title} on Rivalis Law Intelligence Hub`;
-  const imageUrl = item.coverImage?.url || '/og-images/default-article.jpg';
+  const description = item.excerpt || `Read ${item.title} on Rivalis Law Newsroom`;
+  const imageUrl = item.image ? urlFor(item.image).width(1200).height(630).url() : '/og-images/default-article.jpg';
 
   return {
     title: `${item.title} | Newsroom | Rivalis Law`,
     description: description.slice(0, 160),
-    keywords: item.tags.map(tag => tag.name).join(', ') + ', legal news, law firm updates, legal insights',
+    keywords: `${item.type}, legal news, law firm updates, legal insights`,
     openGraph: {
       title: item.title,
       description: description.slice(0, 160),
-      url: `https://rivalislaw.com/intelligence-hub/newsroom/${params.slug}`,
+      url: `https://rivalislaw.com/intelligence-hub/newsroom/${slug}`,
       siteName: 'Rivalis Law',
       type: 'article',
       publishedTime: item.publishedAt,
       authors: ['Rivalis Law'],
-      tags: item.tags.map(tag => tag.name),
       images: [
         {
           url: imageUrl,
@@ -51,7 +60,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       images: [imageUrl],
     },
     alternates: {
-      canonical: `https://rivalislaw.com/intelligence-hub/newsroom/${params.slug}`,
+      canonical: `https://rivalislaw.com/intelligence-hub/newsroom/${slug}`,
     },
     robots: {
       index: true,
@@ -60,19 +69,91 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function NewsroomDetailPage({ params }: { params: { slug: string } }) {
-  const item = await getArticleBySlug(params.slug);
+const portableTextComponents: PortableTextComponents = {
+  types: {
+    bodyImage: ({ value }) => {
+      if (!value?.asset?.asset?._ref) return null;
+      const src = urlFor(value.asset).width(900).url();
+      return (
+        <div className="my-8 rounded-xl overflow-hidden">
+          <Image
+            src={src}
+            alt={value.alt || ''}
+            width={900}
+            height={500}
+            className="w-full h-auto"
+          />
+          {value.caption && (
+            <p className="text-center text-sm text-gray-500 mt-2 italic">{value.caption}</p>
+          )}
+        </div>
+      );
+    },
+    code: ({ value }) => (
+      <div className="my-8">
+        <SyntaxHighlighter language={value.language || 'text'} style={atomOneDark} className="rounded-lg">
+          {value.code}
+        </SyntaxHighlighter>
+      </div>
+    ),
+  },
+  block: {
+    h1: ({ children }) => <h1 className="font-serif text-3xl font-bold text-[#1a1a2e] mt-12 mb-6">{children}</h1>,
+    h2: ({ children }) => <h2 className="font-serif text-2xl font-bold text-[#1a1a2e] mt-10 mb-4">{children}</h2>,
+    h3: ({ children }) => <h3 className="font-serif text-xl font-bold text-[#1a1a2e] mt-8 mb-3">{children}</h3>,
+    normal: ({ children }) => <p className="text-gray-700 leading-relaxed mb-6">{children}</p>,
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-[#d4af37] pl-6 py-4 my-8 italic text-gray-700 bg-gray-50 rounded-r-lg">
+        {children}
+      </blockquote>
+    ),
+  },
+  marks: {
+    link: ({ value, children }) => (
+      <a
+        href={value?.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[#d4af37] hover:text-[#b8941f] transition-colors underline"
+      >
+        {children}
+      </a>
+    ),
+    strong: ({ children }) => <strong className="font-bold text-[#1a1a2e]">{children}</strong>,
+    em: ({ children }) => <em className="italic">{children}</em>,
+    code: ({ children }) => (
+      <code className="bg-gray-100 text-[#1a1a2e] px-2 py-1 rounded text-sm font-mono">{children}</code>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => <ul className="list-disc list-inside space-y-2 mb-6 text-gray-700">{children}</ul>,
+    number: ({ children }) => <ol className="list-decimal list-inside space-y-2 mb-6 text-gray-700">{children}</ol>,
+  },
+};
+
+const typeLabels: Record<string, string> = {
+  press: 'Press',
+  speaking: 'Speaking Engagement',
+  award: 'Award',
+  publication: 'Publication',
+};
+
+export default async function NewsroomDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const item = await getNewsroomItemBySlug(slug);
 
   if (!item) {
     notFound();
   }
 
+  const imageUrl = item.image ? urlFor(item.image).width(1200).height(630).url() : undefined;
+
   // Generate structured data
   const articleSchema = getArticleSchema({
     headline: item.title,
-    description: item.brief || item.subtitle || item.title,
-    url: `https://rivalislaw.com/intelligence-hub/newsroom/${params.slug}`,
-    image: item.coverImage?.url,
+    description: item.excerpt || item.title,
+    url: `https://rivalislaw.com/intelligence-hub/newsroom/${slug}`,
+    image: imageUrl,
     datePublished: item.publishedAt,
     author: 'Rivalis Law',
   });
@@ -110,11 +191,11 @@ export default async function NewsroomDetailPage({ params }: { params: { slug: s
               <span className="text-[#1a1a2e] font-medium line-clamp-1">{item.title}</span>
             </nav>
 
-            {/* Category Badge */}
-            {item.tags[0] && (
+            {/* Type Badge */}
+            {item.type && (
               <div className="mb-6">
                 <span className="inline-block px-4 py-2 rounded-full text-sm font-medium uppercase tracking-wider bg-[#d4af37]/10 text-[#d4af37]">
-                  {item.tags[0].name}
+                  {typeLabels[item.type as keyof typeof typeLabels] || item.type}
                 </span>
               </div>
             )}
@@ -125,91 +206,73 @@ export default async function NewsroomDetailPage({ params }: { params: { slug: s
             </h1>
 
             {/* Meta Info */}
-            <div className="flex items-center gap-4 pb-8 border-b border-gray-200 mb-12">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8941f] flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
+            <div className="flex flex-wrap items-center gap-4 pb-8 border-b border-gray-200 mb-12">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8941f] flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-semibold text-[#1a1a2e]">{formatDate(item.publishedAt)}</div>
+                  <div className="text-sm text-gray-500">{item.type ? typeLabels[item.type] : 'Newsroom'}</div>
+                </div>
               </div>
-              <div>
-                <div className="font-semibold text-[#1a1a2e]">{formatDate(item.publishedAt)}</div>
-                <div className="text-sm text-gray-500">{item.tags[0]?.name || 'Newsroom'}</div>
-              </div>
+              {item.location && (
+                <div className="flex items-center gap-2 text-gray-600">
+                  <svg className="w-4 h-4 text-[#d4af37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span className="text-sm">{item.location}</span>
+                </div>
+              )}
             </div>
 
             {/* Cover Image */}
-            {item.coverImage && (
+            {item.image && (
               <div className="mb-12 rounded-xl overflow-hidden">
-                <img
-                  src={item.coverImage.url}
+                <Image
+                  src={urlFor(item.image).width(900).height(500).url()}
                   alt={item.title}
+                  width={900}
+                  height={500}
                   className="w-full h-auto"
+                  priority
                 />
               </div>
             )}
 
+            {/* External Link */}
+            {item.externalLink && (
+              <div className="mb-8">
+                <a
+                  href={item.externalLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+                >
+                  Read Full Article
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            )}
+
             {/* Content */}
-            <div className="prose prose-lg max-w-none">
-              <ReactMarkdown
-                components={{
-                  h1: ({ children }) => (
-                    <h1 className="font-serif text-3xl font-bold text-[#1a1a2e] mt-12 mb-6">{children}</h1>
-                  ),
-                  h2: ({ children }) => (
-                    <h2 className="font-serif text-2xl font-bold text-[#1a1a2e] mt-10 mb-4">{children}</h2>
-                  ),
-                  h3: ({ children }) => (
-                    <h3 className="font-serif text-xl font-bold text-[#1a1a2e] mt-8 mb-3">{children}</h3>
-                  ),
-                  p: ({ children }) => (
-                    <p className="text-gray-700 leading-relaxed mb-6">{children}</p>
-                  ),
-                  a: ({ href, children }) => (
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#d4af37] hover:text-[#b8941f] transition-colors underline inline-flex items-center gap-1"
-                    >
-                      {children}
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </svg>
-                    </a>
-                  ),
-                  ul: ({ children }) => (
-                    <ul className="list-disc list-inside space-y-2 mb-6 text-gray-700">{children}</ul>
-                  ),
-                  ol: ({ children }) => (
-                    <ol className="list-decimal list-inside space-y-2 mb-6 text-gray-700">{children}</ol>
-                  ),
-                  blockquote: ({ children }) => (
-                    <blockquote className="border-l-4 border-[#d4af37] pl-6 py-4 my-8 italic text-gray-700 bg-gray-50 rounded-r-lg">
-                      {children}
-                    </blockquote>
-                  ),
-                }}
-              >
-                {item.content.markdown}
-              </ReactMarkdown>
-            </div>
+            {item.body && (
+              <div className="prose prose-lg max-w-none">
+                <PortableText value={item.body} components={portableTextComponents} />
+              </div>
+            )}
 
             {/* Share */}
             <div className="mt-12 pt-8 border-t border-gray-200">
               <h3 className="font-bold text-[#1a1a2e] mb-4">Share this news</h3>
               <div className="flex gap-3">
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(item.title)}&url=${encodeURIComponent(`https://rivalislaw.com/intelligence-hub/newsroom/${item.slug}`)}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(item.title)}&url=${encodeURIComponent(`https://rivalislaw.com/intelligence-hub/newsroom/${item.slug.current}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#d4af37] hover:text-white transition-all"
@@ -219,7 +282,7 @@ export default async function NewsroomDetailPage({ params }: { params: { slug: s
                   </svg>
                 </a>
                 <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://rivalislaw.com/intelligence-hub/newsroom/${item.slug}`)}`}
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://rivalislaw.com/intelligence-hub/newsroom/${item.slug.current}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#d4af37] hover:text-white transition-all"

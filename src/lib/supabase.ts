@@ -423,8 +423,8 @@ export const updateApplicationNotes = async (
 // Admin: Generate and save application token for qualified inquiry
 export const generateApplicationToken = async (inquiryId: string) => {
   // Generate UUID token using database function
-  // @ts-expect-error - RPC function may not be in generated types
-  const { data, error } = await supabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data, error } = await (supabase as any)
     .rpc('generate_partner_application_token', { inquiry_id: inquiryId });
   
   if (error) {

@@ -1,6 +1,7 @@
 {
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/intelligence-hub/perspectives/page": "app/intelligence-hub/perspectives/page.js",
+  "/intelligence-hub/newsroom/page": "app/intelligence-hub/newsroom/page.js",
+  "/intelligence-hub/newsroom/[slug]/page": "app/intelligence-hub/newsroom/[slug]/page.js",
   "/page": "app/page.js",
-  "/apply/partner-application/page": "app/apply/partner-application/page.js",
-  "/legal-information/page": "app/legal-information/page.js"
+  "/intelligence-hub/page": "app/intelligence-hub/page.js"
 }

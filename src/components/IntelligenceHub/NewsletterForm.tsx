@@ -72,7 +72,7 @@ export function NewsletterForm() {
       
       {status === 'idle' && (
         <p className="text-sm text-gray-400 mt-4 text-center">
-          No spam. Unsubscribe anytime. Powered by Hashnode.
+          No spam. Unsubscribe anytime.
         </p>
       )}
     </div>

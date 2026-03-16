@@ -1,7 +1,15 @@
 {
-  "src/components/Common/FormAccessGuard.tsx -> ../../lib/supabase": {
-    "id": "src/components/Common/FormAccessGuard.tsx -> ../../lib/supabase",
-    "files": []
+  "node_modules/@sanity/client/dist/index.browser.js -> ./_chunks-es/stegaEncodeSourceMap.js": {
+    "id": "node_modules/@sanity/client/dist/index.browser.js -> ./_chunks-es/stegaEncodeSourceMap.js",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_sanity_client_dist__chunks-es_stegaEncodeSourceMap_js.js"
+    ]
+  },
+  "node_modules/@sanity/client/dist/index.browser.js -> @sanity/eventsource": {
+    "id": "node_modules/@sanity/client/dist/index.browser.js -> @sanity/eventsource",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_sanity_eventsource_browser_js.js"
+    ]
   },
   "src/utils/consultationFlow.ts -> ../lib/supabase": {
     "id": "src/utils/consultationFlow.ts -> ../lib/supabase",

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { getAllPostSlugs, getAllNewsroomSlugs } from '@/lib/sanity/queries';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://rivalislaw.com';
@@ -290,28 +291,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Dynamic routes from Intelligence Hub
-  // In production, you would fetch these from Hashnode API
-  // For now, we'll include the structure for dynamic routes
-  // Uncomment and implement when ready to fetch from Hashnode
-  /*
+  // Dynamic routes from Sanity
   try {
-    const { getPosts } = await import('@/lib/hashnode');
-    const posts = await getPosts();
-    
-    const dynamicRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
-      url: `${baseUrl}/intelligence-hub/${post.type === 'newsroom' ? 'newsroom' : 'perspectives'}/${post.slug}`,
-      lastModified: new Date(post.publishedAt),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    }));
+    const [postSlugs, newsroomSlugs] = await Promise.all([
+      getAllPostSlugs(),
+      getAllNewsroomSlugs(),
+    ]);
+
+    const dynamicRoutes: MetadataRoute.Sitemap = [
+      ...postSlugs.map((slug) => ({
+        url: `${baseUrl}/intelligence-hub/perspectives/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      })),
+      ...newsroomSlugs.map((slug) => ({
+        url: `${baseUrl}/intelligence-hub/newsroom/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      })),
+    ];
 
     return [...staticRoutes, ...dynamicRoutes];
   } catch (error) {
     console.error('Error fetching dynamic routes for sitemap:', error);
     return staticRoutes;
   }
-  */
-
-  return staticRoutes;
 }

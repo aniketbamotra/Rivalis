@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { searchArticles } from '@/lib/hashnode';
-import type { HashnodeArticle } from '@/types/hashnode';
+import Image from 'next/image';
+import { searchPosts } from '@/lib/sanity/queries';
+import { urlFor } from '@/lib/sanity/image';
+import type { SanityPost } from '@/types/sanity';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -12,7 +14,7 @@ interface SearchBarProps {
 
 export function SearchBar({ placeholder = 'Search articles...', className = '' }: SearchBarProps) {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<HashnodeArticle[]>([]);
+  const [results, setResults] = useState<SanityPost[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -38,7 +40,7 @@ export function SearchBar({ placeholder = 'Search articles...', className = '' }
     const delaySearch = setTimeout(async () => {
       setIsLoading(true);
       try {
-        const searchResults = await searchArticles(query);
+        const searchResults = await searchPosts(query);
         setResults(searchResults);
         setShowResults(true);
       } catch (error) {
@@ -93,42 +95,44 @@ export function SearchBar({ placeholder = 'Search articles...', className = '' }
       {showResults && results.length > 0 && (
         <div className="absolute z-50 w-full mt-2 bg-white rounded-lg shadow-xl border border-gray-200 max-h-96 overflow-y-auto">
           <div className="p-2">
-            {results.slice(0, 5).map((article) => (
-              <Link
-                key={article.id}
-                href={`/intelligence-hub/perspectives/${article.slug}`}
-                onClick={handleResultClick}
-                className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group"
-              >
-                <div className="flex items-start gap-3">
-                  {article.coverImage && (
-                    <img
-                      src={article.coverImage.url}
-                      alt={article.title}
-                      className="w-16 h-16 object-cover rounded"
-                    />
-                  )}
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-gray-900 group-hover:text-[#d4af37] line-clamp-1 transition-colors">
-                      {article.title}
-                    </h4>
-                    <p className="text-sm text-gray-600 line-clamp-2 mt-1">
-                      {article.brief}
-                    </p>
-                    <div className="flex items-center gap-3 mt-2">
-                      {article.tags[0] && (
-                        <span className="text-xs font-medium text-[#d4af37]">
-                          {article.tags[0].name}
-                        </span>
-                      )}
-                      <span className="text-xs text-gray-500">
-                        {article.readTimeInMinutes} min read
-                      </span>
+            {results.slice(0, 5).map((article) => {
+              const imageUrl = article.image ? urlFor(article.image).width(64).height(64).url() : null;
+              return (
+                <Link
+                  key={article._id}
+                  href={`/intelligence-hub/perspectives/${article.slug.current}`}
+                  onClick={handleResultClick}
+                  className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                >
+                  <div className="flex items-start gap-3">
+                    {imageUrl && (
+                      <Image
+                        src={imageUrl}
+                        alt={article.image?.alt || article.title}
+                        width={64}
+                        height={64}
+                        className="object-cover rounded flex-shrink-0"
+                      />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-gray-900 group-hover:text-[#d4af37] line-clamp-1 transition-colors">
+                        {article.title}
+                      </h4>
+                      <p className="text-sm text-gray-600 line-clamp-2 mt-1">
+                        {article.excerpt}
+                      </p>
+                      <div className="flex items-center gap-3 mt-2">
+                        {article.categories?.[0] && (
+                          <span className="text-xs font-medium text-[#d4af37]">
+                            {article.categories[0].title}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
           
           {results.length > 5 && (
@@ -160,7 +164,7 @@ export function SearchBar({ placeholder = 'Search articles...', className = '' }
               d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <p className="text-gray-600">No articles found for "{query}"</p>
+          <p className="text-gray-600">No articles found for &quot;{query}&quot;</p>
         </div>
       )}
     </div>

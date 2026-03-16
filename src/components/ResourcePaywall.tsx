@@ -30,7 +30,8 @@ export function ResourcePaywall({ resourceId, resourceTitle, onPaymentSuccess }:
       // Redirect to Stripe checkout
       if (window.Stripe) {
         const stripe = window.Stripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
-        stripe.redirectToCheckout({ sessionId });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (stripe as any).redirectToCheckout({ sessionId });
       }
     } catch (error) {
       console.error('Checkout error:', error);
