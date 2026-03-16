@@ -11,10 +11,15 @@ import '@/styles/service-page.css';
 import '@/styles/fraud-investigation.css';
 
 export const metadata: Metadata = {
-  title: 'Rivalis Law - Big 4 Trained Attorney | AI Governance | Global Immigration',
-  description: 'Expert legal services in AI governance, immigration law, M&A transactions, and more. NY & MI Bar certified attorney with Big 4 training.',
-  keywords: 'immigration attorney, AI governance, M&A attorney, employment law, intellectual property, data privacy',
+  title: 'AI Governance & Startup Law Firm | Rivalis Law',
+  description: 'AI governance lawyer for startups advising on cross-border M&A, business immigration, contract review, securities, GDPR, and data privacy compliance.',
+  keywords: 'AI governance lawyer, Cross-border M&A lawyer, Business immigration lawyer for startups, Contract review lawyer, GDPR compliance attorney, Data privacy compliance lawyer, Startup securities attorney',
   metadataBase: new URL('https://rivalislaw.com'),
+
+  verification: {
+    google: '2uKvlXEP-nqBpJYsvaaxZIcdT-3htRMfkGvXc5lakwQ',
+  },
+  
   icons: {
     icon: [
       { url: '/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
@@ -30,8 +35,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Rivalis Law - Big 4 Trained Attorney',
-    description: 'Expert legal services in AI governance, immigration law, and M&A transactions.',
+    title: 'AI Governance & Startup Law Firm | Rivalis Law',
+    description: 'AI governance lawyer for startups advising on cross-border M&A, business immigration, contract review, securities, GDPR, and data privacy compliance.',
     url: 'https://rivalislaw.com',
     siteName: 'Rivalis Law',
     type: 'website',
@@ -47,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rivalis Law - Big 4 Trained Attorney',
-    description: 'Expert legal services in AI governance, immigration law, and M&A transactions.',
+    title: 'AI Governance & Startup Law Firm | Rivalis Law',
+    description: 'AI governance lawyer for startups advising on cross-border M&A, business immigration, contract review, securities, GDPR, and data privacy compliance.',
     images: ['/og-images/og.png'],
   },
   robots: {
