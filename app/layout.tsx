@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://rivalislaw.com'),
 
   verification: {
-    google: '2uKvlXEP-nqBpJYsvaaxZIcdT-3htRMfkGvXc5lakwQ',
+    google: 'UqAD0zy7F4F3vMFI1l2G4JLCmaA1BXxuUz1IEhQqcEE',
   },
   
   icons: {
@@ -77,6 +77,23 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {renderStructuredData(organizationSchema)}
+
+        {/* Load GA script */}
+  <Script
+    src="https://www.googletagmanager.com/gtag/js?id=G-Z3THD65JC9"
+    strategy="afterInteractive"
+  />
+
+  {/* Initialize GA */}
+  <Script id="google-analytics" strategy="afterInteractive">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-Z3THD65JC9');
+    `}
+  </Script>
       </head>
       <body suppressHydrationWarning>
         <SiteSettingsProvider>
