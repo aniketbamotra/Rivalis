@@ -2,12 +2,12 @@ import { FraudInvestigation } from '@/page-components/Services/FraudInvestigatio
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Corporate Fraud Investigation Attorney | Forensic Analysis | Rivalis Law',
-  description: 'Corporate fraud attorney with Big 4 forensic training. Expert in fraud investigations, internal audits, compliance violations, whistleblower cases, and forensic analysis.',
-  keywords: 'corporate fraud attorney, fraud investigation lawyer, forensic attorney, internal investigation, compliance violations, whistleblower attorney, fraud lawyer, forensic analysis',
+  title: 'Corporate Fraud Investigation Attorney | Rivalis Law Firm',
+  description: 'Corporate fraud investigation attorney handling misconduct, whistleblower claims & financial irregularities. Protect your business with confidential legal expertise.',
+  keywords: 'Corporate fraud investigation attorney, corporate fraud attorney, fraud investigation lawyer, forensic attorney, internal investigation, compliance violations, whistleblower attorney, fraud lawyer, forensic analysis',
   openGraph: {
     title: 'Corporate Fraud Investigation Attorney | Rivalis Law',
-    description: 'Big 4 trained fraud attorney specializing in corporate investigations and forensic analysis.',
+    description: 'Corporate fraud investigation attorney handling misconduct, whistleblower claims & financial irregularities.',
     url: 'https://rivalislaw.com/services/fraud-investigation',
     siteName: 'Rivalis Law',
     type: 'website',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Corporate Fraud Investigation Attorney',
-    description: 'Big 4 trained fraud attorney specializing in corporate investigations.',
+    description: 'Corporate fraud investigation attorney handling misconduct, whistleblower claims & financial irregularities.',
     images: ['/og-images/corporate-fraud.jpg'],
   },
   alternates: {

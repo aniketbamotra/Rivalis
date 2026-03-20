@@ -2,12 +2,12 @@ import { MAndA } from '@/page-components/Services/MAndA';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'M&A Attorney | Mergers & Acquisitions, Due Diligence | Rivalis Law',
-  description: 'Experienced M&A attorney for tech companies and startups. Expert in mergers, acquisitions, due diligence, deal structuring, and post-merger integration. Big 4 trained transaction lawyer.',
-  keywords: 'M&A attorney, mergers and acquisitions lawyer, due diligence attorney, corporate transactions, deal structuring, tech M&A, startup acquisitions, transaction lawyer',
+  title: 'Cross-Border M&A Lawyer in the USA | Trusted M&A Attorney',
+  description: 'Cross border M&A lawyer USA delivering expert M&A attorney services for global deals, due diligence, and high-value transactions with Big 4 experience.',
+  keywords: 'CROSS BORDER M&A lawyer, M&A lawyer USA, M&A attorney, mergers and acquisitions lawyer, due diligence attorney, corporate transactions, deal structuring, tech M&A, startup acquisitions, transaction lawyer',
   openGraph: {
-    title: 'M&A Attorney | Mergers & Acquisitions | Rivalis Law',
-    description: 'Experienced M&A attorney for tech companies. Expert in mergers, acquisitions, due diligence, and deal structuring.',
+    title: 'Cross-Border M&A Lawyer in the USA | Trusted M&A Attorney',
+    description: 'Cross border M&A lawyer USA delivering expert M&A attorney services for global deals, due diligence, and high-value transactions with Big 4 experience.',
     url: 'https://rivalislaw.com/services/ma',
     siteName: 'Rivalis Law',
     type: 'website',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'M&A Attorney | Mergers & Acquisitions',
-    description: 'Expert M&A attorney for tech companies specializing in due diligence and deal structuring.',
+    description: 'Cross border M&A lawyer USA delivering expert M&A attorney services for global deals, due diligence, and high-value transactions with Big 4 experience.',
     images: ['/og-images/ma.jpg'],
   },
   alternates: {

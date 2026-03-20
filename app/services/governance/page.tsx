@@ -2,12 +2,12 @@ import { GovernanceCompliance } from '@/page-components/Services/GovernanceCompl
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AI Governance & Compliance Attorney | EU AI Act, Risk Assessment | Rivalis Law',
-  description: 'Oxford AI certified attorney specializing in AI governance, EU AI Act compliance, algorithmic risk assessment, and AI ethics frameworks. Big 4 trained with technical expertise.',
-  keywords: 'AI governance attorney, EU AI Act lawyer, AI compliance, algorithmic risk assessment, AI ethics, AI regulation, machine learning law, artificial intelligence attorney, AI policy',
+  title: 'AI Compliance Attorney for Startups | Rivalis Law Experts',
+  description: 'Work with an AI compliance attorney for startups. Get expert guidance on AI governance, EU AI Act, and risk management from a Big 4-trained lawyer.',
+  keywords: 'AI compliance attorney for startups, EU AI Act lawyer, AI compliance, algorithmic risk assessment, AI ethics, AI regulation, machine learning law, artificial intelligence attorney, AI policy',
   openGraph: {
-    title: 'AI Governance & Compliance Attorney | Rivalis Law',
-    description: 'Oxford AI certified attorney specializing in AI governance, EU AI Act compliance, and algorithmic risk assessment.',
+    title: 'AI Compliance Attorney for Startups',
+    description: 'Work with an AI compliance attorney for startups.',
     url: 'https://rivalislaw.com/services/governance',
     siteName: 'Rivalis Law',
     type: 'website',
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Governance & Compliance Attorney',
-    description: 'Oxford AI certified attorney specializing in EU AI Act compliance and algorithmic risk assessment.',
+    title: 'AI Compliance Attorney for Startups',
+    description: 'Work with an AI compliance attorney for startups.',
     images: ['/og-images/ai-governance.jpg'],
   },
   alternates: {

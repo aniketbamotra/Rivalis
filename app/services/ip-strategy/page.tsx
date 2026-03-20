@@ -2,12 +2,12 @@ import { IPStrategy } from '@/page-components/Services/IPStrategy';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'IP Strategy & Protection Attorney | Patents, Trademarks | Rivalis Law',
-  description: 'Intellectual property attorney for tech startups. Expert in IP strategy, patent protection, trademark registration, copyright, licensing agreements, and IP portfolio management.',
-  keywords: 'IP attorney, intellectual property lawyer, patent attorney, trademark lawyer, copyright attorney, IP licensing, IP strategy, patent protection, trademark registration',
+  title: 'IP Strategy and Protection Attorney for Global Businesses',
+  description: 'Work with an IP strategy and protection attorney to safeguard trademarks, trade secrets, and portfolios. Expert legal guidance for growing global businesses.',
+  keywords: 'IP Strategy and Protection Attorney, IP attorney, intellectual property lawyer, patent attorney, trademark lawyer, copyright attorney, IP licensing, IP strategy, patent protection, trademark registration',
   openGraph: {
-    title: 'IP Strategy & Protection Attorney | Rivalis Law',
-    description: 'Intellectual property attorney specializing in patents, trademarks, and IP strategy for tech startups.',
+    title: 'IP Strategy and Protection Attorney for Global Businesses',
+    description: 'Work with an IP strategy and protection attorney to safeguard trademarks, trade secrets, and portfolios.',
     url: 'https://rivalislaw.com/services/ip-strategy',
     siteName: 'Rivalis Law',
     type: 'website',
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'IP Strategy & Protection Attorney',
-    description: 'Expert in patents, trademarks, and IP strategy for tech startups.',
+    title: 'IP Strategy and Protection Attorney for Global Businesses',
+    description: 'Work with an IP strategy and protection attorney to safeguard trademarks, trade secrets, and portfolios.',
     images: ['/og-images/ip-strategy.jpg'],
   },
   alternates: {

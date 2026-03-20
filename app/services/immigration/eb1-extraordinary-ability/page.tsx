@@ -2,11 +2,11 @@ import EB1ExtraordinaryAbility from '@/page-components/Services/Immigration/EB1E
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'EB-1 Extraordinary Ability Attorney | EB-1A Green Card Lawyer | Rivalis Law',
-  description: 'EB-1 immigration attorney specializing in extraordinary ability green cards for scientists, researchers, entrepreneurs, and artists. Expert in EB-1A, EB-1B, and EB-1C petitions.',
-  keywords: 'EB-1 attorney, EB-1A lawyer, extraordinary ability green card, EB-1B attorney, EB-1C lawyer, outstanding researcher, immigrant visa attorney, green card lawyer',
+  title: 'EB-1 Immigration Attorney | Elite US Visa & Green Card Lawyer',
+  description: 'Work with a top EB-1 immigration attorney for expert visa strategy, petition support, and fast approvals. Trusted legal help for US green card success.',
+  keywords: 'EB-1 immigration attorney , EB-1 attorney, EB-1A lawyer, extraordinary ability green card, EB-1B attorney, EB-1C lawyer, outstanding researcher, immigrant visa attorney, green card lawyer',
   openGraph: {
-    title: 'EB-1 Extraordinary Ability Attorney | Rivalis Law',
+    title: 'EB-1 Immigration Attorney',
     description: 'EB-1 immigration attorney for extraordinary ability green cards. Expert in EB-1A, EB-1B, and EB-1C petitions.',
     url: 'https://rivalislaw.com/services/immigration/eb1-extraordinary-ability',
     siteName: 'Rivalis Law',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'EB-1 Extraordinary Ability Attorney',
+    title: 'EB-1 Immigration Attorney',
     description: 'Expert in EB-1A extraordinary ability green cards for scientists, researchers, and entrepreneurs.',
     images: ['/og-images/eb1.jpg'],
   },
