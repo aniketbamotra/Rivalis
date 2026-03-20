@@ -2,11 +2,11 @@ import { DataPrivacy } from '@/page-components/Services/DataPrivacy';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Data Privacy Attorney | GDPR, CCPA Compliance Lawyer | Rivalis Law',
-  description: 'Data privacy attorney specializing in GDPR, CCPA, and global data protection compliance. Expert in privacy policies, data breach response, and cross-border data transfers.',
-  keywords: 'data privacy attorney, GDPR lawyer, CCPA compliance, privacy attorney, data protection lawyer, privacy policy, data breach attorney, HIPAA compliance, international data transfers',
+  title: 'Data Privacy Compliance Lawyer USA | Rivalis Law Experts',
+  description: 'Hire a data privacy compliance lawyer in USA. Rivalis Law helps businesses meet GDPR, CCPA & AI regulations with expert legal guidance and risk mitigation.',
+  keywords: 'Data privacy compliance lawyer USA, data privacy attorney, GDPR lawyer, CCPA compliance, privacy attorney, data protection lawyer, privacy policy, data breach attorney, HIPAA compliance, international data transfers',
   openGraph: {
-    title: 'Data Privacy Attorney | GDPR, CCPA Compliance | Rivalis Law',
+    title: 'Data Privacy Compliance Lawyer USA | Rivalis Law Experts',
     description: 'Data privacy attorney specializing in GDPR, CCPA, and global data protection compliance.',
     url: 'https://rivalislaw.com/services/data-privacy',
     siteName: 'Rivalis Law',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Data Privacy Attorney | GDPR, CCPA Compliance',
+    title: 'Data Privacy Compliance Lawyer USA | Rivalis Law Experts',
     description: 'Expert in GDPR, CCPA, and global data protection compliance.',
     images: ['/og-images/data-privacy.jpg'],
   },

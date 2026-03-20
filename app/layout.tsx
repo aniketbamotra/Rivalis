@@ -11,9 +11,9 @@ import '@/styles/service-page.css';
 import '@/styles/fraud-investigation.css';
 
 export const metadata: Metadata = {
-  title: 'AI Governance & Startup Law Firm | Rivalis Law',
-  description: 'AI governance lawyer for startups advising on cross-border M&A, business immigration, contract review, securities, GDPR, and data privacy compliance.',
-  keywords: 'AI governance lawyer, Cross-border M&A lawyer, Business immigration lawyer for startups, Contract review lawyer, GDPR compliance attorney, Data privacy compliance lawyer, Startup securities attorney',
+  title: 'AI Governance Lawyer USA | Expert AI Compliance Attorney',
+  description: 'Hire an AI governance lawyer in USA for compliance, risk & policy. Big 4-trained attorney helping startups and enterprises navigate AI regulations confidently.',
+  keywords: 'AI governance lawyer USA, Cross-border M&A lawyer, Business immigration lawyer for startups, Contract review lawyer, GDPR compliance attorney, Data privacy compliance lawyer, Startup securities attorney',
   metadataBase: new URL('https://rivalislaw.com'),
 
   verification: {
@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'AI Governance & Startup Law Firm | Rivalis Law',
-    description: 'AI governance lawyer for startups advising on cross-border M&A, business immigration, contract review, securities, GDPR, and data privacy compliance.',
+    title: 'AI Governance Lawyer USA | Expert AI Compliance Attorney',
+    description: 'Hire an AI governance lawyer in USA for compliance, risk & policy. Big 4-trained attorney helping startups and enterprises navigate AI regulations confidently.',
     url: 'https://rivalislaw.com',
     siteName: 'Rivalis Law',
     type: 'website',
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Governance & Startup Law Firm | Rivalis Law',
-    description: 'AI governance lawyer for startups advising on cross-border M&A, business immigration, contract review, securities, GDPR, and data privacy compliance.',
+    title: 'AI Governance Lawyer USA | Expert AI Compliance Attorney',
+    description: 'Hire an AI governance lawyer in USA for compliance, risk & policy. Big 4-trained attorney helping startups and enterprises navigate AI regulations confidently.',
     images: ['/og-images/og.png'],
   },
   robots: {

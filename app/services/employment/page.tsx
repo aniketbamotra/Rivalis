@@ -2,12 +2,12 @@ import { EmploymentLaw } from '@/page-components/Services/EmploymentLaw';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Employment Law Attorney | Employee Handbooks, Contracts | Rivalis Law',
-  description: 'Employment law attorney for startups and tech companies. Expert in employee handbooks, employment contracts, compliance, terminations, and workplace policies.',
+  title: 'Employment Law Attorney for Startups | Rivalis Law Experts',
+  description: 'Expert employment law attorney for startups. Get contracts, HR compliance, hiring and termination support from Big 4-trained legal counsel at Rivalis Law.',
   keywords: 'employment law attorney, employment lawyer, employee handbook, employment contracts, workplace attorney, labor law, HR compliance, termination attorney, employment policies',
   openGraph: {
     title: 'Employment Law Attorney | Rivalis Law',
-    description: 'Employment law attorney specializing in employee handbooks, contracts, and workplace compliance.',
+    description: 'Expert employment law attorney for startups.',
     url: 'https://rivalislaw.com/services/employment',
     siteName: 'Rivalis Law',
     type: 'website',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Employment Law Attorney',
-    description: 'Expert in employee handbooks, employment contracts, and workplace compliance.',
+    description: 'Expert employment law attorney for startups.',
     images: ['/og-images/employment-law.jpg'],
   },
   alternates: {
