@@ -18,7 +18,7 @@ export const EB2NIW: React.FC = () => {
           <div className="breadcrumb">
             <Link href="/">Home</Link>
             <span>/</span>
-            <Link href="/services/immigration">Immigration</Link>
+            <Link href="/services/immigration-law-services">Immigration</Link>
             <span>/</span>
             <span>EB-2 NIW</span>
           </div>

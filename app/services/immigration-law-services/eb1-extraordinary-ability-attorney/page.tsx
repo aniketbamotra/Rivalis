@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'EB-1 Immigration Attorney',
     description: 'EB-1 immigration attorney for extraordinary ability green cards. Expert in EB-1A, EB-1B, and EB-1C petitions.',
-    url: 'https://rivalislaw.com/services/immigration/eb1-extraordinary-ability',
+    url: 'https://rivalislaw.com/services/immigration-law-services/eb1-extraordinary-ability-attorney',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/eb1.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/immigration/eb1-extraordinary-ability',
+    canonical: 'https://rivalislaw.com/services/immigration-law-services/eb1-extraordinary-ability-attorney',
   },
   robots: {
     index: true,

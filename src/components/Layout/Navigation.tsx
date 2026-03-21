@@ -71,26 +71,26 @@ export const Navigation: React.FC = () => {
   };
 
   const coreServices = [
-    { label: 'AI Governance & Compliance', href: '/services/governance' },
+    { label: 'AI Governance & Compliance', href: '/services/ai-compliance-attorney-startups' },
     { 
       label: 'Global Expansion & Immigration', 
-      href: '/services/immigration',
+      href: '/services/immigration-law-services',
       submenu: [
-        { label: 'Work Visas', href: '/services/immigration/work-visas' },
-        { label: 'EB-1 & EB-2 Green Cards', href: '/services/immigration/eb1-extraordinary-ability' },
-        { label: 'EB-5 Investor Visa', href: '/services/immigration/eb5' },
+        { label: 'Work Visas', href: '/services/immigration-law-services/us-work-visa-attorney-h1b-startups' },
+        { label: 'EB-1 & EB-2 Green Cards', href: '/services/immigration-law-services/eb1-extraordinary-ability-attorney' },
+        { label: 'EB-5 Investor Visa', href: '/services/immigration-law-services/eb-5-visa-attorney-usa' },
       ]
     },
-    { label: 'M&A & Corporate Transactions', href: '/services/ma' },
+    { label: 'M&A & Corporate Transactions', href: '/services/cross-border-ma-lawyer-usa' },
   ];
 
   const selectServices = [
     { label: 'Contract Review & Drafting', href: '/services/contracts' },
-    { label: 'Data Privacy Compliance', href: '/services/data-privacy' },
-    { label: 'IP Strategy & Protection', href: '/services/ip-strategy' },
-    { label: 'Corporate Fraud Investigation', href: '/services/fraud-investigation' },
-    { label: 'Employment Law Counsel', href: '/services/employment' },
-    { label: 'Fundraising & Securities', href: '/services/fundraising' },
+    { label: 'Data Privacy Compliance', href: '/services/data-privacy-compliance-lawyer-usa' },
+    { label: 'IP Strategy & Protection', href: '/services/ip-strategy-protection-attorney' },
+    { label: 'Corporate Fraud Investigation', href: '/services/corporate-fraud-investigation-attorney' },
+    { label: 'Employment Law Counsel', href: '/services/employment-law-attorney-for-startups' },
+    { label: 'Fundraising & Securities', href: '/services/fundraising-securities-attorney' },
   ];
 
   return (

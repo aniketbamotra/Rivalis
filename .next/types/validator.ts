@@ -389,6 +389,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/services/ai-compliance-attorney-startups/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/services/ai-compliance-attorney-startups">> = Specific
+  const handler = {} as typeof import("../../app/services/ai-compliance-attorney-startups/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/services/contracts/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/services/contracts">> = Specific
@@ -398,19 +407,37 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
-// Validate ../../app/services/data-privacy/page.tsx
+// Validate ../../app/services/corporate-fraud-investigation-attorney/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/services/data-privacy">> = Specific
-  const handler = {} as typeof import("../../app/services/data-privacy/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/services/corporate-fraud-investigation-attorney">> = Specific
+  const handler = {} as typeof import("../../app/services/corporate-fraud-investigation-attorney/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
 }
 
-// Validate ../../app/services/employment/page.tsx
+// Validate ../../app/services/cross-border-ma-lawyer-usa/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/services/employment">> = Specific
-  const handler = {} as typeof import("../../app/services/employment/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/services/cross-border-ma-lawyer-usa">> = Specific
+  const handler = {} as typeof import("../../app/services/cross-border-ma-lawyer-usa/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/services/data-privacy-compliance-lawyer-usa/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/services/data-privacy-compliance-lawyer-usa">> = Specific
+  const handler = {} as typeof import("../../app/services/data-privacy-compliance-lawyer-usa/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/services/employment-law-attorney-for-startups/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/services/employment-law-attorney-for-startups">> = Specific
+  const handler = {} as typeof import("../../app/services/employment-law-attorney-for-startups/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -425,82 +452,55 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
-// Validate ../../app/services/fraud-investigation/page.tsx
+// Validate ../../app/services/fundraising-securities-attorney/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/services/fraud-investigation">> = Specific
-  const handler = {} as typeof import("../../app/services/fraud-investigation/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/services/fundraising-securities-attorney">> = Specific
+  const handler = {} as typeof import("../../app/services/fundraising-securities-attorney/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
 }
 
-// Validate ../../app/services/fundraising/page.tsx
+// Validate ../../app/services/immigration-law-services/eb-5-visa-attorney-usa/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/services/fundraising">> = Specific
-  const handler = {} as typeof import("../../app/services/fundraising/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/services/immigration-law-services/eb-5-visa-attorney-usa">> = Specific
+  const handler = {} as typeof import("../../app/services/immigration-law-services/eb-5-visa-attorney-usa/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
 }
 
-// Validate ../../app/services/governance/page.tsx
+// Validate ../../app/services/immigration-law-services/eb1-extraordinary-ability-attorney/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/services/governance">> = Specific
-  const handler = {} as typeof import("../../app/services/governance/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/services/immigration-law-services/eb1-extraordinary-ability-attorney">> = Specific
+  const handler = {} as typeof import("../../app/services/immigration-law-services/eb1-extraordinary-ability-attorney/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
 }
 
-// Validate ../../app/services/immigration/eb1-extraordinary-ability/page.tsx
+// Validate ../../app/services/immigration-law-services/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/services/immigration/eb1-extraordinary-ability">> = Specific
-  const handler = {} as typeof import("../../app/services/immigration/eb1-extraordinary-ability/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/services/immigration-law-services">> = Specific
+  const handler = {} as typeof import("../../app/services/immigration-law-services/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
 }
 
-// Validate ../../app/services/immigration/eb5/page.tsx
+// Validate ../../app/services/immigration-law-services/us-work-visa-attorney-h1b-startups/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/services/immigration/eb5">> = Specific
-  const handler = {} as typeof import("../../app/services/immigration/eb5/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/services/immigration-law-services/us-work-visa-attorney-h1b-startups">> = Specific
+  const handler = {} as typeof import("../../app/services/immigration-law-services/us-work-visa-attorney-h1b-startups/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
 }
 
-// Validate ../../app/services/immigration/page.tsx
+// Validate ../../app/services/ip-strategy-protection-attorney/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/services/immigration">> = Specific
-  const handler = {} as typeof import("../../app/services/immigration/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
-// Validate ../../app/services/immigration/work-visas/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/services/immigration/work-visas">> = Specific
-  const handler = {} as typeof import("../../app/services/immigration/work-visas/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
-// Validate ../../app/services/ip-strategy/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/services/ip-strategy">> = Specific
-  const handler = {} as typeof import("../../app/services/ip-strategy/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
-// Validate ../../app/services/ma/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/services/ma">> = Specific
-  const handler = {} as typeof import("../../app/services/ma/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/services/ip-strategy-protection-attorney">> = Specific
+  const handler = {} as typeof import("../../app/services/ip-strategy-protection-attorney/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

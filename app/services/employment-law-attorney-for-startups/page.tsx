@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Employment Law Attorney | Rivalis Law',
     description: 'Expert employment law attorney for startups.',
-    url: 'https://rivalislaw.com/services/employment',
+    url: 'https://rivalislaw.com/services/employment-law-attorney-for-startups',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/employment-law.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/employment',
+    canonical: 'https://rivalislaw.com/services/employment-law-attorney-for-startups',
   },
   robots: {
     index: true,

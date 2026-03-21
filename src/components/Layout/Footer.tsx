@@ -50,13 +50,13 @@ export const Footer: React.FC<FooterProps> = ({ showLinks = true }) => {
                   <a href="/services/contracts">Contract Review</a>
                 </li>
                 <li style={{ marginBottom: '0.5rem' }}>
-                  <a href="/services/immigration">Immigration</a>
+                  <a href="/services/immigration-law-services">Immigration</a>
                 </li>
                 <li style={{ marginBottom: '0.5rem' }}>
-                  <a href="/services/data-privacy">Data Privacy</a>
+                  <a href="/services/data-privacy-compliance-lawyer-usa">Data Privacy</a>
                 </li>
                 <li style={{ marginBottom: '0.5rem' }}>
-                  <a href="/services/employment">Employment Law</a>
+                  <a href="/services/employment-law-attorney-for-startups">Employment Law</a>
                 </li>
               </ul>
             </div>

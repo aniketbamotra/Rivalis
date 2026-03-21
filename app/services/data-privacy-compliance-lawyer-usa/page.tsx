@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Data Privacy Compliance Lawyer USA | Rivalis Law Experts',
     description: 'Data privacy attorney specializing in GDPR, CCPA, and global data protection compliance.',
-    url: 'https://rivalislaw.com/services/data-privacy',
+    url: 'https://rivalislaw.com/services/data-privacy-compliance-lawyer-usa',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/data-privacy.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/data-privacy',
+    canonical: 'https://rivalislaw.com/services/data-privacy-compliance-lawyer-usa',
   },
   robots: {
     index: true,

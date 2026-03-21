@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Work Visa Attorney | H-1B, L-1, O-1 | Rivalis Law',
     description: 'Work visa attorney specializing in H-1B, L-1, O-1, and TN visas for foreign professionals.',
-    url: 'https://rivalislaw.com/services/immigration/work-visas',
+    url: 'https://rivalislaw.com/services/immigration-law-services/us-work-visa-attorney-h1b-startups',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/work-visas.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/immigration/work-visas',
+    canonical: 'https://rivalislaw.com/services/immigration-law-services/us-work-visa-attorney-h1b-startups',
   },
   robots: {
     index: true,

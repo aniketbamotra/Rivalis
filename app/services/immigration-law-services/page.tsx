@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Immigration Law Services for Global Visas & Business Growth',
     description: 'Expert immigration attorney with Big 4 experience. Specializing in work visas, EB-1 extraordinary ability, EB-2 NIW, and EB-5 investor visas.',
-    url: 'https://rivalislaw.com/services/immigration',
+    url: 'https://rivalislaw.com/services/immigration-law-services',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/immigration.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/immigration',
+    canonical: 'https://rivalislaw.com/services/immigration-law-services',
   },
   robots: {
     index: true,

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Cross-Border M&A Lawyer in the USA | Trusted M&A Attorney',
     description: 'Cross border M&A lawyer USA delivering expert M&A attorney services for global deals, due diligence, and high-value transactions with Big 4 experience.',
-    url: 'https://rivalislaw.com/services/ma',
+    url: 'https://rivalislaw.com/services/cross-border-ma-lawyer-usa',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/ma.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/ma',
+    canonical: 'https://rivalislaw.com/services/cross-border-ma-lawyer-usa',
   },
   robots: {
     index: true,

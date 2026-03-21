@@ -1,7 +1,6 @@
 {
-  "/intelligence-hub/perspectives/page": "app/intelligence-hub/perspectives/page.js",
-  "/intelligence-hub/newsroom/page": "app/intelligence-hub/newsroom/page.js",
-  "/intelligence-hub/newsroom/[slug]/page": "app/intelligence-hub/newsroom/[slug]/page.js",
   "/page": "app/page.js",
-  "/intelligence-hub/page": "app/intelligence-hub/page.js"
+  "/services/ai-compliance-attorney-startups/page": "app/services/ai-compliance-attorney-startups/page.js",
+  "/services/immigration-law-services/page": "app/services/immigration-law-services/page.js",
+  "/services/immigration-law-services/us-work-visa-attorney-h1b-startups/page": "app/services/immigration-law-services/us-work-visa-attorney-h1b-startups/page.js"
 }

@@ -15,7 +15,7 @@ export const Immigration: React.FC = () => {
   const serviceSchema = getServiceSchema({
     name: 'Immigration Law Services',
     description: 'Expert immigration attorney specializing in work visas, EB-1 extraordinary ability, EB-2 NIW, EB-5 investor visas, and global talent mobility.',
-    url: 'https://rivalislaw.com/services/immigration',
+    url: 'https://rivalislaw.com/services/immigration-law-services',
     priceRange: '$$-$$$',
   });
   
@@ -94,7 +94,7 @@ export const Immigration: React.FC = () => {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {/* Work Visas Card */}
-            <Link href="/services/immigration/work-visas" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link href="/services/immigration-law-services/us-work-visa-attorney-h1b-startups" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-card" style={{ background: 'linear-gradient(135deg, #fff5f5 0%, #ffffff 100%)', border: '2px solid #ffe5e5', transition: 'all 0.3s ease', cursor: 'pointer' }}>
                 <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>💼</div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#e74c3c', marginBottom: '0.5rem' }}>Work Visas</h3>
@@ -118,7 +118,7 @@ export const Immigration: React.FC = () => {
             </Link>
 
             {/* EB-1 & EB-2 Green Cards */}
-            <Link href="/services/immigration/eb1-extraordinary-ability" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link href="/services/immigration-law-services/eb1-extraordinary-ability-attorney" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-card" style={{ background: 'linear-gradient(135deg, #fffbf0 0%, #ffffff 100%)', border: '2px solid #ffeaa7', transition: 'all 0.3s ease', cursor: 'pointer' }}>
                 <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🏆</div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#d4af37', marginBottom: '0.5rem' }}>EB-1 & EB-2 Green Cards</h3>
@@ -143,7 +143,7 @@ export const Immigration: React.FC = () => {
             </Link>
 
             {/* EB-5 Card */}
-            <Link href="/services/immigration/eb5" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link href="/services/immigration-law-services/eb-5-visa-attorney-usa" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-card" style={{ background: 'linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%)', border: '2px solid #bee3f8', transition: 'all 0.3s ease', cursor: 'pointer' }}>
                 <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>💰</div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#2c5282', marginBottom: '0.5rem' }}>EB-5 Investor Visa</h3>

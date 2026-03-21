@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Compliance Attorney for Startups',
     description: 'Work with an AI compliance attorney for startups.',
-    url: 'https://rivalislaw.com/services/governance',
+    url: 'https://rivalislaw.com/services/ai-compliance-attorney-startups',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/ai-governance.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/governance',
+    canonical: 'https://rivalislaw.com/services/ai-compliance-attorney-startups',
   },
   robots: {
     index: true,

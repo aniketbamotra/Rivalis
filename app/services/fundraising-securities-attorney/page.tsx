@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Fundraising and Securities Attorney for Startups & Growth',
     description: 'Expert fundraising and securities attorney helping startups with SAFE, convertible notes, and Series A compliance.',
-    url: 'https://rivalislaw.com/services/fundraising',
+    url: 'https://rivalislaw.com/services/fundraising-securities-attorney',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/fundraising.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/fundraising',
+    canonical: 'https://rivalislaw.com/services/fundraising-securities-attorney',
   },
   robots: {
     index: true,

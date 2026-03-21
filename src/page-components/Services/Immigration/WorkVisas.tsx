@@ -202,7 +202,7 @@ export const WorkVisas: React.FC = () => {
           <div className="work-visa-breadcrumb">
             <Link href="/">Home</Link>
             <span>/</span>
-            <Link href="/services/immigration">Immigration</Link>
+            <Link href="/services/immigration-law-services">Immigration</Link>
             <span>/</span>
             <span>Work Visas</span>
           </div>
@@ -555,7 +555,7 @@ export const WorkVisas: React.FC = () => {
               </div>
 
               <Link 
-                href="/services/immigration"
+                href="/services/immigration-law-services"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',

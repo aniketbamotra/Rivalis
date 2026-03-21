@@ -16,19 +16,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Main service pages - high priority
     {
-      url: `${baseUrl}/services/governance`,
+      url: `${baseUrl}/services/ai-compliance-attorney-startups`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/immigration`,
+      url: `${baseUrl}/services/immigration-law-services`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/ma`,
+      url: `${baseUrl}/services/cross-border-ma-lawyer-usa`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -40,31 +40,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/data-privacy`,
+      url: `${baseUrl}/services/data-privacy-compliance-lawyer-usa`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/ip-strategy`,
+      url: `${baseUrl}/services/ip-strategy-protection-attorney`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/fraud-investigation`,
+      url: `${baseUrl}/services/corporate-fraud-investigation-attorney`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/employment`,
+      url: `${baseUrl}/services/employment-law-attorney-for-startups`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/fundraising`,
+      url: `${baseUrl}/services/fundraising-securities-attorney`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -72,19 +72,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Immigration sub-services
     {
-      url: `${baseUrl}/services/immigration/work-visas`,
+      url: `${baseUrl}/services/immigration-law-services/us-work-visa-attorney-h1b-startups`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/immigration/eb1-extraordinary-ability`,
+      url: `${baseUrl}/services/immigration-law-services/eb1-extraordinary-ability-attorney`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services/immigration/eb5`,
+      url: `${baseUrl}/services/immigration-law-services/eb-5-visa-attorney-usa`,
       lastModified: new Date('2026-03-15'),
       changeFrequency: 'monthly',
       priority: 0.8,

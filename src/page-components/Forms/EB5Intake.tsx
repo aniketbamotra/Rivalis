@@ -147,7 +147,7 @@ export const EB5Intake: React.FC = () => {
       <section className="form-hero" style={{ background: 'linear-gradient(165deg, #1a365d 0%, #2c5282 100%)' }}>
         <div className="form-hero-container">
           <div className="form-breadcrumb">
-            <Link href="/">Home</Link> / <Link href="/services/immigration/eb5-investor">EB-5 Investor</Link> / <span>Intake Form</span>
+            <Link href="/">Home</Link> / <Link href="/services/immigration-law-services/eb-5-visa-attorney-usa">EB-5 Investor</Link> / <span>Intake Form</span>
           </div>
 
           <div className="form-hero-badge" style={{ background: 'rgba(44, 82, 130, 0.3)', borderColor: '#2c5282', color: 'white' }}>

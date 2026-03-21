@@ -192,7 +192,7 @@ export const ImmigrationIntake: React.FC = () => {
       <section className="form-hero">
         <div className="form-hero-container">
           <div className="form-breadcrumb">
-            <Link href="/">Home</Link> / <Link href="/services/immigration">Immigration</Link> / <span>Intake Form</span>
+            <Link href="/">Home</Link> / <Link href="/services/immigration-law-services">Immigration</Link> / <span>Intake Form</span>
           </div>
 
           <div className="form-hero-badge" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderColor: '#667eea', color: 'white' }}>
@@ -1437,7 +1437,7 @@ export const ImmigrationIntake: React.FC = () => {
         <h2>Strategic Legal Solutions for Forward-Thinking Businesses</h2>
         <p>Explore our comprehensive immigration services and let us handle your case with expertise.</p>
         <div className="form-cta-buttons">
-          <Link href="/services/immigration" className="form-cta-btn primary">
+          <Link href="/services/immigration-law-services" className="form-cta-btn primary">
             <i className="fas fa-passport"></i>
             Immigration Services
           </Link>

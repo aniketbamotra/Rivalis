@@ -564,7 +564,7 @@ export const Home: React.FC = () => {
               </div>
 
               <div className="service-cta">
-                <a href="/services/governance" className="service-cta-btn primary">
+                <a href="/services/ai-compliance-attorney-startups" className="service-cta-btn primary">
                   <i className="fas fa-bolt"></i>
                   Learn More
                 </a>
@@ -615,7 +615,7 @@ export const Home: React.FC = () => {
               </div>
 
               <div className="service-cta">
-                <a href="/services/immigration" className="service-cta-btn primary">
+                <a href="/services/immigration-law-services" className="service-cta-btn primary">
                   <i className="fas fa-passport"></i>
                   Learn More
                 </a>
@@ -666,7 +666,7 @@ export const Home: React.FC = () => {
               </div>
 
               <div className="service-cta">
-                <a href="/services/ma" className="service-cta-btn primary">
+                <a href="/services/cross-border-ma-lawyer-usa" className="service-cta-btn primary">
                   <i className="fas fa-handshake"></i>
                   Learn More
                 </a>
@@ -704,7 +704,7 @@ export const Home: React.FC = () => {
               </div>
             </a>
 
-            <a href="/services/data-privacy" className="select-service-card">
+            <a href="/services/data-privacy-compliance-lawyer-usa" className="select-service-card">
               <div className="select-icon">
                 <i className="fas fa-shield-alt"></i>
               </div>
@@ -716,7 +716,7 @@ export const Home: React.FC = () => {
               </div>
             </a>
 
-            <a href="/services/ip-strategy" className="select-service-card">
+            <a href="/services/ip-strategy-protection-attorney" className="select-service-card">
               <div className="select-icon">
                 <i className="fas fa-copyright"></i>
               </div>
@@ -728,7 +728,7 @@ export const Home: React.FC = () => {
               </div>
             </a>
 
-            <a href="/services/fraud-investigation" className="select-service-card">
+            <a href="/services/corporate-fraud-investigation-attorney" className="select-service-card">
               <div className="select-icon">
                 <i className="fas fa-search"></i>
               </div>
@@ -740,7 +740,7 @@ export const Home: React.FC = () => {
               </div>
             </a>
 
-            <a href="/services/employment" className="select-service-card">
+            <a href="/services/employment-law-attorney-for-startups" className="select-service-card">
               <div className="select-icon">
                 <i className="fas fa-users"></i>
               </div>
@@ -752,7 +752,7 @@ export const Home: React.FC = () => {
               </div>
             </a>
 
-            <a href="/services/fundraising" className="select-service-card">
+            <a href="/services/fundraising-securities-attorney" className="select-service-card">
               <div className="select-icon">
                 <i className="fas fa-chart-line"></i>
               </div>

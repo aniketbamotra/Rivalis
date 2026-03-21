@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'IP Strategy and Protection Attorney for Global Businesses',
     description: 'Work with an IP strategy and protection attorney to safeguard trademarks, trade secrets, and portfolios.',
-    url: 'https://rivalislaw.com/services/ip-strategy',
+    url: 'https://rivalislaw.com/services/ip-strategy-protection-attorney',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/ip-strategy.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/ip-strategy',
+    canonical: 'https://rivalislaw.com/services/ip-strategy-protection-attorney',
   },
   robots: {
     index: true,

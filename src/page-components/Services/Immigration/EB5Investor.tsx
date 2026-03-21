@@ -173,7 +173,7 @@ export default function EB5Investor() {
           <div className="eb5-breadcrumb">
             <Link href="/">Home</Link>
             <span>/</span>
-            <Link href="/services/immigration">Immigration</Link>
+            <Link href="/services/immigration-law-services">Immigration</Link>
             <span>/</span>
             <span>EB-5 Investor</span>
           </div>

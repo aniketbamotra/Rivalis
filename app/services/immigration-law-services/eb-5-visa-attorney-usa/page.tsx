@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'EB-5 Investor Visa Attorney | Rivalis Law',
     description: 'EB-5 immigration attorney specializing in investor visas and green cards through investment.',
-    url: 'https://rivalislaw.com/services/immigration/eb5',
+    url: 'https://rivalislaw.com/services/immigration-law-services/eb-5-visa-attorney-usa',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/eb5.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/immigration/eb5',
+    canonical: 'https://rivalislaw.com/services/immigration-law-services/eb-5-visa-attorney-usa',
   },
   robots: {
     index: true,

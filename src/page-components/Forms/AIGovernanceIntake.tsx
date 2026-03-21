@@ -182,7 +182,7 @@ export const AIGovernanceIntake: React.FC = () => {
       <section className="form-hero">
         <div className="form-hero-container">
           <div className="form-breadcrumb">
-            <Link href="/">Home</Link> / <Link href="/services/governance">AI Governance</Link> / <span>Intake Form</span>
+            <Link href="/">Home</Link> / <Link href="/services/ai-compliance-attorney-startups">AI Governance</Link> / <span>Intake Form</span>
           </div>
 
           <div className="form-hero-badge">
@@ -1063,7 +1063,7 @@ export const AIGovernanceIntake: React.FC = () => {
         <h2>Learn More About AI Governance</h2>
         <p>Explore our AI governance services including EU AI Act compliance, risk assessments, and governance frameworks.</p>
         <div className="form-cta-buttons">
-          <Link href="/services/governance" className="form-cta-btn primary">
+          <Link href="/services/ai-compliance-attorney-startups" className="form-cta-btn primary">
             <i className="fas fa-robot"></i>
             AI Governance Services
           </Link>

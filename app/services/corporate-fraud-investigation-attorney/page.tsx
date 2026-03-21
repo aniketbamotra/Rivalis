@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Corporate Fraud Investigation Attorney | Rivalis Law',
     description: 'Corporate fraud investigation attorney handling misconduct, whistleblower claims & financial irregularities.',
-    url: 'https://rivalislaw.com/services/fraud-investigation',
+    url: 'https://rivalislaw.com/services/corporate-fraud-investigation-attorney',
     siteName: 'Rivalis Law',
     type: 'website',
     locale: 'en_US',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ['/og-images/corporate-fraud.jpg'],
   },
   alternates: {
-    canonical: 'https://rivalislaw.com/services/fraud-investigation',
+    canonical: 'https://rivalislaw.com/services/corporate-fraud-investigation-attorney',
   },
   robots: {
     index: true,
