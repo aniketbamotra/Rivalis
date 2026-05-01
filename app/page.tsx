@@ -1,7 +1,5 @@
-'use client';
-
-import { Home } from '@/page-components/Home';
+import { redirect } from 'next/navigation';
 
 export default function HomePage() {
-  return <Home />;
+  redirect('/intelligence-hub');
 }

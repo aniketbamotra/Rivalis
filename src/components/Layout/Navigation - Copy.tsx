@@ -11,24 +11,30 @@ export const Navigation: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { user, signOut, isAdmin } = useAuth();
-
+  
   const isHomePage = pathname === '/';
 
+  // Get the correct dashboard path based on user role
   const dashboardPath = isAdmin ? '/admin' : '/dashboard';
   const dashboardLabel = isAdmin ? 'Admin Dashboard' : 'Dashboard';
 
+  // Handle sign out
   const handleSignOut = async () => {
+    console.log('handleSignOut called');
     try {
       await signOut();
+      console.log('signOut completed, navigating to /');
       router.push('/');
       router.refresh();
     } catch (error) {
       console.error('Error during sign out:', error);
+      // Navigate anyway
       router.push('/');
       router.refresh();
     }
   };
 
+  // Handle scrolling to hash on page load or hash change
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
@@ -41,27 +47,33 @@ export const Navigation: React.FC = () => {
     }
   }, [pathname]);
 
+  // Handle navigation link clicks
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     const isHashLink = href.startsWith('/#');
+    
     if (isHashLink) {
       e.preventDefault();
-      const hash = href.substring(1);
+      const hash = href.substring(1); // Remove the leading /
+      
+      // If we're already on home page, just scroll
       if (pathname === '/') {
         const element = document.querySelector(hash);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       } else {
+        // Navigate to home page with hash
         router.push('/' + hash);
       }
     }
+    
     setMobileMenuOpen(false);
   };
 
   const coreServices = [
     { label: 'AI Governance & Compliance', href: '/services/ai-compliance-attorney-startups' },
-    {
-      label: 'Global Expansion & Immigration',
+    { 
+      label: 'Global Expansion & Immigration', 
       href: '/services/immigration-law-services',
       submenu: [
         { label: 'Work Visas', href: '/services/immigration-law-services/us-work-visa-attorney-h1b-startups' },
@@ -84,20 +96,20 @@ export const Navigation: React.FC = () => {
   return (
     <nav className={`nav ${isHomePage ? '' : 'nav-no-emergency'}`}>
       <div className="nav-container">
-        <Link href="/intelligence-hub" className="nav-logo">
-          <Image
-            src="/logo2.png"
-            alt="Rivalis Law Logo"
-            width={200}
+        <Link href="/" className="nav-logo">
+          <Image 
+            src="/logo2.png" 
+            alt="Rivalis Law Logo" 
+            width={200} 
             height={50}
             priority
             style={{ height: 'auto' }}
           />
         </Link>
-
+        
         {/* Desktop Menu */}
         <ul className="nav-menu">
-          {/* Our 3 Specialties - hidden temporarily
+          {/* Our 3 Specialties Dropdown */}
           <li className="nav-dropdown">
             <a href="/#services" className="nav-link" onClick={(e) => handleNavClick(e, '/#services')}>
               Our 3 Specialties
@@ -123,9 +135,8 @@ export const Navigation: React.FC = () => {
               ))}
             </div>
           </li>
-          */}
 
-          {/* Select Services - hidden temporarily
+          {/* Select Services Dropdown */}
           <li className="nav-dropdown">
             <a href="/#select-services" className="nav-link" onClick={(e) => handleNavClick(e, '/#select-services')}>
               Select Services
@@ -139,33 +150,26 @@ export const Navigation: React.FC = () => {
               ))}
             </div>
           </li>
-          */}
 
-          {/* Intelligence Hub - hidden temporarily
+          {/* Intelligence Hub */}
           <li>
             <Link href="/intelligence-hub" className="nav-link">
               Intelligence Hub
             </Link>
           </li>
-          */}
 
-          {/* Join the Firm - hidden temporarily
+          {/* Join the Firm */}
           <li>
             <Link href="/join-firm" className="nav-link">
               Join the Firm
             </Link>
           </li>
-          */}
 
-          {/* Get Started - hidden temporarily
           <li>
             <a href="/#qualify" className="nav-cta" onClick={(e) => handleNavClick(e, '/#qualify')}>
               Get Started
             </a>
           </li>
-          */}
-
-          {/* Login / User menu - hidden temporarily
           {user ? (
             <li className="nav-dropdown nav-user-dropdown">
               <button className="nav-user-btn">
@@ -196,7 +200,6 @@ export const Navigation: React.FC = () => {
               </Link>
             </li>
           )}
-          */}
         </ul>
 
         {/* Mobile Menu Button */}
@@ -214,71 +217,96 @@ export const Navigation: React.FC = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="nav-mobile-menu">
-
-          {/* Our 3 Specialties - hidden temporarily
+          
           <div className="nav-mobile-section">
             <div className="nav-mobile-section-title">Our 3 Specialties</div>
             {coreServices.map((service) => (
               <div key={service.href}>
-                <Link href={service.href} className="nav-mobile-link nested" onClick={() => setMobileMenuOpen(false)}>
+                <Link 
+                  href={service.href} 
+                  className="nav-mobile-link nested"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   {service.label}
                 </Link>
                 {service.submenu && service.submenu.map((subitem) => (
-                  <Link key={subitem.href} href={subitem.href} className="nav-mobile-link nested"
-                    style={{ paddingLeft: '2rem', fontSize: '0.9rem' }} onClick={() => setMobileMenuOpen(false)}>
+                  <Link 
+                    key={subitem.href} 
+                    href={subitem.href} 
+                    className="nav-mobile-link nested"
+                    style={{ paddingLeft: '2rem', fontSize: '0.9rem' }}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     {subitem.label}
                   </Link>
                 ))}
               </div>
             ))}
           </div>
-          */}
 
-          {/* Select Services - hidden temporarily
           <div className="nav-mobile-section">
             <div className="nav-mobile-section-title">Select Services</div>
             {selectServices.map((service) => (
-              <Link key={service.href} href={service.href} className="nav-mobile-link nested" onClick={() => setMobileMenuOpen(false)}>
+              <Link 
+                key={service.href} 
+                href={service.href} 
+                className="nav-mobile-link nested"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 {service.label}
               </Link>
             ))}
           </div>
-          */}
 
-          {/* Intelligence Hub - hidden temporarily
-          <Link href="/intelligence-hub" className="nav-mobile-link" onClick={() => setMobileMenuOpen(false)}>
+          <Link 
+            href="/intelligence-hub" 
+            className="nav-mobile-link"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Intelligence Hub
           </Link>
-          */}
 
-          {/* Join the Firm - hidden temporarily
-          <Link href="/join-firm" className="nav-mobile-link" onClick={() => setMobileMenuOpen(false)}>
+          <Link 
+            href="/join-firm" 
+            className="nav-mobile-link"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Join the Firm
           </Link>
-          */}
-
-          {/* Get Started - hidden temporarily
-          <a href="/#qualify" className="nav-mobile-cta" onClick={(e) => handleNavClick(e, '/#qualify')}>
+          
+          <a 
+            href="/#qualify" 
+            className="nav-mobile-cta" 
+            onClick={(e) => handleNavClick(e, '/#qualify')}
+          >
             Get Started
           </a>
-          */}
-
-          {/* Login / User menu - hidden temporarily
+          
           {user ? (
             <>
-              <Link href={dashboardPath} className="nav-mobile-link" onClick={() => setMobileMenuOpen(false)}>
+              <Link 
+                href={dashboardPath} 
+                className="nav-mobile-link"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 {dashboardLabel}
               </Link>
-              <button onClick={() => { handleSignOut(); setMobileMenuOpen(false); }} className="nav-mobile-signout">
+              <button 
+                onClick={() => { handleSignOut(); setMobileMenuOpen(false); }} 
+                className="nav-mobile-signout"
+              >
                 Sign Out
               </button>
             </>
           ) : (
-            <Link href="/login" className="nav-mobile-login" onClick={() => setMobileMenuOpen(false)}>
+            <Link 
+              href="/login" 
+              className="nav-mobile-login"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               Login
             </Link>
           )}
-          */}
         </div>
       )}
     </nav>
